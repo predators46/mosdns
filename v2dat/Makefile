@@ -26,7 +26,7 @@ PKG_BUILD_PARALLEL:=1
 GO_PKG:=github.com/urlesistiana/v2dat
 
 include $(INCLUDE_DIR)/package.mk
-include $(TOPDIR)/feeds/packages/lang/golang/golang-package.mk
+include $(TOPDIR)/feeds/mosdns/golang/golang-package.mk
 
 define Package/v2dat
   SECTION:=utils
