@@ -1960,7 +1960,7 @@ config BUSYBOX_DEFAULT_CROND
 	default y
 config BUSYBOX_DEFAULT_FEATURE_CROND_D
 	bool
-	default n
+	default y
 config BUSYBOX_DEFAULT_FEATURE_CROND_CALL_SENDMAIL
 	bool
 	default n
@@ -2912,7 +2912,7 @@ config BUSYBOX_DEFAULT_SH_IS_NONE
 	default n
 config BUSYBOX_DEFAULT_BASH_IS_ASH
 	bool
-	default n
+	default y
 config BUSYBOX_DEFAULT_BASH_IS_HUSH
 	bool
 	default n
