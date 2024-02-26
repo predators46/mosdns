@@ -6,7 +6,7 @@ PKG_RELEASE:=1
 
 LUCI_TITLE:=LuCI Support for mosdns
 LUCI_PKGARCH:=all
-LUCI_DEPENDS:=+golang
+LUCI_DEPENDS:=+golang +golang-doc
 
 define Package/$(PKG_NAME)/conffiles
 /etc/config/mosdns
