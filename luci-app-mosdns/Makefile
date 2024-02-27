@@ -6,7 +6,7 @@ PKG_RELEASE:=1
 
 LUCI_TITLE:=LuCI Support for mosdns
 LUCI_PKGARCH:=all
-LUCI_DEPENDS:=+xray-core
+LUCI_DEPENDS:=+xray-core +sing-box
 
 define Package/$(PKG_NAME)/conffiles
 /etc/config/mosdns
