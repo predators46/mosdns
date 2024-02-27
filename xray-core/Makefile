@@ -24,7 +24,7 @@ GO_PKG_LDFLAGS_X:= \
 	$(GO_PKG)/core.version=$(PKG_VERSION)
 
 include $(INCLUDE_DIR)/package.mk
-include $(TOPDIR)/feeds/passwall_packages/golang/golang-package.mk
+include $(TOPDIR)/feeds/mosdns/golang/golang-package.mk
 
 define Package/xray/template
   TITLE:=A platform for building proxies to bypass network restrictions
@@ -60,10 +60,10 @@ define Package/xray-example/description
   This includes example configuration files for xray-core.
 endef
 
-define Package/xray-core/conffiles
-/etc/xray/
-/etc/config/xray
-endef
+#define Package/xray-core/conffiles
+#/etc/xray/
+#/etc/config/xray
+#endef
 
 define Package/xray-core/install
 	$(call GoPackage/Package/Install/Bin,$(PKG_INSTALL_DIR))
@@ -79,11 +79,11 @@ define Package/xray-core/install
 	#$(INSTALL_BIN) $(CURDIR)/files/xray.init $(1)/etc/init.d/xray
 endef
 
-define Package/xray-example/install
-	$(INSTALL_DIR) $(1)/etc/xray/
-	$(INSTALL_DATA) $(CURDIR)/files/vpoint_socks_vmess.json $(1)/etc/xray/
-	$(INSTALL_DATA) $(CURDIR)/files/vpoint_vmess_freedom.json $(1)/etc/xray/
-endef
+#define Package/xray-example/install
+#	$(INSTALL_DIR) $(1)/etc/xray/
+#	$(INSTALL_DATA) $(CURDIR)/files/vpoint_socks_vmess.json $(1)/etc/xray/
+#	$(INSTALL_DATA) $(CURDIR)/files/vpoint_vmess_freedom.json $(1)/etc/xray/
+#endef
 
 $(eval $(call BuildPackage,xray-core))
-$(eval $(call BuildPackage,xray-example))
+#$(eval $(call BuildPackage,xray-example))
