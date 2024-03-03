@@ -266,7 +266,8 @@ jobs:
           cd sdk
           mkdir upload
 
-          zip -jr upload/mosdns_ipk_${{ matrix.platform }}.zip bin/*
+          zip -jr upload/mosdns_ipk_${{ matrix.platform }}.zip bin/*/
+          zip -jr upload/mosdns_ipk_${{ matrix.platform }}.zip bin/packages/*/*/
 
           echo "FIRMWARE=$PWD" >> $GITHUB_ENV
           echo "status=success" >> $GITHUB_OUTPUT
