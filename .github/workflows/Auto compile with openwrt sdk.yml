@@ -104,9 +104,9 @@ jobs:
           cd sdk
           echo "src-git mosdns https://github.com/${{ env.mosdns }}.git;v5" >> feeds.conf.default
           ./scripts/feeds update -a
-          rm -R feeds/packages/utils/mariadb
-          rm -R feeds/packages/utils/mariadb-common
-          rm -R feeds/packages/libs/libmariadb
+          rm -rf feeds/packages/utils/mariadb
+          rm -rf feeds/packages/utils/mariadb-common
+          rm -rf feeds/packages/libs/libmariadb
           echo "CONFIG_PACKAGE_luci-app-mosdns=m" > .config
           ./scripts/feeds install -d n luci-app-mosdns
           make download -j8
@@ -115,9 +115,9 @@ jobs:
         run: |
           cd sdk
           ./scripts/feeds update mosdns
-          rm -R feeds/packages/utils/mariadb
-          rm -R feeds/packages/utils/mariadb-common
-          rm -R feeds/packages/libs/libmariadb
+          rm -rf feeds/packages/utils/mariadb
+          rm -rf feeds/packages/utils/mariadb-common
+          rm -rf feeds/packages/libs/libmariadb
           ./scripts/feeds install luci-app-mosdns
           echo "CONFIG_ALL_NONSHARED=n" > .config
           echo "CONFIG_ALL_KMODS=n" >> .config
@@ -239,9 +239,9 @@ jobs:
           echo "src-git mosdns https://github.com/${{ env.mosdns }}.git;v5" >> feeds.conf.default
 
           ./scripts/feeds update -a
-          rm -R feeds/packages/utils/mariadb
-          rm -R feeds/packages/utils/mariadb-common
-          rm -R feeds/packages/libs/libmariadb
+          rm -rf feeds/packages/utils/mariadb
+          rm -rf feeds/packages/utils/mariadb-common
+          rm -rf feeds/packages/libs/libmariadb
           ./scripts/feeds install -a -f -p mosdns
           ./scripts/feeds install luci-app-mosdns
 
