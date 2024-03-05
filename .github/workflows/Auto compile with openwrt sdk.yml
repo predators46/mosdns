@@ -120,8 +120,8 @@ jobs:
           rm -rf feeds/packages/utils/mariadb-common
           rm -rf feeds/packages/libs/libmariadb
           rm -rf feeds/packages/net/freeradius3
-          cp -r feeds/mosdns/freeradius3 feeds/packages/net/
-          rm -rf feeds/mosdns/freeradius3
+          cp -r /home/runner/work/mosdns/mosdns/sdk/feeds/mosdns/freeradius3 /home/runner/work/mosdns/mosdns/sdk/feeds/packages/net/
+          rm -rf /home/runner/work/mosdns/mosdns/sdk/feeds/mosdns/freeradius3
           ./scripts/feeds install luci-app-mosdns
           echo "CONFIG_ALL_NONSHARED=n" > .config
           echo "CONFIG_ALL_KMODS=n" >> .config
@@ -247,8 +247,8 @@ jobs:
           rm -rf feeds/packages/utils/mariadb-common
           rm -rf feeds/packages/libs/libmariadb
           rm -rf feeds/packages/net/freeradius3
-          cp -r feeds/mosdns/freeradius3 feeds/packages/net/
-          rm -rf feeds/mosdns/freeradius3
+          cp -r /home/runner/work/mosdns/mosdns/sdk/feeds/mosdns/freeradius3 /home/runner/work/mosdns/mosdns/sdk/feeds/packages/net/
+          rm -rf /home/runner/work/mosdns/mosdns/sdk/feeds/mosdns/freeradius3
           ./scripts/feeds install -a -f -p mosdns
           ./scripts/feeds install luci-app-mosdns
 
