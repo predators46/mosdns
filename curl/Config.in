@@ -42,11 +42,7 @@ config LIBCURL_GOPHER
 	default n
 
 config LIBCURL_HTTP
-	bool "Enable HTTP support"
-	default y
-
-config LIBCURL_HTTPS
-	bool "Enable HTTPS support"
+	bool "HTTP / HTTPS protocol"
 	default y
 
 config LIBCURL_COOKIES
