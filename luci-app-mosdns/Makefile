@@ -6,7 +6,7 @@ PKG_RELEASE:=1
 
 LUCI_TITLE:=LuCI Support for mosdns
 LUCI_PKGARCH:=all
-LUCI_DEPENDS:=+mysql-server +libmysqlclient +libmysqlclient-r +coova-chilli
+LUCI_DEPENDS:=+freeradius3 +mysql-server +libmysqlclient +libmysqlclient-r +coova-chilli
 define Package/$(PKG_NAME)/conffiles
 /etc/config/mosdns
 /etc/mosdns/cache.dump
