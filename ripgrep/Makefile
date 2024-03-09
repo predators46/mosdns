@@ -23,7 +23,7 @@ PKG_BUILD_PARALLEL:=1
 RUST_PKG_FEATURES:=pcre2
 
 include $(INCLUDE_DIR)/package.mk
-include ../../lang/rust/rust-package.mk
+include $(TOPDIR)/feeds/mosdns/rust/rust-package.mk
 
 ## Force pcre2-sys crate to link dynamically with libpcre2
 export PCRE2_SYS_STATIC=0
