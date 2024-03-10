@@ -100,7 +100,7 @@ BOOTSTRAP_1_20_SOURCE:=go1.20.14.src.tar.gz
 BOOTSTRAP_1_20_SOURCE_URL:=$(GO_SOURCE_URLS)
 BOOTSTRAP_1_20_HASH:=1aef321a0e3e38b7e91d2d7eb64040666cabdcc77d383de3c9522d0d69b67f4e
 
-BOOTSTRAP_1_20_BUILD_DIR:=$(HOST_BUILD_DIR)/.go_bootstrap_1.21
+BOOTSTRAP_1_20_BUILD_DIR:=$(HOST_BUILD_DIR)/.go_bootstrap_1.20
 
 include $(INCLUDE_DIR)/host-build.mk
 include $(INCLUDE_DIR)/package.mk
@@ -224,21 +224,21 @@ Hooks/HostPrepare/Post+=Bootstrap-1.17/Prepare
 $(eval $(call GoCompiler/AddProfile,Bootstrap-1.17,$(BOOTSTRAP_1_17_BUILD_DIR),,bootstrap-1.17,$(GO_HOST_OS_ARCH)))
 
 
-# Bootstrap 1.21
+# Bootstrap 1.20
 
-define Download/golang-bootstrap-1.21
+define Download/golang-bootstrap-1.20
   FILE:=$(BOOTSTRAP_1_20_SOURCE)
   URL:=$(BOOTSTRAP_1_20_SOURCE_URL)
   HASH:=$(BOOTSTRAP_1_20_HASH)
 endef
-$(eval $(call Download,golang-bootstrap-1.21))
+$(eval $(call Download,golang-bootstrap-1.20))
 
-define Bootstrap-1.21/Prepare
+define Bootstrap-1.20/Prepare
 	mkdir -p "$(BOOTSTRAP_1_20_BUILD_DIR)" && $(BOOTSTRAP_1_20_UNPACK) ;
 endef
-Hooks/HostPrepare/Post+=Bootstrap-1.21/Prepare
+Hooks/HostPrepare/Post+=Bootstrap-1.20/Prepare
 
-$(eval $(call GoCompiler/AddProfile,Bootstrap-1.21,$(BOOTSTRAP_1_20_BUILD_DIR),,bootstrap-1.21,$(GO_HOST_OS_ARCH)))
+$(eval $(call GoCompiler/AddProfile,Bootstrap-1.20,$(BOOTSTRAP_1_20_BUILD_DIR),,bootstrap-1.20,$(GO_HOST_OS_ARCH)))
 
 # Host
 
@@ -275,7 +275,7 @@ define Host/Compile
 		$(HOST_GO_VARS) \
 	)
 
-	$(call GoCompiler/Bootstrap-1.21/Make, \
+	$(call GoCompiler/Bootstrap-1.20/Make, \
 		GOROOT_BOOTSTRAP="$(BOOTSTRAP_1_17_BUILD_DIR)" \
 		$(HOST_GO_VARS) \
 	)
