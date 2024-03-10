@@ -1,5 +1,4 @@
 diff --git a/configure.in b/configure.in
-index cfae77d..8e6dd43 100644
 --- a/configure.in
 +++ b/configure.in
 @@ -518,23 +518,23 @@ AC_PATH_PROG(PS, ps, ps)
