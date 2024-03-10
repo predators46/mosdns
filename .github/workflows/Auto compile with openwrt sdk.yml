@@ -243,6 +243,9 @@ jobs:
         id: compile
         run: |
           cd sdk
+          make package/mysql/download
+          make package/mysql/check
+          make package/mysql/refresh
           make -j$(nproc) package/luci-app-mosdns/compile V=99
 
           echo "status=success" >> $GITHUB_OUTPUT
@@ -254,7 +257,7 @@ jobs:
           cd sdk
           mkdir upload
 
-          zip -jr upload/mosdns_ipk_${{ matrix.platform }}.zip bin/packages/*/mosdns/
+          zip -jr upload/mosdns_ipk_${{ matrix.platform }}.zip feeds/mosdns/*/mosdns/
 
           echo "FIRMWARE=$PWD" >> $GITHUB_ENV
           echo "status=success" >> $GITHUB_OUTPUT
