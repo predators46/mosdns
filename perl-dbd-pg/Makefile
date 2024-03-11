@@ -12,6 +12,8 @@ PKG_MAINTAINER:=Andy Syam <privasisource@gmail.com>
 PKG_LICENSE:=GPL-1.0-or-later Artistic-1.0-Perl
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/perl/DBD-Pg-$(PKG_VERSION)
+PKG_USE_MIPS16:=0
+PKG_BUILD_FLAGS:=no-mips16
 PKG_BUILD_DEPENDS:=perl-dbi/host postgresql/host
 
 include $(INCLUDE_DIR)/package.mk
