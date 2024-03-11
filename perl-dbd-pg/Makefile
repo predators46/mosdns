@@ -14,7 +14,7 @@ PKG_LICENSE:=GPL-1.0-or-later Artistic-1.0-Perl
 PKG_BUILD_DIR:=$(BUILD_DIR)/perl/DBD-Pg-$(PKG_VERSION)
 
 include $(INCLUDE_DIR)/package.mk
-include ../perl/perlmod.mk
+include $(TOPDIR)/feeds/packages/lang/perl/perlmod.mk
 
 define Package/perl-dbd-pg
   SUBMENU:=Perl
