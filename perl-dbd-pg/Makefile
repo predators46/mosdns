@@ -38,6 +38,18 @@ define Build/Compile
 	$(call perlmod/Compile,,)
 endef
 
+define Host/Configure
+	$(call perlmod/host/Configure,,)
+endef
+
+define Host/Compile
+	$(call perlmod/host/Compile,,)
+endef
+
+define Host/Install
+	$(call perlmod/host/Install,$(1),)
+endef
+
 define Package/perl-dbd-pg/install
 	$(call perlmod/Install,$(1),DBD auto/DBD auto/share)
 endef
