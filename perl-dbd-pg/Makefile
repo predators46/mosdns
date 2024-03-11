@@ -16,6 +16,7 @@ HOST_BUILD_DIR:=$(BUILD_DIR_HOST)/perl/DBD-Pg-$(PKG_VERSION)
 PKG_USE_MIPS16:=0
 PKG_BUILD_FLAGS:=no-mips16
 PKG_BUILD_DEPENDS:=perl-dbi/host perl-dbd-pg/host
+HOST_BUILD_DEPENDS:=perl-dbi/host
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/host-build.mk
