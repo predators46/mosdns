@@ -6,7 +6,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE:=DBD-Pg-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://cpan.metacpan.org/authors/id/T/TU/TURNSTEP/
-PKG_HASH:=skip
+PKG_HASH:=92bbe8a363040f8ce6a3f1963f128132e245861a9b4dc5a84178b42d625a7807
 
 PKG_MAINTAINER:=Andy Syam <privasisource@gmail.com>
 PKG_LICENSE:=GPL-1.0-or-later Artistic-1.0-Perl
