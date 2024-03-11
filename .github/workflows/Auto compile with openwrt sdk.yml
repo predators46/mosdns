@@ -84,7 +84,15 @@ jobs:
           sudo -E apt-get -qq autoremove --purge
           sudo -E apt-get -qq clean
 
+      - name: Cache openwrt SDK
+        id: cache-sdk
+        uses: actions/cache@v3
+        with:
+          path: sdk
+          key: openwrt-sdk-21.02.7-x86-64
+
       - name: Initialization environment
+        if: steps.cache-sdk.outputs.cache-hit != 'true'
         env:
           url_sdk: https://downloads.openwrt.org/releases/21.02.7/targets/x86/64/openwrt-sdk-21.02.7-x86-64_gcc-8.4.0_musl.Linux-x86_64.tar.xz
         run: |
@@ -243,10 +251,7 @@ jobs:
         id: compile
         run: |
           cd sdk
-          #make package/mysql/download
-          #make package/mysql/check
-          #make package/mysql/refresh
-          make -j$(nproc) package/luci-app-mosdns/compile V=99
+          make package/luci-app-mosdns/{clean,compile} -j$(nproc)
 
           echo "status=success" >> $GITHUB_OUTPUT
 
@@ -257,7 +262,7 @@ jobs:
           cd sdk
           mkdir upload
 
-          zip -jr upload/mosdns_ipk_${{ matrix.platform }}.zip feeds/mosdns/*/mosdns/
+          zip -jr upload/mosdns_ipk_${{ matrix.platform }}.zip bin/packages/*/mosdns/
 
           echo "FIRMWARE=$PWD" >> $GITHUB_ENV
           echo "status=success" >> $GITHUB_OUTPUT
