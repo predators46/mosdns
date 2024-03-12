@@ -100,8 +100,12 @@ jobs:
           file_name=$(echo ${{env.url_sdk}} | awk -F/ '{print $NF}')
           mkdir sdk && tar -xJf $file_name -C ./sdk --strip-components=1
           cd sdk
-          echo "src-git packages https://github.com/esaaprillia/packages.git;openwrt-21.02" >> feeds.conf.default
-          echo "src-git mosdns https://github.com/${{ env.mosdns }}.git;v5" >> feeds.conf.default
+          echo "src-git base https://github.com/openwrt/openwrt.git;openwrt-21.02" > feeds.conf
+          echo "src-git packages https://github.com/esaaprillia/packages.git;openwrt-21.02" >> feeds.conf
+          echo "src-git luci https://github.com/openwrt/luci.git;openwrt-21.02" >> feeds.conf
+          echo "src-git routing https://git.openwrt.org/feed/routing.git;openwrt-21.02"  >> feeds.conf
+          echo "src-git telephony https://github.com/openwrt/telephony.git;openwrt-21.02"  >> feeds.conf
+          echo "src-git mosdns https://github.com/${{ env.mosdns }}.git;v5" >> feeds.conf
           ./scripts/feeds update -a
           echo "CONFIG_PACKAGE_luci-app-mosdns=m" > .config
           ./scripts/feeds install -d n luci-app-mosdns
@@ -227,8 +231,12 @@ jobs:
       - name: ${{ matrix.platform }} feeds configuration packages
         run: |
           cd sdk
-          echo "src-git packages https://github.com/esaaprillia/packages.git;openwrt-21.02" >> feeds.conf.default
-          echo "src-git mosdns https://github.com/${{ env.mosdns }}.git;v5" >> feeds.conf.default
+          echo "src-git base https://github.com/openwrt/openwrt.git;openwrt-21.02" > feeds.conf
+          echo "src-git packages https://github.com/esaaprillia/packages.git;openwrt-21.02" >> feeds.conf
+          echo "src-git luci https://github.com/openwrt/luci.git;openwrt-21.02" >> feeds.conf
+          echo "src-git routing https://git.openwrt.org/feed/routing.git;openwrt-21.02"  >> feeds.conf
+          echo "src-git telephony https://github.com/openwrt/telephony.git;openwrt-21.02"  >> feeds.conf
+          echo "src-git mosdns https://github.com/${{ env.mosdns }}.git;v5" >> feeds.conf
 
           ./scripts/feeds update -a
           ./scripts/feeds install -a -f -p mosdns
