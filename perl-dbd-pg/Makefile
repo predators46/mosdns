@@ -13,13 +13,11 @@ PKG_LICENSE:=GPL-1.0-or-later Artistic-1.0-Perl
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/perl/DBD-Pg-$(PKG_VERSION)
 HOST_BUILD_DIR:=$(BUILD_DIR_HOST)/perl/DBD-Pg-$(PKG_VERSION)
-PKG_USE_MIPS16:=0
-PKG_BUILD_FLAGS:=no-mips16
-PKG_BUILD_DEPENDS:=perl-dbi/host perl-dbd-pg/host
-HOST_BUILD_DEPENDS:=perl-dbi/host
+PKG_BUILD_DEPENDS:=perl-dbi/host
+
+export POSTGRES_LIB: "$(STAGING_DIR_HOSTPKG)/lib/"
 
 include $(INCLUDE_DIR)/package.mk
-include $(INCLUDE_DIR)/host-build.mk
 include $(TOPDIR)/feeds/packages/lang/perl/perlmod.mk
 
 define Package/perl-dbd-pg
@@ -39,21 +37,8 @@ define Build/Compile
 	$(call perlmod/Compile,,)
 endef
 
-define Host/Configure
-	$(call perlmod/host/Configure,,)
-endef
-
-define Host/Compile
-	$(call perlmod/host/Compile,,)
-endef
-
-define Host/Install
-	$(call perlmod/host/Install,$(1),)
-endef
-
 define Package/perl-dbd-pg/install
 	$(call perlmod/Install,$(1),DBD auto/DBD auto/share)
 endef
 
-$(eval $(call HostBuild))
 $(eval $(call BuildPackage,perl-dbd-pg))
