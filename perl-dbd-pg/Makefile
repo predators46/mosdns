@@ -14,7 +14,7 @@ PKG_LICENSE:=GPL-1.0-or-later Artistic-1.0-Perl
 PKG_BUILD_DIR:=$(BUILD_DIR)/perl/DBD-Pg-$(PKG_VERSION)
 PKG_BUILD_DEPENDS:=perl-dbi/host
 
-export POSTGRES_LIB: "$(STAGING_DIR_HOSTPKG)/lib/"
+export POSTGRES_LIB="$(STAGING_DIR_HOSTPKG)/lib/"
 
 include $(INCLUDE_DIR)/package.mk
 include $(TOPDIR)/feeds/packages/lang/perl/perlmod.mk
