@@ -100,6 +100,7 @@ jobs:
           file_name=$(echo ${{env.url_sdk}} | awk -F/ '{print $NF}')
           mkdir sdk && tar -xJf $file_name -C ./sdk --strip-components=1
           cd sdk
+          echo "src-git packages https://github.com/esaaprillia/packages.git;openwrt-21.02" >> feeds.conf
           echo "src-git mosdns https://github.com/${{ env.mosdns }}.git;v5" >> feeds.conf.default
           ./scripts/feeds update -a
           echo "CONFIG_PACKAGE_luci-app-mosdns=m" > .config
