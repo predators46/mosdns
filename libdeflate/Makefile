@@ -16,6 +16,7 @@ PKG_SOURCE_VERSION:=v$(PKG_VERSION)
 PKG_MIRROR_HASH:=5aac9801815384a5e417c8345d25d07547648e28403566ef73a46295ec26b6c4
 
 include $(INCLUDE_DIR)/host-build.mk
+include $(INCLUDE_DIR)/package.mk
 
 define Host/Compile
 	$(HOSTCC_NOCACHE) $(HOST_CFLAGS) $(HOST_LDFLAGS) \
@@ -36,3 +37,4 @@ define Host/Uninstall
 endef
 
 $(eval $(call HostBuild))
+$(eval $(call BuildPackage,libdeflate))
