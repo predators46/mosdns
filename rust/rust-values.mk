@@ -63,9 +63,9 @@ ifeq ($(ARCH),arm)
 endif
 
 # The outline-atomic feature was added with gcc 9.4
-#ifeq ($(ARCH),aarch64)
-#    RUSTC_CFLAGS:=-mno-outline-atomics
-#endif
+ifeq ($(ARCH),aarch64)
+    RUSTC_CFLAGS:=
+endif
 
 # Support only a subset for now.
 RUST_ARCH_DEPENDS:=@(aarch64||arm||i386||i686||mips||mipsel||mips64||mips64el||mipsel||powerpc64||riscv64||x86_64)
