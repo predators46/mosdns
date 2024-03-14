@@ -62,7 +62,7 @@ ifeq ($(ARCH),arm)
   endif
 endif
 
-# The outline-atomic feature was added with gcc 9.4
+# The outline-atomics feature was added with gcc 9.4
 ifeq ($(ARCH),aarch64)
     RUSTC_CFLAGS:=
 endif
