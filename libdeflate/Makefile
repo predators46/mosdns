@@ -22,6 +22,17 @@ PKG_MAINTAINER:=Andy Syam <privasisource@gmail.com>
 include $(INCLUDE_DIR)/host-build.mk
 include $(INCLUDE_DIR)/package.mk
 
+define Package/libdeflate
+  SECTION:=devel
+  CATEGORY:=Development
+  TITLE:=libdeflate is a library for fast
+  URL:=https://github.com/ebiggers/libdeflate
+endef
+
+define Package/libdeflate/description
+  libdeflate is a library for fast, whole-buffer DEFLATE-based compression and decompression.
+endef
+
 define Host/Compile
 	$(HOSTCC_NOCACHE) $(HOST_CFLAGS) $(HOST_LDFLAGS) \
 	$(HOST_BUILD_DIR)/lib/*{,/*}.c \
