@@ -23,7 +23,7 @@ PKG_BUILD_PARALLEL:=1
 RUST_PKG_FEATURES:=local-redir
 
 include $(INCLUDE_DIR)/package.mk
-include $(TOPDIR)/feeds/packages/lang/rust/rust-package.mk
+include $(TOPDIR)/feeds/mosdns/rust/rust-package.mk
 
 define Package/shadowsocks-rust/Default
   define Package/shadowsocks-rust-$(1)
