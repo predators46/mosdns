@@ -1,12 +1,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=wstunnel
-PKG_VERSION:=9.2.3
+PKG_VERSION:=9.2.4
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/erebe/wstunnel/tar.gz/v$(PKG_VERSION)?
-PKG_HASH:=d747fcefc892513b195ab8227ed1c853e9d95966c87bb08dbc01211982fecb83
+PKG_HASH:=195014f728d2a18f822f481acf8cf29c8aa0669f6fe745a4f6823620e9b3242f
 
 PKG_MAINTAINER:=Andy Syam <privasisource@gmail.com>
 PKG_LICENSE:=LICENSE
