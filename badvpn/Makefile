@@ -14,7 +14,10 @@ PKG_LICENSE_FILES:=COPYING
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/badvpn-$(PKG_VERSION)
 
+CMAKE_SOURCE_DIR:=build
+
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/cmake.mk
 
 define Package/badvpn
 	SECTION:=net
@@ -28,27 +31,10 @@ define Package/badvpn/description
   Peer-to-peer VPN system, and NCD, a programming language for network interface configuration
 endef
 
-define Build/Configure
-	echo -e \
-	"SET(CMAKE_SYSTEM_NAME Linux)\n" \
-	"SET(CMAKE_C_COMPILER $(TARGET_CC))\n" \
-	"SET(CMAKE_CXX_COMPILER $(TARGET_CXX))\n" \
-	"SET(CMAKE_FIND_ROOT_PATH $(STAGING_DIR) $(STAGING_DIR_HOST))\n" \
-	> "$(PKG_BUILD_DIR)/toolchain.cmake"
-	(cd $(PKG_BUILD_DIR); \
-		CFLAGS="$(TARGET_CFLAGS)" \
-		LDFLAGS="$(TARGET_LDFLAGS)" \
-		cmake . \
-		-DCMAKE_TOOLCHAIN_FILE=$(PKG_BUILD_DIR)/toolchain.cmake \
-		-DBUILD_NOTHING_BY_DEFAULT=1 \
-		-DBUILD_TUN2SOCKS=1 \
-		-DBUILD_UDPGW=1 \
-	);
-endef
-
-define Build/Compile
-	$(MAKE) -C $(PKG_BUILD_DIR)
-endef
+CMAKE_OPTIONS += \
+	-DBUILD_NOTHING_BY_DEFAULT=1 \
+	-DBUILD_TUN2SOCKS=1 \
+	-DBUILD_UDPGW=1
 
 define Package/badvpn/install
 	$(INSTALL_DIR) $(1)/usr/bin
