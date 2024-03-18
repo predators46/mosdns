@@ -23,6 +23,7 @@ define Package/stl-gui/description
 endef
 
 define Build/Compile
+true
 endef
 
 define Package/stl-gui/install
