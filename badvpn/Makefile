@@ -14,7 +14,7 @@ PKG_LICENSE_FILES:=COPYING
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/badvpn-$(PKG_VERSION)
 
-CMAKE_SOURCE_DIR:=build
+CMAKE_BINARY_SUBDIR:=build
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
