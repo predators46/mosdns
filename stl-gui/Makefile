@@ -15,7 +15,7 @@ define Package/stl-gui
   SECTION:=net
   CATEGORY:=Network
   TITLE:=Tunnel Ssh Python Gui
-  DEPENDS:=+bash +kmod-tun +openvpn-openssl +ip-full +openssh-client +stunnel +lsof +httping +fping +screen +coreutils-nohup +sshpass +badvpn +corkscrew
+  #DEPENDS:=+bash +kmod-tun +openvpn-openssl +ip-full +openssh-client +stunnel +lsof +httping +fping +screen +coreutils-nohup +sshpass +badvpn +corkscrew
 endef
 
 define Package/stl-gui/description
