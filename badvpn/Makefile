@@ -11,7 +11,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://github.com/ambrop72/badvpn/archive/
-PKG_MD5SUM:=e65d8d298fc82eb9a6c12a9425a97e6d
+PKG_HASH:=:=bfd4bbfebd7274bcec792558c9a2fd60e39cd92e04673825ade5d04154766109
 
 include $(INCLUDE_DIR)/package.mk
 
