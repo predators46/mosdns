@@ -13,7 +13,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://web.archive.org/web/20170510154150/http://agroman.net/corkscrew/
-PKG_HASH:=aa65a9bca3ba06ffcc9d081dc527646d3f8f4e1390c73f2121dd7ebe785c4c40
+PKG_HASH:=09d70daaa3145070a1e463dbab6ae1cbc62449b1e09c94e158f6017e7c79c9f6
 
 include $(INCLUDE_DIR)/package.mk
 
