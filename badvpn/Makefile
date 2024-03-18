@@ -10,7 +10,7 @@ PKG_VERSION:=1.999.130
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://github.com/ambrop72/badvpn/archive/
+PKG_SOURCE_URL:=https://codeload.github.com/ambrop72/badvpn/tar.gz/$(PKG_VERSION)?
 PKG_HASH:=:=bfd4bbfebd7274bcec792558c9a2fd60e39cd92e04673825ade5d04154766109
 
 include $(INCLUDE_DIR)/package.mk
