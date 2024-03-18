@@ -6,7 +6,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/ambrop72/badvpn/tar.gz/$(PKG_VERSION)?
-PKG_HASH:=:=bfd4bbfebd7274bcec792558c9a2fd60e39cd92e04673825ade5d04154766109
+PKG_HASH:=bfd4bbfebd7274bcec792558c9a2fd60e39cd92e04673825ade5d04154766109
 
 PKG_MAINTAINER:=Andy Syam <privasisource@gmail.com>
 PKG_LICENSE:=LICENSE
