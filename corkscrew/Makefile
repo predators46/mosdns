@@ -5,8 +5,8 @@ PKG_VERSION:=2.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://codeload.github.com/bryanpkc/corkscrew/tar.gz/v$(PKG_VERSION)?
-PKG_HASH:=09d70daaa3145070a1e463dbab6ae1cbc62449b1e09c94e158f6017e7c79c9f6
+PKG_SOURCE_URL:=https://mirror2.openwrt.org/sources/
+PKG_HASH:=0d0fcbb41cba4a81c4ab494459472086f377f9edb78a2e2238ed19b58956b0be
 
 PKG_MAINTAINER:=Andy Syam <privasisource@gmail.com>
 PKG_LICENSE:=GPL-2.0 license
