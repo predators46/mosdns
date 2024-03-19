@@ -16,7 +16,7 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/perl/DBD-MariaDB-$(PKG_VERSION)
 PKG_BUILD_DEPENDS:=perl-dbi/host
 
 include $(INCLUDE_DIR)/package.mk
-include ../perl/perlmod.mk
+include $(TOPDIR)/feeds/packages/lang/perl/perlmod.mk
 
 define Package/perl-dbd-mariadb
   SUBMENU:=Perl
