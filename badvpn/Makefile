@@ -21,8 +21,8 @@ define Package/badvpn
 	SECTION:=net
 	CATEGORY:=Network
 	TITLE:=NCD scripting language, tun2socks proxifier, P2P VPN
-	DEPENDS:=+librt +libpthread +libudev-zero +libnss +libopenssl +coreutils +coreutils-stdbuf +openssl-util
 	URL:=https://github.com/ambrop72/badvpn
+	DEPENDS:=+librt +libpthread +libudev-zero +libnss +libopenssl +coreutils +coreutils-stdbuf +openssl-util
 endef
 
 define Package/badvpn/description
@@ -31,8 +31,12 @@ endef
 
 CMAKE_OPTIONS += \
 	-DBUILD_NOTHING_BY_DEFAULT=1 \
+	-DBUILD_SERVER=1 \
+	-DBUILD_CLIENT=1 \
+	-DBUILD_FLOODER=1 \
 	-DBUILD_TUN2SOCKS=1 \
-	-DBUILD_UDPGW=1
+	-DBUILD_UDPGW=1 \
+	-DBUILD_NCD=1
 
 define Package/badvpn/install
 	$(INSTALL_DIR) $(1)/usr/bin
@@ -41,3 +45,4 @@ define Package/badvpn/install
 endef
 
 $(eval $(call BuildPackage,badvpn))
+
