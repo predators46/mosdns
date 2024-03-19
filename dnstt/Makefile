@@ -4,7 +4,7 @@ PKG_NAME:=dnstt
 PKG_VERSION:=v1.20220208.0
 PKG_RELEASE:=1
 
-PKG_SOURCE_URL:=www.bamsoftware.com/git/dnstt.git
+PKG_SOURCE_URL:=https://www.bamsoftware.com/git/dnstt.git
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=$(PKG_VERSION)
 PKG_MIRROR_HASH:=skip
