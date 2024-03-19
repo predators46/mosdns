@@ -18,7 +18,7 @@ PKG_BUILD_PARALLEL:=1
 PKG_USE_MIPS16:=0
 PKG_BUILD_FLAGS:=no-mips16
 
-GO_PKG:=dnstt-$(PKG_VERSION)
+GO_PKG:=www.bamsoftware.com/git/dnstt.git
 GO_PKG_BUILD_PKG:=$(GO_PKG)/dnstt-client
 
 include $(INCLUDE_DIR)/package.mk
