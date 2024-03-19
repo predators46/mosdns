@@ -9,7 +9,7 @@ PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=$(PKG_VERSION)
 PKG_MIRROR_HASH:=skip
 
-PKG_MAINTAINER:=Tianling Shen <cnsztl@immortalwrt.org>
+PKG_MAINTAINER:=
 PKG_LICENSE:=
 PKG_LICENSE_FILES:=
 
@@ -22,7 +22,7 @@ GO_PKG:=dnstt-$(PKG_VERSION)
 GO_PKG_BUILD_PKG:=$(GO_PKG)/dnstt-client
 
 include $(INCLUDE_DIR)/package.mk
-include $(TOPDIR)/feeds/helloworld/golang/golang-package.mk
+include $(TOPDIR)/feeds/mosdns/golang/golang-package.mk
 
 define Package/dnstt-client
   SECTION:=net
