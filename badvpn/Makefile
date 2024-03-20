@@ -29,9 +29,6 @@ define Package/badvpn/description
   Peer-to-peer VPN system, and NCD, a programming language for network interface configuration
 endef
 
-CMAKE_OPTIONS += \
-	-DBUILD_NCD=0
-
 define Package/badvpn/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tun2socks/badvpn-tun2socks $(1)/usr/bin/badvpn-tun2socks
