@@ -1,0 +1,23 @@
+From 6a41edf183be171052e064c9e36329fe6538005e Mon Sep 17 00:00:00 2001
+From: esaaprillia <esaapriliasalsabila@gmail.com>
+Date: Wed, 20 Mar 2024 08:32:20 +0800
+Subject: [PATCH] fix regex
+
+---
+ ncd/modules/regex_match.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/ncd/modules/regex_match.c b/ncd/modules/regex_match.c
+index 747494e42..f669673b1 100644
+--- a/ncd/modules/regex_match.c
++++ b/ncd/modules/regex_match.c
+@@ -67,7 +67,9 @@
+ #include <stdlib.h>
+ #include <string.h>
+ #include <limits.h>
++#ifndef REG_STARTEND
+ #include <regex.h>
++#endif
+ 
+ #include <misc/string_begins_with.h>
+ #include <misc/parse_number.h>
