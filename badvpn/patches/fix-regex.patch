@@ -1,5 +1,3 @@
-diff --git a/ncd/modules/regex_match.c b/ncd/modules/regex_match.c
-index 747494e42..8bc7ed61f 100644
 --- a/ncd/modules/regex_match.c
 +++ b/ncd/modules/regex_match.c
 @@ -69,6 +69,11 @@
