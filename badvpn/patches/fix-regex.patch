@@ -1,12 +1,3 @@
-From 72f39cebf737305231ed17f600224a0f1c7feefd Mon Sep 17 00:00:00 2001
-From: esaaprillia <esaapriliasalsabila@gmail.com>
-Date: Wed, 20 Mar 2024 09:53:11 +0800
-Subject: [PATCH] Update regex_match.c
-
----
- ncd/modules/regex_match.c | 5 +++++
- 1 file changed, 5 insertions(+)
-
 diff --git a/ncd/modules/regex_match.c b/ncd/modules/regex_match.c
 index 747494e42..8bc7ed61f 100644
 --- a/ncd/modules/regex_match.c
