@@ -14,7 +14,7 @@ PKG_MAINTAINER:=
 PKG_BUILD_DEPENDS:=python-setuptools-scm/host golang/host
 
 GO_PKG:=github.com/LorenEteval/tun2socks-python/tun2socks-go
-GO_PKG_BUILD_PKG:=$(GO_PKG)/
+GO_PKG_BUILD_PKG:=$(GO_PKG)
 GO_PKG_LDFLAGS_X:= \
 	$(GO_PKG)/core.build=OpenWrt \
 	$(GO_PKG)/core.version=$(PKG_VERSION)
