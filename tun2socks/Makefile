@@ -21,7 +21,7 @@ GO_PKG:=github.com/xjasonlyu/tun2socks/v2
 GO_PKG_BUILD_PKG:=$(GO_PKG)
 GO_PKG_LDFLAGS_X:= \
 	$(GO_PKG)/version.build=OpenWrt \
-	$(GO_PKG)/version.version=$(PKG_VERSION)
+	$(GO_PKG)/internal/version.version=v$(PKG_VERSION)
 
 include $(INCLUDE_DIR)/package.mk
 include $(TOPDIR)/feeds/mosdns/golang/golang-package.mk
