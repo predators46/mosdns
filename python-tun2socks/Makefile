@@ -11,7 +11,7 @@ PKG_LICENSE:=GPL-3.0 license
 PKG_LICENSE_FILES:=LICENSE
 PKG_MAINTAINER:=
 
-PKG_BUILD_DEPENDS:=python-setuptools-scm/host
+PKG_BUILD_DEPENDS:=python-setuptools-scm/host golang/host
 
 include ../pypi.mk
 include $(INCLUDE_DIR)/package.mk
