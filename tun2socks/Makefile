@@ -18,7 +18,7 @@ PKG_USE_MIPS16:=0
 PKG_BUILD_FLAGS:=no-mips16
 
 GO_PKG:=github.com/xjasonlyu/tun2socks
-GO_PKG_BUILD_PKG:=$(GO_PKG)
+GO_PKG_BUILD_PKG:=$(GO_PKG)/
 GO_PKG_LDFLAGS_X:= \
 	$(GO_PKG)/version.build=OpenWrt \
 	$(GO_PKG)/version.version=$(PKG_VERSION)
