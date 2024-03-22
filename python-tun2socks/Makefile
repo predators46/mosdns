@@ -23,7 +23,7 @@ define Package/python3-tun2socks
   SECTION:=lang
   CATEGORY:=Languages
   SUBMENU:=Python
-  TITLE:=Tun2socks
+  TITLE:=tun2socks-python
   URL:=https://github.com/LorenEteval/tun2socks-python
   DEPENDS:=+python3-light
 endef
