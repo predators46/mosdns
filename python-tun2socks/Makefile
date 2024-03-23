@@ -29,7 +29,7 @@ define Package/python3-tun2socks
   SUBMENU:=Python
   TITLE:=Tun2socks Python
   URL:=https://github.com/LorenEteval/tun2socks-python
-  DEPENDS:=+python3-light
+  DEPENDS:=+python3-light +python3-setuptools +python3-wheel
 endef
 
 define Package/python3-tun2socks/description
