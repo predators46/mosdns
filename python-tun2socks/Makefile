@@ -16,8 +16,6 @@ PKG_BUILD_DEPENDS:=python-setuptools-scm/host golang/host
 GO_PKG:=github.com/xjasonlyu/tun2socks/v2
 GO_PKG_BUILD_PKG:=$(GO_PKG)
 GO_PKG_LDFLAGS_X:=$(GO_PKG)/internal/version.version=v$(PKG_VERSION)
-GO_PKG_TARGET_VARS:=CGO_ENABLED=1
-GO_PKG_BUILD_VARS:=GO111MODULE=on
 
 include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
 include $(INCLUDE_DIR)/package.mk
@@ -37,6 +35,9 @@ endef
 define Package/python3-tun2socks/description
 Python bindings for go tun2socks.
 endef
+
+GO_PKG_TARGET_VARS+=CGO_ENABLED=0
+#GO_PKG_BUILD_VARS+=GO111MODULE=on
 
 $(eval $(call Py3Package,python3-tun2socks))
 $(eval $(call BuildPackage,python3-tun2socks))
