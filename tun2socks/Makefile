@@ -53,4 +53,5 @@ define Package/tun2socks/install
 
 endef
 
+$(eval $(call GoBinPackage,tun2socks))
 $(eval $(call BuildPackage,tun2socks))
