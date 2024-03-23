@@ -26,7 +26,7 @@ GO_PKG_LDFLAGS_X:= \
 include $(INCLUDE_DIR)/package.mk
 include $(TOPDIR)/feeds/mosdns/golang/golang-package.mk
 
-GO_PKG_BUILD_VARS += GO111MODULE=auto
+GO_PKG_BUILD_VARS += GO111MODULE=on
 
 define Package/tun2socks
   SECTION:=net
