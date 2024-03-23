@@ -19,9 +19,9 @@ PKG_BUILD_FLAGS:=no-mips16
 
 GO_PKG:=github.com/xjasonlyu/tun2socks/v2
 GO_PKG_BUILD_PKG:=$(GO_PKG)
-GO_PKG_LDFLAGS_X:= \
-	$(GO_PKG)/version.build=OpenWrt \
-	$(GO_PKG)/internal/version.version=v$(PKG_VERSION)
+GO_PKG_LDFLAGS_X:=$(GO_PKG)/internal/version.version=v$(PKG_VERSION)
+GO_PKG_TARGET_VARS:=CGO_ENABLED=1
+GO_PKG_BUILD_VARS:=GO111MODULE=on
 
 include $(INCLUDE_DIR)/package.mk
 include $(TOPDIR)/feeds/mosdns/golang/golang-package.mk
@@ -43,10 +43,6 @@ define Package/tun2socks/description
   Full IPv6 Support: All functions work in IPv6, tunnel IPv4 connections through IPv6 proxy and vice versa.
   Network Stack: Powered by user-space TCP/IP stack from Google container application kernel gVisor.
 endef
-
-GO_PKG_BUILD_VARS += \
-	GO111MODULE=on \
-	CGO_ENABLED=1
 
 define Package/tun2socks/install
 	$(call GoPackage/Package/Install/Bin,$(PKG_INSTALL_DIR))
