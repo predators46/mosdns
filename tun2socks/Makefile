@@ -26,8 +26,6 @@ GO_PKG_LDFLAGS_X:= \
 include $(INCLUDE_DIR)/package.mk
 include $(TOPDIR)/feeds/mosdns/golang/golang-package.mk
 
-GO_PKG_BUILD_VARS += GO111MODULE=on CGO_ENABLED=1
-
 define Package/tun2socks
   SECTION:=net
   CATEGORY:=Network
@@ -45,6 +43,10 @@ define Package/tun2socks/description
   Full IPv6 Support: All functions work in IPv6, tunnel IPv4 connections through IPv6 proxy and vice versa.
   Network Stack: Powered by user-space TCP/IP stack from Google container application kernel gVisor.
 endef
+
+GO_PKG_BUILD_VARS += \
+	GO111MODULE=on \
+	CGO_ENABLED=1
 
 define Package/tun2socks/install
 	$(call GoPackage/Package/Install/Bin,$(PKG_INSTALL_DIR))
