@@ -42,8 +42,9 @@ define Package/tun2socks/description
   Network Stack: Powered by user-space TCP/IP stack from Google container application kernel gVisor.
 endef
 
-GO_PKG_TARGET_VARS+=CGO_ENABLED=1
-GO_PKG_BUILD_VARS+=GO111MODULE=on
+define Build/Compile
+  $(call GoPackage/Build/Compile)
+endef
 
 define Package/tun2socks/install
 	$(call GoPackage/Package/Install/Bin,$(PKG_INSTALL_DIR))
