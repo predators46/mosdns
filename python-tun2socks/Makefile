@@ -37,6 +37,10 @@ define Package/python3-tun2socks/description
 Python bindings for go tun2socks.
 endef
 
+GO_PKG_BUILD_VARS += \
+	GO111MODULE=on \
+	CGO_ENABLED=1
+
 $(eval $(call Py3Package,python3-tun2socks))
 $(eval $(call BuildPackage,python3-tun2socks))
 $(eval $(call BuildPackage,python3-tun2socks-src))
