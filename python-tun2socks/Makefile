@@ -13,40 +13,6 @@ PKG_MAINTAINER:=
 
 PKG_BUILD_DEPENDS:=python-setuptools-scm/host python-wheel/host golang/host
 
-GO_PKG_TARGET_VARS:= \
-	GOOS="$(GO_OS)" \
-	GOARCH="$(GO_ARCH)" \
-	GO386="$(GO_386)" \
-	GOAMD64="$(GO_AMD64)" \
-	GOARM="$(GO_ARM)" \
-	GOMIPS="$(GO_MIPS)" \
-	GOMIPS64="$(GO_MIPS64)" \
-	GOPPC64="$(GO_PPC64)" \
-	CGO_ENABLED=1 \
-	CC="$(TARGET_CC)" \
-	CXX="$(TARGET_CXX)" \
-	CGO_CFLAGS="$(filter-out $(GO_CFLAGS_TO_REMOVE),$(TARGET_CFLAGS))" \
-	CGO_CPPFLAGS="$(TARGET_CPPFLAGS)" \
-	CGO_CXXFLAGS="$(filter-out $(GO_CFLAGS_TO_REMOVE),$(TARGET_CXXFLAGS))" \
-	CGO_LDFLAGS="$(TARGET_LDFLAGS)"
-
-MAKE_VARS:= \
-	GOOS="$(GO_OS)" \
-	GOARCH="$(GO_ARCH)" \
-	GO386="$(GO_386)" \
-	GOAMD64="$(GO_AMD64)" \
-	GOARM="$(GO_ARM)" \
-	GOMIPS="$(GO_MIPS)" \
-	GOMIPS64="$(GO_MIPS64)" \
-	GOPPC64="$(GO_PPC64)" \
-	CGO_ENABLED=1 \
-	CC="$(TARGET_CC)" \
-	CXX="$(TARGET_CXX)" \
-	CGO_CFLAGS="$(filter-out $(GO_CFLAGS_TO_REMOVE),$(TARGET_CFLAGS))" \
-	CGO_CPPFLAGS="$(TARGET_CPPFLAGS)" \
-	CGO_CXXFLAGS="$(filter-out $(GO_CFLAGS_TO_REMOVE),$(TARGET_CXXFLAGS))" \
-	CGO_LDFLAGS="$(TARGET_LDFLAGS)"
-
 GO_PKG:=github.com/xjasonlyu/tun2socks/v2
 GO_PKG_BUILD_PKG:=$(GO_PKG)
 GO_PKG_LDFLAGS_X:=$(GO_PKG)/internal/version.Version=v$(PKG_VERSION)
@@ -70,39 +36,12 @@ define Package/python3-tun2socks/description
 Python bindings for go tun2socks.
 endef
 
-GO_PKG_TARGET_VARS = \
-	GOOS="$(GO_OS)" \
-	GOARCH="$(GO_ARCH)" \
-	GO386="$(GO_386)" \
-	GOAMD64="$(GO_AMD64)" \
-	GOARM="$(GO_ARM)" \
-	GOMIPS="$(GO_MIPS)" \
-	GOMIPS64="$(GO_MIPS64)" \
-	GOPPC64="$(GO_PPC64)" \
-	CGO_ENABLED=1 \
-	CC="$(TARGET_CC)" \
-	CXX="$(TARGET_CXX)" \
-	CGO_CFLAGS="$(filter-out $(GO_CFLAGS_TO_REMOVE),$(TARGET_CFLAGS))" \
-	CGO_CPPFLAGS="$(TARGET_CPPFLAGS)" \
-	CGO_CXXFLAGS="$(filter-out $(GO_CFLAGS_TO_REMOVE),$(TARGET_CXXFLAGS))" \
-	CGO_LDFLAGS="$(TARGET_LDFLAGS)"
+GO_PKG_BUILD_VARS += GO111MODULE=auto
 
-MAKE_VARS = \
-	GOOS="$(GO_OS)" \
-	GOARCH="$(GO_ARCH)" \
-	GO386="$(GO_386)" \
-	GOAMD64="$(GO_AMD64)" \
-	GOARM="$(GO_ARM)" \
-	GOMIPS="$(GO_MIPS)" \
-	GOMIPS64="$(GO_MIPS64)" \
-	GOPPC64="$(GO_PPC64)" \
-	CGO_ENABLED=1 \
-	CC="$(TARGET_CC)" \
-	CXX="$(TARGET_CXX)" \
-	CGO_CFLAGS="$(filter-out $(GO_CFLAGS_TO_REMOVE),$(TARGET_CFLAGS))" \
-	CGO_CPPFLAGS="$(TARGET_CPPFLAGS)" \
-	CGO_CXXFLAGS="$(filter-out $(GO_CFLAGS_TO_REMOVE),$(TARGET_CXXFLAGS))" \
-	CGO_LDFLAGS="$(TARGET_LDFLAGS)"
+define Build/Compile
+	$(call GoPackage/Build/Compile)
+	$(call GoPackage/Package/Install/Bin,$(PKG_INSTALL_DIR))
+endef
 
 $(eval $(call Py3Package,python3-tun2socks))
 $(eval $(call BuildPackage,python3-tun2socks))
