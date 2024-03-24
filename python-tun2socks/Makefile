@@ -13,8 +13,8 @@ PKG_MAINTAINER:=
 
 PKG_BUILD_DEPENDS:=python-setuptools-scm/host python-wheel/host golang/host
 
-GO_PKG:=github.com/xjasonlyu/tun2socks/v2
-GO_PKG_BUILD_PKG:=$(GO_PKG)
+#GO_PKG:=github.com/xjasonlyu/tun2socks/v2
+#GO_PKG_BUILD_PKG:=$(GO_PKG)
 GO_PKG_LDFLAGS_X:=$(GO_PKG)/internal/version.Version=v$(PKG_VERSION)
 
 PYTHON3_PKG_BUILD_VARS:= \
