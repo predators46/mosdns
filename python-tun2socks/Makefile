@@ -48,7 +48,7 @@ MAKE_VARS:= \
 	CGO_LDFLAGS="$(TARGET_LDFLAGS)"
 
 #GO_PKG:=github.com/xjasonlyu/tun2socks/v2
-#GO_PKG_BUILD_PKG:=$(GO_PKG)
+GO_PKG:=github.com/LorenEteval/tun2socks-python/tun2socks-go
 GO_PKG_LDFLAGS_X:=$(GO_PKG)/internal/version.Version=v$(PKG_VERSION)
 
 include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
@@ -63,14 +63,14 @@ define Package/python3-tun2socks
   SUBMENU:=Python
   TITLE:=Tun2socks Python
   URL:=https://github.com/LorenEteval/tun2socks-python
-  DEPENDS:=$(GO_ARCH_DEPENDS) +python3-light +python3-setuptools-scm +python3-wheel +python3-setuptools
+  DEPENDS:=@(aarch64||arm||i386||i686||mips||mips64||mips64el||mipsel||powerpc64||riscv64||x86_64) +python3-light +python3-setuptools-scm +python3-wheel +python3-setuptools
 endef
 
 define Package/python3-tun2socks/description
 Python bindings for go tun2socks.
 endef
 
-GO_PKG_TARGET_VARS += \
+GO_PKG_TARGET_VARS = \
 	GOOS="$(GO_OS)" \
 	GOARCH="$(GO_ARCH)" \
 	GO386="$(GO_386)" \
@@ -87,7 +87,7 @@ GO_PKG_TARGET_VARS += \
 	CGO_CXXFLAGS="$(filter-out $(GO_CFLAGS_TO_REMOVE),$(TARGET_CXXFLAGS))" \
 	CGO_LDFLAGS="$(TARGET_LDFLAGS)"
 
-MAKE_VARS += \
+MAKE_VARS = \
 	GOOS="$(GO_OS)" \
 	GOARCH="$(GO_ARCH)" \
 	GO386="$(GO_386)" \
