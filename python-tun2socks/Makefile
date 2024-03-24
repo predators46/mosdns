@@ -47,8 +47,8 @@ MAKE_VARS:= \
 	CGO_CXXFLAGS="$(filter-out $(GO_CFLAGS_TO_REMOVE),$(TARGET_CXXFLAGS))" \
 	CGO_LDFLAGS="$(TARGET_LDFLAGS)"
 
-#GO_PKG:=github.com/xjasonlyu/tun2socks/v2
-GO_PKG:=github.com/LorenEteval/tun2socks-python/tun2socks-go
+GO_PKG:=github.com/xjasonlyu/tun2socks/v2
+GO_PKG_BUILD_PKG:=$(GO_PKG)
 GO_PKG_LDFLAGS_X:=$(GO_PKG)/internal/version.Version=v$(PKG_VERSION)
 
 include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
