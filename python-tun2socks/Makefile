@@ -17,18 +17,18 @@ PKG_BUILD_DEPENDS:=python-setuptools-scm/host python-wheel/host golang/host
 #GO_PKG_BUILD_PKG:=$(PYPI_NAME)-$(PKG_VERSION)/tun2socks-go
 #GO_PKG_LDFLAGS_X:=$(GO_PKG_BUILD_PKG)/internal/version.Version=v$(PKG_VERSION)
 
-PYTHON3_PKG_BUILD_VARS:= \
-	$(GO_PKG_TARGET_VARS) \
-	$(GO_PKG_BUILD_VARS)
+#PYTHON3_PKG_BUILD_VARS:= \
+#	$(GO_PKG_TARGET_VARS) \
+#	$(GO_PKG_BUILD_VARS)
 
 include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
 include $(INCLUDE_DIR)/package.mk
-include $(INCLUDE_DIR)/cmake.mk
-include $(TOPDIR)/feeds/mosdns/golang/golang-package.mk
+#include $(INCLUDE_DIR)/cmake.mk
+#include $(TOPDIR)/feeds/mosdns/golang/golang-package.mk
 include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
 
-GO_MOD_ARGS:=
-GO_PKG_BUILD_VARS+= GO111MODULE=off
+#GO_MOD_ARGS:=
+#GO_PKG_BUILD_VARS+= GO111MODULE=off
 
 define Package/python3-tun2socks
   SECTION:=lang
@@ -43,10 +43,10 @@ define Package/python3-tun2socks/description
 Python bindings for go tun2socks.
 endef
 
-define Build/Compile
-	$(call GoPackage/Build/Compile)
-	$(call GoPackage/Package/Install/Bin,$(PKG_INSTALL_DIR))
-endef
+#define Build/Compile
+#	$(call GoPackage/Build/Compile)
+#	$(call GoPackage/Package/Install/Bin,$(PKG_INSTALL_DIR))
+#endef
 
 $(eval $(call Py3Package,python3-tun2socks))
 $(eval $(call BuildPackage,python3-tun2socks))
