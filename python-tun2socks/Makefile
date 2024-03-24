@@ -27,6 +27,9 @@ include $(INCLUDE_DIR)/cmake.mk
 include $(TOPDIR)/feeds/mosdns/golang/golang-package.mk
 include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
 
+GO_MOD_ARGS:=
+GO_PKG_BUILD_VARS+= GO111MODULE=off
+
 define Package/python3-tun2socks
   SECTION:=lang
   CATEGORY:=Languages
@@ -39,8 +42,6 @@ endef
 define Package/python3-tun2socks/description
 Python bindings for go tun2socks.
 endef
-
-GO_PKG_BUILD_VARS += GO111MODULE=auto
 
 define Build/Compile
 	$(call GoPackage/Build/Compile)
