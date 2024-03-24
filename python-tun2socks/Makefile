@@ -18,6 +18,7 @@ PKG_BUILD_DEPENDS:=python-setuptools-scm/host python-wheel/host golang/host
 GO_PKG_LDFLAGS_X:=$(GO_PKG)/internal/version.Version=v$(PKG_VERSION)
 
 PYTHON3_PKG_BUILD_VARS:= \
+	$(GO_PKG_BUILD_CONFIG_VARS) \
 	$(GO_PKG_TARGET_VARS) \
 	$(GO_PKG_BUILD_VARS)
 
