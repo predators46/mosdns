@@ -18,7 +18,7 @@ PKG_USE_MIPS16:=0
 PKG_BUILD_FLAGS:=no-mips16
 
 GO_PKG:=github.com/xjasonlyu/tun2socks/v2
-GO_PKG_BUILD_PKG:=$(GO_PKG)
+#GO_PKG_BUILD_PKG:=$(GO_PKG)
 GO_PKG_LDFLAGS_X:=$(GO_PKG)/internal/version.version=v$(PKG_VERSION)
 
 include $(INCLUDE_DIR)/package.mk
@@ -40,10 +40,6 @@ define Package/tun2socks/description
   Gateway Mode: Act as a layer three gateway to handle network traffic from other devices in the same network.
   Full IPv6 Support: All functions work in IPv6, tunnel IPv4 connections through IPv6 proxy and vice versa.
   Network Stack: Powered by user-space TCP/IP stack from Google container application kernel gVisor.
-endef
-
-define Build/Compile
-  $(call GoPackage/Build/Compile)
 endef
 
 define Package/tun2socks/install
