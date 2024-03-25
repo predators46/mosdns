@@ -30,7 +30,6 @@ define Package/tun2socks
   TITLE:=tun2socks - powered by gVisor TCP/IP stack
   URL:=https://github.com/xjasonlyu/tun2socks
   DEPENDS:=$(GO_ARCH_DEPENDS) +ca-bundle
-
 endef
 
 define Package/tun2socks/description
@@ -46,7 +45,6 @@ define Package/tun2socks/install
 	$(call GoPackage/Package/Install/Bin,$(PKG_INSTALL_DIR))
 	$(INSTALL_DIR) $(1)/usr/bin/
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/tun2socks $(1)/usr/bin/
-
 endef
 
 $(eval $(call GoBinPackage,tun2socks))
