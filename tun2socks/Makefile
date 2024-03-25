@@ -29,7 +29,7 @@ define Package/tun2socks
   CATEGORY:=Network
   TITLE:=tun2socks - powered by gVisor TCP/IP stack
   URL:=https://github.com/xjasonlyu/tun2socks
-  DEPENDS:=$(GO_ARCH_DEPENDS) +ca-bundle
+  DEPENDS:=$(GO_ARCH_DEPENDS)
 endef
 
 define Package/tun2socks/description
