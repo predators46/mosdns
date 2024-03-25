@@ -23,8 +23,8 @@ PYTHON3_PKG_BUILD_VARS:= \
 
 include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
 include $(INCLUDE_DIR)/package.mk
-#include $(INCLUDE_DIR)/cmake.mk
-#include $(TOPDIR)/feeds/mosdns/golang/golang-package.mk
+include $(INCLUDE_DIR)/cmake.mk
+include $(TOPDIR)/feeds/mosdns/golang/golang-package.mk
 include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
 
 #GO_MOD_ARGS:=
