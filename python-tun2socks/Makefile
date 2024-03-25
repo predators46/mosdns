@@ -44,7 +44,7 @@ Python bindings for go tun2socks.
 endef
 
 define Build/Compile
-	$(call GoPackage/Build/Compile)
+	$(call GoPackage/Build/Compile,tun2socks-go)
 	$(call GoPackage/Package/Install/Bin,$(PKG_INSTALL_DIR))
 endef
 
