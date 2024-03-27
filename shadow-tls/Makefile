@@ -41,7 +41,7 @@ endef
 
 define Package/shadow-tls/install
 	$(INSTALL_DIR) $(1)/usr/bin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/target/$(RUSTUP_TARGET_ARCH)/release/shadow-tls $(1)/usr/bin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/target/$(RUSTUP_TARGET_ARCH)/stripped/shadow-tls $(1)/usr/bin/
 endef
 
 $(eval $(call BuildPackage,shadow-tls))
