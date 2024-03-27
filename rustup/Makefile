@@ -5,7 +5,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rustup
-PKG_VERSION:=1.27.0
+PKG_VERSION:=1.26.0
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
