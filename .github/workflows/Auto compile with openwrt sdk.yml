@@ -88,7 +88,7 @@ jobs:
 
       - name: Initialization environment
         env:
-          url_sdk: https://downloads.openwrt.org/releases/23.05.2/targets/armsr/armv8/openwrt-sdk-23.05.2-armsr-armv8_gcc-12.3.0_musl.Linux-x86_64.tar.xz
+          url_sdk: https://downloads.openwrt.org/releases/21.02.7/targets/x86/64/openwrt-sdk-21.02.7-x86-64_gcc-8.4.0_musl.Linux-x86_64.tar.xz
         run: |
           wget ${{ env.url_sdk }}
           file_name=$(echo ${{env.url_sdk}} | awk -F/ '{print $NF}')
@@ -150,7 +150,7 @@ jobs:
             url_sdk: https://downloads.openwrt.org/releases/21.02.7/targets/x86/64/openwrt-sdk-21.02.7-x86-64_gcc-8.4.0_musl.Linux-x86_64.tar.xz
 
           - platform: aarch64_generic
-            url_sdk: https://downloads.openwrt.org/releases/23.05.2/targets/armsr/armv8/openwrt-sdk-23.05.2-armsr-armv8_gcc-12.3.0_musl.Linux-x86_64.tar.xz
+            url_sdk: https://downloads.openwrt.org/releases/21.02.7/targets/rockchip/armv8/openwrt-sdk-21.02.7-rockchip-armv8_gcc-8.4.0_musl.Linux-x86_64.tar.xz
 
           - platform: aarch64_cortex-a53
             url_sdk: https://downloads.openwrt.org/releases/21.02.7/targets/mvebu/cortexa53/openwrt-sdk-21.02.7-mvebu-cortexa53_gcc-8.4.0_musl.Linux-x86_64.tar.xz
@@ -240,14 +240,14 @@ jobs:
       - name: ${{ matrix.platform }} download
         run: |
           cd sdk
-          make download V=99
+          make download -j8
           find dl -size -1024c -exec ls -l {} \;
 
       - name: ${{ matrix.platform }} compile
         id: compile
         run: |
           cd sdk
-          make package/luci-app-mosdns/compile V=99
+          make package/luci-app-mosdns/{clean,compile} -j$(nproc)
 
           echo "status=success" >> $GITHUB_OUTPUT
 
