@@ -62,7 +62,7 @@ ifeq ($(ARCH),arm)
 endif
 
 ifeq ($(ARCH),aarch64)
-    RUSTUP_CFLAGS:=-mno-outline-atomics
+    RUSTUP_CFLAGS:=
 endif
 
 # Support only a subset for now.
