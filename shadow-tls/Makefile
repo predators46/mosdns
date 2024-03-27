@@ -41,8 +41,7 @@ endef
 
 define Package/shadow-tls/install
 	$(INSTALL_DIR) $(1)/usr/bin
-	$(CP) $(PKG_BUILD_DIR)/shadow-tls $(1)/usr/bin/
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/bin/shadow-tls $(1)/usr/bin/
 endef
 
-#$(eval $(call RustBinPackage,shadow-tls))
 $(eval $(call BuildPackage,shadow-tls))
