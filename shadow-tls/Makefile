@@ -12,16 +12,13 @@ PKG_MAINTAINER:=example <example@gmail.com>
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
 
-PKG_BUILD_DEPENDS:=rust/host
+PKG_BUILD_DEPENDS:=rustup/host
 PKG_BUILD_PARALLEL:=1
 PKG_USE_MIPS16:=0
 PKG_BUILD_FLAGS:=no-mips16
 
 include $(INCLUDE_DIR)/package.mk
-include $(TOPDIR)/feeds/mosdns/rust/rust-package.mk
-
-## Most optimized profile
-CARGO_PKG_PROFILE:=release
+include $(TOPDIR)/feeds/mosdns/rustup/rust-values.mk
 
 define Package/shadow-tls
   SECTION:=net
@@ -36,5 +33,16 @@ define Package/shadow-tls/description
   The firewall will see real tls handshake with valid certificate that you choose.
 endef
 
-$(eval $(call RustBinPackage,shadow-tls))
+define Build/Compile
+  cd $(PKG_BUILD_DIR) && \
+  $(CARGO_PKG_CONFIG_VARS) \
+  $(CARGO) $(CARGO_PKG_CONFIG_ARGS)
+endef
+
+define Package/shadow-tls/install
+	$(INSTALL_DIR) $(1)/usr/bin
+	$(CP) $(PKG_BUILD_DIR)/shadow-tls $(1)/usr/bin/
+endef
+
+#$(eval $(call RustBinPackage,shadow-tls))
 $(eval $(call BuildPackage,shadow-tls))
