@@ -19,8 +19,8 @@ include $(INCLUDE_DIR)/package.mk
 include $(TOPDIR)/feeds/mosdns/rust/rust-package.mk
 
 define Package/wstunnel
-  SECTION:=admin
-  CATEGORY:=Administration
+  SECTION:=net
+  CATEGORY:=Network
   TITLE:=Tunnel all your traffic over Websocket
   DEPENDS:=$(RUST_ARCH_DEPENDS)
   URL:=https://github.com/erebe/wstunnel
