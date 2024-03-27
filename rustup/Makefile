@@ -18,6 +18,7 @@ PKG_MAINTAINER:=Donald Hoskins <grommish@gmail.com>
 
 PKG_HOST_ONLY:=1
 PKG_BUILD_FLAGS:=no-mips16
+PKG_USE_MIPS16:=0
 
 include $(INCLUDE_DIR)/host-build.mk
 include $(INCLUDE_DIR)/package.mk
