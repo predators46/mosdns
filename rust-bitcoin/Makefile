@@ -39,7 +39,7 @@ endef
 
 define Package/rust-bitcoin/install
 	$(INSTALL_DIR) $(1)/usr/bin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/target/$(RUSTUP_TARGET_ARCH)/release/* $(1)/usr/bin/
+	$(CP) $(PKG_BUILD_DIR)/target/$(RUSTUP_TARGET_ARCH)/release/* $(1)/usr/bin/
 endef
 
 $(eval $(call BuildPackage,rust-bitcoin))
