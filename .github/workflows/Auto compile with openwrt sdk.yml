@@ -240,7 +240,7 @@ jobs:
       - name: ${{ matrix.platform }} download
         run: |
           cd sdk
-          make download -j8
+          make download V=99
           find dl -size -1024c -exec ls -l {} \;
 
       - name: ${{ matrix.platform }} compile
