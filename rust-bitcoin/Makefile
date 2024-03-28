@@ -1,12 +1,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rust-bitcoin
-PKG_VERSION:=0.30.2
+PKG_VERSION:=0.31.1
 PKG_RELEASE:=1
 
 PKG_SOURCE:=bitcoin-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://github.com/rust-bitcoin/rust-bitcoin/archive/
-PKG_HASH:=2ba5112e809b81a0ffecce82c4f4f1c949af92e2b40f23e49933f56894dd65e0
+PKG_HASH:=544be22147a9e85b94f48e191c386ce53a7dac43291f9782480f5a6b0a9eed40
 
 PKG_MAINTAINER:=
 PKG_LICENSE:=CC0-1.0 license
