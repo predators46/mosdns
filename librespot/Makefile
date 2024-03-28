@@ -22,7 +22,7 @@ define Package/librespot
   SECTION:=sound
   CATEGORY:=Sound
   TITLE:=Open Source Spotify client library
-  DEPENDS:=$(RUST_ARCH_DEPENDS)
+  DEPENDS:=$(RUST_ARCH_DEPENDS) +alsa-lib
   URL:=https://github.com/librespot-org/librespot
 endef
 
