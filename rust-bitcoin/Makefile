@@ -8,7 +8,6 @@ PKG_SOURCE:=bitcoin-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/rust-bitcoin/rust-bitcoin/tar.gz/$(PKG_VERSION)?
 PKG_HASH:=2ba5112e809b81a0ffecce82c4f4f1c949af92e2b40f23e49933f56894dd65e0
 
-
 PKG_MAINTAINER:=
 PKG_LICENSE:=CC0-1.0 license
 PKG_LICENSE_FILES:=LICENSE
