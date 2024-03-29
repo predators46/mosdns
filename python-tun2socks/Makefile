@@ -25,7 +25,7 @@ define Package/python3-tun2socks
   SUBMENU:=Python
   TITLE:=Tun2socks Python
   URL:=https://github.com/LorenEteval/tun2socks-python
-  DEPENDS:=$(GO_ARCH_DEPENDS) @(aarch64||arm||i386||i686||mips||mips64||mips64el||mipsel||powerpc64||riscv64||x86_64) +python3-light +python3-setuptools-scm +python3-wheel +python3-setuptools
+  DEPENDS:=$(GO_ARCH_DEPENDS) +python3-light +python3-setuptools-scm +python3-wheel +python3-setuptools
 endef
 
 define Package/python3-tun2socks/description
