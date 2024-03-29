@@ -13,6 +13,9 @@ PKG_MAINTAINER:=
 
 PKG_BUILD_DEPENDS:=python-setuptools-scm/host python-wheel/host golang/host
 
+PYTHON3_PKG_BUILD_VARS:= \
+	$(GO_ARCH_DEPENDS)
+
 include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
