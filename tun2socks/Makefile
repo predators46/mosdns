@@ -18,7 +18,6 @@ PKG_USE_MIPS16:=0
 PKG_BUILD_FLAGS:=no-mips16
 
 GO_PKG:=github.com/xjasonlyu/tun2socks/v2
-#GO_PKG_BUILD_PKG:=$(GO_PKG)
 GO_PKG_LDFLAGS_X:=$(GO_PKG)/internal/version.Version=v$(PKG_VERSION)
 
 include $(INCLUDE_DIR)/package.mk
