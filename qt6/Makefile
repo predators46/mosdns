@@ -49,6 +49,7 @@ CMAKE_HOST_OPTIONS += \
 	-DFEATURE_dbus=ON \
 	-DFEATURE_gui=ON \
         -DINPUT_opengl=no \
+        -DFEATURE_opengles3=no \
 	-DFEATURE_network=ON \
 	-DFEATURE_openssl=OFF \
 	-DFEATURE_sql=OFF \
