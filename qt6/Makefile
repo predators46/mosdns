@@ -46,7 +46,6 @@ CMAKE_HOST_OPTIONS += \
 	-DBUILD_SHARED_LIBS=OFF \
 	-DFEATURE_optimize_full=ON \
 	-DFEATURE_zstd=OFF \
-	-DFEATURE_concurrent=OFF \
 	-DFEATURE_dbus=ON \
 	-DFEATURE_gui=ON \
 	-DFEATURE_network=ON \
