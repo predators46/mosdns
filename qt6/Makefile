@@ -44,7 +44,7 @@ endef
 
 CMAKE_HOST_OPTIONS += \
 			-DCMAKE_INSTALL_PREFIX=$(STAGING_DIR_HOST) \
-			-DINSTALL_MKSPECSDIR=$(STAGING_DIR_HOST)/share \
+			-DINSTALL_MKSPECSDIR=$(STAGING_DIR_HOST)/share/qt6/mkspecs \
 			-DCMAKE_BUILD_TYPE=Release \
 			-DFEATURE_optimize_tools=OFF \
 			-DFEATURE_optimize_size=OFF \
