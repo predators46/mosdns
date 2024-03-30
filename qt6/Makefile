@@ -35,7 +35,7 @@ define Package/qt6
   SUBMENU:=Qt6
   TITLE:=Qt6
   URL:=http://qt-project.org
-  DEPENDS:=+libatomic +libstdcpp +zlib +libopenssl +libpcre2 +libfreetype
+  DEPENDS:=+libatomic +libstdcpp +zlib +libpcre2 +libfreetype
 endef
 
 define Package/badvpn/description
@@ -48,6 +48,7 @@ CMAKE_HOST_OPTIONS += \
 	-DFEATURE_zstd=OFF \
 	-DFEATURE_dbus=ON \
 	-DFEATURE_gui=ON \
+        -DINPUT_opengl=no \
 	-DFEATURE_network=ON \
 	-DFEATURE_openssl=OFF \
 	-DFEATURE_sql=OFF \
@@ -93,7 +94,7 @@ CMAKE_OPTIONS += \
 	-DFEATURE_vnc=OFF \
 	-DFEATURE_linuxfb=OFF \
 	-DFEATURE_network=$(if $(CONFIG_PACKAGE_libQt6Network),ON,OFF) \
-	-DFEATURE_openssl=ON \
+	-DFEATURE_openssl=OFF \
 	-DFEATURE_openssl_linked=ON \
 	-DFEATURE_openssl_runtime=OFF \
 	-DFEATURE_ocsp=OFF \
