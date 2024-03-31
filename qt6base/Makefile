@@ -44,7 +44,8 @@ endef
 
 CMAKE_HOST_OPTIONS += \
 	-DBUILD_SHARED_LIBS=OFF \
-        -DINPUT_opengl=no
+        -DINPUT_opengl=no \
+        -DINPUT_openssl=no
 
 CMAKE_OPTIONS += \
 	-DINSTALL_PLUGINSDIR=/usr/lib/qt6plugins \
