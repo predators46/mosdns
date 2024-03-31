@@ -43,7 +43,8 @@ define Package/qt6base/description
 endef
 
 CMAKE_HOST_OPTIONS += \
-	-DBUILD_SHARED_LIBS=OFF
+	-DBUILD_SHARED_LIBS=OFF \
+        -DINPUT_opengl=no
 
 CMAKE_OPTIONS += \
 	-DINSTALL_PLUGINSDIR=/usr/lib/qt6plugins \
