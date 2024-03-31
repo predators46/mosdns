@@ -1,6 +1,6 @@
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=qtbase
+PKG_NAME:=qt6base
 PKG_BASE_VERSION:=6.6
 PKG_SUBVERSION:=3
 PKG_VERSION:=$(PKG_BASE_VERSION).$(PKG_SUBVERSION)
@@ -29,7 +29,7 @@ include $(INCLUDE_DIR)/host-build.mk
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
-define Package/qtbase
+define Package/qt6base
   SECTION:=libs
   CATEGORY:=Libraries
   SUBMENU:=Qt
@@ -38,7 +38,7 @@ define Package/qtbase
   DEPENDS:=+libatomic +libstdcpp +zlib +libpcre2 +libfreetype
 endef
 
-define Package/qtbase/description
+define Package/qt6base/description
   Qt is a full development framework with tools designed to streamline the creation of applications and user interfaces for desktop, embedded, and mobile platforms.
 endef
 
@@ -105,11 +105,11 @@ CMAKE_OPTIONS += \
 	-DFEATURE_xml=$(if $(CONFIG_PACKAGE_libQt6Xml),ON,OFF) \
 	-DFEATURE_tuiotouch=$(if $(CONFIG_PACKAGE_qt6-plugin-libqtuiotouchplugin),ON,OFF)
 
-define Package/qtbase/install
+define Package/qt6base/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tun2socks/badvpn-tun2socks $(1)/usr/bin/badvpn-tun2socks
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/udpgw/badvpn-udpgw $(1)/usr/bin/badvpn-udpgw
 endef
 
-$(eval $(call BuildPackage,qtbase))
+$(eval $(call BuildPackage,qt6base))
 $(eval $(call HostBuild))
