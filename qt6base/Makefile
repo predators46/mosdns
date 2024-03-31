@@ -43,17 +43,7 @@ define Package/qtbase/description
 endef
 
 CMAKE_HOST_OPTIONS += \
-	-DBUILD_SHARED_LIBS=OFF \
-	-DFEATURE_optimize_full=ON \
-	-DFEATURE_zstd=OFF \
-	-DFEATURE_concurrent=OFF \
-	-DFEATURE_dbus=ON \
-	-DFEATURE_gui=OFF \
-	-DFEATURE_network=ON \
-	-DFEATURE_openssl=OFF \
-	-DFEATURE_sql=OFF \
-	-DFEATURE_testlib=OFF \
-	-DFEATURE_xml=ON
+	-DBUILD_SHARED_LIBS=OFF
 
 CMAKE_OPTIONS += \
 	-DINSTALL_PLUGINSDIR=/usr/lib/qt6plugins \
