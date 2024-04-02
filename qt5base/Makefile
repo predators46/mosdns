@@ -9,16 +9,16 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=qt5base
 PKG_BASE_VERSION:=5.15
-PKG_SUBVERSION:=0
+PKG_SUBVERSION:=13
 PKG_VERSION:=$(PKG_BASE_VERSION).$(PKG_SUBVERSION)
 PKG_RELEASE:=1
 
-PKG_SOURCE:=qtbase-everywhere-src-$(PKG_VERSION).tar.xz
-PKG_SOURCE_URL:=https://download.qt.io/official_releases/qt/$(PKG_BASE_VERSION)/$(PKG_VERSION)/submodules
-PKG_HASH:=9e7af10aece15fa9500369efde69cb220eee8ec3a6818afe01ce1e7d484824c5
+PKG_SOURCE:=qt-everywhere-opensource-src-$(PKG_VERSION).tar.xz
+PKG_SOURCE_URL:=https://download.qt.io/official_releases/qt/$(PKG_BASE_VERSION)/$(PKG_VERSION)/single
+PKG_HASH:=skip
 
-HOST_BUILD_DIR:=$(BUILD_DIR_HOST)/qtbase-everywhere-src-$(PKG_VERSION)
-PKG_BUILD_DIR:=$(BUILD_DIR)/qtbase-everywhere-src-$(PKG_VERSION)
+HOST_BUILD_DIR:=$(BUILD_DIR_HOST)/qt-everywhere-src-$(PKG_VERSION)
+PKG_BUILD_DIR:=$(BUILD_DIR)/qt-everywhere-src-$(PKG_VERSION)
 
 PKG_MAINTAINER:=
 PKG_LICENSE:=LGPL-2.1
