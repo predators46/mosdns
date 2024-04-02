@@ -15,7 +15,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE:=qtbase-everywhere-src-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=https://download.qt.io/official_releases/qt/$(PKG_BASE_VERSION)/$(PKG_VERSION)/submodules
-PKG_HASH:=bc9a21e9f6fff9629019fdf9f989f064751d5073c3a28dc596def92f4d4275c6
+PKG_HASH:=9e7af10aece15fa9500369efde69cb220eee8ec3a6818afe01ce1e7d484824c5
 
 HOST_BUILD_DIR:=$(BUILD_DIR_HOST)/qtbase-everywhere-src-$(PKG_VERSION)
 PKG_BUILD_DIR:=$(BUILD_DIR)/qtbase-everywhere-src-$(PKG_VERSION)
