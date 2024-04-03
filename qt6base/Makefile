@@ -44,9 +44,9 @@ endef
 
 CMAKE_HOST_OPTIONS += \
 	-DBUILD_SHARED_LIBS=OFF \
-	-DFEATURE_harfbuzz=OFF \
 	-DFEATURE_evdev=OFF \
 	-DFEATURE_gif=OFF \
+	-DFEATURE_harfbuzz=OFF \
 	-DFEATURE_ico=OFF \
 	-DFEATURE_jpeg=OFF \
 	-DFEATURE_linuxfb=OFF \
