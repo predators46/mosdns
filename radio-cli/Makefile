@@ -24,7 +24,7 @@ define Package/radio-cli
   SECTION:=sound
   CATEGORY:=Sound
   TITLE:=A simple radio CLI written in rust.
-  DEPENDS:=$(RUST_ARCH_DEPENDS)
+  DEPENDS:=$(RUST_ARCH_DEPENDS) +libopenssl
   URL:=https://github.com/margual56/radio-cli
 endef
 
