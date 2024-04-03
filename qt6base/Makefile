@@ -44,14 +44,21 @@ endef
 
 CMAKE_HOST_OPTIONS += \
 	-DBUILD_SHARED_LIBS=OFF \
+	-DFEATURE_harfbuzz=OFF \
 	-DFEATURE_evdev=OFF \
+	-DFEATURE_gif=OFF \
+	-DFEATURE_ico=OFF \
+	-DFEATURE_jpeg=OFF \
 	-DFEATURE_linuxfb=OFF \
 	-DINPUT_opengl=no \
 	-DINPUT_openssl=no \
+	-DBUILD_WITH_PCH=OFF \
+	-DFEATURE_pkg_config=OFF \
+	-DFEATURE_png=OFF \
 	-DFEATURE_sqlmodel=OFF \
 	-DFEATURE_sql=OFF \
 	-DFEATURE_testlib=OFF \
-	-DFEATURE_vnc=OFF \
+	-DFEATURE_vnc=OFF
 
 CMAKE_OPTIONS += \
 	-DINSTALL_PLUGINSDIR=/usr/lib/qt6plugins \
