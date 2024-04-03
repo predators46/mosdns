@@ -4,10 +4,10 @@ PKG_NAME:=luci-app-mosdns
 PKG_VERSION:=1.5.74
 PKG_RELEASE:=1
 
-PKG_BUILD_DEPENDS:=qt6base/host
+#PKG_BUILD_DEPENDS:=qt6base/host
 LUCI_TITLE:=LuCI Support for mosdns
 LUCI_PKGARCH:=all
-LUCI_DEPENDS:=
+LUCI_DEPENDS:=+radio-cli
 define Package/$(PKG_NAME)/conffiles
 /etc/config/mosdns
 /etc/mosdns/cache.dump
