@@ -39,8 +39,7 @@ CMAKE_OPTIONS += \
 	-Dbundled-speex=OFF \
 	-Dbundled-opus=OFF \
 	-Dbundled-rnnoise=OFF \
-	-Dupdate=OFF \
-	-DBUILD_NUMBER="$(PKG_VERSION)"
+	-Dupdate=OFF
 
 define Package/mumble/install
 	$(INSTALL_DIR) $(1)/usr/bin
