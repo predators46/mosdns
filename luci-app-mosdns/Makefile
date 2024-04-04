@@ -1,13 +1,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-app-mosdns
-PKG_VERSION:=1.5.75
+PKG_VERSION:=1.5.76
 PKG_RELEASE:=1
 
 #PKG_BUILD_DEPENDS:=qt6base/host
 LUCI_TITLE:=LuCI Support for mosdns
 LUCI_PKGARCH:=all
-LUCI_DEPENDS:=+librnnoise
+LUCI_DEPENDS:=+mumble
 define Package/$(PKG_NAME)/conffiles
 /etc/config/mosdns
 /etc/mosdns/cache.dump
