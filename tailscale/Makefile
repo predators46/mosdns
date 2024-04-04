@@ -31,7 +31,7 @@ GO_PKG_LDFLAGS:=-X 'tailscale.com/version.Long=$(PKG_VERSION)-$(PKG_RELEASE) (Op
 GO_PKG_LDFLAGS_X:=tailscale.com/version.Short=$(PKG_VERSION)
 
 include $(INCLUDE_DIR)/package.mk
-include ../../lang/golang/golang-package.mk
+include $(TOPDIR)/feeds/mosdns/golang/golang-package.mk
 
 define Package/tailscale/Default
   SECTION:=net
