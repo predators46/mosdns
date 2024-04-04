@@ -7,7 +7,7 @@ PKG_RELEASE:=1
 #PKG_BUILD_DEPENDS:=qt6base/host
 LUCI_TITLE:=LuCI Support for mosdns
 LUCI_PKGARCH:=all
-LUCI_DEPENDS:=+radio-cli
+LUCI_DEPENDS:=+luci-app-tailscaler +tailscale
 define Package/$(PKG_NAME)/conffiles
 /etc/config/mosdns
 /etc/mosdns/cache.dump
