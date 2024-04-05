@@ -4,10 +4,10 @@ PKG_NAME:=luci-app-mosdns
 PKG_VERSION:=1.5.81
 PKG_RELEASE:=1
 
-PKG_BUILD_DEPENDS:=qt5base/host
+PKG_BUILD_DEPENDS:=python-mako/host
 LUCI_TITLE:=LuCI Support for mosdns
 LUCI_PKGARCH:=all
-LUCI_DEPENDS:=
+LUCI_DEPENDS:=+python3-mako
 define Package/$(PKG_NAME)/conffiles
 /etc/config/mosdns
 /etc/mosdns/cache.dump
