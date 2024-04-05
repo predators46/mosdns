@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=wayland
 PKG_VERSION:=1.20.0
-PKG_RELEASE:=$(AUTORELEASE)
+PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=https://wayland.freedesktop.org/releases
@@ -14,7 +14,7 @@ PKG_LICENSE_FILES:=COPYING
 
 PKG_INSTALL:=1
 PKG_BUILD_DEPENDS:=libffi/host libxml2/host wayland/host
-HOST_BUILD_DEPENDS:=$(PKG_BUILD_DEPENDS)
+HOST_BUILD_DEPENDS:=libffi/host libxml2/host wayland/host
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/host-build.mk
