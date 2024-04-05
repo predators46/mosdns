@@ -365,7 +365,7 @@ define Build/Configure
 			--journald=no \
 			--syslog=no \
 			--ssl=$(if $(CONFIG_PACKAGE_qt5base-network),yes,no) \
-			--openssl-linked$(if $(CONFIG_PACKAGE_qt5base-network),yes,no) \
+			--openssl-linked$(if $(CONFIG_PACKAGE_qt5base-network),=no) \
 			--libproxy=no \
 			--system-proxies=yes \
 			--cups=no \
