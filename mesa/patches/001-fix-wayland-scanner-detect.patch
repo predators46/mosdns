@@ -10,7 +10,7 @@
 -    wl_scanner_arg = 'private-code'
 +  if (get_option('scanner_bin') == '')
 +    dep_wl_scanner = dependency('wayland-scanner', native: true)
-+    prog_wl_scanner = find_program(dep_wl_scanner.get_pkgconfig_variable('wayland_scanner'))
++    prog_wl_scanner = find_program(dep_wl_scanner.get_variable(pkgconfig : 'wayland_scanner'))
 +    if dep_wl_scanner.version().version_compare('>= 1.15')
 +      wl_scanner_arg = 'private-code'
 +    else
