@@ -7,7 +7,7 @@ PKG_RELEASE:=1
 #PKG_BUILD_DEPENDS:=python-markupsafe/host
 LUCI_TITLE:=LuCI Support for mosdns
 LUCI_PKGARCH:=all
-LUCI_DEPENDS:=+libmesa
+LUCI_DEPENDS:=+libwayland
 define Package/$(PKG_NAME)/conffiles
 /etc/config/mosdns
 /etc/mosdns/cache.dump
