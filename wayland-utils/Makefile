@@ -5,7 +5,7 @@ PKG_VERSION:=1.2.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
-PKG_SOURCE_URL:=https://wayland.freedesktop.org/releases/
+PKG_SOURCE_URL:=https://gitlab.freedesktop.org/wayland/wayland-utils/-/releases/$(PKG_VERSION)/downloads/
 PKG_HASH:=d9278c22554586881802540751bcc42569262bf80cd9ac9b0fd12ff4bd09a9e4
 
 PKG_MAINTAINER:=Daniel Golle <daniel@makrotopia.org>
