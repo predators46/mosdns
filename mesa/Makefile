@@ -237,6 +237,11 @@ ifneq ($(CONFIG_PACKAGE_libvulkan-intel),)
   VULKAN_DRIVERS+=intel
 endif
 
+MESON_VARS += \
+	PYTHON="$(STAGING_DIR_HOSTPKG)/bin/$(PYTHON3)" \
+	PYTHON_CPPFLAGS="$(shell $(STAGING_DIR)/host/bin/$(PYTHON3)-config --includes)" \
+	PYTHON_LIBS="$(shell $(STAGING_DIR)/host/bin/$(PYTHON3)-config --libs)"
+
 MESON_ARGS += \
 	-Dplatforms=wayland \
 	-Dglx=disabled \
