@@ -46,7 +46,7 @@ endef
 
 MESON_HOST_ARGS += \
 	-Dscanner=true \
-	-Dlibraries=true \
+	-Dlibraries=false \
 	-Ddocumentation=false \
 	-Ddtd_validation=true
 
