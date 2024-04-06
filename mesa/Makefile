@@ -21,6 +21,11 @@ PKG_CONFIG_DEPENDS:= \
 
 TARGET_CPPFLAGS+=-Wno-format -Wno-format-security
 
+MESON_VARS:= \
+	PYTHON="$(STAGING_DIR_HOSTPKG)/bin/$(PYTHON3)" \
+	PYTHON_CPPFLAGS="$(shell $(STAGING_DIR)/host/bin/$(PYTHON3)-config --includes)" \
+	PYTHON_LIBS="$(shell $(STAGING_DIR)/host/bin/$(PYTHON3)-config --libs)"
+
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/meson.mk
 
