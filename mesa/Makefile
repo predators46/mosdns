@@ -13,6 +13,7 @@ PKG_LICENSE:=BSD-3-Clause
 
 PKG_INSTALL:=1
 PKG_BUILD_DEPENDS:=python-mako/host
+PYTHON3_PKG_BUILD:=0
 
 PKG_CONFIG_DEPENDS:= \
 	CONFIG_LIBDRM_INTEL \
@@ -28,6 +29,8 @@ MESON_VARS:= \
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/meson.mk
+include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
+include $(TOPDIR)/feeds/packages/lang/python/python3-host-build.mk
 
 DRI_PLUGINS := \
 	armada-drm:@(aarch64||arm) \
