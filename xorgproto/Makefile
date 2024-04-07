@@ -15,8 +15,8 @@ PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=BSD-2-Clause AND MIT AND X11
 PKG_LICENSE_FILES:=COPYING
 
-PKG_BUILD_DEPENDS:=util-macros
-HOST_BUILD_DEPENDS:=util-macros/host
+PKG_BUILD_DEPENDS:=util-macros libxslt
+HOST_BUILD_DEPENDS:=util-macros/host libxslt/host
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/host-build.mk
