@@ -9,7 +9,7 @@ PKG_SOURCE_URL:=https://xorg.freedesktop.org/releases/individual/proto
 PKG_HASH:=372225fd40815b8423547f5d890c5debc72e88b91088fbfb13158c20495ccb59
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/Xorg/$(PKG_NAME)-$(PKG_VERSION)
-PKG_INSTALL:=1
+PYTHON3_PKG_BUILD:=0
 
 PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=BSD-2-Clause AND MIT AND X11
@@ -34,6 +34,9 @@ endef
 define Package/xorgproto/description
   combined X.Org X11 Protocol headers
 endef
+
+CONFIGURE_VARS += \
+	PYTHON="$(STAGING_DIR_HOSTPKG)/bin/$(PYTHON3)"
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/include
