@@ -7,7 +7,7 @@ PKG_RELEASE:=1
 #PKG_BUILD_DEPENDS:=python3-gensio
 LUCI_TITLE:=LuCI Support for mosdns
 LUCI_PKGARCH:=all
-LUCI_DEPENDS:=+python3-gensio
+LUCI_DEPENDS:=+libxcb
 define Package/$(PKG_NAME)/conffiles
 /etc/config/mosdns
 /etc/mosdns/cache.dump
