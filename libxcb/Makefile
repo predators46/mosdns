@@ -15,7 +15,7 @@ PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=COPYING
 
-PKG_BUILD_DEPENDS:=xcb-proto
+PKG_BUILD_DEPENDS:=xcb-proto python3
 
 include $(INCLUDE_DIR)/package.mk
 include ../../lang/python/python3-package.mk
