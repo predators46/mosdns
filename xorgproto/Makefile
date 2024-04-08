@@ -18,7 +18,6 @@ PKG_LICENSE_FILES:=COPYING
 PKG_BUILD_DEPENDS:=util-macros libxslt/host python3/host
 
 include $(INCLUDE_DIR)/package.mk
-include $(INCLUDE_DIR)/host-build.mk
 include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
 
 define Package/xorgproto
