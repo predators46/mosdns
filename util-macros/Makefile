@@ -16,7 +16,6 @@ PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=COPYING
 
 include $(INCLUDE_DIR)/package.mk
-include $(INCLUDE_DIR)/host-build.mk
 
 define Package/util-macros
   SECTION:=xorg
@@ -37,4 +36,3 @@ define Build/InstallDev
 endef
 
 $(eval $(call BuildPackage,util-macros))
-$(eval $(call HostBuild))
