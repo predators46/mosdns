@@ -36,7 +36,9 @@ endef
 CONFIGURE_VARS += \
 	PYTHON="$(STAGING_DIR_HOSTPKG)/bin/$(PYTHON3)" \
 	PYTHON_CPPFLAGS="$(shell $(STAGING_DIR)/host/bin/$(PYTHON3)-config --includes)" \
-	PYTHON_LIBS="$(shell $(STAGING_DIR)/host/bin/$(PYTHON3)-config --libs)"
+	PYTHON_LIBS="$(shell $(STAGING_DIR)/host/bin/$(PYTHON3)-config --libs)" \
+	XCBPROTO_XCBINCLUDEDIR="$(STAGING_DIR)/usr/share" \
+	XCBPROTO_XCBPYTHONDIR="$(STAGING_DIR)/usr/lib"
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/include
