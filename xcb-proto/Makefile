@@ -43,6 +43,7 @@ define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/share
 	$(CP) $(PKG_INSTALL_DIR)/usr/share/pkgconfig $(1)/usr/share/
 	$(CP) $(PKG_INSTALL_DIR)/usr/share/xcb $(1)/usr/share/
+	$(SED) 's,/usr/share,$$$${prefix}/share,g' $(1)/usr/share/pkgconfig/xcb-proto.pc
 endef
 
 $(eval $(call BuildPackage,xcb-proto))
