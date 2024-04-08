@@ -4,10 +4,10 @@ PKG_NAME:=luci-app-mosdns
 PKG_VERSION:=1.5.81
 PKG_RELEASE:=1
 
-PKG_BUILD_DEPENDS:=python3-gensio
+#PKG_BUILD_DEPENDS:=python3-gensio
 LUCI_TITLE:=LuCI Support for mosdns
 LUCI_PKGARCH:=all
-#LUCI_DEPENDS:=+python3-gpiod
+LUCI_DEPENDS:=+python3-gensio
 define Package/$(PKG_NAME)/conffiles
 /etc/config/mosdns
 /etc/mosdns/cache.dump
