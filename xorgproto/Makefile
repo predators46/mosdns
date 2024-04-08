@@ -16,12 +16,10 @@ PKG_LICENSE:=BSD-2-Clause AND MIT AND X11
 PKG_LICENSE_FILES:=COPYING
 
 PKG_BUILD_DEPENDS:=util-macros libxslt/host python3/host
-HOST_BUILD_DEPENDS:=util-macros/host libxslt/host python3/host
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/host-build.mk
 include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
-include $(TOPDIR)/feeds/packages/lang/python/python3-host-build.mk
 
 define Package/xorgproto
   SECTION:=xorg
@@ -47,4 +45,3 @@ define Build/InstallDev
 endef
 
 $(eval $(call BuildPackage,xorgproto))
-$(eval $(call HostBuild))
