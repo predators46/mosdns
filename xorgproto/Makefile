@@ -33,6 +33,7 @@ define Package/xorgproto/description
   combined X.Org X11 Protocol headers
 endef
 
+# specify the python path
 CONFIGURE_VARS += \
 	PYTHON="$(STAGING_DIR_HOSTPKG)/bin/$(PYTHON3)"
 
