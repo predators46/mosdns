@@ -4,10 +4,10 @@ PKG_NAME:=luci-app-mosdns
 PKG_VERSION:=1.5.81
 PKG_RELEASE:=1
 
-PKG_BUILD_DEPENDS:=xtrans
+#PKG_BUILD_DEPENDS:=xtrans
 LUCI_TITLE:=LuCI Support for mosdns
 LUCI_PKGARCH:=all
-#LUCI_DEPENDS:=+libxcb
+LUCI_DEPENDS:=+libx11
 define Package/$(PKG_NAME)/conffiles
 /etc/config/mosdns
 /etc/mosdns/cache.dump
