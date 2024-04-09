@@ -20,11 +20,12 @@ PKG_BUILD_DEPENDS:=util-macros xorgproto
 include $(INCLUDE_DIR)/package.mk
 
 define Package/libxau
-  SECTION:=xorg
-  CATEGORY:=Xorg
-  SUBMENU:=Libraries
-  TITLE:=X11 authorisation library
-  URL:=http://xorg.freedesktop.org/
+	SECTION:=xorg
+	CATEGORY:=Xorg
+	SUBMENU:=Libraries
+	TITLE:=X11 authorisation library
+	DEPENDS:=+libxcb
+	URL:=http://xorg.freedesktop.org/
 endef
 
 define Package/libxau/description
