@@ -10,7 +10,6 @@ PKG_HASH:=779d8f111d144ef93e2daa5f23a762ce9555affc99592844e71c4243d3bd3262
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/Xorg/libX11-$(PKG_VERSION)
 PKG_INSTALL:=1
-PKG_FIXUP:=libtool
 
 PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=BSD 1-Clause License
@@ -21,12 +20,12 @@ PKG_BUILD_DEPENDS:=xtrans xorgproto util-macros
 include $(INCLUDE_DIR)/package.mk
 
 define Package/libx11
-  SECTION:=xorg
-  CATEGORY:=Xorg
-  SUBMENU:=Libraries
-  TITLE:=X11 client-side library
-  DEPENDS:=+libxcb
-  URL:=http://xorg.freedesktop.org/
+	SECTION:=xorg
+	CATEGORY:=Xorg
+	SUBMENU:=Libraries
+	TITLE:=X11 client-side library
+	DEPENDS:=+libxcb
+	URL:=http://xorg.freedesktop.org/
 endef
 
 define Package/libx11/description
@@ -39,9 +38,9 @@ CONFIGURE_ARGS += \
 define Build/Compile
 	$(MAKE) -C $(PKG_BUILD_DIR)/src/util \
 	CC="$(HOSTCC)" \
-        CFLAGS="$(HOST_CFLAGS)" \
-        CPPFLAGS="$(HOST_CPPFLAGS)" \
-        LDFLAGS="$(HOST_LDFLAGS)"
+	CFLAGS="$(HOST_CFLAGS)" \
+	CPPFLAGS="$(HOST_CPPFLAGS)" \
+	LDFLAGS="$(HOST_LDFLAGS)"
 endef
 
 define Build/InstallDev
