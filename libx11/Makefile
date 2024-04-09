@@ -32,6 +32,9 @@ define Package/libx11/description
   libX11 - Core X11 protocol client library
 endef
 
+CONFIGURE_ARGS += \
+	--enable-malloc0returnsnull
+
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/include
 	$(CP) $(PKG_INSTALL_DIR)/usr/include/X11 $(1)/usr/include/
