@@ -18,15 +18,15 @@ PKG_LICENSE_FILES:=COPYING
 include $(INCLUDE_DIR)/package.mk
 
 define Package/util-macros
-  SECTION:=xorg
-  CATEGORY:=Xorg
-  SUBMENU:=Utilities
-  TITLE:=X.Org Autotools macros
-  URL:=http://xorg.freedesktop.org/
+	SECTION:=xorg
+	CATEGORY:=Xorg
+	SUBMENU:=Utilities
+	TITLE:=X.Org Autotools macros
+	URL:=http://xorg.freedesktop.org/
 endef
 
 define Package/util-macros/description
-  GNU autoconf macros shared across X.Org projects
+	GNU autoconf macros shared across X.Org projects
 endef
 
 define Build/InstallDev

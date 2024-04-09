@@ -28,7 +28,7 @@ define Package/libxau
 endef
 
 define Package/libxau/description
-  Functions for handling Xauthority files and entries.
+	Functions for handling Xauthority files and entries.
 endef
 
 define Build/InstallDev

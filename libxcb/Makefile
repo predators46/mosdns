@@ -18,19 +18,19 @@ PKG_LICENSE_FILES:=COPYING
 PKG_BUILD_DEPENDS:=xcb-proto python3
 
 include $(INCLUDE_DIR)/package.mk
-include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
+include ../../lang/python/python3-package.mk
 
 define Package/libxcb
-  SECTION:=xorg
-  CATEGORY:=Xorg
-  SUBMENU:=Libraries
-  TITLE:=X11 client-side library
-  DEPENDS:=+libxau +libxdmcp
-  URL:=http://xorg.freedesktop.org/
+	SECTION:=xorg
+	CATEGORY:=Xorg
+	SUBMENU:=Libraries
+	TITLE:=X11 client-side library
+	DEPENDS:=+libxau +libxdmcp
+	URL:=http://xorg.freedesktop.org/
 endef
 
 define Package/libxcb/description
-  C interface to the X Window System protocol, which replaces the traditional Xlib interface.
+	C interface to the X Window System protocol, which replaces the traditional Xlib interface.
 endef
 
 CONFIGURE_VARS += \

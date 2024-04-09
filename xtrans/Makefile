@@ -19,18 +19,17 @@ PKG_BUILD_DEPENDS:=util-macros libxslt/host
 include $(INCLUDE_DIR)/package.mk
 
 define Package/xtrans
-  SECTION:=xorg
-  CATEGORY:=Xorg
-  SUBMENU:=Libraries
-  TITLE:=X transport library
-  URL:=http://xorg.freedesktop.org/
+	SECTION:=xorg
+	CATEGORY:=Xorg
+	SUBMENU:=Libraries
+	TITLE:=X transport library
+	URL:=http://xorg.freedesktop.org/
 endef
 
 define Package/xtrans/description
-  xtrans is a library of code that is shared among various X packages to handle
-  network protocol transport in a modular fashion, allowing a single place to
-  add new transport types.   It is used by the X server, libX11, libICE, the
-  X font server, and related components.
+	xtrans is a library of code that is shared among various X packages to handle
+	network protocol transport in a modular fashion, allowing a single place to add new transport types.
+	It is used by the X server, libX11, libICE, the X font server, and related components.
 endef
 
 define Build/InstallDev

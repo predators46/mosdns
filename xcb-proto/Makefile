@@ -18,18 +18,18 @@ PKG_LICENSE_FILES:=COPYING
 PKG_BUILD_DEPENDS:=python3
 
 include $(INCLUDE_DIR)/package.mk
-include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
+include ../../lang/python/python3-package.mk
 
 define Package/xcb-proto
-  SECTION:=xorg
-  CATEGORY:=Xorg
-  SUBMENU:=Protocol
-  TITLE:=XML-XCB protocol descriptions
-  URL:=http://xorg.freedesktop.org/
+	SECTION:=xorg
+	CATEGORY:=Xorg
+	SUBMENU:=Protocol
+	TITLE:=XML-XCB protocol descriptions
+	URL:=http://xorg.freedesktop.org/
 endef
 
 define Package/xcb-proto/description
-  XML-XCB protocol descriptions used by libxcb for the X11 protocol & extensions
+	XML-XCB protocol descriptions used by libxcb for the X11 protocol & extensions
 endef
 
 CONFIGURE_VARS += \

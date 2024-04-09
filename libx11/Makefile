@@ -29,7 +29,7 @@ define Package/libx11
 endef
 
 define Package/libx11/description
-  libX11 - Core X11 protocol client library
+	libX11 - Core X11 protocol client library
 endef
 
 CONFIGURE_ARGS += \

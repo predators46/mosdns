@@ -20,16 +20,16 @@ PKG_BUILD_DEPENDS:=util-macros xorgproto
 include $(INCLUDE_DIR)/package.mk
 
 define Package/libxdmcp
-  SECTION:=xorg
-  CATEGORY:=Xorg
-  SUBMENU:=Libraries
-  TITLE:=X Display Manager Control Protocol library
-  DEPENDS:=+libbsd
-  URL:=http://xorg.freedesktop.org/
+	SECTION:=xorg
+	CATEGORY:=Xorg
+	SUBMENU:=Libraries
+	TITLE:=X Display Manager Control Protocol library
+	DEPENDS:=+libbsd
+	URL:=http://xorg.freedesktop.org/
 endef
 
 define Package/libxdmcp/description
-  libXdmcp - X Display Manager Control Protocol library
+	libXdmcp - X Display Manager Control Protocol library
 endef
 
 define Build/InstallDev
