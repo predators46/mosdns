@@ -24,7 +24,6 @@ define Package/libxau
 	CATEGORY:=Xorg
 	SUBMENU:=Libraries
 	TITLE:=X11 authorisation library
-	DEPENDS:=+libxcb
 	URL:=http://xorg.freedesktop.org/
 endef
 
