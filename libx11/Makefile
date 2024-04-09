@@ -10,6 +10,7 @@ PKG_HASH:=779d8f111d144ef93e2daa5f23a762ce9555affc99592844e71c4243d3bd3262
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/Xorg/libX11-$(PKG_VERSION)
 PKG_INSTALL:=1
+PKG_FIXUP:=libtool
 
 PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=BSD 1-Clause License
