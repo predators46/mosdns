@@ -7,7 +7,7 @@ PKG_RELEASE:=1
 #PKG_BUILD_DEPENDS:=xtrans
 LUCI_TITLE:=LuCI Support for mosdns
 LUCI_PKGARCH:=all
-LUCI_DEPENDS:=+libx11
+LUCI_DEPENDS:=+libxaw
 define Package/$(PKG_NAME)/conffiles
 /etc/config/mosdns
 /etc/mosdns/cache.dump
