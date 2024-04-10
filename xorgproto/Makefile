@@ -16,7 +16,7 @@ PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=BSD-2-Clause AND MIT AND X11
 PKG_LICENSE_FILES:=COPYING
 
-PKG_BUILD_DEPENDS:=util-macros libxslt/host python3
+PKG_BUILD_DEPENDS:=util-macros libxslt/host python3/host
 
 include $(INCLUDE_DIR)/package.mk
 include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
