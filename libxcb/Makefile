@@ -8,6 +8,7 @@ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=https://xorg.freedesktop.org/releases/individual/lib
 PKG_HASH:=f24d187154c8e027b358fc7cb6588e35e33e6a92f11c668fe77396a7ae66e311
 
+PYTHON3_PKG_BUILD:=0
 PKG_INSTALL:=1
 
 PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
