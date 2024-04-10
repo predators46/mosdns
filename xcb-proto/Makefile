@@ -18,7 +18,7 @@ PKG_LICENSE_FILES:=COPYING
 PKG_BUILD_DEPENDS:=python3/host
 
 include $(INCLUDE_DIR)/package.mk
-include ../../lang/python/python3-package.mk
+include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
 
 define Package/xcb-proto
 	SECTION:=xorg
