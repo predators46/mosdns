@@ -15,7 +15,7 @@ PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=COPYING
 
-PKG_BUILD_DEPENDS:=util-macros xorgproto
+PKG_BUILD_DEPENDS:=util-macros xorgproto perl/host
 
 include $(INCLUDE_DIR)/package.mk
 
