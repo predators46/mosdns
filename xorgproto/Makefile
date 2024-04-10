@@ -9,6 +9,8 @@ PKG_SOURCE_URL:=https://xorg.freedesktop.org/releases/individual/proto
 PKG_HASH:=372225fd40815b8423547f5d890c5debc72e88b91088fbfb13158c20495ccb59
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/Xorg/$(PKG_NAME)-$(PKG_VERSION)
+
+PYTHON3_PKG_BUILD:=0
 PKG_INSTALL:=1
 
 PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
