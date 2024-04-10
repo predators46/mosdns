@@ -35,6 +35,17 @@ endef
 CONFIGURE_ARGS += \
 	--enable-malloc0returnsnull
 
+CONFIGURE_VARS += \
+	PERL=$(STAGING_DIR_HOSTPKG)/usr/bin/perl
+
+define Build/Compile
+	$(MAKE) -C $(PKG_BUILD_DIR)/util \
+	CC="$(HOSTCC)" \
+	CFLAGS="$(HOST_CFLAGS)" \
+	CPPFLAGS="$(HOST_CPPFLAGS)" \
+	LDFLAGS="$(HOST_LDFLAGS)"
+endef
+
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/include
 	$(CP) $(PKG_INSTALL_DIR)/usr/include/X11 $(1)/usr/include/
