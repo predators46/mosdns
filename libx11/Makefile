@@ -15,7 +15,7 @@ PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=BSD 1-Clause License
 PKG_LICENSE_FILES:=COPYING
 
-PKG_BUILD_DEPENDS:=xtrans xorgproto util-macros
+PKG_BUILD_DEPENDS:=xtrans xorgproto util-macros perl/host
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -34,6 +34,9 @@ endef
 
 CONFIGURE_ARGS += \
 	--enable-malloc0returnsnull
+
+CONFIGURE_VARS += \
+	PERL=$(STAGING_DIR_HOSTPKG)/usr/bin/perl
 
 define Build/Compile
 	$(MAKE) -C $(PKG_BUILD_DIR)/src/util \
