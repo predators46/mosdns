@@ -18,7 +18,7 @@ PKG_LICENSE_FILES:=COPYING
 PKG_BUILD_DEPENDS:=python3/host
 
 include $(INCLUDE_DIR)/package.mk
-include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
+include ../../lang/python/python3-package.mk
 
 define Package/xcb-proto
 	SECTION:=xorg
@@ -33,9 +33,7 @@ define Package/xcb-proto/description
 endef
 
 CONFIGURE_VARS += \
-	PYTHON="$(STAGING_DIR_HOSTPKG)/bin/$(PYTHON3)" \
-	PYTHON_CPPFLAGS="$(shell $(STAGING_DIR)/host/bin/$(PYTHON3)-config --includes)" \
-	PYTHON_LIBS="$(shell $(STAGING_DIR)/host/bin/$(PYTHON3)-config --libs)"
+	PYTHON="$(STAGING_DIR_HOSTPKG)/bin/$(PYTHON3)"
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/$(PYTHON3_PKG_DIR)

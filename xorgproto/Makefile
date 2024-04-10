@@ -9,7 +9,6 @@ PKG_SOURCE_URL:=https://xorg.freedesktop.org/releases/individual/proto
 PKG_HASH:=372225fd40815b8423547f5d890c5debc72e88b91088fbfb13158c20495ccb59
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/Xorg/$(PKG_NAME)-$(PKG_VERSION)
-PYTHON3_PKG_BUILD:=0
 PKG_INSTALL:=1
 
 PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
@@ -19,7 +18,6 @@ PKG_LICENSE_FILES:=COPYING
 PKG_BUILD_DEPENDS:=util-macros libxslt/host python3/host
 
 include $(INCLUDE_DIR)/package.mk
-include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
 
 define Package/xorgproto
 	SECTION:=xorg
@@ -34,9 +32,7 @@ define Package/xorgproto/description
 endef
 
 CONFIGURE_VARS += \
-	PYTHON="$(STAGING_DIR_HOSTPKG)/bin/$(PYTHON3)" \
-	PYTHON_CPPFLAGS="$(shell $(STAGING_DIR)/host/bin/$(PYTHON3)-config --includes)" \
-	PYTHON_LIBS="$(shell $(STAGING_DIR)/host/bin/$(PYTHON3)-config --libs)"
+	PYTHON="$(STAGING_DIR_HOSTPKG)/bin/$(PYTHON3)"
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/include
