@@ -24,7 +24,6 @@ define Package/libxdmcp
 	CATEGORY:=Xorg
 	SUBMENU:=Libraries
 	TITLE:=X Display Manager Control Protocol library
-	DEPENDS:=+libbsd
 	URL:=http://xorg.freedesktop.org/
 endef
 
