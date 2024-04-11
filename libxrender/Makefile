@@ -32,6 +32,9 @@ define Package/libxrender/description
 	libXrender - library for the Render Extension to the X11 protocol
 endef
 
+CONFIGURE_ARGS += \
+	--enable-malloc0returnsnull
+
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/include
 	$(CP) $(PKG_INSTALL_DIR)/usr/include/X11 $(1)/usr/include/
