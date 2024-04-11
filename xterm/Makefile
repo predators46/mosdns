@@ -30,6 +30,18 @@ define Package/xterm/description
 	It was originally developed in the mid-1980s to provide DEC VT102 and Tektronix 4014 compatible terminals for programs that cannot use the window system directly.
 endef
 
+define Build/Compile
+	$(MAKE) -C $(PKG_BUILD_DIR) $(TARGET_CONFIGURE_OPTS) \
+		$(CONFIGURE_VARS) \
+		$(CONFIGURE_CMD) \
+		$(CONFIGURE_ARGS_XTRA) \
+		$(CONFIGURE_ARGS) \
+		--host=$(GNU_TARGET_NAME) \
+		--x-includes=$(STAGING_DIR)/usr/include/  \
+		--x-libraries=$(STAGING_DIR)/usr/lib/ \
+		LIBS="-Wl,-rpath-link=$(STAGING_DIR)/usr/lib"
+endef
+
 define Package/xterm/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(CP) $(PKG_INSTALL_DIR)/usr/bin/koi8rxterm $(1)/usr/bin/
