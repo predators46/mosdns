@@ -39,7 +39,6 @@ define Package/xterm/install
 	$(INSTALL_DIR) $(1)/usr/lib
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/X11 $(1)/usr/lib/
 	$(INSTALL_DIR) $(1)/usr/share
-	$(CP) $(PKG_INSTALL_DIR)/usr/share/applications $(1)/usr/share/
 	$(CP) $(PKG_INSTALL_DIR)/usr/share/pixmaps $(1)/usr/share/
 endef
 
