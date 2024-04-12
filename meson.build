@@ -920,7 +920,7 @@ if get_option('allow-kcmp') \
   pre_args += '-DALLOW_KCMP'
 endif
 
-prog_python = import('python').find_installation('python3')
+prog_python = import('python').find_installation('python3.11')
 has_mako = run_command(
   prog_python, '-c',
   '''
