@@ -22,11 +22,6 @@ PKG_CONFIG_DEPENDS:= \
 
 TARGET_CPPFLAGS+=-Wno-format -Wno-format-security
 
-MESON_VARS:= \
-	prog_python="$(STAGING_DIR_HOSTPKG)/bin/$(PYTHON3)" \
-	PYTHON_CPPFLAGS="$(shell $(STAGING_DIR)/host/bin/$(PYTHON3)-config --includes)" \
-	PYTHON_LIBS="$(shell $(STAGING_DIR)/host/bin/$(PYTHON3)-config --libs)"
-
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/meson.mk
 include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
@@ -236,11 +231,6 @@ endif
 ifneq ($(CONFIG_PACKAGE_libvulkan-intel),)
   VULKAN_DRIVERS+=intel
 endif
-
-MESON_VARS += \
-	prog_python="$(STAGING_DIR_HOSTPKG)/bin/$(PYTHON3)" \
-	PYTHON_CPPFLAGS="$(shell $(STAGING_DIR)/host/bin/$(PYTHON3)-config --includes)" \
-	PYTHON_LIBS="$(shell $(STAGING_DIR)/host/bin/$(PYTHON3)-config --libs)"
 
 MESON_ARGS += \
 	-Dplatforms=wayland \
