@@ -13,8 +13,8 @@ PKG_LICENSE_FILES:=LICENSE
 
 PKG_BUILD_FLAGS:=no-mips16
 
-HOST_BUILD_DEPENDS:=python-setuptools-scm/host python-wheel/host
-PKG_BUILD_DEPENDS:=python-setuptools-scm/host python-wheel/host
+HOST_BUILD_DEPENDS:=python-setuptools-scm/host python-wheel/host python3-markupsafe/host
+PKG_BUILD_DEPENDS:=python-setuptools-scm/host python-wheel/host python3-markupsafe/host
 
 include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
 include $(INCLUDE_DIR)/package.mk
