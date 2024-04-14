@@ -28,7 +28,7 @@ define Package/python3-mako
   CATEGORY:=Languages
   TITLE:=A super-fast templating language that borrows the best ideas from the existing templating languages.
   URL:=https://github.com/sqlalchemy/mako
-  DEPENDS:=+python3-light
+  DEPENDS:=+python3-light +python-markupsafe
 endef
 
 define Package/python3-mako/description
