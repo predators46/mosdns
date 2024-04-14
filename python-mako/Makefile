@@ -7,7 +7,7 @@ PKG_RELEASE:=1
 PYPI_NAME:=Mako
 PKG_HASH:=e16c01d9ab9c11f7290eef1cfefc093fb5a45ee4a3da09e2fec2e4d1bae54e73
 
-PKG_MAINTAINER:=
+PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
 
