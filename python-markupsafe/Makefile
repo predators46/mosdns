@@ -7,7 +7,7 @@ PKG_RELEASE:=1
 PYPI_NAME:=MarkupSafe
 PKG_HASH:=d283d37a890ba4c1ae73ffadf8046435c76e7bc2247bbb63c00bd1a709c6544b
 
-PKG_MAINTAINER:=
+PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=BSD-3-Clause license
 PKG_LICENSE_FILES:=LICENSE.rst
 
