@@ -255,14 +255,12 @@ TARGET_CFLAGS += -I$(MESON_BUILD_DIR)/src/broadcom/
 define Meson/CreateNativeFile
 	$(STAGING_DIR_HOST)/bin/sed \
 		-e "s|@PYTHON@|$(STAGING_DIR_HOSTPKG)/bin/python3|" \
-		< $(MESON_DIR)/openwrt-native.txt.in \
 		> $(1)
 endef
 
 define Meson/CreateCrossFile
 	$(STAGING_DIR_HOST)/bin/sed \
 		-e "s|@PYTHON@|$(STAGING_DIR_HOSTPKG)/bin/python3|" \
-		< $(MESON_DIR)/openwrt-cross.txt.in \
 		> $(1)
 endef
 
