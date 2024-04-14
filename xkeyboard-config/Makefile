@@ -17,6 +17,7 @@ PKG_LICENSE_FILES:=COPYING
 PKG_BUILD_DEPENDS:=libxslt/host intltool/host gettext/host python3/host perl-xml-parser/host
 
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/meson.mk
 
 define Package/xkeyboard-config
 	SECTION:=xorg
