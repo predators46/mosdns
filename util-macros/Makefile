@@ -30,10 +30,7 @@ define Package/util-macros/description
 endef
 
 define Host/Install
-	$(INSTALL_DIR) $(STAGING_DIR_HOSTPKG)/usr/share/aclocal
-	$(CP) $(HOST_BUILD_DIR)/xorg-macros.m4 $(STAGING_DIR_HOSTPKG)/usr/share/aclocal/
-	$(INSTALL_DIR) $(STAGING_DIR_HOSTPKG)/usr/share/pkgconfig
-	$(CP) $(HOST_BUILD_DIR)/xorg-macros.pc $(STAGING_DIR_HOSTPKG)/usr/share/pkgconfig/
+	$(SED) 's,/share,$$$${prefix}/usr/share,g' $(STAGING_DIR_HOSTPKG)/share/pkgconfig/xorg-macros.pc
 endef
 
 define Build/InstallDev
