@@ -9,6 +9,7 @@ PKG_SOURCE_URL:=https://xorg.freedesktop.org/releases/individual/util
 PKG_HASH:=0b86b262dbe971edb4ff233bc370dfad9f241d09f078a3f6d5b7f4b8ea4430db
 
 PKG_INSTALL:=1
+HOST_INSTALL:=1
 
 PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=MIT
