@@ -12,6 +12,7 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/Xorg/$(PKG_NAME)-$(PKG_VERSION)
 
 PYTHON3_PKG_BUILD:=0
 PKG_INSTALL:=1
+HOST_INSTALL:=1
 
 PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=BSD-2-Clause AND MIT AND X11
