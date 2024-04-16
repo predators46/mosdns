@@ -8,7 +8,6 @@ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=https://xorg.freedesktop.org/releases/individual/util
 PKG_HASH:=0b86b262dbe971edb4ff233bc370dfad9f241d09f078a3f6d5b7f4b8ea4430db
 
-PKG_BUILD_DIR:=$(BUILD_DIR)/Xorg/$(PKG_NAME)-$(PKG_VERSION)
 PKG_INSTALL:=1
 
 PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
@@ -28,6 +27,12 @@ endef
 
 define Package/util-macros/description
 	GNU autoconf macros shared across X.Org projects
+endef
+
+define Host/Install
+	$(INSTALL_DIR) $(STAGING_DIR_HOSTPKG)/share
+	$(CP) $(HOST_BUILD_DIR)/xorg-macros.m4 $(STAGING_DIR_HOSTPKG)/share/aclocal/
+	$(CP) $(HOST_BUILD_DIR)/xorg-macros.pc $(STAGING_DIR_HOSTPKG)/share/pkgconfig/
 endef
 
 define Build/InstallDev
