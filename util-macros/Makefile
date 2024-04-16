@@ -15,12 +15,13 @@ PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=COPYING
 
+include $(INCLUDE_DIR)/host-build.mk
 include $(INCLUDE_DIR)/package.mk
 
 define Package/util-macros
-	SECTION:=xorg
-	CATEGORY:=Xorg
-	SUBMENU:=Utilities
+	SECTION:=utils
+	CATEGORY:=Utilities
+	SUBMENU:=Xorg
 	TITLE:=X.Org Autotools macros
 	URL:=http://xorg.freedesktop.org/
 endef
@@ -35,4 +36,5 @@ define Build/InstallDev
 	$(CP) $(PKG_INSTALL_DIR)/usr/share/pkgconfig $(1)/usr/share/
 endef
 
+$(eval $(call HostBuild))
 $(eval $(call BuildPackage,util-macros))
