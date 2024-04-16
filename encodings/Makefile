@@ -14,7 +14,7 @@ PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=LICENSE
 PKG_LICENSE_FILES:=COPYING
 
-PKG_BUILD_DEPENDS:=font-util mkfontscale util-macros
+PKG_BUILD_DEPENDS:=font-util util-macros
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -23,6 +23,7 @@ define Package/encodings
 	CATEGORY:=Font
 	SUBMENU:=Xorg
 	TITLE:=X.org font encoding files
+	DEPENDS:=+mkfontscale
 	URL:=http://xorg.freedesktop.org/
 endef
 
@@ -31,6 +32,11 @@ define Package/encodings/description
 endef
 
 define Build/InstallDev
+	$(INSTALL_DIR) $(1)/usr/share
+	$(CP) $(PKG_INSTALL_DIR)/usr/share/fonts $(1)/usr/share/
+endef
+
+define Package/encodings/install
 	$(INSTALL_DIR) $(1)/usr/share
 	$(CP) $(PKG_INSTALL_DIR)/usr/share/fonts $(1)/usr/share/
 endef
