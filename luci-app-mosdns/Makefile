@@ -4,10 +4,10 @@ PKG_NAME:=luci-app-mosdns
 PKG_VERSION:=1.5.85
 PKG_RELEASE:=1
 
-#PKG_BUILD_DEPENDS:=encodings
+PKG_BUILD_DEPENDS:=mkfontscale/host
 LUCI_TITLE:=LuCI Support for mosdns
 LUCI_PKGARCH:=all
-LUCI_DEPENDS:=+encodings
+#LUCI_DEPENDS:=+encodings
 define Package/$(PKG_NAME)/conffiles
 /etc/config/mosdns
 /etc/mosdns/cache.dump
