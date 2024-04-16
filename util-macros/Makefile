@@ -33,10 +33,12 @@ define Host/Install
 	$(SED) 's,/share,$$$${prefix}/usr/share,g' $(STAGING_DIR_HOSTPKG)/share/pkgconfig/xorg-macros.pc
 endef
 
-define Build/InstallDev
-	$(INSTALL_DIR) $(1)/usr/share
-	$(CP) $(PKG_INSTALL_DIR)/usr/share/aclocal $(1)/usr/share/
-	$(CP) $(PKG_INSTALL_DIR)/usr/share/pkgconfig $(1)/usr/share/
+define Host/Install
+	$(INSTALL_DIR) $(STAGING_DIR_HOSTPKG)/share/aclocal
+	$(CP) $(HOST_BUILD_DIR)/xorg-macros.m4 $(STAGING_DIR_HOSTPKG)/share/aclocal/
+	$(INSTALL_DIR) $(STAGING_DIR_HOSTPKG)/share/pkgconfig
+	$(CP) $(HOST_BUILD_DIR)/xorg-macros.pc $(STAGING_DIR_HOSTPKG)/share/pkgconfig/
+	$(SED) 's,/share,$$$${prefix}/usr/share,g' $(STAGING_DIR_HOSTPKG)/share/pkgconfig/xorg-macros.pc
 endef
 
 $(eval $(call HostBuild))
