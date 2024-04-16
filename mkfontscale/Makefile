@@ -14,7 +14,7 @@ PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=COPYING
 
-HOST_BUILD_DEPENDS:=util-macros/host xorgproto/host
+HOST_BUILD_DEPENDS:=util-macros/host xorgproto/host libfontenc/host
 PKG_BUILD_DEPENDS:=util-macros xorgproto
 
 include $(INCLUDE_DIR)/host-build.mk
