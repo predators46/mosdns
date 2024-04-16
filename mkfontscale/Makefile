@@ -32,11 +32,6 @@ define Package/mkfontscale/description
 	It now includes the mkfontdir script previously distributed separately for compatibility with older X11 versions.
 endef
 
-define Build/InstallDev
-	$(INSTALL_DIR) $(1)/usr/share
-	$(CP) $(PKG_INSTALL_DIR)/usr/share/libalpm $(1)/usr/share/
-endef
-
 define Package/mkfontscale/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(CP) $(PKG_INSTALL_DIR)/usr/bin/mkfontdir $(1)/usr/bin/
