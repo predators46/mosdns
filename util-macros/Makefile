@@ -14,6 +14,8 @@ PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=COPYING
 
+HOST_FIXUP:=autoreconf
+
 include $(INCLUDE_DIR)/host-build.mk
 include $(INCLUDE_DIR)/package.mk
 
@@ -27,13 +29,6 @@ endef
 
 define Package/util-macros/description
 	GNU autoconf macros shared across X.Org projects
-endef
-
-define Host/Install
-	$(INSTALL_DIR) $(STAGING_DIR_HOST)/share/aclocal
-	$(INSTALL_DATA) $(HOST_BUILD_DIR)/xorg-macros.m4 $(STAGING_DIR_HOST)/share/aclocal/
-	$(INSTALL_DIR) $(STAGING_DIR_HOST)/share/pkgconfig
-	$(INSTALL_DATA) $(HOST_BUILD_DIR)/xorg-macros.pc $(STAGING_DIR_HOST)/share/pkgconfig/
 endef
 
 define Build/InstallDev
