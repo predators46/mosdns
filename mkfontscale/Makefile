@@ -14,8 +14,10 @@ PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=COPYING
 
+HOST_BUILD_DEPENDS:=util-macros/host xorgproto/host
 PKG_BUILD_DEPENDS:=util-macros xorgproto
 
+include $(INCLUDE_DIR)/host-build.mk
 include $(INCLUDE_DIR)/package.mk
 
 define Package/mkfontscale
@@ -38,4 +40,5 @@ define Package/mkfontscale/install
 	$(CP) $(PKG_INSTALL_DIR)/usr/bin/mkfontscale $(1)/usr/bin/
 endef
 
+$(eval $(call HostBuild))
 $(eval $(call BuildPackage,mkfontscale))
