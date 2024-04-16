@@ -49,4 +49,5 @@ define Build/InstallDev
 	$(CP) $(PKG_INSTALL_DIR)/usr/share/pkgconfig $(1)/usr/share/
 endef
 
+$(eval $(call HostBuild))
 $(eval $(call BuildPackage,xorgproto))
