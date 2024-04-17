@@ -36,11 +36,9 @@ define Package/xorgproto/description
 	combined X.Org X11 Protocol headers
 endef
 
-HOST_CONFIGURE_ARGS += \
-	--prefix=$(STAGING_DIR_HOSTPKG)
-
 HOST_CONFIGURE_VARS += \
-	PYTHON="$(STAGING_DIR_HOSTPKG)/bin/$(PYTHON3)"
+	PYTHON="$(STAGING_DIR_HOSTPKG)/bin/$(PYTHON3)" \
+	PKG_CONFIG=$(STAGING_DIR_HOST)/share/pkgconfig
 
 CONFIGURE_VARS += \
 	PYTHON="$(STAGING_DIR_HOSTPKG)/bin/$(PYTHON3)"
