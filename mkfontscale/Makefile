@@ -35,7 +35,7 @@ define Package/mkfontscale/description
 endef
 
 HOST_CONFIGURE_VARS += \
-	PKG_CONFIG_PATH=$(STAGING_DIR_HOSTPKG)/lib/pkgconfig:$(STAGING_DIR_HOSTPKG)/share/pkgconfig
+	PKG_CONFIG_PATH=$(STAGING_DIR_HOSTPKG)/lib/pkgconfig
 
 define Package/mkfontscale/install
 	$(INSTALL_DIR) $(1)/usr/bin
