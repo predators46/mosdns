@@ -29,6 +29,9 @@ define Package/util-macros/description
 	GNU autoconf macros shared across X.Org projects
 endef
 
+HOST_CONFIGURE_ARGS += \
+	--prefix=$(STAGING_DIR_HOSTPKG)
+
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/share
 	$(CP) $(PKG_INSTALL_DIR)/usr/share/aclocal $(1)/usr/share/
