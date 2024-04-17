@@ -4,7 +4,7 @@ PKG_NAME:=luci-app-mosdns
 PKG_VERSION:=1.5.85
 PKG_RELEASE:=1
 
-PKG_BUILD_DEPENDS:=mkfontscale/host
+PKG_BUILD_DEPENDS:=xorgproto/host
 LUCI_TITLE:=LuCI Support for mosdns
 LUCI_PKGARCH:=all
 #LUCI_DEPENDS:=+encodings
