@@ -34,6 +34,9 @@ define Package/mkfontscale/description
 	It now includes the mkfontdir script previously distributed separately for compatibility with older X11 versions.
 endef
 
+HOST_CONFIGURE_VARS += \
+	PKG_CONFIG_PATH=$(STAGING_DIR_HOSTPKG)/share/pkgconfig
+
 define Package/mkfontscale/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(CP) $(PKG_INSTALL_DIR)/usr/bin/mkfontdir $(1)/usr/bin/
