@@ -29,6 +29,14 @@ define Package/util-macros/description
 	GNU autoconf macros shared across X.Org projects
 endef
 
+define Host/Compile
+	$(call Host/Compile/Default)
+endef
+
+define Host/Install/Default
+	$(call Host/Compile/Default,install)
+endef
+
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/share
 	$(CP) $(PKG_INSTALL_DIR)/usr/share/aclocal $(1)/usr/share/
