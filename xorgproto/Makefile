@@ -12,7 +12,6 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/Xorg/$(PKG_NAME)-$(PKG_VERSION)
 
 PYTHON3_PKG_BUILD:=0
 PKG_INSTALL:=1
-HOST_INSTALL:=1
 
 PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=BSD-2-Clause AND MIT AND X11
@@ -20,8 +19,6 @@ PKG_LICENSE_FILES:=COPYING
 
 HOST_BUILD_DEPENDS:=util-macros/host libxslt/host python3/host
 PKG_BUILD_DEPENDS:=util-macros libxslt/host python3/host
-
-HOST_FIXUP:=autoreconf
 
 include $(INCLUDE_DIR)/host-build.mk
 include $(INCLUDE_DIR)/package.mk
@@ -38,6 +35,9 @@ endef
 define Package/xorgproto/description
 	combined X.Org X11 Protocol headers
 endef
+
+HOST_CONFIGURE_ARGS += \
+	--prefix=$(STAGING_DIR_HOSTPKG)
 
 HOST_CONFIGURE_VARS += \
 	PYTHON="$(STAGING_DIR_HOSTPKG)/bin/$(PYTHON3)"
