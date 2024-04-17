@@ -33,6 +33,9 @@ define Package/libfontenc/description
 	libfontenc - font encoding library
 endef
 
+HOST_CONFIGURE_VARS += \
+	PKG_CONFIG_PATH=$(STAGING_DIR_HOSTPKG)/share/pkgconfig
+
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/include
 	$(CP) $(PKG_INSTALL_DIR)/usr/include/X11 $(1)/usr/include/
