@@ -1,47 +1,51 @@
+# Copyright (C) 2019 Lucian Cristian <lucian.cristian@gmail.com>
+#
+# This is free software, licensed under the GNU General Public License v2.
+# See /LICENSE for more information.
+
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=util-macros
-PKG_VERSION:=1.20.0
+PKG_VERSION:=1.19.2
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
-PKG_SOURCE_URL:=https://xorg.freedesktop.org/releases/individual/util
-PKG_HASH:=0b86b262dbe971edb4ff233bc370dfad9f241d09f078a3f6d5b7f4b8ea4430db
+PKG_SOURCE_URL:=https://www.x.org/releases/individual/util/
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+PKG_HASH:=d7e43376ad220411499a79735020f9d145fdc159284867e99467e0d771f3e712
 
+PKG_BUILD_PARALLEL:=1
+HOST_BUILD_PARALLEL:=1
 PKG_INSTALL:=1
-
-PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
-PKG_LICENSE:=MIT
-PKG_LICENSE_FILES:=COPYING
 
 include $(INCLUDE_DIR)/host-build.mk
 include $(INCLUDE_DIR)/package.mk
 
 define Package/util-macros
-	SECTION:=utils
-	CATEGORY:=Utilities
-	SUBMENU:=Xorg
-	TITLE:=X.Org Autotools macros
-	URL:=http://xorg.freedesktop.org/
+  SECTION:=utils
+  CATEGORY:=Utilities
+  DEPENDS:=
+  TITLE:=X.Org Autotools macros
+  URL:=http://xorg.freedesktop.org/
 endef
 
-define Package/util-macros/description
-	GNU autoconf macros shared across X.Org projects
-endef
+TARGET_LDFLAGS += -Wl,--gc-sections,--as-needed
 
-define Host/Compile
-	$(call Host/Compile/Default)
-endef
-
-define Host/Install/Default
-	$(call Host/Compile/Default,install)
-endef
+CONFIGURE_ARGS += \
+  --prefix=/usr
 
 define Build/InstallDev
-	$(INSTALL_DIR) $(1)/usr/share
-	$(CP) $(PKG_INSTALL_DIR)/usr/share/aclocal $(1)/usr/share/
-	$(CP) $(PKG_INSTALL_DIR)/usr/share/pkgconfig $(1)/usr/share/
+	$(INSTALL_DIR) \
+	  $(1)/usr/share \
+	  $(1)/usr/lib
+
+	$(CP) \
+	  $(PKG_INSTALL_DIR)/usr/share/aclocal \
+	  $(1)/usr/share/
+
+	$(CP) \
+	  $(PKG_INSTALL_DIR)/usr/share/pkgconfig \
+	  $(1)/usr/lib/
 endef
 
-$(eval $(call HostBuild))
 $(eval $(call BuildPackage,util-macros))
+$(eval $(call HostBuild))
