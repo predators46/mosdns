@@ -1,63 +1,60 @@
+# Copyright (C) 2019 Lucian Cristian <lucian.cristian@gmail.com>
+#
+# This is free software, licensed under the GNU General Public License v2.
+# See /LICENSE for more information.
+
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=xorgproto
-PKG_VERSION:=2024.1
+PKG_VERSION:=2018.4
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
-PKG_SOURCE_URL:=https://xorg.freedesktop.org/releases/individual/proto
-PKG_HASH:=372225fd40815b8423547f5d890c5debc72e88b91088fbfb13158c20495ccb59
+PKG_SOURCE_URL:=https://xorg.freedesktop.org/archive/individual/proto/
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+PKG_HASH:=fee885e0512899ea5280c593fdb2735beb1693ad170c22ebcc844470eec415a0
 
-PKG_BUILD_DIR:=$(BUILD_DIR)/Xorg/$(PKG_NAME)-$(PKG_VERSION)
+PKG_BUILD_DEPENDS:=util-macros
+PKG_BUILD_PARALLEL:=1
+HOST_BUILD_DEPENDS:=util-macros/host
+HOST_BUILD_PARALLEL:=1
+PKG_FIXUP:=autoreconf
 
-PYTHON3_PKG_BUILD:=0
 PKG_INSTALL:=1
-
-PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
-PKG_LICENSE:=BSD-2-Clause AND MIT AND X11
-PKG_LICENSE_FILES:=COPYING
-
-HOST_BUILD_DEPENDS:=util-macros/host libxslt/host python3/host
-PKG_BUILD_DEPENDS:=util-macros libxslt/host python3/host
 
 include $(INCLUDE_DIR)/host-build.mk
 include $(INCLUDE_DIR)/package.mk
-include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
 
 define Package/xorgproto
-	SECTION:=xorg
-	CATEGORY:=Xorg
-	SUBMENU:=Protocol
-	TITLE:=X.Org X11 Protocol headers
-	URL:=http://xorg.freedesktop.org/
+  SECTION:=libs
+  CATEGORY:=Libraries
+  DEPENDS:=
+  TITLE:=Combined X.Org X11 protocol headers
+  URL:=http://xorg.freedesktop.org/
 endef
 
-define Package/xorgproto/description
-	combined X.Org X11 Protocol headers
-endef
-
-HOST_CONFIGURE_VARS += \
-	PYTHON="$(STAGING_DIR_HOSTPKG)/bin/$(PYTHON3)"
-	PKG_CONFIG_PATH=$(STAGING_DIR_HOSTPKG)/share/pkgconfig
-
-CONFIGURE_VARS += \
-	PYTHON="$(STAGING_DIR_HOSTPKG)/bin/$(PYTHON3)"
-
-define Host/Compile
-	$(call Host/Compile/Default)
-endef
-
-define Host/Install/Default
-	$(call Host/Compile/Default,install)
-endef
+CONFIGURE_ARGS += \
+  --prefix=/usr \
+  --without-fop \
+  --without-xmlto \
+  --without-xsltproc \
+  --disable-specs
 
 define Build/InstallDev
-	$(INSTALL_DIR) $(1)/usr/include
-	$(CP) $(PKG_INSTALL_DIR)/usr/include/GL $(1)/usr/include/
-	$(CP) $(PKG_INSTALL_DIR)/usr/include/X11 $(1)/usr/include/
-	$(INSTALL_DIR) $(1)/usr/share
-	$(CP) $(PKG_INSTALL_DIR)/usr/share/pkgconfig $(1)/usr/share/
+	$(INSTALL_DIR) \
+	  $(1)/usr/include \
+	  $(1)/usr/lib
+
+	$(CP) \
+	  $(PKG_INSTALL_DIR)/usr/include/{GL,X11} \
+	  $(1)/usr/include/
+
+	$(CP) \
+	  $(PKG_INSTALL_DIR)/usr/share/pkgconfig \
+	  $(1)/usr/lib/
 endef
 
-$(eval $(call HostBuild))
+define Package/xorgproto/install
+endef
+
 $(eval $(call BuildPackage,xorgproto))
+$(eval $(call HostBuild))
