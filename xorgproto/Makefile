@@ -37,11 +37,19 @@ define Package/xorgproto/description
 endef
 
 HOST_CONFIGURE_VARS += \
-	PYTHON="$(STAGING_DIR_HOSTPKG)/bin/$(PYTHON3)" \
+	PYTHON="$(STAGING_DIR_HOSTPKG)/bin/$(PYTHON3)"
 	PKG_CONFIG_PATH=$(STAGING_DIR_HOSTPKG)/share/pkgconfig
 
 CONFIGURE_VARS += \
 	PYTHON="$(STAGING_DIR_HOSTPKG)/bin/$(PYTHON3)"
+
+define Host/Compile
+	$(call Host/Compile/Default)
+endef
+
+define Host/Install/Default
+	$(call Host/Compile/Default,install)
+endef
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/include
