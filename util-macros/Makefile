@@ -30,10 +30,6 @@ endef
 
 TARGET_LDFLAGS += -Wl,--gc-sections,--as-needed
 
-HOST_CONFIGURE_ARGS += \
-	--prefix=/share \
-	--exec-prefix=/share
-
 CONFIGURE_ARGS += \
   --prefix=/usr
 
