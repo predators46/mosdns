@@ -32,10 +32,6 @@ define Package/xorgproto
   URL:=http://xorg.freedesktop.org/
 endef
 
-HOST_CONFIGURE_ARGS += \
-	--prefix=/share \
-	--exec-prefix=/share
-
 CONFIGURE_ARGS += \
   --prefix=/usr \
   --without-fop \
