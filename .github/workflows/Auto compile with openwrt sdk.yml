@@ -259,8 +259,8 @@ jobs:
           mkdir upload
 
           #zip -jr upload/mosdns_ipk_${{ matrix.platform }}.zip bin/packages/*/mosdns/
-          zip -r upload/mosdns_ipk_${{ matrix.platform }}.zip staging_dir/hostpkg/lib/pkgconfig/
-          #zip -r upload/mosdns_ipk_${{ matrix.platform }}.zip staging_dir/target-aarch64_generic_musl/usr/share/pkgconfig/
+          #zip -r upload/mosdns_ipk_${{ matrix.platform }}.zip staging_dir/hostpkg/lib/pkgconfig/
+          zip -r upload/mosdns_ipk_${{ matrix.platform }}.zip staging_dir/target-aarch64_generic_musl/usr/share/pkgconfig/
 
           echo "FIRMWARE=$PWD" >> $GITHUB_ENV
           echo "status=success" >> $GITHUB_OUTPUT
