@@ -33,8 +33,8 @@ define Package/xorgproto
 endef
 
 HOST_CONFIGURE_ARGS += \
-	--prefix=$(STAGING_DIR_HOSTPKG) \
-	--exec-prefix=$(STAGING_DIR_HOSTPKG)
+	--prefix=/share \
+	--exec-prefix=/share
 
 CONFIGURE_ARGS += \
   --prefix=/usr \
