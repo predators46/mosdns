@@ -32,6 +32,9 @@ define Package/xorgproto
   URL:=http://xorg.freedesktop.org/
 endef
 
+HOST_CONFIGURE_ARGS += \
+	--datadir=$(STAGING_DIR_HOSTPKG)/share
+
 CONFIGURE_ARGS += \
   --prefix=/usr \
   --without-fop \
