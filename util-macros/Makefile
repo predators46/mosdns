@@ -30,6 +30,9 @@ endef
 
 TARGET_LDFLAGS += -Wl,--gc-sections,--as-needed
 
+HOST_CONFIGURE_ARGS += \
+	--datadir=$(STAGING_DIR_HOSTPKG)/share
+
 CONFIGURE_ARGS += \
   --prefix=/usr
 
