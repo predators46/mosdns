@@ -226,6 +226,7 @@ jobs:
           git clone https://github.com/predators46/xorg feeds/packages/xorg
 
           ./scripts/feeds update -a
+          ./scripts/feeds install -a -f -p xorg
           ./scripts/feeds install -a -f -p mosdns
           ./scripts/feeds install luci-app-mosdns
 
