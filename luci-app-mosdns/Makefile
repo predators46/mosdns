@@ -8,11 +8,11 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-app-mosdns
-PKG_VERSION:=2.9
+PKG_VERSION:=2.9.1
 PKG_RELEASE:=1
 PKG_LICENSE:=GPL-2.0
 
-PKG_MAINTAINER:=Rosy Song <rosysong@rosinson.com>
+PKG_MAINTAINER:=
 
 PKG_BUILD_DIR := $(BUILD_DIR)/$(PKG_NAME)
 
