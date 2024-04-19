@@ -7,7 +7,7 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=xderm-mini
+PKG_NAME:=luci-app-mosdns
 PKG_VERSION:=2.9
 PKG_RELEASE:=1
 PKG_LICENSE:=GPL-2.0
@@ -18,14 +18,14 @@ PKG_BUILD_DIR := $(BUILD_DIR)/$(PKG_NAME)
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/xderm-mini
+define Package/luci-app-mosdns
   SECTION:=net
   CATEGORY:=Network
   DEPENDS:=
   TITLE:=Tools Inject xderm-mini
 endef
 
-define Package/xderm-mini/description
+define Package/luci-app-mosdns/description
  xderm-mini ssh v2ray trojan
 endef
 
@@ -38,7 +38,7 @@ endef
 define Build/Compile
 endef
 
-define Package/xderm-mini/install
+define Package/luci-app-mosdns/install
 endef
 
-$(eval $(call BuildPackage,xderm-mini))
+$(eval $(call BuildPackage,luci-app-mosdns))
