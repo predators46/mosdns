@@ -226,7 +226,9 @@ jobs:
           echo "src-git xorg https://github.com/predators46/xorg feeds/packages/xorg.git" >> feeds.conf.default
 
           ./scripts/feeds update -a
-          ./scripts/feeds install -a
+          ./scripts/feeds install -a -f -p xorg
+          ./scripts/feeds install -a -f -p mosdns
+          ./scripts/feeds install luci-app-mosdns
 
           echo "CONFIG_ALL_NONSHARED=n" > .config
           echo "CONFIG_ALL_KMODS=n" >> .config
