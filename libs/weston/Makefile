@@ -1,19 +1,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=weston
-PKG_RELEASE:=$(AUTORELEASE)
+PKG_VERSION:=12.0.3
+PKG_RELEASE:=1
 
-#PKG_VERSION:=9.0.0
-#PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
-#PKG_SOURCE_URL:=https://wayland.freedesktop.org/releases/
-#PKG_HASH:=5cf5d6ce192e0eb15c1fc861a436bf21b5bb3b91dbdabbdebe83e1f83aa098fe
-
-PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=https://gitlab.freedesktop.org/wayland/weston.git
-PKG_SOURCE_DATE:=2021-11-23
-PKG_VERSION:=10.0.0~pre0-$(PKG_SOURCE_DATE)
-PKG_SOURCE_VERSION:=a8827940274391d658ef2ea69bce4fade45bff5f
-PKG_MIRROR_HASH:=a24b98f7a1ae5a75a690af81a5b194d20379679c4e7be33867d8edb8f3b2bc7d
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
+PKG_SOURCE_URL:=https://gitlab.freedesktop.org/wayland/weston/-/releases/$(PKG_VERSION)/downloads/
+PKG_HASH:=0fa88359e691ce6de47ee92d7bd0c10ec8c54b064d07b204715fc479eef0db6d
 
 PKG_MAINTAINER:=Daniel Golle <daniel@makrotopia.org>
 PKG_LICENSE:=MIT
