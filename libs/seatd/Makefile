@@ -8,7 +8,8 @@ PKG_SOURCE:=$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://git.sr.ht/~kennylevinsen/seatd/archive/
 PKG_HASH:=a562a44ee33ccb20954a1c1ec9a90ecb2db7a07ad6b18d0ac904328efbcf65a0
 
-PKG_BUILD_DIR:=seatd-$(PKG_VERSION)
+PKG_BUILD_DIR:=$(BUILD_DIR)/seatd-$(PKG_VERSION)
+HOST_BUILD_DIR:=$(BUILD_DIR_HOST)/seatd-$(PKG_VERSION)
 
 PKG_MAINTAINER:=Daniel Golle <daniel@makrotopia.org>
 PKG_LICENSE:=MIT
