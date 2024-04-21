@@ -13,8 +13,6 @@
          wayland_scanner_code_gen = generator(
              wayland_scanner,
              output: '@BASENAME@-protocol.c',
-diff --git a/meson_options.txt b/meson_options.txt
-index fc7f4a4..aca7013 100644
 --- a/meson_options.txt
 +++ b/meson_options.txt
 @@ -78,6 +78,12 @@ option(
