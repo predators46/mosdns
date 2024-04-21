@@ -1,12 +1,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=xkeyboard-config
-PKG_VERSION:=2.24
+PKG_VERSION:=2.41
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=http://www.x.org/releases/individual/data/$(PKG_NAME)/
-PKG_HASH:=91b18580f46b4e4ea913707f6c8d68ab5286879c3a6591462f3b9e760d3ac4d7
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
+PKG_SOURCE_URL:=https://xorg.freedesktop.org/releases/individual/data/xkeyboard-config
+PKG_HASH:=f02cd6b957295e0d50236a3db15825256c92f67ef1f73bf1c77a4b179edf728f
 
 PKG_MAINTAINER:=Daniel Golle <daniel@makrotopia.org>
 PKG_LICENSE:=MIT
@@ -18,15 +18,18 @@ PKG_BUILD_PARALLEL:=1
 PKG_BUILD_DEPENDS:=libxslt/host intltool/host perl-xml-parser/host
 
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/meson.mk
 
-CONFIGURE_ARGS += --disable-runtime-deps
+MESON_ARGS += \
+	-Dcompat-rules=true \
+	-Dxorg-rules-symlinks=false \
+	-Dnls=true
 
 define Package/xkeyboard-config
   SECTION:=libs
   CATEGORY:=Libraries
   TITLE:=xkeyboard-config
   URL:=https://www.freedesktop.org/wiki/Software/XKeyboardConfig/
-  DEPENDS:=+libxkbcommon $(INTL_DEPENDS)
 endef
 
 define Package/xkeyboard-config/description
