@@ -1,12 +1,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cairo
-PKG_VERSION:=1.16.0
+PKG_VERSION:=1.18.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=https://cairo.freedesktop.org/releases/
-PKG_HASH:=5e7b29b3f113ef870d1e3ecf8adf21f923396401604bda16d44be45e66052331
+PKG_HASH:=243a0736b978a33dee29f9cca7521733b78a65b5418206fef7bd1c3d4cf10b64
 
 PKG_MAINTAINER:=Daniel Golle <daniel@makrotopia.org>
 PKG_LICENSE:=LGPL-2.1-or-later MPL-1.1
@@ -24,7 +24,7 @@ define Package/libcairo
   SUBMENU:=Video
   TITLE:=cairo
   URL:=https://cairo.freedesktop.org/
-  DEPENDS:=+libpng +libfreetype +fontconfig +libmesa +pixman +glib2 +libjpeg +zlib +liblzo
+  DEPENDS:=+libpng +libfreetype +fontconfig +libmesa +pixman +glib2 +libjpeg-turbo +zlib +liblzo
 endef
 
 define Package/libcairo/description
