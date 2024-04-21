@@ -13,7 +13,6 @@ PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=COPYING
 
 PKG_INSTALL:=1
-PKG_BUILD_PARALLEL:=1
 
 PKG_BUILD_DEPENDS:=libxslt/host intltool/host perl-xml-parser/host
 
