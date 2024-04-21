@@ -12,11 +12,10 @@ PKG_MAINTAINER:=Daniel Golle <daniel@makrotopia.org>
 PKG_LICENSE:=LGPL-2.1-or-later MPL-1.1
 PKG_LICENSE_FILES:=COPYING COPYING-LGPL-2.1 COPYING-MPL-1.1
 
-PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
-PKG_BUILD_PARALLEL:=1
 
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/meson.mk
 
 define Package/libcairo
   SECTION:=libs
@@ -31,28 +30,16 @@ define Package/libcairo/description
   Cairo is a 2D graphics library with support for multiple output devices.
 endef
 
-CONFIGURE_ARGS += \
-	--oldincludedir="$(STAGING_DIR)/usr/include" \
-	--x-includes="$(STAGING_DIR)/usr/include" \
-	--x-libraries="$(STAGING_DIR)/usr/lib" \
-	--without-x \
-	--without-gallium \
-	--enable-pdf \
-	--enable-png \
-	--enable-ps \
-	--enable-svg \
-	--enable-tee \
-	--enable-ft \
-	--enable-glesv3 \
-	--enable-test-surfaces=no \
-	--enable-drm=no \
-	--enable-gallium=no \
-	--enable-x=no \
-	--enable-xcb=no \
-	--enable-xlib-xrender=no \
-	--enable-xcb=no \
-	--enable-xlib-xcb=no \
-	--enable-xcb-shm=no
+MESON_ARGS += \
+	-Ddwrite=disabled \
+	-Dxcb=disabled \
+	-Dxlib=disabled \
+	-Dxlib-xcb=disabled \
+	-Dtests=disabled \
+	-Dgtk2-utils=disabled \
+	-Dspectre=disabled \
+	-Dsymbol-lookup=disabled \
+	-Dgtk_doc=false
 
 define Package/libcairo/install
 	$(INSTALL_DIR) $(1)/usr/lib
