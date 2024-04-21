@@ -9,14 +9,17 @@
 +	prog_scanner = find_program(get_option('scanner_bin'))
 +endif
  
- dep_wp = dependency('wayland-protocols', version: '>= 1.18')
+ dep_wp = dependency('wayland-protocols', version: '>= 1.24')
  dir_wp_base = dep_wp.get_pkgconfig_variable('pkgdatadir')
---- /dev/null
+--- a/meson_options.txt
 +++ b/meson_options.txt
-@@ -0,0 +1,6 @@
+@@ -1,3 +1,9 @@
 +option(
 +	'scanner_bin',
 +	description: 'Path to wayland-scanner binary',
 +	type: 'string',
 +	value: ''
 +)
+ option(
+ 	'drm',
+ 	description: 'Print extra DRM information (requires libdrm)',
