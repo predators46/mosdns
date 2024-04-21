@@ -1,13 +1,14 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=seatd
-PKG_VERSION:=0.6.3
-PKG_RELEASE:=$(AUTORELEASE)
+PKG_VERSION:=0.8.0
+PKG_RELEASE:=1
 
-PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=https://git.sr.ht/~kennylevinsen/seatd
-PKG_SOURCE_VERSION:=$(PKG_VERSION)
-PKG_MIRROR_HASH:=f3bcdf68b67ec48e637851031a839bff1835ca8462a03fa4f7556f431217af37
+PKG_SOURCE:=$(PKG_VERSION).tar.gz
+PKG_SOURCE_URL:=https://git.sr.ht/~kennylevinsen/seatd/archive/
+PKG_HASH:=a562a44ee33ccb20954a1c1ec9a90ecb2db7a07ad6b18d0ac904328efbcf65a0
+
+PKG_BUILD_DIR:=seatd-$(PKG_VERSION)
 
 PKG_MAINTAINER:=Daniel Golle <daniel@makrotopia.org>
 PKG_LICENSE:=MIT
