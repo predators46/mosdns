@@ -240,7 +240,6 @@ MESON_ARGS += \
 	-Dglvnd=false \
 	-Dopengl=true \
 	-Dandroid-stub=false \
-	-Ddri-drivers=$(subst $(space),$(comma),$(strip $(DRI_DRIVERS))) \
 	-Dgallium-drivers=$(subst $(space),$(comma),$(strip $(GALLIUM_DRIVERS))) \
 	-Dvulkan-drivers=$(subst $(space),$(comma),$(strip $(VULKAN_DRIVERS))) \
 	-Dosmesa=true \
