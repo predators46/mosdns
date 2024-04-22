@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-app-mosdns
-PKG_VERSION:=2.9.5
+PKG_VERSION:=2.9.6
 PKG_RELEASE:=1
 PKG_LICENSE:=GPL-2.0
 
@@ -15,7 +15,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/luci-app-mosdns
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+lua
+  DEPENDS:=+liblua5.3
   TITLE:=Tools Inject xderm-mini
 endef
 
