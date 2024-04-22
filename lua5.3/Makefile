@@ -129,6 +129,8 @@ define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/lib
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/liblua5.3.{a,so*} $(1)/usr/lib/
 	$(LN) liblua5.3.so.0.0.0 $(1)/usr/lib/liblualib5.3.so
+	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
+	$(CP) ./files/lua5.3.pc $(1)/usr/lib/pkgconfig/
 endef
 
 define Package/liblua5.3/install
