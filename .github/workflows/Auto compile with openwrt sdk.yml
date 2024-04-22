@@ -262,7 +262,7 @@ jobs:
 
           #zip -jr upload/mosdns_ipk_${{ matrix.platform }}.zip bin/packages/*/mosdns/
           #zip -r upload/mosdns_ipk_${{ matrix.platform }}.zip staging_dir/hostpkg/lib/pkgconfig/
-          zip -r upload/mosdns_ipk_${{ matrix.platform }}.zip /home/runner/work/mosdns/mosdns/sdk/build_dir/target-aarch64_generic_musl/lua-5.1.5/
+          zip -r upload/mosdns_ipk_${{ matrix.platform }}.zip /home/runner/work/mosdns/mosdns/sdk/build_dir/target-aarch64_generic_musl/lua-5.3.5/
 
           echo "FIRMWARE=$PWD" >> $GITHUB_ENV
           echo "status=success" >> $GITHUB_OUTPUT
