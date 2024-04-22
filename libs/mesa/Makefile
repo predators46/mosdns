@@ -12,7 +12,7 @@ PKG_MAINTAINER:=Daniel Golle <daniel@makrotopia.org>
 PKG_LICENSE:=BSD-3-Clause
 
 PKG_INSTALL:=1
-PKG_BUILD_DEPENDS:=python-mako/host libudev-zero elfutils libarchive lua ncurses
+PKG_BUILD_DEPENDS:=python-mako/host libudev-zero elfutils libarchive lua5.3 ncurses
 
 PKG_CONFIG_DEPENDS:= \
 	CONFIG_LIBDRM_INTEL \
