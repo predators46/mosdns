@@ -260,9 +260,9 @@ jobs:
           cd sdk
           mkdir upload
 
-          zip -jr upload/mosdns_ipk_${{ matrix.platform }}.zip bin/packages/*/mosdns/
+          #zip -jr upload/mosdns_ipk_${{ matrix.platform }}.zip bin/packages/*/mosdns/
           #zip -r upload/mosdns_ipk_${{ matrix.platform }}.zip staging_dir/hostpkg/lib/pkgconfig/
-          #zip -r upload/mosdns_ipk_${{ matrix.platform }}.zip /home/runner/work/mosdns/mosdns/sdk/build_dir/target-aarch64_generic_musl/util-macros-1.19.2/ipkg-install/usr/share/pkgconfig/
+          zip -r upload/mosdns_ipk_${{ matrix.platform }}.zip /home/runner/work/mosdns/mosdns/sdk/build_dir/target-aarch64_generic_musl/lua-5.1.5/ipkg-install/
 
           echo "FIRMWARE=$PWD" >> $GITHUB_ENV
           echo "status=success" >> $GITHUB_OUTPUT
