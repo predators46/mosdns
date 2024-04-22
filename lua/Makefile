@@ -23,7 +23,7 @@ PKG_CPE_ID:=cpe:/a:lua:lua
 
 PKG_BUILD_FLAGS:=no-lto
 
-HOST_PATCH_DIR := ./patches-host
+#HOST_PATCH_DIR := ./patches-host
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/host-build.mk
