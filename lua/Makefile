@@ -49,7 +49,7 @@ $(call Package/lua/Default)
   SECTION:=libs
   CATEGORY:=Libraries
   TITLE+= (libraries)
-  ABI_VERSION:=5.1.5
+  ABI_VERSION:=5.4.6
 endef
 
 define Package/liblua/description
@@ -138,11 +138,11 @@ define Host/Install
 		install
 
 	$(INSTALL_DIR) $(STAGING_DIR_HOSTPKG)/lib/pkgconfig
-	$(CP) $(HOST_BUILD_DIR)/etc/lua.pc $(STAGING_DIR_HOSTPKG)/lib/pkgconfig/lua5.1.pc
+	$(CP) $(HOST_BUILD_DIR)/etc/lua.pc $(STAGING_DIR_HOSTPKG)/lib/pkgconfig/lua5.4.pc
 
-	$(LN) lua5.1 $(STAGING_DIR_HOSTPKG)/bin/lua
-	$(LN) luac5.1 $(STAGING_DIR_HOSTPKG)/bin/luac
-	$(LN) lua5.1.pc $(STAGING_DIR_HOSTPKG)/lib/pkgconfig/lua.pc
+	$(LN) lua5.4 $(STAGING_DIR_HOSTPKG)/bin/lua
+	$(LN) luac5.4 $(STAGING_DIR_HOSTPKG)/bin/luac
+	$(LN) lua5.4.pc $(STAGING_DIR_HOSTPKG)/lib/pkgconfig/lua.pc
 endef
 
 define Build/InstallDev
@@ -165,14 +165,14 @@ endef
 
 define Package/lua/install
 	$(INSTALL_DIR) $(1)/usr/bin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/lua5.1 $(1)/usr/bin/
-	$(LN) lua5.1 $(1)/usr/bin/lua
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/lua5.4 $(1)/usr/bin/
+	$(LN) lua5.4 $(1)/usr/bin/lua
 endef
 
 define Package/luac/install
 	$(INSTALL_DIR) $(1)/usr/bin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/luac5.1 $(1)/usr/bin/
-	$(LN) luac5.1 $(1)/usr/bin/luac
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/luac5.4 $(1)/usr/bin/
+	$(LN) luac5.4 $(1)/usr/bin/luac
 endef
 
 define Package/lua-examples/install
@@ -186,4 +186,3 @@ $(eval $(call BuildPackage,lua))
 $(eval $(call BuildPackage,luac))
 $(eval $(call BuildPackage,lua-examples))
 $(eval $(call HostBuild))
-
