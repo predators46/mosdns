@@ -5,7 +5,7 @@ PKG_VERSION:=1.0.13
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
-PKG_SOURCE_URL:=https://github.com/fribidi/fribidi/releases/download/v1.0.10/
+PKG_SOURCE_URL:=https://github.com/fribidi/fribidi/releases/download/v$(PKG_VERSION)/
 PKG_HASH:=7fa16c80c81bd622f7b198d31356da139cc318a63fc7761217af4130903f54a2
 
 PKG_MAINTAINER:=Daniel Golle <daniel@makrotopia.org>
