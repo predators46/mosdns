@@ -25,7 +25,7 @@ define Package/qt5base/Default
   SUBMENU:=Qt5
   TITLE:=qt5base
   URL:=http://qt-project.org
-  DEPENDS:=+librt +zlib +libstdcpp +libpcre2-16 +glib2 +libpthread +libatomic +libopenssl +libdouble-conversion +libsqlite3 @!LINUX_2_6
+  DEPENDS:=+librt +zlib +libstdcpp +libpcre2-16 +glib2 +libpthread +libatomic +libdouble-conversion +libsqlite3 @!LINUX_2_6
 endef
 
 define Package/qt5base-core
@@ -105,11 +105,10 @@ CONFIGURE_ARGS = \
 	-no-use-gold-linker \
 	-ltcg \
 	-mimetype-database \
-	-openssl-linked \
+	-no-openssl \
 	-system-doubleconversion \
 	-system-pcre \
 	-system-zlib \
-	$(if $(findstring i386,$(ARCH)),-no-sse2 -no-sse4.1) \
 	-no-angle \
 	-no-cups \
 	-no-dbus \
