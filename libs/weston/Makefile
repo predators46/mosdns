@@ -34,8 +34,6 @@ define Package/weston/description
 endef
 
 MESON_ARGS += \
-	-Dlauncher-logind=false \
-	-Dweston-launch=false \
 	-Dlauncher-libseat=true \
 	-Dbackend-drm=true \
 	-Dbackend-drm-screencast-vaapi=false \
@@ -44,10 +42,8 @@ MESON_ARGS += \
 	-Dbackend-x11=false \
 	-Dxwayland=false \
 	-Dcolor-management-lcms=false \
-	-Dcolor-management-colord=false \
 	-Dsystemd=false \
 	-Dpipewire=false \
-	-Dtest-gl-renderer=false \
 	-Dtest-junit-xml=false \
 	-Ddemo-clients=true \
 	-Ddoc=false \
