@@ -25,7 +25,7 @@ define Package/qt5base/Default
   SUBMENU:=Qt5
   TITLE:=qt5base
   URL:=http://qt-project.org
-  DEPENDS:=+librt +zlib +libstdcpp +libpcre2-16 +glib2 +libpthread +libatomic +libdouble-conversion +libsqlite3 @!LINUX_2_6
+  DEPENDS:=+librt +zlib +libstdcpp +libpcre2-16 +libpthread +libatomic +libdouble-conversion +libsqlite3 @!LINUX_2_6
 endef
 
 define Package/qt5base-core
