@@ -121,7 +121,7 @@ CONFIGURE_ARGS += \
 			-v
 
 HOST_CONFIGURE_ARGS += \
-		-platform linux-g++
+		-platform linux-g++ \
 		-confirm-license \
 		-opensource \
 		-release \
