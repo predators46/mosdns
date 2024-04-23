@@ -7,7 +7,7 @@ PKG_LICENSE:=GPL-2.0
 
 PKG_MAINTAINER:=
 
-#PKG_BUILD_DEPENDS:=mkfontscale/host
+PKG_BUILD_DEPENDS:=qt5base/host
 PKG_BUILD_DIR := $(BUILD_DIR)/$(PKG_NAME)
 
 include $(INCLUDE_DIR)/package.mk
@@ -15,7 +15,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/luci-app-mosdns
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+weston
+  DEPENDS:=
   TITLE:=Tools Inject xderm-mini
 endef
 
