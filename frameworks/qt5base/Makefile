@@ -126,7 +126,6 @@ HOST_CONFIGURE_ARGS = \
 		-release \
 		-shared \
 		-no-strip \
-		-no-rpath \
 		-no-use-gold-linker \
 		-ltcg \
 		-no-mimetype-database \
@@ -167,11 +166,6 @@ HOST_CONFIGURE_ARGS = \
 		-no-widgets \
 		-no-xcb \
 		-no-xkbcommon \
-		-no-zstd \
-		-no-compile-examples \
-		-no-feature-concurrent \
-		-no-feature-gssapi \
-		-no-feature-testlib \
 		-make libs \
 		-nomake examples \
 		-nomake tests \
