@@ -30,54 +30,54 @@ endef
 
 define Package/qt5base-core
   $(call Package/qt5base/Default)
-  TITLE+=core
+  TITLE:=core
 endef
 
 define Package/qt5base-concurrent
   $(call Package/qt5base/Default)
-  TITLE+=concurrent
+  TITLE:=concurrent
   DEPENDS+=+qt5base-core
 endef
 
 define Package/qt5base-network
   $(call Package/qt5base/Default)
-  TITLE+=network
+  TITLE:=network
   DEPENDS+=+qt5base-core
 endef
 
 define Package/qt5base-sql
   $(call Package/qt5base/Default)
-  TITLE+=sql
+  TITLE:=sql
   DEPENDS+=+qt5base-core
 endef
 
 define Package/qt5base-xml
   $(call Package/qt5base/Default)
-  TITLE+=xml
+  TITLE:=xml
   DEPENDS+=+qt5base-core
 endef
 
 define Package/qt5base-serialport
   $(call Package/qt5base/Default)
-  TITLE+=serialport
+  TITLE:=serialport
   DEPENDS+=+qt5base-core
 endef
 
 define Package/qt5base-serialbus
   $(call Package/qt5base/Default)
-  TITLE+=serialbus
+  TITLE:=serialbus
   DEPENDS+=+qt5base-core +qt5base-network +qt5base-serialport
 endef
 
 define Package/qt5base-xmlpatterns
   $(call Package/qt5base/Default)
-  TITLE+=xmlpatterns
+  TITLE:=xmlpatterns
   DEPENDS+=+qt5base-core +qt5base-network
 endef
 
 define Package/qt5base-test
   $(call Package/qt5base/Default)
-  TITLE+=test
+  TITLE:=test
   DEPENDS+=+qt5base-core
 endef
 
@@ -219,7 +219,6 @@ define Package/qt5base-test/install
 	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Test.la $(1)/usr/lib/
 endef
 
-$(eval $(call BuildPackage,qt5base))
 $(eval $(call BuildPackage,qt5base-core))
 $(eval $(call BuildPackage,qt5base-concurrent))
 $(eval $(call BuildPackage,qt5base-network))
