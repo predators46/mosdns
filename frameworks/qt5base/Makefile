@@ -120,7 +120,12 @@ CONFIGURE_ARGS += \
 			-sql-mysql \
 			-v
 
-HOST_CONFIGURE_ARGS = \
+define Host/Configure
+	( cd $(HOST_BUILD_DIR) ; \
+	TARGET_CFLAGS="$(HOST_CFLAGS)" \
+	TARGET_CXXFLAGS="$(HOST_CFLAGS) $(HOST_CXXFLAGS)" \
+	TARGET_LDFLAGS="$(HOST_LDFLAGS)" \
+	./configure \
 	-prefix $(STAGING_DIR_HOST) \
 	-hostprefix $(STAGING_DIR_HOST) \
 	-hostdatadir $(STAGING_DIR_HOST)/share \
@@ -172,6 +177,8 @@ HOST_CONFIGURE_ARGS = \
 	-no-opengl \
 	-no-opengles3 \
 	-no-egl \
+	-no-xlib \
+	-no-xlib \
 	-no-xcb-xlib \
 	-no-directfb \
 	-no-eglfs \
@@ -199,12 +206,8 @@ HOST_CONFIGURE_ARGS = \
 	-no-sql-sqlite \
 	-no-sql-sqlite2 \
 	-no-sql-tds \
-	-no-sqlite
-
-define Host/Compile
-	TARGET_CFLAGS="$(HOST_CFLAGS)" \
-	TARGET_CXXFLAGS="$(HOST_CFLAGS) $(HOST_CXXFLAGS)" \
-	TARGET_LDFLAGS="$(HOST_LDFLAGS)"
+	-no-sqlite \
+)
 endef
 
 define Build/InstallDev
