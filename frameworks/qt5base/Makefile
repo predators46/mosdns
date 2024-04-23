@@ -18,7 +18,6 @@ PKG_BUILD_PARALLEL:=1
 PKG_USE_MIPS16:=0
 
 include $(INCLUDE_DIR)/package.mk
-include $(INCLUDE_DIR)/nls.mk
 
 define Package/qt5base/Default
   SECTION:=libs
