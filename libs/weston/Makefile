@@ -27,7 +27,7 @@ define Package/weston
   DEPENDS:=+gstreamer1-plugins-base +libcairo +libevdev \
 	+libgst1allocators +libgst1app +libgst1video +libgstreamer1 +libinput \
 	+libmesa +libpango +libseat +libwayland +libwebp +libxkbcommon +pixman \
-	+seatd +wayland-protocols +xkeyboard-config
+	+seatd +wayland-protocols +xkeyboard-config +libpam
 endef
 
 define Package/weston/description
