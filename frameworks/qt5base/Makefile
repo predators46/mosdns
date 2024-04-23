@@ -121,56 +121,85 @@ CONFIGURE_ARGS += \
 			-v
 
 HOST_CONFIGURE_ARGS = \
-		-confirm-license \
-		-opensource \
-		-release \
-		-shared \
-		-no-strip \
-		-no-use-gold-linker \
-		-ltcg \
-		-no-mimetype-database \
-		-no-openssl \
-		-qt-doubleconversion \
-		-qt-pcre \
-		-qt-zlib \
-		-no-angle \
-		-no-cups \
-		-no-dbus \
-		-no-directfb \
-		-no-dtls\
-		-no-egl \
-		-no-eglfs \
-		-qt-freetype \
-		-no-gbm \
-		-no-glib \
-		-no-gtk \
-		-gui \
-		-no-harfbuzz \
-		-no-iconv \
-		-no-icu \
-		-no-kms \
-		-no-libjpeg \
-		-no-libmd4c \
-		-no-libpng \
-		-no-libudev \
-		-no-mtdev \
-		-no-opengl \
-		-no-opengles3 \
-		-no-openvg \
-		-no-pch \
-		-no-slog2 \
-		-no-sql-sqlite \
-		-no-trace \
-		-no-tslib \
-		-no-vulkan \
-		-no-widgets \
-		-no-xcb \
-		-no-xkbcommon \
-		-make libs \
-		-nomake examples \
-		-nomake tests \
-		-nomake tools \
-		-v
+	-prefix $(STAGING_DIR_HOST) \
+	-hostprefix $(STAGING_DIR_HOST) \
+	-hostdatadir $(STAGING_DIR_HOST)/share \
+	-datadir $(STAGING_DIR_HOST)/share \
+	-archdatadir $(STAGING_DIR_HOST)/lib \
+	-no-gcc-sysroot \
+	-verbose \
+	-opensource \
+	-confirm-license \
+	-release \
+	-no-optimized-tools \
+	-no-optimize-size \
+	-no-strip \
+	-shared \
+	-no-framework \
+	-no-reduce-exports \
+	-no-reduce-relocations \
+	-no-pch \
+	-no-ltcg \
+	-no-use-gold-linker \
+	-no-warnings-are-errors \
+	-pkg-config \
+	-no-compile-examples \
+	-make libs \
+	-nomake tools \
+	-nomake examples \
+	-gui \
+	-no-widgets \
+	-no-dbus \
+	-no-accessibility \
+	-qt-doubleconversion \
+	-no-glib \
+	-no-eventfd \
+	-no-inotify \
+	-no-iconv \
+	-no-icu \
+	-qt-pcre \
+	-qt-zlib \
+	-no-journald \
+	-no-syslog \
+	-no-ssl \
+	-no-libproxy \
+	-no-system-proxies \
+	-no-cups \
+	-no-fontconfig \
+	-qt-freetype \
+	-no-harfbuzz \
+	-no-gtk \
+	-no-opengl \
+	-no-opengles3 \
+	-no-egl \
+	-no-xcb-xlib \
+	-no-directfb \
+	-no-eglfs \
+	-no-gbm \
+	-no-linuxfb \
+	-no-xcb \
+	\
+	-no-libudev \
+	-no-evdev \
+	-no-libinput \
+	-no-mtdev \
+	-no-tslib \
+	-no-bundled-xcb-xinput \
+	-no-xkbcommon \
+	-no-gif \
+	-no-ico \
+	-no-libjpeg \
+	-no-libpng \
+	-no-sql-db2 \
+	-no-sql-ibase \
+	-no-sql-mysql \
+	-no-sql-oci \
+	-no-sql-odbc \
+	-no-sql-psql \
+	-no-sql-sqlite \
+	-no-sql-sqlite2 \
+	-no-sql-tds \
+	-no-sqlite
 
 define Build/InstallDev
 	$(MAKE) -C $(PKG_BUILD_DIR) install
