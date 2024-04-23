@@ -126,9 +126,6 @@ HOST_CONFIGURE_ARGS = \
 	-hostdatadir $(STAGING_DIR_HOST)/share \
 	-datadir $(STAGING_DIR_HOST)/share \
 	-archdatadir $(STAGING_DIR_HOST)/lib \
-	-device-option TARGET_CFLAGS="$(HOST_CFLAGS)" \
-	-device-option TARGET_CXXFLAGS="$(HOST_CFLAGS) $(HOST_CXXFLAGS)" \
-	-device-option TARGET_LDFLAGS="$(HOST_LDFLAGS)" \
 	-no-gcc-sysroot \
 	-verbose \
 	-opensource \
@@ -203,6 +200,12 @@ HOST_CONFIGURE_ARGS = \
 	-no-sql-sqlite2 \
 	-no-sql-tds \
 	-no-sqlite
+
+define Host/Compile
+	TARGET_CFLAGS="$(HOST_CFLAGS)" \
+	TARGET_CXXFLAGS="$(HOST_CFLAGS) $(HOST_CXXFLAGS)" \
+	TARGET_LDFLAGS="$(HOST_LDFLAGS)"
+endef
 
 define Build/InstallDev
 	$(MAKE) -C $(PKG_BUILD_DIR) install
