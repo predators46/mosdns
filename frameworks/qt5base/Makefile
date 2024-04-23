@@ -177,7 +177,6 @@ define Host/Configure
 	-no-opengl \
 	-no-opengles3 \
 	-no-egl \
-	-no-xlib \
 	-no-xcb-xlib \
 	-no-directfb \
 	-no-eglfs \
