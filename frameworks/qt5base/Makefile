@@ -91,6 +91,7 @@ CONFIGURE_ARGS = \
 	-prefix /usr \
 	-archdatadir /usr/share/Qt \
 	-datadir /usr/share/Qt \
+	-platform linux-g++ \
 	-device linux-generic-g++ \
 	-device-option CROSS_COMPILE="$(TARGET_CROSS)" \
 	-device-option COMPILER_FLAGS="$(TARGET_CFLAGS) $(EXTRA_CFLAGS) $(TARGET_CPPFLAGS) $(EXTRA_CPPFLAGS)" \
