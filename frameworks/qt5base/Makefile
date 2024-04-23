@@ -120,8 +120,7 @@ CONFIGURE_ARGS += \
 			-sql-mysql \
 			-v
 
-HOST_CONFIGURE_ARGS += \
-		-platform linux-g++ \
+HOST_CONFIGURE_ARGS = \
 		-confirm-license \
 		-opensource \
 		-release \
