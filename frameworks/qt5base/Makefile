@@ -140,11 +140,11 @@ HOST_CONFIGURE_ARGS = \
 		-no-dtls\
 		-no-egl \
 		-no-eglfs \
-		-no-freetype \
+		-qt-freetype \
 		-no-gbm \
 		-no-glib \
 		-no-gtk \
-		-no-gui \
+		-gui \
 		-no-harfbuzz \
 		-no-iconv \
 		-no-icu \
