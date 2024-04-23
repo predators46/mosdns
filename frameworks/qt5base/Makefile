@@ -160,7 +160,7 @@ HOST_CONFIGURE_ARGS = \
 		-no-openvg \
 		-no-pch \
 		-no-slog2 \
-		-no-sql \
+		-no-sql-sqlite \
 		-no-trace \
 		-no-tslib \
 		-no-vulkan \
