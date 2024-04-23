@@ -1,228 +1,200 @@
+#
+# Copyright (C) 2020 Openwrt.org
+#
+# This is free software, licensed under the Apache License, Version 2.0 .
+#
+
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=qt5base
-PKG_VERSION:=5.15.13
+PKG_NAME:=qtbase
+PKG_BASE:=5.15
+PKG_BUGFIX:=13
+PKG_VERSION:=$(PKG_BASE).$(PKG_BUGFIX)
 PKG_RELEASE:=1
 
-PKG_SOURCE:=qtbase-everywhere-opensource-src-$(PKG_VERSION).tar.xz
-PKG_SOURCE_URL:=https://download.qt.io/official_releases/qt/5.15/$(PKG_VERSION)/submodules
+PKG_SOURCE:=$(PKG_NAME)-everywhere-opensource-src-$(PKG_VERSION).tar.xz
+PKG_SOURCE_URL:= \
+		http://master.qt.io/archive/qt/$(PKG_BASE)/$(PKG_VERSION)/submodules \
+		http://mirrors.tuna.tsinghua.edu.cn/qt/archive/qt/$(PKG_BASE)/$(PKG_VERSION)/submodules \
+		http://qt.mirror.constant.com/archive/qt/$(PKG_BASE)/$(PKG_VERSION)/submodules
 PKG_HASH:=skip
 
-PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
-PKG_LICENSE:=
-PKG_LICENSE_FILES:=
-
-PKG_BUILD_DIR=$(BUILD_DIR)/qtbase-everywhere-src-$(PKG_VERSION)
+PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-everywhere-src-$(PKG_VERSION)
 
 PKG_BUILD_PARALLEL:=1
 PKG_USE_MIPS16:=0
+PKG_CPE_ID:=cpe:/a:qt:qt
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/qt5base/Default
-  SECTION:=libs
-  CATEGORY:=Libraries
-  SUBMENU:=Qt5
-  TITLE:=qt5base
-  URL:=http://qt-project.org
-  DEPENDS:=+librt +zlib +libstdcpp +libpcre2-16 +libpthread +libatomic +libdouble-conversion +libsqlite3 @!LINUX_2_6
+define Package/qtbase/Default
+	SECTION:=libs
+	CATEGORY:=Libraries
+	SUBMENU:=Qt5
+	TITLE:=qtbase
+	URL:=http://qt-project.org
+	DEPENDS:=+libgcc +libstdcpp @!LINUX_2_6_36
 endef
 
-define Package/qt5base-core
-  $(call Package/qt5base/Default)
-  TITLE+=core
+define Package/qtbase/description
+  This package provides the Qt5 libraries.
+
+  Qt is a cross-platform application development framework for desktop, embedded and mobile.
+  Supported Platforms include Linux, OS X, Windows, VxWorks, QNX, Android, iOS, BlackBerry,
+  Sailfish OS and others.
+
+  Qt is not a programming language on its own. It is a framework written in C++.
+
+  This package provides the following run-time libraries:
+  - core
+  - network
+  - xml
 endef
 
-define Package/qt5base-concurrent
-  $(call Package/qt5base/Default)
-  TITLE+=concurrent
-  DEPENDS+=+qt5base-core
+define Package/qtbase
+	$(call Package/qtbase/Default)
+	TITLE+=all libs
+	DEPENDS+=$(QTBASE_DEPENDS)
 endef
 
-define Package/qt5base-network
-  $(call Package/qt5base/Default)
-  TITLE+=network
-  DEPENDS+=+qt5base-core
+define Package/qtbase/install
+	true
 endef
 
-define Package/qt5base-sql
-  $(call Package/qt5base/Default)
-  TITLE+=sql
-  DEPENDS+=+qt5base-core
+define Package/qtbase/config
+	config QT5_INCLUDE_ATOMIC
+		bool "Depends on libatomic"
+		default y if !(arm_v7 || ARCH_64BIT || TARGET_x86)
+		default n
+		help
+			Check this options to add the libatomic to the dependences.
+			- You'd better to confirm whether your compiler need the external libatomic.
+			Otherwise, it is not recommended to modify this option mannually.
+
+	menu "Select Qtbase Libraries"
+		comment "Qtbase Libraries"
+
+		$(foreach lib,$(QTBASE_LIBS),
+		config PACKAGE_qt5-$(lib)
+			prompt "Qtbase $(lib) library."
+			default m if ALL
+		)
+	endmenu
 endef
 
-define Package/qt5base-xml
-  $(call Package/qt5base/Default)
-  TITLE+=xml
-  DEPENDS+=+qt5base-core
-endef
-
-define Package/qt5base-serialport
-  $(call Package/qt5base/Default)
-  TITLE+=serialport
-  DEPENDS+=+qt5base-core
-endef
-
-define Package/qt5base-serialbus
-  $(call Package/qt5base/Default)
-  TITLE+=serialbus
-  DEPENDS+=+qt5base-core +qt5base-network +qt5base-serialport
-endef
-
-define Package/qt5base-xmlpatterns
-  $(call Package/qt5base/Default)
-  TITLE+=xmlpatterns
-  DEPENDS+=+qt5base-core +qt5base-network
-endef
-
-define Package/qt5base-test
-  $(call Package/qt5base/Default)
-  TITLE+=test
-  DEPENDS+=+qt5base-core
-endef
+PKG_CONFIG_DEPENDS = CONFIG_QT5_INCLUDE_ATOMIC
 
 EXTRA_CFLAGS += $(FPIC) -ffunction-sections -fdata-sections -flto
 EXTRA_LDFLAGS += -Wl,--gc-sections,--as-needed
 
 CONFIGURE_ARGS = \
-	-sysroot $(STAGING_DIR) \
-	-hostprefix $(STAGING_DIR_HOSTPKG) \
-	-extprefix $(STAGING_DIR)/usr \
-	-prefix /usr \
-	-archdatadir /usr/share/Qt \
-	-datadir /usr/share/Qt \
-	-platform linux-g++ \
-	-device linux-generic-g++ \
-	-device-option CROSS_COMPILE="$(TARGET_CROSS)" \
-	-device-option COMPILER_FLAGS="$(TARGET_CFLAGS) $(EXTRA_CFLAGS) $(TARGET_CPPFLAGS) $(EXTRA_CPPFLAGS)" \
-	-device-option LINKER_FLAGS="$(TARGET_LDFLAGS) $(EXTRA_LDFLAGS)" \
-	-confirm-license \
-	-opensource \
-	-release \
-	-shared \
-	-strip \
-	-no-rpath \
-	-no-use-gold-linker \
-	-ltcg \
-	-mimetype-database \
-	-no-openssl \
-	-system-doubleconversion \
-	-system-pcre \
-	-system-zlib \
-	-no-angle \
-	-no-cups \
-	-no-dbus \
-	-no-directfb \
-	-no-dtls\
-	-no-egl \
-	-no-eglfs \
-	-no-freetype \
-	-no-gbm \
-	-no-glib \
-	-no-gtk \
-	-no-gui \
-	-no-harfbuzz \
-	-no-iconv \
-	-no-icu \
-	-no-kms \
-	-no-libjpeg \
-	-no-libmd4c \
-	-no-libpng \
-	-no-libudev \
-	-no-mtdev \
-	-no-opengl \
-	-no-opengles3 \
-	-no-openvg \
-	-no-pch \
-	-no-slog2 \
-	-system-sqlite \
-	-no-trace \
-	-no-tslib \
-	-no-vulkan \
-	-no-widgets \
-	-no-xcb \
-	-no-xkbcommon \
-	-no-zstd \
-	-no-compile-examples \
-	-no-feature-gssapi \
-	-no-feature-testlib \
-	-make libs \
-	-nomake examples \
-	-nomake tests \
-	-nomake tools \
-	-v
+		-sysroot $(STAGING_DIR) \
+		-hostprefix $(STAGING_DIR_HOSTPKG) \
+		-extprefix $(STAGING_DIR)/usr \
+		-prefix /usr \
+		-archdatadir /usr/share/Qt \
+		-datadir /usr/share/Qt \
+		-device linux-generic-g++ \
+		-device-option CROSS_COMPILE="$(TARGET_CROSS)" \
+		-device-option COMPILER_FLAGS="$(TARGET_CFLAGS) $(EXTRA_CFLAGS) $(TARGET_CPPFLAGS) $(EXTRA_CPPFLAGS)" \
+		-device-option LINKER_FLAGS="$(TARGET_LDFLAGS) $(EXTRA_LDFLAGS)" \
+		-confirm-license \
+		-opensource \
+		-release \
+		-shared \
+		-strip \
+		-no-rpath \
+		-no-use-gold-linker \
+		-ltcg \
+		-mimetype-database \
+		-openssl-linked \
+		-qt-doubleconversion \
+		-system-pcre \
+		-system-zlib \
+		$(if $(findstring i386,$(ARCH)),-no-sse2 -no-sse4.1) \
+		-no-angle \
+		-no-cups \
+		-no-dbus \
+		-no-directfb \
+		-no-dtls\
+		-no-egl \
+		-no-eglfs \
+		-no-freetype \
+		-no-gbm \
+		-no-glib \
+		-no-gtk \
+		-no-gui \
+		-no-harfbuzz \
+		-no-iconv \
+		-no-icu \
+		-no-kms \
+		-no-libjpeg \
+		-no-libmd4c \
+		-no-libpng \
+		-no-libudev \
+		-no-mtdev \
+		-no-opengl \
+		-no-opengles3 \
+		-no-openvg \
+		-no-pch \
+		-no-slog2 \
+		-sql-sqlite \
+		-no-trace \
+		-no-tslib \
+		-no-vulkan \
+		-no-widgets \
+		-no-xcb \
+		-no-xkbcommon \
+		-no-zstd \
+		-no-compile-examples \
+		-no-feature-concurrent \
+		-no-feature-gssapi \
+		-no-feature-testlib \
+		-make libs \
+		-nomake examples \
+		-nomake tests \
+		-nomake tools \
+		-v 
 
-define Package/qt5base-core/install
-	$(INSTALL_DIR) $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Core.so* $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Core.prl $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Core.la $(1)/usr/lib/
+
+define Build/Compile
+	+$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)
 endef
 
-define Package/qt5base-concurrent/install
-	$(INSTALL_DIR) $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Concurrent.so* $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Concurrent.prl $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Concurrent.la $(1)/usr/lib/
+define Build/InstallDev
+	$(MAKE) -C $(PKG_BUILD_DIR) install
 endef
 
-define Package/qt5base-network/install
-	$(INSTALL_DIR) $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Network.so* $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Network.prl $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Network.la $(1)/usr/lib/
+define Package/qtbase/Default/install
+	$(INSTALL_DIR) $(1)/usr/lib
+	$(CP) $(PKG_BUILD_DIR)/lib/libQt5$(shell echo $(2) | sed -e 's/\b[[:alpha:]]/\u&/g').so* $(1)/usr/lib
 endef
 
-define Package/qt5base-sql/install
-	$(INSTALL_DIR) $(1)/usr/lib/
-	$(INSTALL_DIR) $(1)/usr/lib/Qt/plugins/sqldrivers/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Sql.so* $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Sql.prl $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Sql.la 	$(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/plugins/sqldrivers/*.so $(1)/usr/lib/Qt/plugins/sqldrivers/
+define DefineQtbaseLibrary
+  QTBASE_DEPENDS+=+qt5-$(1)
+
+  QTBASE_LIBS+=$(1)
+
+  define Package/qt5-$(1)
+    $(call Package/qtbase/Default)
+    TITLE+=$(1)
+    DEPENDS+=$(foreach lib,$(2),+qt5-$(lib)) $(3)
+    HIDDEN:=1
+  endef
+
+  define Package/qt5-$(1)/description
+    This package contains the qt5 $(1) library.
+  endef
+
+  define Package/qt5-$(1)/install
+    $(call Package/qtbase/Default/install,$$(1),$(1))
+  endef
 endef
 
-define Package/qt5base-xml/install
-	$(INSTALL_DIR) $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Xml.so* $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Xml.prl $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Xml.la 	$(1)/usr/lib/
-endef
+$(eval $(call DefineQtbaseLibrary,core,,+QT5_INCLUDE_ATOMIC:libatomic +libpcre2-16 +zlib))
+$(eval $(call DefineQtbaseLibrary,network,core,+libopenssl +zlib))
+$(eval $(call DefineQtbaseLibrary,xml,core,))
+$(eval $(call DefineQtbaseLibrary,sql,core))
 
-define Package/qt5base-serialport/install
-	$(INSTALL_DIR) $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtserialport/lib/libQt5SerialPort.so* $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtserialport/lib/libQt5SerialPort.prl $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtserialport/lib/libQt5SerialPort.la $(1)/usr/lib/
-endef
-
-define Package/qt5base-serialbus/install
-	$(INSTALL_DIR) $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtserialbus/lib/libQt5SerialBus.so* $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtserialbus/lib/libQt5SerialBus.prl $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtserialbus/lib/libQt5SerialBus.la $(1)/usr/lib/
-endef
-
-define Package/qt5base-xmlpatterns/install
-	$(INSTALL_DIR) $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtxmlpatterns/lib/libQt5XmlPatterns.so* $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtxmlpatterns/lib/libQt5XmlPatterns.prl $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtxmlpatterns/lib/libQt5XmlPatterns.la $(1)/usr/lib/
-endef
-
-define Package/qt5base-test/install
-	$(INSTALL_DIR) $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Test.so* $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Test.prl $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Test.la $(1)/usr/lib/
-endef
-
-$(eval $(call BuildPackage,qt5base-core))
-$(eval $(call BuildPackage,qt5base-concurrent))
-$(eval $(call BuildPackage,qt5base-network))
-$(eval $(call BuildPackage,qt5base-sql))
-$(eval $(call BuildPackage,qt5base-xml))
-$(eval $(call BuildPackage,qt5base-serialport))
-$(eval $(call BuildPackage,qt5base-serialbus))
-$(eval $(call BuildPackage,qt5base-xmlpatterns))
-$(eval $(call BuildPackage,qt5base-test))
+$(foreach lib,$(QTBASE_LIBS),$(eval $(call BuildPackage,qt5-$(lib))))
+$(eval $(call BuildPackage,qtbase))
