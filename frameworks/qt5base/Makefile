@@ -12,13 +12,11 @@ PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=
 PKG_LICENSE_FILES:=
 
-HOST_BUILD_DIR=$(BUILD_DIR_HOST)/qtbase-everywhere-src-$(PKG_VERSION)
 PKG_BUILD_DIR=$(BUILD_DIR)/qtbase-everywhere-src-$(PKG_VERSION)
 
 PKG_BUILD_PARALLEL:=1
 PKG_USE_MIPS16:=0
 
-include $(INCLUDE_DIR)/host-build.mk
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/nls.mk
 
@@ -28,7 +26,7 @@ define Package/qt5base/Default
   SUBMENU:=Qt5
   TITLE:=qt5base
   URL:=http://qt-project.org
-  DEPENDS:=+librt +zlib +libstdcpp +libpcre16 +glib2 +libpthread +libatomic +libmysqlclient +libudev @!LINUX_2_6
+  DEPENDS:=+librt +zlib +libstdcpp +libpcre2-16 +glib2 +libpthread +libatomic +libopenssl +libsqlite3 @!LINUX_2_6
 endef
 
 define Package/qt5base-core
@@ -84,135 +82,76 @@ define Package/qt5base-test
   DEPENDS+=+qt5base-core
 endef
 
-CONFIGURE_ARGS += \
-			-prefix /usr \
-			-extprefix $(TOOLCHAIN_DIR) \
-			-sysroot $(TOOLCHAIN_DIR) \
-			-plugindir /usr/lib/Qt/plugins \
-			-xplatform linux-openwrt-g++ \
-			-opensource \
-			-confirm-license \
-			-force-asserts \
-			-no-iconv \
-			-no-pch \
-			-no-rpath \
-			-no-strip \
-			-no-cups \
-			-no-dbus \
-			-no-eglfs \
-			-no-kms \
-			-no-opengl \
-			-no-directfb \
-			-no-xcb \
-			-no-ssl \
-			-qt-zlib \
-			-qt-freetype \
-			-make libs \
-			-nomake examples \
-			-nomake tests \
-			-skip qtdeclarative \
-			-skip qtmultimedia \
-			-skip activeqt \
-			-skip qtdoc \
-			-skip qtconnectivity \
-			-skip wayland \
-			-skip qtscript \
-			-sql-mysql \
-			-v
+EXTRA_CFLAGS += $(FPIC) -ffunction-sections -fdata-sections -flto
+EXTRA_LDFLAGS += -Wl,--gc-sections,--as-needed
 
-define Host/Configure
-	( cd $(HOST_BUILD_DIR) ; \
-	TARGET_CFLAGS="$(HOST_CFLAGS)" \
-	TARGET_CXXFLAGS="$(HOST_CFLAGS) $(HOST_CXXFLAGS)" \
-	TARGET_LDFLAGS="$(HOST_LDFLAGS)" \
-	./configure \
-	-prefix $(STAGING_DIR_HOST) \
-	-hostprefix $(STAGING_DIR_HOST) \
-	-hostdatadir $(STAGING_DIR_HOST)/share \
-	-datadir $(STAGING_DIR_HOST)/share \
-	-archdatadir $(STAGING_DIR_HOST)/lib \
-	-no-gcc-sysroot \
-	-verbose \
-	-opensource \
+CONFIGURE_ARGS = \
+	-sysroot $(STAGING_DIR) \
+	-hostprefix $(STAGING_DIR_HOSTPKG) \
+	-extprefix $(STAGING_DIR)/usr \
+	-prefix /usr \
+	-archdatadir /usr/share/Qt \
+	-datadir /usr/share/Qt \
+	-device linux-generic-g++ \
+	-device-option CROSS_COMPILE="$(TARGET_CROSS)" \
+	-device-option COMPILER_FLAGS="$(TARGET_CFLAGS) $(EXTRA_CFLAGS) $(TARGET_CPPFLAGS) $(EXTRA_CPPFLAGS)" \
+	-device-option LINKER_FLAGS="$(TARGET_LDFLAGS) $(EXTRA_LDFLAGS)" \
 	-confirm-license \
+	-opensource \
 	-release \
-	-no-optimized-tools \
-	-no-optimize-size \
-	-no-strip \
 	-shared \
-	-no-framework \
-	-no-reduce-exports \
-	-no-reduce-relocations \
-	-no-pch \
-	-no-ltcg \
+	-strip \
+	-no-rpath \
 	-no-use-gold-linker \
-	-no-warnings-are-errors \
-	-pkg-config \
-	-no-compile-examples \
-	-make libs \
-	-nomake tools \
-	-nomake examples \
-	-gui \
-	-no-widgets \
-	-no-dbus \
-	-no-accessibility \
+	-ltcg \
+	-mimetype-database \
+	-openssl-linked \
 	-qt-doubleconversion \
+	-system-pcre \
+	-system-zlib \
+	$(if $(findstring i386,$(ARCH)),-no-sse2 -no-sse4.1) \
+	-no-angle \
+	-no-cups \
+	-no-dbus \
+	-no-directfb \
+	-no-dtls\
+	-no-egl \
+	-no-eglfs \
+	-no-freetype \
+	-no-gbm \
 	-no-glib \
-	-no-eventfd \
-	-no-inotify \
+	-no-gtk \
+	-no-gui \
+	-no-harfbuzz \
 	-no-iconv \
 	-no-icu \
-	-qt-pcre \
-	-qt-zlib \
-	-no-journald \
-	-no-syslog \
-	-no-ssl \
-	-no-libproxy \
-	-no-system-proxies \
-	-no-cups \
-	-no-fontconfig \
-	-qt-freetype \
-	-no-harfbuzz \
-	-no-gtk \
+	-no-kms \
+	-no-libjpeg \
+	-no-libmd4c \
+	-no-libpng \
+	-no-libudev \
+	-no-mtdev \
 	-no-opengl \
 	-no-opengles3 \
-	-no-egl \
-	-no-xcb-xlib \
-	-no-directfb \
-	-no-eglfs \
-	-no-gbm \
-	-no-linuxfb \
-	-no-xcb \
-	\
-	-no-libudev \
-	-no-evdev \
-	-no-libinput \
-	-no-mtdev \
+	-no-openvg \
+	-no-pch \
+	-no-slog2 \
+	-system-sqlite \
+	-no-trace \
 	-no-tslib \
-	-no-bundled-xcb-xinput \
+	-no-vulkan \
+	-no-widgets \
+	-no-xcb \
 	-no-xkbcommon \
-	-no-gif \
-	-no-ico \
-	-no-libjpeg \
-	-no-libpng \
-	-no-sql-db2 \
-	-no-sql-ibase \
-	-no-sql-mysql \
-	-no-sql-oci \
-	-no-sql-odbc \
-	-no-sql-psql \
-	-no-sql-sqlite \
-	-no-sql-sqlite2 \
-	-no-sql-tds \
-	-no-sqlite \
-)
-endef
-
-define Build/InstallDev
-	$(MAKE) -C $(PKG_BUILD_DIR) install
-	$(CP) $(PKG_BUILD_DIR)/qtbase/bin/qmake $(TOOLCHAIN_DIR)/bin/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/bin/qt.conf $(TOOLCHAIN_DIR)/bin/
-endef
+	-no-zstd \
+	-no-compile-examples \
+	-no-feature-gssapi \
+	-no-feature-testlib \
+	-make libs \
+	-nomake examples \
+	-nomake tests \
+	-nomake tools \
+	-v
 
 define Package/qt5base-core/install
 	$(INSTALL_DIR) $(1)/usr/lib/
@@ -279,7 +218,6 @@ define Package/qt5base-test/install
 	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Test.la $(1)/usr/lib/
 endef
 
-$(eval $(call HostBuild))
 $(eval $(call BuildPackage,qt5base-core))
 $(eval $(call BuildPackage,qt5base-concurrent))
 $(eval $(call BuildPackage,qt5base-network))
