@@ -6,20 +6,25 @@
 #
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=llvm
-PKG_VERSION:=7.0.1.src
-_PKG_VERSION:=7.0.1
-PKG_SOURCE_URL:=http://llvm.org/releases/$(_PKG_VERSION)
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
-#5.0.2_PKG_HASH:=d522eda97835a9c75f0b88ddc81437e5edbb87dc2740686cb8647763855c2b3c
-#6.0.1_PKG_HASH:=b6d6c324f9c71494c0ccaf3dac1f16236d970002b42bb24a6c9e1634f7d0f4e2
-PKG_HASH:=a38dfc4db47102ec79dcc2aa61e93722c5f6f06f0a961073bd84b78fb949419b
+PKG_NAME:=llvm-project
+PKG_VERSION:=17.0.6
+PKG_RELEASE:=1
+
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).src.tar.xz
+PKG_SOURCE_URL:=https://github.com/llvm/llvm-project/releases/download/llvmorg-$(PKG_VERSION)
+PKG_HASH:=skip
+
+HOST_BUILD_DIR:=$(BUILD_DIR_HOST)/$(PKG_NAME)-$(PKG_VERSION).src
+PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION).src
+
+CMAKE_BINARY_SUBDIR := build
+CMAKE_SOURCE_SUBDIR := llvm
 
 PKG_BUILD_DEPENDS:=llvm/host
 HOST_BUILD_PARALLEL:=1
 PKG_BUILD_PARALLEL:=1
 PKG_INSTALL:=1
-CMAKE_INSTALL=1
+#CMAKE_INSTALL=1
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/host-build.mk
@@ -30,7 +35,7 @@ define Package/llvm
   CATEGORY:=Development
   DEPENDS:=+libllvm +libstdcpp
   TITLE:=low level virtual machine compiler system
-  URL:=http://llvm.org/
+  URL:=https://llvm.org/
 endef
 
 define Package/libllvm
@@ -38,7 +43,7 @@ define Package/libllvm
   CATEGORY:=Libraries
   DEPENDS:=+libffi +libstdcpp
   TITLE:=low level virtual machine shared library
-  URL:=http://llvm.org/
+  URL:=https://llvm.org/
 endef
 
 # speed up otherwise will take forewer but cosumes more memmory
@@ -62,7 +67,7 @@ PKG_CMAKE_OPTS_COMMON= \
 	-DLLVM_INCLUDE_DOCS=OFF \
 	-DLLVM_ENABLE_DOXYGEN=OFF \
 	-DLLVM_ENABLE_SPHINX=OFF \
-	-DLLVM_TARGETS_TO_BUILD="AMDGPU" \
+	-DLLVM_TARGETS_TO_BUILD="AArch64" \
 	-DLLVM_ENABLE_TERMINFO=OFF \
 	-DLLVM_ENABLE_ASSERTIONS=OFF \
 	-DLLVM_ENABLE_WERROR=OFF \
@@ -78,13 +83,12 @@ PKG_CMAKE_OPTS_COMMON= \
 	-DLLVM_ENABLE_RTTI=ON
 
 #maybe future config option for other targets
-#	-DLLVM_TARGETS_TO_BUILD="X86;ARM;AArch64;AMDGPU" \
+#	-DLLVM_TARGETS_TO_BUILD="X86;ARM;AArch64;AMDGPU"
 
 CMAKE_OPTIONS += \
 	$(PKG_CMAKE_OPTS_COMMON) \
 	-DLLVM_BUILD_TOOLS=ON \
-	-DLLVM_TABLEGEN=$(STAGING_DIR_HOSTPKG)/usr/lib/llvm/bin/llvm-tblgen \
-	$(PKG_BUILD_DIR)/source
+	-DLLVM_TABLEGEN=$(STAGING_DIR_HOSTPKG)/usr/lib/llvm/bin/llvm-tblgen
 
 CMAKE_HOST_OPTIONS += \
 	$(PKG_CMAKE_OPTS_COMMON) \
@@ -94,22 +98,7 @@ CMAKE_HOST_OPTIONS += \
 	-DCMAKE_FIND_ROOT_PATH_MODE_INCLUDE=BOTH \
 	-DCMAKE_FIND_ROOT_PATH_MODE_LIBRARY=BOTH \
 	-DCMAKE_INSTALL_RPATH="$(STAGING_DIR_HOSTPKG)/usr/lib/llvm/lib" \
-	-DCMAKE_SKIP_RPATH=FALSE \
-	$(HOST_BUILD_DIR)/source
-
-define Build/Prepare
-	$(call Build/Prepare/Default)
-	mkdir -p $(PKG_BUILD_DIR)/source
-	mv $(PKG_BUILD_DIR)/* $(PKG_BUILD_DIR)/source 2>/dev/null || :
-	mv $(PKG_BUILD_DIR)/.* $(PKG_BUILD_DIR)/source 2>/dev/null || :
-endef
-
-define Host/Prepare
-	$(call Host/Prepare/Default)
-	mkdir -p $(HOST_BUILD_DIR)/source
-	mv $(HOST_BUILD_DIR)/* $(HOST_BUILD_DIR)/source 2>/dev/null || :
-	mv $(HOST_BUILD_DIR)/.* $(HOST_BUILD_DIR)/source 2>/dev/null || :
-endef
+	-DCMAKE_SKIP_RPATH=FALSE
 
 define Host/Compile
 	$(call Host/Compile/Default,llvm-tblgen)
