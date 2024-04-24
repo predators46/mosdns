@@ -25,7 +25,7 @@ define Package/qt5base/Default
   SUBMENU:=Qt5
   TITLE:=qt5base
   URL:=http://qt-project.org
-  DEPENDS:=+librt +zlib +libgcc +libstdcpp +libpcre2-16 +glib2 +libpthread +libatomic +libopenssl +libdouble-conversion +libsqlite3 @!LINUX_2_6
+  DEPENDS:=+librt +zlib +libgcc +libstdcpp +libpcre2-16 +glib2 +libpthread  +libpng +libjpeg-turbo +libfreetype +mtdev +libinput +libevdev +libudev-zero +libdbus +libiconv-full +giflib +libatomic +libopenssl +libdouble-conversion +libsqlite3 @!LINUX_2_6
 endef
 
 define Package/qt5base-core
@@ -112,42 +112,42 @@ CONFIGURE_ARGS = \
 	$(if $(findstring i386,$(ARCH)),-no-sse2 -no-sse4.1) \
 	-no-angle \
 	-no-cups \
-	-no-dbus \
+	-dbus-linked \
 	-no-directfb \
 	-no-dtls\
 	-no-egl \
 	-no-eglfs \
-	-no-freetype \
+	-system-freetype \
 	-no-gbm \
-	-no-glib \
+	-glib \
 	-no-gtk \
-	-no-gui \
+	-gui \
 	-no-harfbuzz \
-	-no-iconv \
+	-iconv \
 	-no-icu \
 	-no-kms \
-	-no-libjpeg \
+	-gif \
+	-ico \
+	-system-libjpeg \
 	-no-libmd4c \
-	-no-libpng \
-	-no-libudev \
-	-no-mtdev \
+	-system-libpng \
+	-libudev \
+	-evdev \
+	-libinput \
+	-mtdev \
 	-no-opengl \
 	-no-opengles3 \
 	-no-openvg \
 	-no-pch \
 	-no-slog2 \
-	-plugin-sql-sqlite \
 	-system-sqlite \
 	-no-trace \
 	-no-tslib \
 	-no-vulkan \
-	-no-widgets \
+	-widgets \
 	-no-xcb \
 	-no-xkbcommon \
 	-no-zstd \
-	-no-compile-examples \
-	-no-feature-gssapi \
-	-no-feature-testlib \
 	-make libs \
 	-nomake examples \
 	-nomake tests \
