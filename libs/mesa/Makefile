@@ -116,7 +116,7 @@ define Package/libvulkan-broadcom
   SECTION:=libs
   CATEGORY:=Libraries
   SUBMENU:=Video
-  DEPENDS:=libmesa @(arm||aarch64) @BROKEN
+  DEPENDS:=libmesa @(arm||aarch64)
   TITLE:=Broadcom Vulkan driver
   URL:=https://www.mesa3d.org
 endef
