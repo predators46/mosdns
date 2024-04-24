@@ -23,7 +23,7 @@ define Package/qt5base/Default
   SECTION:=libs
   CATEGORY:=Libraries
   SUBMENU:=Qt5
-  TITLE:=qt5base
+  TITLE:=Qt5base
   URL:=http://qt-project.org
   DEPENDS:=+librt +zlib +libgcc +libstdcpp +libpcre2-16 +glib2 +libpthread +libatomic +libopenssl +libdouble-conversion +libsqlite3 @!LINUX_2_6
 endef
