@@ -25,7 +25,7 @@ define Package/qt5base/Default
   SUBMENU:=Qt5
   TITLE:=qt5base
   URL:=http://qt-project.org
-  DEPENDS:=+librt +zlib +libgcc +libstdcpp +libpcre2-16 +glib2 +libpthread  +libpng +libjpeg-turbo +libfreetype +mtdev +libinput +libevdev +libudev-zero +libdbus +libiconv-full +giflib +libatomic +libopenssl +libdouble-conversion +libsqlite3 @!LINUX_2_6
+  DEPENDS:=+librt +zlib +libgcc +libstdcpp +libpcre2-16 +glib2 +libpthread  +libpng +libjpeg-turbo +libfreetype +mtdev +libinput +libevdev +libudev-zero +libdbus +libiconv-full +giflib +fontconfig +libdrm +krb5-libs +libatomic +libopenssl +libdouble-conversion +libsqlite3 @!LINUX_2_6
 endef
 
 define Package/qt5base-core
@@ -117,6 +117,7 @@ CONFIGURE_ARGS = \
 	-no-dtls\
 	-no-egl \
 	-no-eglfs \
+	-fontconfig \
 	-system-freetype \
 	-no-gbm \
 	-glib \
@@ -153,6 +154,10 @@ CONFIGURE_ARGS = \
 	-nomake tests \
 	-nomake tools \
 	-v
+
+define Build/Compile
+	+$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)
+endef
 
 define Package/qt5base-core/install
 	$(INSTALL_DIR) $(1)/usr/lib/
