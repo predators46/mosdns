@@ -17,14 +17,14 @@ PKG_HASH:=skip
 HOST_BUILD_DIR:=$(BUILD_DIR_HOST)/$(PKG_NAME)-$(PKG_VERSION).src
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION).src
 
-#HOST_CMAKE_BINARY_DIR := build
-#HOST_CMAKE_SOURCE_DIR := build
+#CMAKE_BINARY_SUBDIR := source
+#CMAKE_SOURCE_SUBDIR := source
 
 PKG_BUILD_DEPENDS:=llvm/host
 HOST_BUILD_PARALLEL:=1
 PKG_BUILD_PARALLEL:=1
 PKG_INSTALL:=1
-CMAKE_INSTALL=1
+#CMAKE_INSTALL=1
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/host-build.mk
@@ -47,9 +47,9 @@ define Package/libllvm
 endef
 
 # speed up otherwise will take forewer but cosumes more memmory
-NUM_CORES ?= $(shell grep -c "vendor_id" /proc/cpuinfo)
-MAKE_FLAGS+=-j$(NUM_CORES)
-HOST_MAKE_FLAGS+=-j$(NUM_CORES)
+#NUM_CORES ?= $(shell grep -c "vendor_id" /proc/cpuinfo)
+#MAKE_FLAGS+=-j$(NUM_CORES)
+#HOST_MAKE_FLAGS+=-j$(NUM_CORES)
 
 TARGET_CFLAGS+=$(TARGET_CPPFLAGS)
 
@@ -83,22 +83,26 @@ PKG_CMAKE_OPTS_COMMON= \
 	-DLLVM_ENABLE_RTTI=ON
 
 #maybe future config option for other targets
-#	-DLLVM_TARGETS_TO_BUILD="X86;ARM;AArch64;AMDGPU" \
+#	-DLLVM_TARGETS_TO_BUILD="X86;ARM;AArch64;AMDGPU"
 
-CMAKE_BINARY_SUBDIR=build
+CMAKE_BINARY_SUBDIR = source
 
 CMAKE_OPTIONS += \
 	$(PKG_CMAKE_OPTS_COMMON) \
 	-DLLVM_BUILD_TOOLS=ON \
-	-DLLVM_TABLEGEN=$(STAGING_DIR_HOSTPKG)/usr/lib/llvm/bin/llvm-tblgen
+	-DLLVM_TABLEGEN=$(STAGING_DIR_HOSTPKG)/usr/lib/llvm/bin/llvm-tblgen \
+	$(PKG_BUILD_DIR)/source
 
 CMAKE_HOST_OPTIONS += \
 	$(PKG_CMAKE_OPTS_COMMON) \
 	-DLLVM_BUILD_TOOLS=OFF \
+	-DCMAKE_INSTALL_PREFIX="$(STAGING_DIR_HOSTPKG)/usr/lib/llvm" \
 	-DCMAKE_BUILD_WITH_INSTALL_RPATH=TRUE \
 	-DCMAKE_FIND_ROOT_PATH_MODE_INCLUDE=BOTH \
 	-DCMAKE_FIND_ROOT_PATH_MODE_LIBRARY=BOTH \
-	-DCMAKE_SKIP_RPATH=FALSE
+	-DCMAKE_INSTALL_RPATH="$(STAGING_DIR_HOSTPKG)/usr/lib/llvm/lib" \
+	-DCMAKE_SKIP_RPATH=FALSE \
+	$(HOST_BUILD_DIR)/source
 
 define Host/Compile
 	$(call Host/Compile/Default,llvm-tblgen)
