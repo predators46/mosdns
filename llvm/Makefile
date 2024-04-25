@@ -103,13 +103,13 @@ CMAKE_HOST_OPTIONS += \
 	$(HOST_BUILD_DIR)/llvm
 
 define Host/Compile
-	$(call Host/Compile/Default,llvm-tblgen)
-	$(call Host/Compile/Default,llvm-config)
+	$(call Host/Compile/Default,llvm/llvm-tblgen)
+	$(call Host/Compile/Default,llvm/llvm-config)
 endef
 
 define Host/Install
 	$(call Host/Install/Default)
-	$(CP) $(HOST_BUILD_DIR)/bin/llvm-config \
+	$(CP) $(HOST_BUILD_DIR)/llvm/bin/llvm-config \
 	$(STAGING_DIR_HOSTPKG)/usr/lib/llvm/bin/
 endef
 
