@@ -30,7 +30,7 @@ define Package/llvm
   CATEGORY:=Development
   DEPENDS:=+libllvm +libstdcpp
   TITLE:=low level virtual machine compiler system
-  URL:=http://llvm.org/
+  URL:=https://llvm.org/
 endef
 
 define Package/libllvm
@@ -38,7 +38,7 @@ define Package/libllvm
   CATEGORY:=Libraries
   DEPENDS:=+libffi +libstdcpp
   TITLE:=low level virtual machine shared library
-  URL:=http://llvm.org/
+  URL:=https://llvm.org/
 endef
 
 # speed up otherwise will take forewer but cosumes more memmory
@@ -62,7 +62,7 @@ PKG_CMAKE_OPTS_COMMON= \
 	-DLLVM_INCLUDE_DOCS=OFF \
 	-DLLVM_ENABLE_DOXYGEN=OFF \
 	-DLLVM_ENABLE_SPHINX=OFF \
-	-DLLVM_TARGETS_TO_BUILD="AMDGPU" \
+	-DLLVM_TARGETS_TO_BUILD="AArch64" \
 	-DLLVM_ENABLE_TERMINFO=OFF \
 	-DLLVM_ENABLE_ASSERTIONS=OFF \
 	-DLLVM_ENABLE_WERROR=OFF \
