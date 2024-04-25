@@ -6,7 +6,7 @@
 #
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=llvm
+PKG_NAME:=llvm-project
 PKG_VERSION:=17.0.6.src
 _PKG_VERSION:=17.0.6
 PKG_SOURCE_URL:=https://github.com/llvm/llvm-project/releases/download/llvmorg-$(_PKG_VERSION)
@@ -19,7 +19,7 @@ PKG_BUILD_DEPENDS:=llvm/host
 HOST_BUILD_PARALLEL:=1
 PKG_BUILD_PARALLEL:=1
 PKG_INSTALL:=1
-CMAKE_INSTALL=1
+CMAKE_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/host-build.mk
@@ -49,7 +49,8 @@ HOST_MAKE_FLAGS+=-j$(NUM_CORES)
 TARGET_CFLAGS+=$(TARGET_CPPFLAGS)
 
 PKG_CMAKE_OPTS_COMMON= \
-	-DCMAKE_BUILD_TYPE=MINSIZEREL \
+	-Wno-dev \
+	-DCMAKE_BUILD_TYPE="MINSIZEREL" \
 	-DLLVM_INCLUDE_TOOLS=ON \
 	-DLLVM_BUILD_UTILS=OFF \
 	-DLLVM_BUILD_EXAMPLES=OFF \
@@ -61,7 +62,7 @@ PKG_CMAKE_OPTS_COMMON= \
 	-DLLVM_INCLUDE_DOCS=OFF \
 	-DLLVM_ENABLE_DOXYGEN=OFF \
 	-DLLVM_ENABLE_SPHINX=OFF \
-	-DLLVM_TARGETS_TO_BUILD=AArch64 \
+	-DLLVM_TARGETS_TO_BUILD="AMDGPU" \
 	-DLLVM_ENABLE_TERMINFO=OFF \
 	-DLLVM_ENABLE_ASSERTIONS=OFF \
 	-DLLVM_ENABLE_WERROR=OFF \
@@ -69,7 +70,7 @@ PKG_CMAKE_OPTS_COMMON= \
 	-DLLVM_OPTIMIZED_TABLEGEN=ON \
 	-DLLVM_APPEND_VC_REV=OFF \
 	-DLLVM_ENABLE_LIBXML2=OFF \
-	-DCMAKE_EXE_LINKER_FLAGS=-Wl,--reduce-memory-overheads -Wl,--hash-size=1021 \
+	-DCMAKE_EXE_LINKER_FLAGS="-Wl,--reduce-memory-overheads -Wl,--hash-size=1021 " \
 	-DLLVM_PARALLEL_LINK_JOBS=2 \
 	-DLLVM_BUILD_EXTERNAL_COMPILER_RT=ON \
 	-DLLVM_BUILD_LLVM_DYLIB=ON \
@@ -77,7 +78,7 @@ PKG_CMAKE_OPTS_COMMON= \
 	-DLLVM_ENABLE_RTTI=ON
 
 #maybe future config option for other targets
-#	-DLLVM_TARGETS_TO_BUILD="X86;ARM;AArch64;AMDGPU"
+#	-DLLVM_TARGETS_TO_BUILD="X86;ARM;AArch64;AMDGPU" \
 
 CMAKE_OPTIONS += \
 	$(PKG_CMAKE_OPTS_COMMON) \
@@ -88,21 +89,26 @@ CMAKE_OPTIONS += \
 CMAKE_HOST_OPTIONS += \
 	$(PKG_CMAKE_OPTS_COMMON) \
 	-DLLVM_BUILD_TOOLS=OFF \
+	-DCMAKE_INSTALL_PREFIX="$(STAGING_DIR_HOSTPKG)/usr/lib/llvm" \
+	-DCMAKE_BUILD_WITH_INSTALL_RPATH=TRUE \
+	-DCMAKE_FIND_ROOT_PATH_MODE_INCLUDE=BOTH \
+	-DCMAKE_FIND_ROOT_PATH_MODE_LIBRARY=BOTH \
+	-DCMAKE_INSTALL_RPATH="$(STAGING_DIR_HOSTPKG)/usr/lib/llvm/lib" \
 	-DCMAKE_SKIP_RPATH=FALSE \
 	$(HOST_BUILD_DIR)/source
 
 define Build/Prepare
 	$(call Build/Prepare/Default)
 	mkdir -p $(PKG_BUILD_DIR)/source
-	mv $(PKG_BUILD_DIR)/* $(PKG_BUILD_DIR)/source 2>/dev/null || :
-	mv $(PKG_BUILD_DIR)/.* $(PKG_BUILD_DIR)/source 2>/dev/null || :
+	mv $(PKG_BUILD_DIR)/llvm/* $(PKG_BUILD_DIR)/source 2>/dev/null || :
+	mv $(PKG_BUILD_DIR)/llvm/.* $(PKG_BUILD_DIR)/source 2>/dev/null || :
 endef
 
 define Host/Prepare
 	$(call Host/Prepare/Default)
 	mkdir -p $(HOST_BUILD_DIR)/source
-	mv $(HOST_BUILD_DIR)/* $(HOST_BUILD_DIR)/source 2>/dev/null || :
-	mv $(HOST_BUILD_DIR)/.* $(HOST_BUILD_DIR)/source 2>/dev/null || :
+	mv $(HOST_BUILD_DIR)/llvm/* $(HOST_BUILD_DIR)/source 2>/dev/null || :
+	mv $(HOST_BUILD_DIR)/llvm/.* $(HOST_BUILD_DIR)/source 2>/dev/null || :
 endef
 
 define Host/Compile
