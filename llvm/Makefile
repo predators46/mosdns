@@ -6,14 +6,17 @@
 #
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=llvm
+PKG_NAME:=llvm-project
 PKG_VERSION:=17.0.6.src
 _PKG_VERSION:=17.0.6
-PKG_SOURCE_URL:=https://github.com/llvm/llvm-project/releases/download/llvmorg-$(_PKG_VERSION)
+PKG_RELEASE:=1
+
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
-#5.0.2_PKG_HASH:=d522eda97835a9c75f0b88ddc81437e5edbb87dc2740686cb8647763855c2b3c
-#6.0.1_PKG_HASH:=b6d6c324f9c71494c0ccaf3dac1f16236d970002b42bb24a6c9e1634f7d0f4e2
+PKG_SOURCE_URL:=https://github.com/llvm/llvm-project/releases/download/llvmorg-$(_PKG_VERSION)
 PKG_HASH:=skip
+
+CMAKE_BINARY_SUBDIR := source
+CMAKE_SOURCE_SUBDIR := llvm
 
 PKG_BUILD_DEPENDS:=llvm/host
 HOST_BUILD_PARALLEL:=1
@@ -41,16 +44,11 @@ define Package/libllvm
   URL:=http://llvm.org/
 endef
 
-# speed up otherwise will take forewer but cosumes more memmory
-NUM_CORES ?= $(shell grep -c "vendor_id" /proc/cpuinfo)
-MAKE_FLAGS+=-j$(NUM_CORES)
-HOST_MAKE_FLAGS+=-j$(NUM_CORES)
-
 TARGET_CFLAGS+=$(TARGET_CPPFLAGS)
 
 PKG_CMAKE_OPTS_COMMON= \
 	-Wno-dev \
-	-DCMAKE_BUILD_TYPE="MINSIZEREL" \
+	-DCMAKE_BUILD_TYPE="Release" \
 	-DLLVM_INCLUDE_TOOLS=ON \
 	-DLLVM_BUILD_UTILS=OFF \
 	-DLLVM_BUILD_EXAMPLES=OFF \
@@ -83,44 +81,30 @@ PKG_CMAKE_OPTS_COMMON= \
 CMAKE_OPTIONS += \
 	$(PKG_CMAKE_OPTS_COMMON) \
 	-DLLVM_BUILD_TOOLS=ON \
-	-DLLVM_TABLEGEN=$(STAGING_DIR_HOSTPKG)/usr/lib/llvm/bin/llvm-tblgen \
+	-DLLVM_TABLEGEN="$(STAGING_DIR_HOSTPKG)/usr/lib/llvm/bin/llvm-tblgen" \
 	$(PKG_BUILD_DIR)/source
 
 CMAKE_HOST_OPTIONS += \
 	$(PKG_CMAKE_OPTS_COMMON) \
 	-DLLVM_BUILD_TOOLS=OFF \
-	-DCMAKE_INSTALL_PREFIX="$(STAGING_DIR_HOSTPKG)/usr/lib/llvm" \
+	-DCMAKE_INSTALL_PREFIX="$(STAGING_DIR_HOSTPKG)/usr" \
 	-DCMAKE_BUILD_WITH_INSTALL_RPATH=TRUE \
 	-DCMAKE_FIND_ROOT_PATH_MODE_INCLUDE=BOTH \
 	-DCMAKE_FIND_ROOT_PATH_MODE_LIBRARY=BOTH \
-	-DCMAKE_INSTALL_RPATH="$(STAGING_DIR_HOSTPKG)/usr/lib/llvm/lib" \
+	-DCMAKE_INSTALL_RPATH="$(STAGING_DIR_HOSTPKG)/usr" \
 	-DCMAKE_SKIP_RPATH=FALSE \
 	$(HOST_BUILD_DIR)/source
-
-define Build/Prepare
-	$(call Build/Prepare/Default)
-	mkdir -p $(PKG_BUILD_DIR)/source
-	mv $(PKG_BUILD_DIR)/* $(PKG_BUILD_DIR)/source 2>/dev/null || :
-	mv $(PKG_BUILD_DIR)/.* $(PKG_BUILD_DIR)/source 2>/dev/null || :
-endef
-
-define Host/Prepare
-	$(call Host/Prepare/Default)
-	mkdir -p $(HOST_BUILD_DIR)/source
-	mv $(HOST_BUILD_DIR)/* $(HOST_BUILD_DIR)/source 2>/dev/null || :
-	mv $(HOST_BUILD_DIR)/.* $(HOST_BUILD_DIR)/source 2>/dev/null || :
-endef
 
 define Host/Compile
 	$(call Host/Compile/Default,llvm-tblgen)
 	$(call Host/Compile/Default,llvm-config)
 endef
 
-define Host/Install
-	$(call Host/Install/Default)
-	$(CP) $(HOST_BUILD_DIR)/bin/llvm-config \
-	$(STAGING_DIR_HOSTPKG)/usr/lib/llvm/bin/
-endef
+#define Host/Install
+#	$(call Host/Install/Default)
+#	$(CP) $(HOST_BUILD_DIR)/bin/llvm-config \
+#	$(STAGING_DIR_HOSTPKG)/usr/lib/llvm/bin/
+#endef
 
 define Package/llvm/install
 	$(INSTALL_DIR) $(1)/usr/bin
