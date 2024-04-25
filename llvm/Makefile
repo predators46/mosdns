@@ -6,7 +6,7 @@
 #
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=llvm-project
+PKG_NAME:=llvm
 PKG_VERSION:=17.0.6.src
 _PKG_VERSION:=17.0.6
 PKG_SOURCE_URL:=https://github.com/llvm/llvm-project/releases/download/llvmorg-$(_PKG_VERSION)
@@ -62,7 +62,7 @@ PKG_CMAKE_OPTS_COMMON= \
 	-DLLVM_INCLUDE_DOCS=OFF \
 	-DLLVM_ENABLE_DOXYGEN=OFF \
 	-DLLVM_ENABLE_SPHINX=OFF \
-	-DLLVM_TARGETS_TO_BUILD="AMDGPU" \
+	-DLLVM_TARGETS_TO_BUILD="AArch64" \
 	-DLLVM_ENABLE_TERMINFO=OFF \
 	-DLLVM_ENABLE_ASSERTIONS=OFF \
 	-DLLVM_ENABLE_WERROR=OFF \
@@ -116,11 +116,11 @@ define Host/Compile
 	$(call Host/Compile/Default,llvm-config)
 endef
 
-#define Host/Install
-#	$(call Host/Install/Default)
-#	$(CP) $(HOST_BUILD_DIR)/bin/llvm-config \
-#	$(STAGING_DIR_HOSTPKG)/usr/lib/llvm/bin/
-#endef
+define Host/Install
+	$(call Host/Install/Default)
+	$(CP) $(HOST_BUILD_DIR)/bin/llvm-config \
+	$(STAGING_DIR_HOSTPKG)/usr/lib/llvm/bin/
+endef
 
 define Package/llvm/install
 	$(INSTALL_DIR) $(1)/usr/bin
