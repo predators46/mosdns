@@ -9,8 +9,8 @@ always be correct, and what cmake tries to autodetect anyway.
 also see: https://reviews.llvm.org/D29969
 
 this is supposedly fixed now, but for some reason it still isn't
---- a/llvm/cmake/modules/CMakeLists.txt
-+++ b/llvm/cmake/modules/CMakeLists.txt
+--- a/cmake/modules/CMakeLists.txt
++++ b/cmake/modules/CMakeLists.txt
 @@ -41,6 +41,8 @@
  #
  
