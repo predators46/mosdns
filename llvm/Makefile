@@ -32,7 +32,7 @@ define Package/llvm
   CATEGORY:=Development
   DEPENDS:=+libllvm +libstdcpp
   TITLE:=low level virtual machine compiler system
-  URL:=http://llvm.org/
+  URL:=https://llvm.org/
 endef
 
 define Package/libllvm
@@ -40,7 +40,7 @@ define Package/libllvm
   CATEGORY:=Libraries
   DEPENDS:=+libffi +libstdcpp
   TITLE:=low level virtual machine shared library
-  URL:=http://llvm.org/
+  URL:=https://llvm.org/
 endef
 
 # speed up otherwise will take forewer but cosumes more memmory
