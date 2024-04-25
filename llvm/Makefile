@@ -70,7 +70,7 @@ PKG_CMAKE_OPTS_COMMON= \
 	-DLLVM_OPTIMIZED_TABLEGEN=ON \
 	-DLLVM_APPEND_VC_REV=OFF \
 	-DLLVM_ENABLE_LIBXML2=OFF \
-	-DCMAKE_EXE_LINKER_FLAGS="-Wl,--reduce-memory-overheads -Wl,--hash-size=1021 " \
+	-DCMAKE_EXE_LINKER_FLAGS="-Wl,--reduce-memory-overheads -Wl,--hash-size=1021" \
 	-DLLVM_PARALLEL_LINK_JOBS=2 \
 	-DLLVM_BUILD_EXTERNAL_COMPILER_RT=ON \
 	-DLLVM_BUILD_LLVM_DYLIB=ON \
@@ -78,7 +78,7 @@ PKG_CMAKE_OPTS_COMMON= \
 	-DLLVM_ENABLE_RTTI=ON
 
 #maybe future config option for other targets
-#	-DLLVM_TARGETS_TO_BUILD="X86;ARM;AArch64;AMDGPU" \
+#	-DLLVM_TARGETS_TO_BUILD="X86;ARM;AArch64;AMDGPU"
 
 CMAKE_OPTIONS += \
 	$(PKG_CMAKE_OPTS_COMMON) \
@@ -100,15 +100,15 @@ CMAKE_HOST_OPTIONS += \
 define Build/Prepare
 	$(call Build/Prepare/Default)
 	mkdir -p $(PKG_BUILD_DIR)/source
-	mv $(PKG_BUILD_DIR)/llvm/* $(PKG_BUILD_DIR)/source 2>/dev/null || :
-	mv $(PKG_BUILD_DIR)/llvm/.* $(PKG_BUILD_DIR)/source 2>/dev/null || :
+	mv $(PKG_BUILD_DIR)/* $(PKG_BUILD_DIR)/source 2>/dev/null || :
+	mv $(PKG_BUILD_DIR)/.* $(PKG_BUILD_DIR)/source 2>/dev/null || :
 endef
 
 define Host/Prepare
 	$(call Host/Prepare/Default)
 	mkdir -p $(HOST_BUILD_DIR)/source
-	mv $(HOST_BUILD_DIR)/llvm/* $(HOST_BUILD_DIR)/source 2>/dev/null || :
-	mv $(HOST_BUILD_DIR)/llvm/.* $(HOST_BUILD_DIR)/source 2>/dev/null || :
+	mv $(HOST_BUILD_DIR)/* $(HOST_BUILD_DIR)/source 2>/dev/null || :
+	mv $(HOST_BUILD_DIR)/.* $(HOST_BUILD_DIR)/source 2>/dev/null || :
 endef
 
 define Host/Compile
