@@ -116,11 +116,11 @@ define Host/Compile
 	$(call Host/Compile/Default,llvm-config)
 endef
 
-define Host/Install
-	$(call Host/Install/Default)
-	$(CP) $(HOST_BUILD_DIR)/bin/llvm-config \
-	$(STAGING_DIR_HOSTPKG)/usr/lib/llvm/bin/
-endef
+#define Host/Install
+#	$(call Host/Install/Default)
+#	$(CP) $(HOST_BUILD_DIR)/bin/llvm-config \
+#	$(STAGING_DIR_HOSTPKG)/usr/lib/llvm/bin/
+#endef
 
 define Package/llvm/install
 	$(INSTALL_DIR) $(1)/usr/bin
