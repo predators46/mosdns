@@ -24,7 +24,7 @@ PKG_BUILD_DEPENDS:=llvm/host
 HOST_BUILD_PARALLEL:=1
 PKG_BUILD_PARALLEL:=1
 PKG_INSTALL:=1
-CMAKE_INSTALL=1
+CMAKE_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/host-build.mk
@@ -35,7 +35,7 @@ define Package/llvm
   CATEGORY:=Development
   DEPENDS:=+libllvm +libstdcpp
   TITLE:=low level virtual machine compiler system
-  URL:=http://llvm.org/
+  URL:=https://llvm.org/
 endef
 
 define Package/libllvm
@@ -43,7 +43,7 @@ define Package/libllvm
   CATEGORY:=Libraries
   DEPENDS:=+libffi +libstdcpp
   TITLE:=low level virtual machine shared library
-  URL:=http://llvm.org/
+  URL:=https://llvm.org/
 endef
 
 # speed up otherwise will take forewer but cosumes more memmory
