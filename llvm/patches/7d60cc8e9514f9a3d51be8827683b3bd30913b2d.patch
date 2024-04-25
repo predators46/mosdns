@@ -1,14 +1,3 @@
-From 7d60cc8e9514f9a3d51be8827683b3bd30913b2d Mon Sep 17 00:00:00 2001
-From: esaaprillia <esaapriliasalsabila@gmail.com>
-Date: Thu, 25 Apr 2024 21:17:44 +0800
-Subject: [PATCH] Update CMakeLists.txt
-
----
- CMakeLists.txt | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 79de9eb..193d0cd 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -2,7 +2,9 @@
