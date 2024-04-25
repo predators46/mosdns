@@ -7,15 +7,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=llvm
-PKG_VERSION:=17.0.6
-PKG_RELEASE:=1
-
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).src.tar.xz
-PKG_SOURCE_URL:=https://github.com/llvm/llvm-project/releases/download/llvmorg-$(PKG_VERSION)
+PKG_VERSION:=17.0.6.src
+_PKG_VERSION:=17.0.6
+PKG_SOURCE_URL:=https://github.com/llvm/llvm-project/releases/download/llvmorg-$(_PKG_VERSION)
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
+#5.0.2_PKG_HASH:=d522eda97835a9c75f0b88ddc81437e5edbb87dc2740686cb8647763855c2b3c
+#6.0.1_PKG_HASH:=b6d6c324f9c71494c0ccaf3dac1f16236d970002b42bb24a6c9e1634f7d0f4e2
 PKG_HASH:=b638167da139126ca11917b6880207cc6e8f9d1cbb1a48d87d017f697ef78188
-
-HOST_BUILD_DIR:=$(BUILD_DIR_HOST)/$(PKG_NAME)-$(PKG_VERSION).src
-PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION).src
 
 PKG_BUILD_DEPENDS:=llvm/host
 HOST_BUILD_PARALLEL:=1
@@ -32,7 +30,7 @@ define Package/llvm
   CATEGORY:=Development
   DEPENDS:=+libllvm +libstdcpp
   TITLE:=low level virtual machine compiler system
-  URL:=https://llvm.org/
+  URL:=http://llvm.org/
 endef
 
 define Package/libllvm
@@ -40,7 +38,7 @@ define Package/libllvm
   CATEGORY:=Libraries
   DEPENDS:=+libffi +libstdcpp
   TITLE:=low level virtual machine shared library
-  URL:=https://llvm.org/
+  URL:=http://llvm.org/
 endef
 
 # speed up otherwise will take forewer but cosumes more memmory
@@ -64,7 +62,7 @@ PKG_CMAKE_OPTS_COMMON= \
 	-DLLVM_INCLUDE_DOCS=OFF \
 	-DLLVM_ENABLE_DOXYGEN=OFF \
 	-DLLVM_ENABLE_SPHINX=OFF \
-	-DLLVM_TARGETS_TO_BUILD="AArch64" \
+	-DLLVM_TARGETS_TO_BUILD="AMDGPU" \
 	-DLLVM_ENABLE_TERMINFO=OFF \
 	-DLLVM_ENABLE_ASSERTIONS=OFF \
 	-DLLVM_ENABLE_WERROR=OFF \
