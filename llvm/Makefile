@@ -99,20 +99,6 @@ CMAKE_HOST_OPTIONS += \
 	-DCMAKE_INSTALL_RPATH="$(STAGING_DIR_HOSTPKG)/usr/lib/llvm/lib" \
 	-DCMAKE_SKIP_RPATH=FALSE
 
-define Build/Prepare
-	$(call Build/Prepare/Default)
-	mkdir -p $(PKG_BUILD_DIR)/source
-	mv $(PKG_BUILD_DIR)/* $(PKG_BUILD_DIR)/source 2>/dev/null || :
-	mv $(PKG_BUILD_DIR)/.* $(PKG_BUILD_DIR)/source 2>/dev/null || :
-endef
-
-define Host/Prepare
-	$(call Host/Prepare/Default)
-	mkdir -p $(HOST_BUILD_DIR)/source
-	mv $(HOST_BUILD_DIR)/* $(HOST_BUILD_DIR)/source 2>/dev/null || :
-	mv $(HOST_BUILD_DIR)/.* $(HOST_BUILD_DIR)/source 2>/dev/null || :
-endef
-
 define Host/Compile
 	$(call Host/Compile/Default,llvm-tblgen)
 	$(call Host/Compile/Default,llvm-config)
