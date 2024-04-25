@@ -1,0 +1,50 @@
+--- a/openmp/CMakeLists.txt
++++ b/openmp/CMakeLists.txt
+@@ -1,6 +1,8 @@
+ cmake_minimum_required(VERSION 3.13.4)
+
+-set(LLVM_COMMON_CMAKE_UTILS ${CMAKE_CURRENT_SOURCE_DIR}/../cmake)
++if(NOT DEFINED LLVM_COMMON_CMAKE_UTILS)
++  set(LLVM_COMMON_CMAKE_UTILS ${CMAKE_CURRENT_SOURCE_DIR}/../cmake)
++endif()
+
+ # Add path for custom modules
+ list(INSERT CMAKE_MODULE_PATH 0
+--- a/llvm/CMakeLists.txt
++++ b/llvm/CMakeLists.txt
+@@ -9,7 +9,9 @@
+     "at least 3.20.0 now to avoid issues in the future!")
+ endif()
+
+-set(LLVM_COMMON_CMAKE_UTILS ${CMAKE_CURRENT_SOURCE_DIR}/../cmake)
++if(NOT DEFINED LLVM_COMMON_CMAKE_UTILS)
++  set(LLVM_COMMON_CMAKE_UTILS ${CMAKE_CURRENT_SOURCE_DIR}/../cmake)
++endif()
+ include(${LLVM_COMMON_CMAKE_UTILS}/Modules/CMakePolicy.cmake
+   NO_POLICY_SCOPE)
+--- a/libunwind/CMakeLists.txt
++++ b/libunwind/CMakeLists.txt
+@@ -5,7 +5,9 @@
+ cmake_minimum_required(VERSION 3.13.4)
+ project(libunwind C CXX ASM)
+
+-set(LLVM_COMMON_CMAKE_UTILS "${CMAKE_CURRENT_SOURCE_DIR}/../cmake")
++if(NOT DEFINED LLVM_COMMON_CMAKE_UTILS)
++  set(LLVM_COMMON_CMAKE_UTILS ${CMAKE_CURRENT_SOURCE_DIR}/../cmake)
++endif()
+
+ # Add path for custom modules
+ list(INSERT CMAKE_MODULE_PATH 0
+--- a/compiler-rt/CMakeLists.txt
++++ b/compiler-rt/CMakeLists.txt
+@@ -19,7 +19,9 @@
+   endif()
+ endif()
+
+-set(LLVM_COMMON_CMAKE_UTILS "${CMAKE_CURRENT_SOURCE_DIR}/../cmake")
++if(NOT DEFINED LLVM_COMMON_CMAKE_UTILS)
++  set(LLVM_COMMON_CMAKE_UTILS ${CMAKE_CURRENT_SOURCE_DIR}/../cmake)
++endif()
+
+ # Add path for custom compiler-rt modules.
+ list(INSERT CMAKE_MODULE_PATH 0
