@@ -7,24 +7,24 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=llvm
-PKG_VERSION:=7.0.1
+PKG_VERSION:=17.0.6
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).src.tar.xz
-PKG_SOURCE_URL:=https://releases.llvm.org/$(PKG_VERSION)/
-PKG_HASH:=skip
+PKG_SOURCE_URL:=https://github.com/llvm/llvm-project/releases/download/llvmorg-$(PKG_VERSION)
+PKG_HASH:=b638167da139126ca11917b6880207cc6e8f9d1cbb1a48d87d017f697ef78188
 
 HOST_BUILD_DIR:=$(BUILD_DIR_HOST)/$(PKG_NAME)-$(PKG_VERSION).src
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION).src
 
-CMAKE_BINARY_SUBDIR := build
+CMAKE_BINARY_SUBDIR := source
 #CMAKE_SOURCE_SUBDIR := llvm
 
 PKG_BUILD_DEPENDS:=llvm/host
 HOST_BUILD_PARALLEL:=1
 PKG_BUILD_PARALLEL:=1
 PKG_INSTALL:=1
-CMAKE_INSTALL:=1
+CMAKE_INSTALL=1
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/host-build.mk
@@ -35,7 +35,7 @@ define Package/llvm
   CATEGORY:=Development
   DEPENDS:=+libllvm +libstdcpp
   TITLE:=low level virtual machine compiler system
-  URL:=https://llvm.org/
+  URL:=http://llvm.org/
 endef
 
 define Package/libllvm
@@ -43,7 +43,7 @@ define Package/libllvm
   CATEGORY:=Libraries
   DEPENDS:=+libffi +libstdcpp
   TITLE:=low level virtual machine shared library
-  URL:=https://llvm.org/
+  URL:=http://llvm.org/
 endef
 
 # speed up otherwise will take forewer but cosumes more memmory
@@ -88,7 +88,8 @@ PKG_CMAKE_OPTS_COMMON= \
 CMAKE_OPTIONS += \
 	$(PKG_CMAKE_OPTS_COMMON) \
 	-DLLVM_BUILD_TOOLS=ON \
-	-DLLVM_TABLEGEN=$(STAGING_DIR_HOSTPKG)/usr/lib/llvm/bin/llvm-tblgen
+	-DLLVM_TABLEGEN=$(STAGING_DIR_HOSTPKG)/usr/lib/llvm/bin/llvm-tblgen \
+	$(PKG_BUILD_DIR)/source
 
 CMAKE_HOST_OPTIONS += \
 	$(PKG_CMAKE_OPTS_COMMON) \
@@ -98,7 +99,8 @@ CMAKE_HOST_OPTIONS += \
 	-DCMAKE_FIND_ROOT_PATH_MODE_INCLUDE=BOTH \
 	-DCMAKE_FIND_ROOT_PATH_MODE_LIBRARY=BOTH \
 	-DCMAKE_INSTALL_RPATH="$(STAGING_DIR_HOSTPKG)/usr/lib/llvm/lib" \
-	-DCMAKE_SKIP_RPATH=FALSE
+	-DCMAKE_SKIP_RPATH=FALSE \
+	$(HOST_BUILD_DIR)/source
 
 define Host/Compile
 	$(call Host/Compile/Default,llvm-tblgen)
