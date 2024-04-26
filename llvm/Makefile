@@ -23,7 +23,6 @@ CMAKE_INSTALL:=1
 PKG_BUILD_DEPENDS:=llvm/host
 HOST_BUILD_PARALLEL:=1
 PKG_BUILD_PARALLEL:=1
-PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/host-build.mk
