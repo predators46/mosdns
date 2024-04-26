@@ -89,7 +89,9 @@ HOST_CONFIGURE_ARGS += \
 	--without-manpages \
 	--without-profile \
 	--without-tests \
-	--without-curses-h
+	--without-curses-h \
+	--enable-pc-files \
+	--with-pkg-config-libdir=$(STAGING_DIR_HOSTPKG)/lib/pkgconfig
 
 
 ifeq ($(HOST_OS),FreeBSD)
