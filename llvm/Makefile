@@ -81,7 +81,7 @@ PKG_CMAKE_OPTS_COMMON= \
 CMAKE_OPTIONS += \
 	$(PKG_CMAKE_OPTS_COMMON) \
 	-DLLVM_BUILD_TOOLS=ON \
-	-DLLVM_TABLEGEN="$(STAGING_DIR_HOSTPKG)/usr/lib/llvm/bin/llvm-tblgen"
+	-DLLVM_TABLEGEN="$(STAGING_DIR_HOSTPKG)/bin/llvm-tblgen"
 
 CMAKE_HOST_OPTIONS += \
 	$(PKG_CMAKE_OPTS_COMMON) \
@@ -96,11 +96,13 @@ define Host/Compile
 	$(call Host/Compile/Default,llvm-config)
 endef
 
-#define Host/Install
-#	$(call Host/Install/Default)
-#	$(CP) $(HOST_BUILD_DIR)/bin/llvm-config \
-#	$(STAGING_DIR_HOSTPKG)/usr/lib/llvm/bin/
-#endef
+define Host/Install
+	$(call Host/Install/Default)
+	$(CP) $(HOST_BUILD_DIR)/bin/llvm-config \
+	$(STAGING_DIR_HOSTPKG)/bin/
+	$(CP) $(HOST_BUILD_DIR)/bin/llvm-tblgen \
+	$(STAGING_DIR_HOSTPKG)/bin/
+endef
 
 define Package/llvm/install
 	$(INSTALL_DIR) $(1)/usr/bin
