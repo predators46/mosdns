@@ -20,8 +20,6 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION).src
 CMAKE_SOURCE_SUBDIR := llvm
 CMAKE_INSTALL:=1
 
-HOST_BUILD_DEPENDS:=ncurses/host libxml2/host zlib zstd llvm/host
-PKG_BUILD_DEPENDS:=ncurses/host libxml2/host zlib zstd llvm/host
 HOST_BUILD_PARALLEL:=1
 PKG_BUILD_PARALLEL:=1
 
