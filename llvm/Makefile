@@ -49,7 +49,7 @@ endef
 
 TARGET_CFLAGS+=$(TARGET_CPPFLAGS)
 
-PKG_CMAKE_OPTS_COMMON= \
+PKG_CMAKE_OPTS_COMMON = \
 	-Wno-dev \
 	-DCMAKE_BUILD_TYPE="Release" \
 	-DLLVM_INCLUDE_TOOLS=ON \
@@ -101,7 +101,7 @@ CMAKE_HOST_OPTIONS += \
 define Host/Install
 	$(call Host/Install/Default)
 	$(INSTALL_DIR) $(STAGING_DIR_HOSTPKG)/usr/lib/llvm/bin
-	$(INSTALL_BIN) $(HOST_BUILD_DIR)/build/bin/* $(STAGING_DIR_HOSTPKG)/usr/lib/llvm/bin"
+	$(INSTALL_BIN) $(HOST_BUILD_DIR)/build/bin/* $(STAGING_DIR_HOSTPKG)/usr/lib/llvm/bin/
 	#$(INSTALL_BIN) $(HOST_BUILD_DIR)/bin/llvm-tblgen $(STAGING_DIR_HOSTPKG)/bin/
 endef
 
