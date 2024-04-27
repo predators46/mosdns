@@ -27,8 +27,8 @@ PKG_BUILD_DEPENDS:=llvm/host
 HOST_BUILD_PARALLEL:=1
 PKG_BUILD_PARALLEL:=1
 
-include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/host-build.mk
+include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
 define Package/llvm
@@ -59,20 +59,15 @@ CMAKE_HOST_OPTIONS += \
 	-DLLVM_ENABLE_ZLIB=OFF
 
 CMAKE_OPTIONS += \
-	$(PKG_CMAKE_OPTS_COMMON) \
-	-DLLVM_BUILD_TOOLS=ON \
-	-DLLVM_NATIVE_TOOL_DIR="$(STAGING_DIR_HOSTPKG)/usr/lib/llvm/bin" \
+	-DCMAKE_BUILD_TYPE=Release \
+	-DCMAKE_SYSTEM_NAME=Linux \
+	-DLLVM_TARGETS_TO_BUILD="ARM;AArch64;X86" \
+	-DLLVM_ENABLE_PROJECTS="lld;clang;lldb;clang-tools-extra" \
+	-DLLVM_NATIVE_TOOL_DIR=/home/runner/work/mosdns/mosdns/sdk/build_dir/hostpkg/llvm-project-17.0.6.src/build/bin \
 	-DCMAKE_FIND_ROOT_PATH_MODE_PROGRAM=NEVER \
 	-DCMAKE_FIND_ROOT_PATH_MODE_INCLUDE=ONLY \
 	-DCMAKE_FIND_ROOT_PATH_MODE_LIBRARY=ONLY \
 	-DCMAKE_FIND_ROOT_PATH_MODE_PACKAGE=ONLY
-
-define Host/Install
-	$(call Host/Install/Default)
-	$(INSTALL_DIR) $(STAGING_DIR_HOSTPKG)/usr/lib/llvm/bin
-	$(INSTALL_BIN) $(HOST_BUILD_DIR)/build/bin/* $(STAGING_DIR_HOSTPKG)/usr/lib/llvm/bin/
-	#$(INSTALL_BIN) $(HOST_BUILD_DIR)/bin/llvm-tblgen $(STAGING_DIR_HOSTPKG)/bin/
-endef
 
 define Package/llvm/install
 	$(INSTALL_DIR) $(1)/usr/bin
