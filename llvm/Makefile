@@ -121,6 +121,11 @@ CMAKE_OPTIONS += \
 	-DCMAKE_FIND_ROOT_PATH_MODE_LIBRARY=ONLY \
 	-DCMAKE_FIND_ROOT_PATH_MODE_PACKAGE=ONLY
 
+define Host/Compile
+	$(call Host/Compile/Default,llvm-tblgen)
+	$(call Host/Compile/Default,llvm-config)
+endef
+
 define Package/llvm/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(CP) $(PKG_INSTALL_DIR)/usr/bin \
