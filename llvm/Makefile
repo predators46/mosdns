@@ -1,3 +1,4 @@
+
 # 
 # Copyright (C) 2006 OpenWrt.org
 #
@@ -78,20 +79,18 @@ PKG_CMAKE_OPTS_COMMON= \
 	-DLLVM_ENABLE_RTTI=ON
 
 #maybe future config option for other targets
-#	-DLLVM_TARGETS_TO_BUILD="X86;ARM;AArch64;AMDGPU" \
+#	-DLLVM_TARGETS_TO_BUILD="X86;ARM;AArch64;AMDGPU"
 
 CMAKE_OPTIONS += \
 	$(PKG_CMAKE_OPTS_COMMON) \
 	-DLLVM_BUILD_TOOLS=ON \
-	-DLLVM_TABLEGEN=$(STAGING_DIR_HOST)/bin/llvm-tblgen \
+	-DLLVM_TABLEGEN=$(STAGING_DIR_HOSTPKG)/usr/lib/llvm/bin/llvm-tblgen \
 	$(PKG_BUILD_DIR)/source
 
 CMAKE_HOST_OPTIONS += \
 	$(PKG_CMAKE_OPTS_COMMON) \
 	-DLLVM_BUILD_TOOLS=OFF \
-	-DCMAKE_INSTALL_PREFIX="$(STAGING_DIR_HOST)" \
-	-DCMAKE_INSTALL_RPATH="$(STAGING_DIR_HOST)" \
-	-DCMAKE_SKIP_RPATH=OFF \
+	-DLLVM_INSTALL_PACKAGE_DIR="$(STAGING_DIR_HOSTPKG)/usr/lib/llvm" \
 	$(HOST_BUILD_DIR)/source
 
 define Build/Prepare
@@ -115,9 +114,8 @@ endef
 
 define Host/Install
 	$(call Host/Install/Default)
-	$(INSTALL_DIR) $(STAGING_DIR_HOST)/bin
 	$(CP) $(HOST_BUILD_DIR)/bin/llvm-config \
-	$(STAGING_DIR_HOST)/bin/
+	$(STAGING_DIR_HOSTPKG)/usr/lib/llvm/bin/
 endef
 
 define Package/llvm/install
