@@ -115,7 +115,7 @@ endef
 
 define Host/Install
 	$(call Host/Install/Default)
-        $(INSTALL_DIR) $(STAGING_DIR_HOST)/bin
+	$(INSTALL_DIR) $(STAGING_DIR_HOST)/bin
 	$(CP) $(HOST_BUILD_DIR)/bin/llvm-config \
 	$(STAGING_DIR_HOST)/bin/
 endef
