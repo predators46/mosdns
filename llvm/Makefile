@@ -53,7 +53,6 @@ endef
 CMAKE_HOST_OPTIONS += \
 	-DCMAKE_BUILD_TYPE=Release \
 	-DLLVM_DEFAULT_TARGET_TRIPLE="aarch64-openwrt-linux-musl" \
-	-DLLVM_HOST_TRIPLE="aarch64-openwrt-linux-musl" \
 	-DLLVM_TARGETS_TO_BUILD="AArch64" \
 	-DLLVM_ENABLE_PROJECTS="clang;lld" \
 	-DLLVM_APPEND_VC_REV=OFF \
