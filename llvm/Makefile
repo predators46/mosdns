@@ -8,7 +8,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=llvm-project
 PKG_VERSION:=17.0.6
-PKG_RELEASE:=4
+PKG_RELEASE:=5
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).src.tar.xz
 PKG_SOURCE_URL:=https://github.com/llvm/llvm-project/releases/download/llvmorg-$(PKG_VERSION)
@@ -48,7 +48,7 @@ define Package/libllvm
   URL:=http://llvm.org/
 endef
 
-#TARGET_CFLAGS+=$(TARGET_CPPFLAGS)
+TARGET_CFLAGS+=$(TARGET_CPPFLAGS)
 
 CMAKE_HOST_OPTIONS += \
 	-DCMAKE_BUILD_TYPE=Release \
