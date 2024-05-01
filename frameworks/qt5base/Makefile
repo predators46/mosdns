@@ -301,7 +301,7 @@ define Build/Configure
 		TARGET_CXXFLAGS="$(TARGET_CFLAGS) $(TARGET_CXXFLAGS)" \
 		TARGET_LDFLAGS="$(TARGET_LDFLAGS)" \
 		./configure \
-			QT_SYSROOT: $(STAGING_DIR) \
+			-sysroot $(STAGING_DIR) \
 			QT_INSTALL_PREFIX: /usr \
 			QT_EXTPREFIX: \
 			QT_HOST_PREFIX: \
