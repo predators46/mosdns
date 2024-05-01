@@ -301,27 +301,27 @@ define Build/Configure
 		TARGET_CXXFLAGS="$(TARGET_CFLAGS) $(TARGET_CXXFLAGS)" \
 		TARGET_LDFLAGS="$(TARGET_LDFLAGS)" \
 		./configure \
-			QT_SYSROOT $(STAGING_DIR) \
-			QT_INSTALL_PREFIX /usr \
-			QT_EXTPREFIX $(STAGING_DIR)/usr \
-			QT_HOST_PREFIX \
-			QT_INSTALL_BINS /usr/bin \
-			QT_INSTALL_HEADERS /usr/include/qt \
-			QT_INSTALL_LIBS /usr/lib \
-			QT_INSTALL_ARCHDATA /usr/lib \
-			QT_INSTALL_PLUGINS /usr/lib/qt/plugins \
-			QT_INSTALL_LIBEXECS /usr/lib/qt/libexec \
-			QT_INSTALL_IMPORTS /usr/lib/qt/imports \
-			QT_INSTALL_QML /usr/lib/qt/qml \
-			QT_INSTALL_DATA /usr/share/qt \
-			QT_INSTALL_DOCS /usr/share/doc/qt \
-			QT_INSTALL_TRANSLATIONS /usr/share/qt/translations \
-			QT_INSTALL_CONFIGURATION /etc/qt \
-			QT_INSTALL_EXAMPLES /usr/lib/qt/examples \
-			QT_INSTALL_TESTS /usr/lib/qt/tests \
-			QT_HOST_BINS \
-			QT_HOST_LIBS \
-			QT_HOST_DATA \
+			QT_SYSROOT: $(STAGING_DIR) \
+			QT_INSTALL_PREFIX: /usr \
+			QT_EXTPREFIX: \
+			QT_HOST_PREFIX: \
+			QT_INSTALL_BINS: /usr/bin \
+			QT_INSTALL_HEADERS: /usr/include/qt \
+			QT_INSTALL_LIBS: /usr/lib \
+			QT_INSTALL_ARCHDATA: /usr/lib \
+			QT_INSTALL_PLUGINS: /usr/lib/qt/plugins \
+			QT_INSTALL_LIBEXECS: /usr/lib/qt/libexec \
+			QT_INSTALL_IMPORTS: /usr/lib/qt/imports \
+			QT_INSTALL_QML: /usr/lib/qt/qml \
+			QT_INSTALL_DATA: /usr/share/qt \
+			QT_INSTALL_DOCS: /usr/share/doc/qt \
+			QT_INSTALL_TRANSLATIONS: /usr/share/qt/translations \
+			QT_INSTALL_CONFIGURATION: /etc/qt \
+			QT_INSTALL_EXAMPLES: /usr/lib/qt/examples \
+			QT_INSTALL_TESTS: /usr/lib/qt/tests \
+			QT_HOST_BINS: \
+			QT_HOST_LIBS: \
+			QT_HOST_DATA: \
 			-verbose \
 			-opensource \
 			-confirm-license \
@@ -406,11 +406,11 @@ define Host/Configure
 		TARGET_CXXFLAGS="$(HOST_CFLAGS) $(HOST_CXXFLAGS)" \
 		TARGET_LDFLAGS="$(HOST_LDFLAGS)" \
 		./configure \
-			QT_INSTALL_PREFIX $(STAGING_DIR_HOST) \
-			QT_HOST_PREFIX $(STAGING_DIR_HOST) \
-			QT_HOST_DATA $(STAGING_DIR_HOST)/share \
-			QT_INSTALL_DATA $(STAGING_DIR_HOST)/share \
-			QT_INSTALL_ARCHDATA $(STAGING_DIR_HOST)/lib \
+			QT_INSTALL_PREFIX: $(STAGING_DIR_HOST) \
+			QT_HOST_PREFIX: $(STAGING_DIR_HOST) \
+			QT_HOST_DATA: $(STAGING_DIR_HOST)/share \
+			QT_INSTALL_DATA: $(STAGING_DIR_HOST)/share \
+			QT_INSTALL_ARCHDATA: $(STAGING_DIR_HOST)/lib \
 			-verbose \
 			-opensource \
 			-confirm-license \
