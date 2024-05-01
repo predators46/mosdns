@@ -8,7 +8,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=llvm-project
 PKG_VERSION:=17.0.6
-PKG_RELEASE:=6
+PKG_RELEASE:=7
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).src.tar.xz
 PKG_SOURCE_URL:=https://github.com/llvm/llvm-project/releases/download/llvmorg-$(PKG_VERSION)
@@ -81,7 +81,7 @@ CMAKE_HOST_OPTIONS += \
 	-DLLVM_INSTALL_UTILS=ON \
 	-DLLVM_LINK_LLVM_DYLIB=ON \
 	-DLLVM_USE_PERF=ON \
-	-DCMAKE_CXX_FLAGS=-isystem
+	-DCMAKE_CXX_FLAGS=-isysroot
 
 CMAKE_OPTIONS += \
 	-DCMAKE_BUILD_TYPE=Release \
@@ -114,7 +114,7 @@ CMAKE_OPTIONS += \
 	-DLLVM_INSTALL_UTILS=ON \
 	-DLLVM_LINK_LLVM_DYLIB=ON \
 	-DLLVM_USE_PERF=ON \
-	-DCMAKE_CXX_FLAGS=-isystem \
+	-DCMAKE_CXX_FLAGS=-isysroot \
 	-DLLVM_NATIVE_TOOL_DIR="$(HOST_BUILD_DIR)/build/bin"
 
 define Package/llvm/install
