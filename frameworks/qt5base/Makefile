@@ -301,27 +301,27 @@ define Build/Configure
 		TARGET_CXXFLAGS="$(TARGET_CFLAGS) $(TARGET_CXXFLAGS)" \
 		TARGET_LDFLAGS="$(TARGET_LDFLAGS)" \
 		./configure \
-			-prefix $(QT_INSTALL_PREFIX) \
-			-extprefix $(QT_EXTPREFIX) \
-			-hostprefix $(QT_HOST_PREFIX) \
-			-bindir $(QT_INSTALL_BINS) \
-			-headerdir $(QT_INSTALL_HEADERS) \
-			-libdir $(QT_INSTALL_LIBS) \
-			-archdatadir $(QT_INSTALL_ARCHDATA) \
-			-plugindir $(QT_INSTALL_PLUGINS) \
-			-libexecdir $(QT_INSTALL_LIBEXECS) \
-			-importdir $(QT_INSTALL_IMPORTS) \
-			-qmldir $(QT_INSTALL_QML) \
-			-datadir $(QT_INSTALL_DATA) \
-			-docdir $(QT_INSTALL_DOCS) \
-			-translationdir $(QT_INSTALL_TRANSLATIONS) \
-			-sysconfdir $(QT_INSTALL_CONFIGURATION) \
-			-examplesdir $(QT_INSTALL_EXAMPLES) \
-			-testsdir $(QT_INSTALL_TESTS) \
-			-hostbindir $(QT_HOST_BINS) \
-			-hostlibdir $(QT_HOST_LIBS) \
-			-hostdatadir $(QT_HOST_DATA) \
-			-sysroot $(STAGING_DIR) \
+			QT_SYSROOT $(STAGING_DIR) \
+			QT_INSTALL_PREFIX /usr \
+			QT_EXTPREFIX $(STAGING_DIR)/usr \
+			QT_HOST_PREFIX \
+			QT_INSTALL_BINS /usr/bin \
+			QT_INSTALL_HEADERS /usr/include/qt \
+			QT_INSTALL_LIBS /usr/lib \
+			QT_INSTALL_ARCHDATA /usr/lib \
+			QT_INSTALL_PLUGINS /usr/lib/qt/plugins \
+			QT_INSTALL_LIBEXECS /usr/lib/qt/libexec \
+			QT_INSTALL_IMPORTS /usr/lib/qt/imports \
+			QT_INSTALL_QML /usr/lib/qt/qml \
+			QT_INSTALL_DATA /usr/share/qt \
+			QT_INSTALL_DOCS /usr/share/doc/qt \
+			QT_INSTALL_TRANSLATIONS /usr/share/qt/translations \
+			QT_INSTALL_CONFIGURATION /etc/qt \
+			QT_INSTALL_EXAMPLES /usr/lib/qt/examples \
+			QT_INSTALL_TESTS /usr/lib/qt/tests \
+			QT_HOST_BINS \
+			QT_HOST_LIBS \
+			QT_HOST_DATA \
 			-verbose \
 			-opensource \
 			-confirm-license \
@@ -331,7 +331,7 @@ define Build/Configure
 			-no-strip \
 			-shared \
 			-no-framework \
-			-xplatform devices/linux-generic-g++ \
+			-xplatform linux-generic-g++ \
 			-no-reduce-exports \
 			-no-reduce-relocations \
 			-no-pch \
@@ -406,11 +406,11 @@ define Host/Configure
 		TARGET_CXXFLAGS="$(HOST_CFLAGS) $(HOST_CXXFLAGS)" \
 		TARGET_LDFLAGS="$(HOST_LDFLAGS)" \
 		./configure \
-			-prefix $(STAGING_DIR_HOST) \
-			-hostprefix $(STAGING_DIR_HOST) \
-			-hostdatadir $(STAGING_DIR_HOST)/share \
-			-datadir $(STAGING_DIR_HOST)/share \
-			-archdatadir $(STAGING_DIR_HOST)/lib \
+			QT_INSTALL_PREFIX $(STAGING_DIR_HOST) \
+			QT_HOST_PREFIX $(STAGING_DIR_HOST) \
+			QT_HOST_DATA $(STAGING_DIR_HOST)/share \
+			QT_INSTALL_DATA $(STAGING_DIR_HOST)/share \
+			QT_INSTALL_ARCHDATA $(STAGING_DIR_HOST)/lib \
 			-verbose \
 			-opensource \
 			-confirm-license \
