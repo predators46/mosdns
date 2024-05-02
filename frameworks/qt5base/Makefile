@@ -326,7 +326,7 @@ define Build/Configure
 			-no-strip \
 			-shared \
 			-no-framework \
-			-xplatform linux-generic-g++ \
+			-xplatform devices/linux-generic-g++ \
 			-no-reduce-exports \
 			-no-reduce-relocations \
 			-no-pch \
