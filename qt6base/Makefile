@@ -18,7 +18,6 @@ PKG_BUILD_PARALLEL:=1
 PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
-include $(INCLUDE_DIR)/cmake.mk
 
 define Package/qt6base/Default
   SECTION:=libs
@@ -85,79 +84,76 @@ endef
 EXTRA_CFLAGS += $(FPIC) -ffunction-sections -fdata-sections -flto
 EXTRA_LDFLAGS += -Wl,--gc-sections,--as-needed
 
-CMAKE_OPTIONS += \
-	-DCMAKE_SYSROOT=$(STAGING_DIR) \
-	-DCMAKE_INSTALL_PREFIX=/usr \
-	-DQT_HOST_PREFIX=$(STAGING_DIR_HOSTPKG) \
-	-DCMAKE_MESSAGE_LOG_LEVEL=STATUS \
-	-DCMAKE_BUILD_TYPE=Release \
-	-DBUILD_SHARED_LIBS=ON \
-	-DFEATURE_framework=ON \
-	-DQT_QMAKE_TARGET_MKSPEC=devices/linux-generic-g++ \
-	-DQT_QMAKE_DEVICE_OPTIONS=CROSS_COMPILE="$(TARGET_CROSS)" \
-	-DQT_QMAKE_DEVICE_OPTIONS=COMPILER_FLAGS="$(TARGET_CFLAGS) $(EXTRA_CFLAGS) $(TARGET_CPPFLAGS) $(EXTRA_CPPFLAGS)" \
-	-DQT_QMAKE_DEVICE_OPTIONS=LINKER_FLAGS="$(TARGET_LDFLAGS) $(EXTRA_LDFLAGS)" \
-	-DBUILD_WITH_PCH=OFF \
-	-DCMAKE_INTERPROCEDURAL_OPTIMIZATION=ON \
-	-DFEATURE_use_gold_linker=OFF \
-	-DQT_BUILD_TESTS=OFF \
-	-DQT_BUILD_EXAMPLES=OFF \
-	-DFEATURE_gui=ON \
-	-DFEATURE_widgets=ON \
-	-DFEATURE_dbus=ON \
-	-DFEATURE_dbus_linked=ON \
-	-DFEATURE_accessibility=ON \
-	-DFEATURE_doubleconversion=ON \
-	-DFEATURE_system_doubleconversion=ON \
-	-DFEATURE_glib=ON \
-	-DFEATURE_inotify=ON \
-	-DFEATURE_icu=OFF \
-	-DFEATURE_pcre2=ON \
-	-DFEATURE_system_pcre2=ON \
-	-DFEATURE_system_zlib=ON \
-	-DFEATURE_ssl=ON \
-	-DFEATURE_openssl=ON \
-	-DFEATURE_openssl_linked=ON \
-	-DFEATURE_libproxy=OFF \
-	-DFEATURE_system_proxies=ON \
-	-DFEATURE_cups=OFF \
-	-DFEATURE_fontconfig=ON \
-	-DFEATURE_freetype=ON \
-	-DFEATURE_system_freetype=ON \
-	-DFEATURE_harfbuzz=OFF \
-	-DFEATURE_system_harfbuzz=OFF \
-	-DFEATURE_gtk3=OFF \
-	-DINPUT_opengl=no \
-	-DFEATURE_opengles3=OFF \
-	-DFEATURE_egl=OFF \
-	-DQT_QPA_DEFAULT_PLATFORM=linuxfb \
-	-DFEATURE_xcb_xlib=OFF \
-	-DFEATURE_direct2d=OFF \
-	-DFEATURE_directfb=OFF \
-	-DFEATURE_eglfs=OFF \
-	-DFEATURE_gbm=OFF \
-	-DFEATURE_kms=OFF \
-	-DFEATURE_linuxfb=ON \
-	-DFEATURE_xcb=OFF \
-	-DFEATURE_libudev=ON \
-	-DFEATURE_evdev=ON \
-	-DFEATURE_libinput=ON \
-	-DFEATURE_mtdev=ON \
-	-DFEATURE_tslib=OFF \
-	-DFEATURE_system_xcb_xinput=OFF \
-	-DFEATURE_xkbcommon=OFF \
-	-DFEATURE_gif=ON \
-	-DFEATURE_ico=ON \
-	-DFEATURE_png=ON \
-	-DFEATURE_jpeg=ON \
-	-DFEATURE_sql_db2=OFF \
-	-DFEATURE_sql_ibase=OFF \
-	-DFEATURE_sql_mysql=OFF \
-	-DFEATURE_sql_oci=OFF \
-	-DFEATURE_sql_odbc=OFF \
-	-DFEATURE_sql_psql=OFF \
-	-DFEATURE_sql_sqlite=ON \
-	-DFEATURE_system_sqlite=ON
+CONFIGURE_ARGS = \
+	-sysroot $(STAGING_DIR) \
+	-hostprefix $(STAGING_DIR_HOSTPKG) \
+	-extprefix $(STAGING_DIR)/usr \
+	-prefix /usr \
+	-archdatadir /usr/share/Qt \
+	-datadir /usr/share/Qt \
+	-plugindir /usr/lib/Qt/plugins \
+	-device linux-generic-g++ \
+	-device-option CROSS_COMPILE="$(TARGET_CROSS)" \
+	-device-option COMPILER_FLAGS="$(TARGET_CFLAGS) $(EXTRA_CFLAGS) $(TARGET_CPPFLAGS) $(EXTRA_CPPFLAGS)" \
+	-device-option LINKER_FLAGS="$(TARGET_LDFLAGS) $(EXTRA_LDFLAGS)" \
+	-confirm-license \
+	-opensource \
+	-release \
+	-shared \
+	-strip \
+	-no-rpath \
+	-no-use-gold-linker \
+	-ltcg \
+	-mimetype-database \
+	-openssl-linked \
+	-system-doubleconversion \
+	-system-pcre \
+	-system-zlib \
+	$(if $(findstring i386,$(ARCH)),-no-sse2 -no-sse4.1) \
+	-no-angle \
+	-no-cups \
+	-dbus-linked \
+	-no-directfb \
+	-no-dtls\
+	-no-egl \
+	-no-eglfs \
+	-fontconfig \
+	-system-freetype \
+	-no-gbm \
+	-glib \
+	-no-gtk \
+	-gui \
+	-no-harfbuzz \
+	-iconv \
+	-no-icu \
+	-no-kms \
+	-gif \
+	-ico \
+	-system-libjpeg \
+	-no-libmd4c \
+	-system-libpng \
+	-libudev \
+	-evdev \
+	-libinput \
+	-mtdev \
+	-no-opengl \
+	-no-opengles3 \
+	-no-openvg \
+	-no-pch \
+	-no-slog2 \
+	-system-sqlite \
+	-no-trace \
+	-no-tslib \
+	-no-vulkan \
+	-widgets \
+	-no-xcb \
+	-no-xkbcommon \
+	-no-zstd \
+	-make libs \
+	-nomake examples \
+	-nomake tests \
+	-nomake tools \
+	-v
 
 define Package/qt6base-core/install
 	$(INSTALL_DIR) $(1)/usr/lib/
