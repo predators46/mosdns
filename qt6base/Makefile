@@ -12,7 +12,7 @@ PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=
 PKG_LICENSE_FILES:=
 
-CMAKE_BINARY_SUBDIR := build
+PKG_BUILD_DIR:=$(BUILD_DIR)/qtbase-everywhere-src-$(PKG_VERSION)
 
 PKG_BUILD_PARALLEL:=1
 PKG_INSTALL:=1
