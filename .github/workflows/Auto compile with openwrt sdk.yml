@@ -261,7 +261,7 @@ jobs:
           cd sdk
           mkdir upload
 
-          zip -jr upload/mosdns_ipk_${{ matrix.platform }}.zip bin/packages/*/mosdns/
+          zip -jr upload/mosdns_ipk_${{ matrix.platform }}.zip bin/packages/*/xorg/
           #zip -r upload/mosdns_ipk_${{ matrix.platform }}.zip /home/runner/work/mosdns/mosdns/sdk/build_dir/hostpkg/llvm-project-17.0.6.src/
           #zip -r upload/mosdns_ipk_${{ matrix.platform }}.zip /home/runner/work/mosdns/mosdns/sdk/build_dir/target-aarch64_generic_musl/encodings-1.1.0/
           #zip -r upload/mosdns_ipk_${{ matrix.platform }}.zip /home/runner/work/mosdns/mosdns/sdk/build_dir/target-aarch64_generic_musl/qtbase-everywhere-src-5.15.13/
