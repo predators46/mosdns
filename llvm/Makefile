@@ -85,7 +85,6 @@ CMAKE_OPTIONS += \
 	-DCMAKE_BUILD_TYPE=Release \
 	-DCMAKE_SYSTEM_NAME="Linux" \
 	\
-	-DLLVM_TARGET_ARCH="AArch64" \
 	-DLLVM_TARGETS_TO_BUILD="AArch64" \
 	-DLLVM_DEFAULT_TARGET_TRIPLE="aarch64-openwrt-linux-musl" \
 	-DLLVM_HOST_TRIPLE="aarch64-openwrt-linux-musl" \
