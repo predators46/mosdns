@@ -88,7 +88,6 @@ CMAKE_OPTIONS += \
 	-DLLVM_TARGETS_TO_BUILD="AArch64" \
 	-DLLVM_DEFAULT_TARGET_TRIPLE="aarch64-openwrt-linux-musl" \
 	-DLLVM_HOST_TRIPLE="aarch64-openwrt-linux-musl" \
-	-DLLVM_NATIVE_TOOL_DIR="$(HOST_BUILD_DIR)/build/bin" \
 	\
 	-DLLVM_APPEND_VC_REV=OFF \
 	-DLLVM_BUILD_DOCS=OFF \
