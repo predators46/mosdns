@@ -17,9 +17,6 @@ PKG_INSTALL:=1
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/meson.mk
 
-MESON_VARS += \
-	GLIB_MKENUMS="$(STAGING_DIR_HOSTPKG)/bin/glib-mkenums"
-
 MESON_ARGS += \
 	-Dtests=disabled \
 	-Ddocs=disabled \
