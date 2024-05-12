@@ -22,6 +22,7 @@ PKG_CONFIG_DEPENDS:= \
 TARGET_CPPFLAGS+=-Wno-format -Wno-format-security
 
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/bpf.mk
 include $(INCLUDE_DIR)/meson.mk
 
 DRI_PLUGINS := \
@@ -244,9 +245,10 @@ MESON_ARGS += \
 	-Dvulkan-drivers=$(subst $(space),$(comma),$(strip $(VULKAN_DRIVERS))) \
 	-Dosmesa=true \
 	-Dtools= \
-	-Dllvm=disabled \
+	-Dllvm=enabled \
+	-Dshared-llvm=enabled \
 	-Dshared-glapi=enabled \
-	-Ddraw-use-llvm=false \
+	-Ddraw-use-llvm=enabled \
 	-Dscanner_bin="$(STAGING_DIR_HOSTPKG)/bin/wayland-scanner"
 
 TARGET_CFLAGS += -I$(MESON_BUILD_DIR)/src/broadcom/
