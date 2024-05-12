@@ -166,7 +166,7 @@ DRI_DRIVERS:=
 GALLIUM_DRIVERS:=kmsro swrast vc4 virgl
 
 # requires LLVM:
-# VULKAN_DRIVERS:=swrast
+VULKAN_DRIVERS:=swrast
 
 ifneq ($(CONFIG_LIBDRM_INTEL),)
   DRI_DRIVERS+=i965
