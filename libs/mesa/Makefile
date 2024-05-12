@@ -248,7 +248,7 @@ MESON_ARGS += \
 	-Dllvm=enabled \
 	-Dshared-llvm=enabled \
 	-Dshared-glapi=enabled \
-	-Ddraw-use-llvm=enabled \
+	-Ddraw-use-llvm=true \
 	-Dscanner_bin="$(STAGING_DIR_HOSTPKG)/bin/wayland-scanner"
 
 TARGET_CFLAGS += -I$(MESON_BUILD_DIR)/src/broadcom/
