@@ -114,7 +114,9 @@ CMAKE_OPTIONS += \
 	-DLLVM_USE_PERF=ON
 
 define Host/Install
-	$(MAKE) -C $(HOST_CMAKE_BINARY_DIR) install
+	$(Host/Install/Default)
+	$(INSTALL_DIR) $(STAGING_DIR_HOSTPKG)/bin
+	$(CP) $(HOST_CMAKE_BINARY_DIR)/bin $(STAGING_DIR_HOSTPKG)/
 endef
 
 define Package/llvm/install
