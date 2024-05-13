@@ -119,8 +119,7 @@ CMAKE_OPTIONS += \
 	-DLLVM_USE_PERF=ON
 
 define Host/Install
-	$(INSTALL_DIR) $(STAGING_DIR_HOSTPKG)/usr/lib/
-	$(CP) $(HOST_BUILD_DIR)/build/llvm $(STAGING_DIR_HOSTPKG)/usr/lib/
+	$(Host/Install/Default)
 	STRIP_KMOD= PATCHELF= STRIP=strip $(SCRIPT_DIR)/rstrip.sh $(STAGING_DIR_HOSTPKG)/usr/lib/llvm
 endef
 
