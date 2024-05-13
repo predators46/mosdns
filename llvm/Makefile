@@ -113,8 +113,8 @@ CMAKE_OPTIONS += \
 	-DLLVM_INSTALL_UTILS=ON \
 	-DLLVM_USE_PERF=ON
 
-define Host/Install/Default
-	+$(NINJA) -C $(HOST_CMAKE_BINARY_DIR) $(STAGING_DIR_HOSTPKG) install
+define Host/Install
+	$(MAKE) -C $(HOST_CMAKE_BINARY_DIR) install
 endef
 
 define Package/llvm/install
