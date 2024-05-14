@@ -9,7 +9,10 @@ PKG_SOURCE_URL:=https://github.com/monkins1010/ccminer.git
 PKG_SOURCE_VERSION:=1667394ad4120d64b0c57367e71cb832ad2e3645
 PKG_MIRROR_HASH:=skip
 
-PKG_MAINTAINER:=
+PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
+PKG_LICENSE:=License
+PKG_LICENSE_FILES:=LICENSE.txt
+
 PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
