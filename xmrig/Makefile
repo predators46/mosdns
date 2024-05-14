@@ -32,7 +32,7 @@ define Package/xmrig/description
 endef
 
 CMAKE_OPTIONS +=
-TARGET_LDFLAGS += -lgcc_eh
+TARGET_LDFLAGS += $(if $(CONFIG_USE_GLIBC),-lc -lgcc_eh)
 
 define Package/xmrig/install
 	$(INSTALL_DIR) $(1)/usr/bin/
