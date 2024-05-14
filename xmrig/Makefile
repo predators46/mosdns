@@ -33,6 +33,10 @@ endef
 
 CMAKE_OPTIONS +=
 
+define Build/Install/Default
+	+DESTDIR="$(CMAKE_BINARY_SUBDIR)"
+endef
+
 define Package/xmrig/install
 	$(INSTALL_DIR) $(1)/usr/bin/
 	$(CP) $(CMAKE_BINARY_DIR)/xmrig $(1)/usr/bin/
