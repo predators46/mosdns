@@ -34,12 +34,12 @@ endef
 CMAKE_OPTIONS +=
 
 define Build/Install/Default
-	+DESTDIR="$(CMAKE_BINARY_SUBDIR)"
+	+DESTDIR="$(PKG_INSTALL_DIR)"
 endef
 
 define Package/xmrig/install
 	$(INSTALL_DIR) $(1)/usr/bin/
-	$(CP) $(CMAKE_BINARY_DIR)/xmrig $(1)/usr/bin/
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/xmrig $(1)/usr/bin/
 endef
 
 $(eval $(call BuildPackage,xmrig))
