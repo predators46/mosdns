@@ -13,7 +13,6 @@ PKG_LICENSE:=GPL-3.0 license
 PKG_LICENSE_FILES:=LICENSE
 
 CMAKE_BINARY_SUBDIR := build
-CMAKE_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
@@ -39,7 +38,7 @@ endef
 
 define Package/xmrig/install
 	$(INSTALL_DIR) $(1)/usr/bin/
-	$(CP) $(CMAKE_BINARY_DIR)/xmrig $(1)/usr/bin/
+	$(CP) $(PKG_INSTALL_DIR)/xmrig $(1)/usr/bin/
 endef
 
 $(eval $(call BuildPackage,xmrig))
