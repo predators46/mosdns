@@ -38,7 +38,7 @@ endef
 
 define Package/xmrig/install
 	$(INSTALL_DIR) $(1)/usr/bin/
-	$(CP) $(PKG_INSTALL_DIR)/xmrig $(1)/usr/bin/
+	$(CP) $(CMAKE_BINARY_DIR)/xmrig $(1)/usr/bin/
 endef
 
 $(eval $(call BuildPackage,xmrig))
