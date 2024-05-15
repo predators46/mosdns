@@ -12,17 +12,12 @@ PKG_MAINTAINER:=Daniel Golle <daniel@makrotopia.org>
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=COPYING
 
-PKG_INSTALL:=1
-
 PKG_BUILD_DEPENDS:=libxslt/host intltool/host perl-xml-parser/host
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/meson.mk
 
-MESON_ARGS += \
-	-Dcompat-rules=true \
-	-Dxorg-rules-symlinks=false \
-	-Dnls=true
+MESON_ARGS +=
 
 define Package/xkeyboard-config
   SECTION:=libs
