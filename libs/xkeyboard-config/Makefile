@@ -17,7 +17,10 @@ PKG_BUILD_DEPENDS:=libxslt/host intltool/host perl-xml-parser/host
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/meson.mk
 
-MESON_ARGS +=
+MESON_ARGS += \
+	-Dcompat-rules=false \
+	-Dxorg-rules-symlinks=false \
+	-Dnls=false
 
 define Package/xkeyboard-config
   SECTION:=libs
