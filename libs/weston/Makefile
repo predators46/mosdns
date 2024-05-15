@@ -27,7 +27,7 @@ define Package/weston
   DEPENDS:=+gstreamer1-plugins-base +libcairo +libevdev \
 	+libgst1allocators +libgst1app +libgst1video +libgstreamer1 +libinput \
 	+libmesa +libpango +libseat +libwayland +libwebp +libxkbcommon +pixman \
-	+seatd +wayland-protocols +xkeyboard-config +libpam
+	+seatd +wayland-protocols +xkeyboard-config +libpam +lcms2 +libx11 +libxcb
 endef
 
 define Package/weston/description
@@ -41,9 +41,8 @@ MESON_ARGS += \
 	-Dbackend-pipewire=false \
 	-Dbackend-rdp=false \
 	-Dbackend-vnc=false \
-	-Dbackend-x11=false \
+	-Dbackend-x11=true \
 	-Dxwayland=false \
-	-Dcolor-management-lcms=false \
 	-Dsystemd=false \
 	-Dpipewire=false \
 	-Dtest-junit-xml=false \
