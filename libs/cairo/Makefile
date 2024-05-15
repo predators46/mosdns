@@ -23,7 +23,7 @@ define Package/libcairo
   SUBMENU:=Video
   TITLE:=cairo
   URL:=https://cairo.freedesktop.org/
-  DEPENDS:=+libpng +libfreetype +fontconfig +pixman +glib2 +libjpeg-turbo +zlib +liblzo +libx11 +libxcb +libxrender
+  DEPENDS:=+libpng +libfreetype +fontconfig +pixman +glib2 +libjpeg-turbo +zlib +liblzo +libx11 +libxcb +libxrender +libxext +fontconfig
 endef
 
 define Package/libcairo/description
