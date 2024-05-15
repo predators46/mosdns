@@ -19,7 +19,7 @@ include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/meson.mk
 
 MESON_ARGS += \
-	-Denable-x11=false \
+	-Denable-x11=true \
 	-Denable-docs=false \
 	-Denable-wayland=true \
 	-Dscanner_bin="$(STAGING_DIR_HOSTPKG)/bin/wayland-scanner"
@@ -29,7 +29,7 @@ define Package/libxkbcommon
   CATEGORY:=Libraries
   TITLE:=libxkbcommon
   URL:=https://xkbcommon.org/
-  DEPENDS:=+libwayland +libxml2 +wayland-protocols
+  DEPENDS:=+libwayland +libxml2 +wayland-protocols +xkeyboard-config +libx11 +libxcb
 endef
 
 define Package/libxkbcommon/description
