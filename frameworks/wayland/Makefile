@@ -12,7 +12,6 @@ PKG_MAINTAINER:=Daniel Golle <daniel@makrotopia.org>
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=COPYING
 
-PKG_INSTALL:=1
 PKG_BUILD_DEPENDS:=libffi/host libxml2/host wayland/host
 HOST_BUILD_DEPENDS:=$(PKG_BUILD_DEPENDS)
 
