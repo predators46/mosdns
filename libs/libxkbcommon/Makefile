@@ -13,7 +13,7 @@ PKG_LICENSE:=BSD-3-Clause
 
 PKG_INSTALL:=1
 
-PKG_BUILD_DEPENDS:=wayland
+PKG_BUILD_DEPENDS:=wayland wayland-protocols libx11 libxcb
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/meson.mk
@@ -29,7 +29,7 @@ define Package/libxkbcommon
   CATEGORY:=Libraries
   TITLE:=libxkbcommon
   URL:=https://xkbcommon.org/
-  DEPENDS:=+libwayland +libxml2 +wayland-protocols +xkeyboard-config +libx11 +libxcb
+  DEPENDS:=+libxml2 +xkeyboard-config
 endef
 
 define Package/libxkbcommon/description
