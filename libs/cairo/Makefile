@@ -23,7 +23,7 @@ define Package/libcairo
   SUBMENU:=Video
   TITLE:=cairo
   URL:=https://cairo.freedesktop.org/
-  DEPENDS:=+libpng +libfreetype +fontconfig +pixman +glib2 +libjpeg-turbo +zlib +liblzo
+  DEPENDS:=+libpng +libfreetype +fontconfig +pixman +glib2 +libjpeg-turbo +zlib +liblzo +libx11 +libxcb +libxrender
 endef
 
 define Package/libcairo/description
@@ -31,14 +31,7 @@ define Package/libcairo/description
 endef
 
 MESON_ARGS += \
-	-Ddwrite=disabled \
-	-Dxcb=disabled \
-	-Dxlib=disabled \
-	-Dxlib-xcb=disabled \
 	-Dtests=disabled \
-	-Dgtk2-utils=disabled \
-	-Dspectre=disabled \
-	-Dsymbol-lookup=disabled \
 	-Dgtk_doc=false
 
 define Package/libcairo/install
