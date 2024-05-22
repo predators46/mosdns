@@ -15,7 +15,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/luci-app-mosdns
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+libva-v4l2-request
+  DEPENDS:=+gtk3
   TITLE:=Tools Inject xderm-mini
 endef
 
