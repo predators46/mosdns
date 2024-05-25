@@ -9,6 +9,7 @@ PKG_MAINTAINER:=
 
 #PKG_BUILD_DEPENDS:=gobject-introspection/host
 PKG_BUILD_DIR := $(BUILD_DIR)/$(PKG_NAME)
+PKG_BUILD_PARALLEL:=1
 
 include $(INCLUDE_DIR)/package.mk
 
