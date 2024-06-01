@@ -16,7 +16,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/luci-app-mosdns
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+telegram-tdlib
+  DEPENDS:=+python3-telegram
   TITLE:=Tools Inject xderm-mini
 endef
 
