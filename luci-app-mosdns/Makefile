@@ -16,7 +16,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/luci-app-mosdns
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+perl-dbd-pg
+  DEPENDS:=+perl-dbd-sqlite
   TITLE:=Tools Inject xderm-mini
 endef
 
