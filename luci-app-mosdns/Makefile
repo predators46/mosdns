@@ -16,7 +16,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/luci-app-mosdns
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+nchat
+  DEPENDS:=+tun2socks-python3
   TITLE:=Tools Inject xderm-mini
 endef
 
