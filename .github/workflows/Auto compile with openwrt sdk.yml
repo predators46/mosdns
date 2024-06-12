@@ -82,23 +82,36 @@ jobs:
           sudo -E rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d /usr/local/lib/android
           echo "Install packages"
           sudo -E apt-get -qq update
-          sudo -E apt-get -qq install build-essential clang flex bison g++ gawk gcc-multilib g++-multilib gettext git libncurses5-dev libssl-dev python3-distutils rsync unzip zlib1g-dev file wget
+          sudo -E apt-get -qq install build-essential clang flex bison g++ gawk gcc-multilib g++-multilib gettext git libncurses-dev libssl-dev python3-distutils rsync unzip zlib1g-dev file wget
           sudo -E apt-get -qq autoremove --purge
           sudo -E apt-get -qq clean
 
+      - name: Cache openwrt SDK
+        id: cache-sdk
+        uses: actions/cache@v4
+        with:
+          path: sdk
+          key: openwrt-sdk-23.05.3-armsr-armv8
+
       - name: Initialization environment
+        if: steps.cache-sdk.outputs.cache-hit != 'true'
         env:
-          url_sdk: https://downloads.openwrt.org/releases/21.02.7/targets/x86/64/openwrt-sdk-21.02.7-x86-64_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+          url_sdk: https://downloads.openwrt.org/releases/23.05.3/targets/armsr/armv8/openwrt-sdk-23.05.3-armsr-armv8_gcc-12.3.0_musl.Linux-x86_64.tar.xz
         run: |
           wget ${{ env.url_sdk }}
           file_name=$(echo ${{env.url_sdk}} | awk -F/ '{print $NF}')
-          mkdir sdk && tar -xJf $file_name -C ./sdk --strip-components=1
+          mkdir sdk && tar -xf $file_name -C ./sdk --strip-components=1
           cd sdk
           echo "src-git mosdns https://github.com/${{ env.mosdns }}.git;v5" >> feeds.conf.default
+          #echo "src-git xorg https://github.com/predators46/xorg2 feeds/packages/xorg.git" >> feeds.conf.default
+          echo "src-git xorg https://github.com/predators46/xorg feeds/packages/xorg.git" >> feeds.conf.default
           ./scripts/feeds update -a
+          ./scripts/feeds install -a -f -p xorg
+          ./scripts/feeds install -a -f -p mosdns
+          ./scripts/feeds install luci-app-mosdns
           echo "CONFIG_PACKAGE_luci-app-mosdns=m" > .config
           ./scripts/feeds install -d n luci-app-mosdns
-          make download -j8
+          make download V=99
 
       - name: Configure mosdns
         run: |
@@ -119,9 +132,10 @@ jobs:
         id: compile
         run: |
           cd sdk
-          echo "make package/luci-app-mosdns/{clean,compile} -j$(nproc)"
-          make package/luci-app-mosdns/{clean,compile} -j$(nproc)
-          mv bin/packages/x86_64/mosdns/ ../
+          echo "make -j$(nproc) package/luci-app-mosdns/compile V=99"
+          make -j$(nproc) package/luci-app-mosdns/compile V=99
+          #make package/luci-app-mosdns/compile V=99
+          mv bin/packages/aarch64_generic/mosdns/ ../
           rm .config .config.old
           cd ..
           echo "status=success" >> $GITHUB_OUTPUT
@@ -134,7 +148,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{needs.job_check.outputs.mosdns_version}}
-          files: ${{ env.FIRMWARE }}/mosdns/luci*.ipk
+          files: ${{ env.FIRMWARE }}/mosdns/*.ipk
 
 
   job_auto_compile:
