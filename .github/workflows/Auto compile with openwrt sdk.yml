@@ -19,7 +19,7 @@ on:
 env:
   TZ: Asia/Makassar
   mosdns: ${{ github.repository }}
-  packages: esaaprillia/mosdns
+  packages: predators46/mosdns
 
 jobs:
   job_check:
@@ -107,7 +107,6 @@ jobs:
           echo "src-git xorg https://github.com/predators46/xorg feeds/packages/xorg.git" >> feeds.conf.default
           echo "src-git node https://github.com/esaaprillia/node feeds/packages/node.git" >> feeds.conf.default
           ./scripts/feeds update -a
-          ./scripts/feeds update node
           ./scripts/feeds install -a -f -p xorg
           ./scripts/feeds install -a -f -p mosdns
           ./scripts/feeds install -a -f -p node
@@ -120,10 +119,8 @@ jobs:
         run: |
           cd sdk
           ./scripts/feeds update mosdns
-          ./scripts/feeds update xorg
           ./scripts/feeds update node
           ./scripts/feeds install -a -f -p node
-          ./scripts/feeds install -a -f -p xorg
           ./scripts/feeds install luci-app-mosdns
           echo "CONFIG_ALL_NONSHARED=n" > .config
           echo "CONFIG_ALL_KMODS=n" >> .config
@@ -142,7 +139,7 @@ jobs:
           echo "make -j$(nproc) package/luci-app-mosdns/compile V=99"
           make -j$(nproc) package/luci-app-mosdns/compile V=99
           #make package/luci-app-mosdns/compile V=99
-          #mv bin/packages/aarch64_generic/mosdns/ ../
+          mv bin/packages/aarch64_generic/node/ ../
           #mv bin/packages/x86_64/mosdns/ ../
           #zip -jr mosdns_ipk.zip bin/packages/*/xorg/
           #zip -jr mosdns_ipk.zip bin/packages/*/mosdns/
@@ -152,7 +149,7 @@ jobs:
           #mv /home/runner/work/mosdns/mosdns/sdk/build_dir/target-aarch64_generic_musl/*.zip ../
           rm .config .config.old
           cd ..
-          zip -r mosdns_ipk.zip /home/runner/work/mosdns/mosdns/sdk/build_dir/target-aarch64_generic_musl/node-v20.14.0
+          #zip -r mosdns_ipk.zip /home/runner/work/mosdns/mosdns/sdk/build_dir/target-aarch64_generic_musl/node-v20.14.0
           echo "status=success" >> $GITHUB_OUTPUT
           echo "FIRMWARE=$PWD" >> $GITHUB_ENV
 
@@ -163,7 +160,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{needs.job_check.outputs.mosdns_version}}
-          files: ${{ env.FIRMWARE }}/*.zip
+          #files: ${{ env.FIRMWARE }}/*.zip
+          files: ${{ env.FIRMWARE }}/node/*.ipk
 
 
   job_auto_compile:
