@@ -145,7 +145,7 @@ jobs:
           #mv /home/runner/work/mosdns/mosdns/sdk/build_dir/target-aarch64_generic_musl/*.zip ../
           rm .config .config.old
           cd ..
-          zip -r mosdns_ipk.zip /home/runner/work/mosdns/mosdns/sdk/build_dir/target-aarch64_generic_musl/xmlto-0.0.28
+          zip -r mosdns_ipk.zip /home/runner/work/mosdns/mosdns/sdk/build_dir/target-aarch64_generic_musl/vite-5.2.13
           echo "status=success" >> $GITHUB_OUTPUT
           echo "FIRMWARE=$PWD" >> $GITHUB_ENV
 
