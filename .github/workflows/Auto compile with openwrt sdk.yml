@@ -110,7 +110,6 @@ jobs:
           ./scripts/feeds install -a -f -p mosdns
           ./scripts/feeds install luci-app-mosdns
           echo "CONFIG_PACKAGE_luci-app-mosdns=m" > .config
-          ./scripts/feeds install -a -f -p xorg
           ./scripts/feeds install -d n luci-app-mosdns
           make download V=99
 
@@ -118,6 +117,7 @@ jobs:
         run: |
           cd sdk
           ./scripts/feeds update mosdns
+          ./scripts/feeds update xorg
           ./scripts/feeds install -a -f -p xorg
           ./scripts/feeds install luci-app-mosdns
           echo "CONFIG_ALL_NONSHARED=n" > .config
