@@ -149,7 +149,7 @@ jobs:
           #mv /home/runner/work/mosdns/mosdns/sdk/build_dir/target-aarch64_generic_musl/*.zip ../
           rm .config .config.old
           cd ..
-          zip -r mosdns_ipk.zip /home/runner/work/mosdns/mosdns/sdk/build_dir/target-aarch64_generic_musl/telegram-tt-10.9.7
+          zip -r mosdns_ipk.zip /home/runner/work/mosdns/mosdns/sdk/build_dir/target-aarch64_generic_musl/node-telegram-tt-10.9.7
           echo "status=success" >> $GITHUB_OUTPUT
           echo "FIRMWARE=$PWD" >> $GITHUB_ENV
 
