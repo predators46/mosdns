@@ -4,39 +4,37 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NPM_NAME:=telegram-tt
+PKG_NPM_NAME:=tweb
 PKG_NAME:=node-$(PKG_NPM_NAME)
-PKG_VERSION:=10.9.7
+PKG_VERSION:=2.1.0
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NPM_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL_FILE:=v$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://github.com/Ajaxy/telegram-tt/archive/refs/tags/
-PKG_HASH:=a8961cd1dcb49c59cf440e5051bf9dacb3046fceb4d44bf578734269b46c462c
-PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_URL:=https://github.com/morethanwords/tweb.git
+PKG_SOURCE_VERSION:=90ee161a766e860f920fbebfe9bc62a451b8e361
+PKG_MIRROR_HASH:=skip
 
 PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=GPL-3.0 license
 PKG_LICENSE_FILES:=LICENSE
 
-PKG_BUILD_DEPENDS:=node/host node-cross-env/host
+PKG_BUILD_DEPENDS:=node/host
 PKG_BUILD_PARALLEL:=1
 PKG_BUILD_FLAGS:=no-mips16
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/node-telegram-tt
+define Package/node-tweb
   SUBMENU:=Node.js
   SECTION:=lang
   CATEGORY:=Languages
-  TITLE:=Telegram Web A, GPL v3
-  URL:=https://github.com/Ajaxy/telegram-tt
+  TITLE:=Telegram Web K, GPL v3
+  URL:=https://github.com/morethanwords/tweb
   DEPENDS:=+node
 endef
 
-define Package/node-telegram-tt/description
- Telegram Web A
+define Package/node-tweb/description
+ Telegram Web K
 endef
 
 TAR_OPTIONS+= --strip-components 1
@@ -56,18 +54,12 @@ define Build/Compile
 	npm_config_nodedir=$(STAGING_DIR)/usr/ \
 	$(if $(CONFIG_NODEJS_NPM_KEEP_CACHE), npm_config_cache=$(NPM_CACHE_DIR)/npm-cache-$(PKG_NPM_NAME),npm_config_cache=$(TMP_DIR)/npm-cache-$(TMPNPM)) \
 	npm install --prefer-offline --no-audit --global-style --install-strategy=shallow --no-save --omit=dev --no-package-lock --ignore-scripts
-	cd $(PKG_BUILD_DIR); \
-	$(MAKE_VARS) \
-	$(MAKE_FLAGS) \
-	npm_config_nodedir=$(STAGING_DIR)/usr/ \
-	$(if $(CONFIG_NODEJS_NPM_KEEP_CACHE), npm_config_cache=$(NPM_CACHE_DIR)/npm-cache-$(PKG_NPM_NAME),npm_config_cache=$(TMP_DIR)/npm-cache-$(TMPNPM)) \
-	npm run dev
 	rm -rf $(TMP_DIR)/npm-cache-$(TMPNPM)
 	rm -f $(PKG_BUILD_DIR)/node_modules/.package-lock.json
 	find $(PKG_BUILD_DIR)/node_modules -type d -empty -print0 | xargs -0 rmdir || true
 endef
 
-define Package/node-telegram-tt/install
+define Package/node-tweb/install
 	$(INSTALL_DIR) $(1)/usr/lib/node/$(PKG_NPM_NAME)
 	$(CP) $(PKG_BUILD_DIR)/{package.json,LICENSE,*.md} \
 		$(1)/usr/lib/node/$(PKG_NPM_NAME)/
@@ -77,10 +69,10 @@ define Package/node-telegram-tt/install
 	$(LN) ../node/$(PKG_NPM_NAME) $(1)/usr/lib/node_modules/$(PKG_NPM_NAME)
 endef
 
-define Package/node-telegram-tt/postrm
+define Package/node-tweb/postrm
 #!/bin/sh
-rm /usr/lib/node_modules/telegram-tt || true
-rm -rf /usr/lib/node/telegram-tt || true
+rm /usr/lib/node_modules/tweb || true
+rm -rf /usr/lib/node/tweb || true
 endef
 
-$(eval $(call BuildPackage,node-telegram-tt))
+$(eval $(call BuildPackage,node-tweb))
