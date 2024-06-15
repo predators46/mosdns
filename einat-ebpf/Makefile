@@ -12,7 +12,7 @@ PKG_MAINTAINER:=Anya Lin <hukk1996@gmail.com>
 PKG_LICENSE:=GPL-2.0-or-later GPL-2.0-only
 PKG_LICENSE_FILES:=LICENSE
 
-PKG_BUILD_DEPENDS:=rustup/host elfutils/host
+PKG_BUILD_DEPENDS:=rustup/host
 PKG_BUILD_PARALLEL:=1
 PKG_BUILD_FLAGS:=no-mips16
 
@@ -71,7 +71,9 @@ define Build/Compile
   TARGET_CXX=$(TARGET_CXX_NOCACHE) \
   TARGET_LINKER=$(TARGET_CC_NOCACHE) \
   TARGET_RANLIB=$(TARGET_RANLIB) \
-  $(CARGO) $(CARGO_PKG_CONFIG_ARGS) --no-default-features
+  TARGET_CPPFLAGS+="-I$(STAGING_DIR)/usr/include" \
+  TARGET_LDFLAGS+="-L$(STAGING_DIR)/usr/lib -lelf" \
+  $(CARGO) $(CARGO_PKG_CONFIG_ARGS)
 endef
 
 define Package/$(PKG_NAME)/install
