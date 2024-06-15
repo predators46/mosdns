@@ -119,10 +119,10 @@ jobs:
         run: |
           cd sdk
           ./scripts/feeds update mosdns
-          ./scripts/feeds update node
           ./scripts/feeds update xorg
-          ./scripts/feeds install -a -f -p node
+          ./scripts/feeds update node
           ./scripts/feeds install -a -f -p xorg
+          ./scripts/feeds install -a -f -p node
           ./scripts/feeds install luci-app-mosdns
           echo "CONFIG_ALL_NONSHARED=n" > .config
           echo "CONFIG_ALL_KMODS=n" >> .config
@@ -142,7 +142,7 @@ jobs:
           make -j$(nproc) package/luci-app-mosdns/compile V=99
           #make package/luci-app-mosdns/compile V=99
           #mv bin/packages/aarch64_generic/node/ ../
-          mv bin/packages/aarch64_generic/xorg/ ../
+          mv bin/packages/aarch64_generic/mosdns/ ../
           #mv bin/packages/x86_64/mosdns/ ../
           #zip -jr mosdns_ipk.zip bin/packages/*/xorg/
           #zip -jr mosdns_ipk.zip bin/packages/*/mosdns/
@@ -164,7 +164,7 @@ jobs:
         with:
           tag_name: ${{needs.job_check.outputs.mosdns_version}}
           #files: ${{ env.FIRMWARE }}/*.zip
-          files: ${{ env.FIRMWARE }}/xorg/*.ipk
+          files: ${{ env.FIRMWARE }}/mosdns/*.ipk
 
 
   job_auto_compile:
