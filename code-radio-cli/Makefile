@@ -24,7 +24,7 @@ define Package/code-radio-cli
   SECTION:=sound
   CATEGORY:=Sound
   TITLE:=A command line music radio client
-  DEPENDS:=$(RUST_ARCH_DEPENDS) +alsa-lib ++libopenssl
+  DEPENDS:=$(RUST_ARCH_DEPENDS) +alsa-lib +libopenssl
   URL:=https://github.com/JasonWei512/code-radio-cli
 endef
 
