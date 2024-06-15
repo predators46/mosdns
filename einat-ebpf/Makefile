@@ -17,32 +17,53 @@ PKG_BUILD_PARALLEL:=1
 PKG_BUILD_FLAGS:=no-mips16
 
 include $(INCLUDE_DIR)/package.mk
-#include $(INCLUDE_DIR)/bpf.mk
-include $(TOPDIR)/feeds/xorg/rust/rust-package.mk
+include $(INCLUDE_DIR)/bpf.mk
+include $(TOPDIR)/feeds/packages/lang/rust/rust-package.mk
 
-define Package/einat-ebpf
+define Package/$(PKG_NAME)
   SECTION:=net
   CATEGORY:=Network
   SUBMENU:=Routing and Redirection
   TITLE:=eBPF-based Endpoint-Independent NAT
   URL:=https://github.com/EHfive/einat-ebpf
   # You need enable KERNEL_DEBUG_INFO_BTF and disable KERNEL_DEBUG_INFO_REDUCED
-  DEPENDS:=$(RUST_ARCH_DEPENDS) $(BPF_DEPENDS) +libelf +zlib +kmod-sched-core +kmod-sched-bpf
+  DEPENDS:=$(RUST_ARCH_DEPENDS) $(BPF_DEPENDS) +libelf +zlib +kmod-sched-core +kmod-sched-bpf \
+    +@KERNEL_DEBUG_FS +@KERNEL_DEBUG_INFO_BTF
   USERID:=einat:einat
   PROVIDES:=einat
 endef
 
-define Package/einat-ebpf/description
+define Package/$(PKG_NAME)/description
   This eBPF application implements an "Endpoint-Independent Mapping" and
   "Endpoint-Independent Filtering" NAT(network address translation) on
   TC egress and ingress hooks.
 endef
 
-define Package/einat-ebpf/conffiles
+define Package/$(PKG_NAME)/config
+	menu "Features configuration"
+		depends on PACKAGE_einat-ebpf
+
+		config EINAT_EBPF_IPV6
+			bool "Enable IPV6 NAT66 feature"
+			default n
+			help
+			  It would increase load time of eBPF programs to
+			  about 4 times.
+	endmenu
+endef
+
+PKG_CONFIG_DEPENDS:= \
+	CONFIG_EINAT_EBPF_IPV6
+
+RUST_PKG_FEATURES:=$(subst $(space),$(comma),$(strip \
+	$(if $(CONFIG_EINAT_EBPF_IPV6),ipv6) \
+))
+
+define Package/$(PKG_NAME)/conffiles
 /etc/config/einat
 endef
 
-define Package/einat-ebpf/install
+define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)/usr/bin/
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/bin/einat $(1)/usr/bin/
 
@@ -56,5 +77,5 @@ define Package/einat-ebpf/install
 	$(INSTALL_CONF) $(CURDIR)/files/capabilities.json $(1)/etc/capabilities/einat.json
 endef
 
-$(eval $(call RustBinPackage,einat-ebpf))
-$(eval $(call BuildPackage,einat-ebpf))
+$(eval $(call RustBinPackage,$(PKG_NAME)))
+$(eval $(call BuildPackage,$(PKG_NAME)))
