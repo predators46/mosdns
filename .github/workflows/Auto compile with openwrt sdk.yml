@@ -140,7 +140,7 @@ jobs:
           make -j$(nproc) package/luci-app-mosdns/compile V=99
           #make package/luci-app-mosdns/compile V=99
           #mv bin/packages/aarch64_generic/node/ ../
-          mv bin/packages/aarch64_generic/xorg/ ../
+          mv bin/packages/aarch64_generic/packages/ ../
           #mv bin/packages/x86_64/mosdns/ ../
           #zip -jr mosdns_ipk.zip bin/packages/*/xorg/
           #zip -jr mosdns_ipk.zip bin/packages/*/mosdns/
@@ -162,7 +162,7 @@ jobs:
         with:
           tag_name: ${{needs.job_check.outputs.mosdns_version}}
           #files: ${{ env.FIRMWARE }}/*.zip
-          files: ${{ env.FIRMWARE }}/node/*.ipk
+          files: ${{ env.FIRMWARE }}/packages/*.ipk
 
 
   job_auto_compile:
