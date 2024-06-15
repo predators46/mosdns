@@ -18,7 +18,7 @@ PKG_BUILD_FLAGS:=no-mips16
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/bpf.mk
-include $(TOPDIR)/feeds/packages/lang/rust/rust-package.mk
+include $(TOPDIR)/feeds/xorg/rust/rust-package.mk
 
 define Package/$(PKG_NAME)
   SECTION:=net
