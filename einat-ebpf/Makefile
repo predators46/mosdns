@@ -20,7 +20,7 @@ include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/bpf.mk
 include $(TOPDIR)/feeds/packages/xorg/rust/rust-package.mk
 
-define Package/$(PKG_NAME)
+define Package/einat-ebpf
   SECTION:=net
   CATEGORY:=Network
   SUBMENU:=Routing and Redirection
@@ -33,13 +33,13 @@ define Package/$(PKG_NAME)
   PROVIDES:=einat
 endef
 
-define Package/$(PKG_NAME)/description
+define Package/einat-ebpf/description
   This eBPF application implements an "Endpoint-Independent Mapping" and
   "Endpoint-Independent Filtering" NAT(network address translation) on
   TC egress and ingress hooks.
 endef
 
-define Package/$(PKG_NAME)/config
+define Package/einat-ebpf/config
 	menu "Features configuration"
 		depends on PACKAGE_einat-ebpf
 
@@ -59,11 +59,11 @@ RUST_PKG_FEATURES:=$(subst $(space),$(comma),$(strip \
 	$(if $(CONFIG_EINAT_EBPF_IPV6),ipv6) \
 ))
 
-define Package/$(PKG_NAME)/conffiles
+define Package/einat-ebpf/conffiles
 /etc/config/einat
 endef
 
-define Package/$(PKG_NAME)/install
+define Package/einat-ebpf/install
 	$(INSTALL_DIR) $(1)/usr/bin/
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/bin/einat $(1)/usr/bin/
 
@@ -77,5 +77,5 @@ define Package/$(PKG_NAME)/install
 	$(INSTALL_CONF) $(CURDIR)/files/capabilities.json $(1)/etc/capabilities/einat.json
 endef
 
-$(eval $(call RustBinPackage,$(PKG_NAME))
-$(eval $(call BuildPackage,$(PKG_NAME))
+$(eval $(call RustBinPackage,einat-ebpf))
+$(eval $(call BuildPackage,einat-ebpf))
