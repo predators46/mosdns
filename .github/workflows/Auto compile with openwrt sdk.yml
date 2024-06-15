@@ -120,6 +120,7 @@ jobs:
           cd sdk
           ./scripts/feeds update mosdns
           ./scripts/feeds update node
+          ./scripts/feeds update xorg
           ./scripts/feeds install -a -f -p node
           ./scripts/feeds install luci-app-mosdns
           echo "CONFIG_ALL_NONSHARED=n" > .config
