@@ -92,6 +92,7 @@ jobs:
         with:
           path: sdk
           key: openwrt-sdk-23.05.3-armsr-armv8
+          restore-keys: openwrt-sdk-23.05.3-armsr-armv8
 
       - name: Initialization environment
         if: steps.cache-sdk.outputs.cache-hit != 'true'
