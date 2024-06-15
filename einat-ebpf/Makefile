@@ -63,6 +63,8 @@ define Package/$(PKG_NAME)/conffiles
 /etc/config/einat
 endef
 
+TARGET_LDFLAGS += $(TOOLCHAIN_ROOT_DIR)
+
 define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)/usr/bin/
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/bin/einat $(1)/usr/bin/
