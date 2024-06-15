@@ -19,7 +19,7 @@ on:
 env:
   TZ: Asia/Makassar
   mosdns: ${{ github.repository }}
-  packages: predators46/mosdns
+  packages: firmwarecostum/mosdns
 
 jobs:
   job_check:
@@ -92,7 +92,6 @@ jobs:
         with:
           path: sdk
           key: openwrt-sdk-23.05.3-armsr-armv8
-          restore-keys: openwrt-sdk-23.05.3-armsr-armv8
 
       - name: Initialization environment
         if: steps.cache-sdk.outputs.cache-hit != 'true'
