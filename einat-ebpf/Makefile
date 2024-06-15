@@ -17,8 +17,8 @@ PKG_BUILD_PARALLEL:=1
 PKG_BUILD_FLAGS:=no-mips16
 
 include $(INCLUDE_DIR)/package.mk
-include $(INCLUDE_DIR)/bpf.mk
-include $(TOPDIR)/feeds/xorg/rust/rust-package.mk
+#include $(INCLUDE_DIR)/bpf.mk
+include $(TOPDIR)/feeds/packages/xorg/rust/rust-package.mk
 
 define Package/einat-ebpf
   SECTION:=net
@@ -27,7 +27,7 @@ define Package/einat-ebpf
   TITLE:=eBPF-based Endpoint-Independent NAT
   URL:=https://github.com/EHfive/einat-ebpf
   # You need enable KERNEL_DEBUG_INFO_BTF and disable KERNEL_DEBUG_INFO_REDUCED
-  DEPENDS:=$(RUST_ARCH_DEPENDS) $(BPF_DEPENDS) +libelf +zlib +kmod-sched-core +kmod-sched-bpf +@KERNEL_DEBUG_FS +@KERNEL_DEBUG_INFO_BTF
+  DEPENDS:=$(RUST_ARCH_DEPENDS) $(BPF_DEPENDS) +libelf +zlib +kmod-sched-core +kmod-sched-bpf
   USERID:=einat:einat
   PROVIDES:=einat
 endef
