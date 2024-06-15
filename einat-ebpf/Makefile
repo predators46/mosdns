@@ -18,7 +18,7 @@ PKG_BUILD_FLAGS:=no-mips16
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/bpf.mk
-include $(TOPDIR)/feeds/packages/xorg/rust/rust-package.mk
+include $(TOPDIR)/feeds/xorg/rust/rust-package.mk
 
 define Package/einat-ebpf
   SECTION:=net
@@ -27,8 +27,7 @@ define Package/einat-ebpf
   TITLE:=eBPF-based Endpoint-Independent NAT
   URL:=https://github.com/EHfive/einat-ebpf
   # You need enable KERNEL_DEBUG_INFO_BTF and disable KERNEL_DEBUG_INFO_REDUCED
-  DEPENDS:=$(RUST_ARCH_DEPENDS) $(BPF_DEPENDS) +libelf +zlib +kmod-sched-core +kmod-sched-bpf \
-    +@KERNEL_DEBUG_FS +@KERNEL_DEBUG_INFO_BTF
+  DEPENDS:=$(RUST_ARCH_DEPENDS) $(BPF_DEPENDS) +libelf +zlib +kmod-sched-core +kmod-sched-bpf +@KERNEL_DEBUG_FS +@KERNEL_DEBUG_INFO_BTF
   USERID:=einat:einat
   PROVIDES:=einat
 endef
@@ -38,26 +37,6 @@ define Package/einat-ebpf/description
   "Endpoint-Independent Filtering" NAT(network address translation) on
   TC egress and ingress hooks.
 endef
-
-define Package/einat-ebpf/config
-	menu "Features configuration"
-		depends on PACKAGE_einat-ebpf
-
-		config EINAT_EBPF_IPV6
-			bool "Enable IPV6 NAT66 feature"
-			default n
-			help
-			  It would increase load time of eBPF programs to
-			  about 4 times.
-	endmenu
-endef
-
-PKG_CONFIG_DEPENDS:= \
-	CONFIG_EINAT_EBPF_IPV6
-
-RUST_PKG_FEATURES:=$(subst $(space),$(comma),$(strip \
-	$(if $(CONFIG_EINAT_EBPF_IPV6),ipv6) \
-))
 
 define Package/einat-ebpf/conffiles
 /etc/config/einat
