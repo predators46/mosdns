@@ -71,7 +71,7 @@ define Build/Compile
   TARGET_CXX=$(TARGET_CXX_NOCACHE) \
   TARGET_LINKER=$(TARGET_CC_NOCACHE) \
   TARGET_RANLIB=$(TARGET_RANLIB) \
-  $(CARGO) $(CARGO_PKG_CONFIG_ARGS)
+  $(CARGO) $(CARGO_PKG_CONFIG_ARGS) --no-default-features
 endef
 
 define Package/$(PKG_NAME)/install
