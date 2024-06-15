@@ -77,5 +77,5 @@ define Package/$(PKG_NAME)/install
 	$(INSTALL_CONF) $(CURDIR)/files/capabilities.json $(1)/etc/capabilities/einat.json
 endef
 
-$(eval $(call RustBinPackage,$(PKG_NAME)))
-$(eval $(call BuildPackage,$(PKG_NAME)))
+$(eval $(call RustBinPackage,$(PKG_NAME))
+$(eval $(call BuildPackage,$(PKG_NAME))
