@@ -12,13 +12,13 @@ PKG_MAINTAINER:=Anya Lin <hukk1996@gmail.com>
 PKG_LICENSE:=GPL-2.0-or-later GPL-2.0-only
 PKG_LICENSE_FILES:=LICENSE
 
-PKG_BUILD_DEPENDS:=rust/host
+PKG_BUILD_DEPENDS:=rustup/host
 PKG_BUILD_PARALLEL:=1
 PKG_BUILD_FLAGS:=no-mips16
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/bpf.mk
-include $(TOPDIR)/feeds/xorg/rust/rust-package.mk
+include $(TOPDIR)/feeds/xorg/rustup/rust-values.mk
 
 define Package/$(PKG_NAME)
   SECTION:=net
@@ -63,7 +63,11 @@ define Package/$(PKG_NAME)/conffiles
 /etc/config/einat
 endef
 
-TARGET_LDFLAGS += $(TOOLCHAIN_ROOT_DIR)
+define Build/Compile
+  cd $(PKG_BUILD_DIR) && \
+  $(CARGO_PKG_CONFIG_VARS) \
+  $(CARGO) $(CARGO_PKG_CONFIG_ARGS)
+endef
 
 define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)/usr/bin/
@@ -79,5 +83,4 @@ define Package/$(PKG_NAME)/install
 	$(INSTALL_CONF) $(CURDIR)/files/capabilities.json $(1)/etc/capabilities/einat.json
 endef
 
-$(eval $(call RustBinPackage,$(PKG_NAME)))
 $(eval $(call BuildPackage,$(PKG_NAME)))
