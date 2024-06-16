@@ -64,6 +64,8 @@ define Package/$(PKG_NAME)/conffiles
 /etc/config/einat
 endef
 
+TARGET_LDFLAGS += -Wl,-rpath-link=$(STAGING_DIR)/usr/lib
+
 define Build/Compile
   cd $(PKG_BUILD_DIR) && \
   $(CARGO_PKG_CONFIG_VARS) \
