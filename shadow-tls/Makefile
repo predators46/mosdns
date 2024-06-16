@@ -24,7 +24,7 @@ define Package/shadow-tls
   SECTION:=net
   CATEGORY:=Network
   TITLE:=A proxy to expose real tls handshake to the firewall.
-  DEPENDS:=@USE_MUSL @(aarch64||arm||x86_64) @!(TARGET_x86_geode||TARGET_x86_legacy)
+  DEPENDS:=$(RUST_ARCH_DEPENDS)
   URL:=https://github.com/ihciah/shadow-tls
 endef
 
