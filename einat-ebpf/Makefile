@@ -27,7 +27,7 @@ define Package/$(PKG_NAME)
   TITLE:=eBPF-based Endpoint-Independent NAT
   URL:=https://github.com/EHfive/einat-ebpf
   # You need enable KERNEL_DEBUG_INFO_BTF and disable KERNEL_DEBUG_INFO_REDUCED
-  DEPENDS:=$(RUST_ARCH_DEPENDS) $(BPF_DEPENDS) +libelf +libbpf +zlib +kmod-sched-core +kmod-sched-bpf \
+  DEPENDS:=$(RUST_ARCH_DEPENDS) $(BPF_DEPENDS) +libelf +zlib +kmod-sched-core +kmod-sched-bpf \
     +@KERNEL_DEBUG_FS +@KERNEL_DEBUG_INFO_BTF
   USERID:=einat:einat
   PROVIDES:=einat
@@ -71,8 +71,7 @@ define Build/Compile
   TARGET_CXX=$(TARGET_CXX_NOCACHE) \
   TARGET_LINKER=$(TARGET_CC_NOCACHE) \
   TARGET_RANLIB=$(TARGET_RANLIB) \
-  TARGET_CPPFLAGS+="-I$(STAGING_DIR)/usr/include" \
-  TARGET_LDFLAGS+="-L$(STAGING_DIR)/usr/lib -lelf" \
+  RUSTFLAGS="-C linker=$(TARGET_CC_NOCACHE) -C ar=$(TARGET_AR)" \
   $(CARGO) $(CARGO_PKG_CONFIG_ARGS)
 endef
 
