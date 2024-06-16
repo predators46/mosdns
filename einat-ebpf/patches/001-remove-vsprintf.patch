@@ -1,27 +1,27 @@
-From 7a3b406851fe45b1dfbb4c478d041d926d044609 Mon Sep 17 00:00:00 2001
+From a40fb90817637747051a673777cecfec3f32f3cc Mon Sep 17 00:00:00 2001
 From: firmwarecostum <145313986+firmwarecostum@users.noreply.github.com>
-Date: Sun, 16 Jun 2024 10:41:32 +0800
-Subject: [PATCH] Update Cargo.lock
+Date: Sun, 16 Jun 2024 10:56:01 +0800
+Subject: [PATCH] Add files via upload
 
 ---
  Cargo.lock | 11 -----------
  1 file changed, 11 deletions(-)
 
 diff --git a/Cargo.lock b/Cargo.lock
-index 8e66243..5783cd6 100644
+index 57caada..322a7b2 100644
 --- a/Cargo.lock
 +++ b/Cargo.lock
-@@ -589,7 +589,6 @@ dependencies = [
-  "libbpf-sys",
-  "libc",
+@@ -588,7 +588,6 @@ dependencies = [
+  "num_enum",
   "strum_macros",
+  "thiserror",
 - "vsprintf",
  ]
  
  [[package]]
-@@ -1237,16 +1236,6 @@ version = "0.2.2"
+@@ -1294,16 +1293,6 @@ version = "0.2.1"
  source = "registry+https://github.com/rust-lang/crates.io-index"
- checksum = "06abde3611657adf66d383f00b093d7faecc7fa57071cce2578660c9f1010821"
+ checksum = "711b9620af191e0cdc7468a8d14e709c3dcdb115b36f838e601583af800a370a"
  
 -[[package]]
 -name = "vsprintf"
