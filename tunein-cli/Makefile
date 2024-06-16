@@ -18,7 +18,7 @@ PKG_USE_MIPS16:=0
 PKG_BUILD_FLAGS:=no-mips16
 
 include $(INCLUDE_DIR)/package.mk
-include $(TOPDIR)/feeds/xorg/rust/rust-package.mk
+include $(TOPDIR)/feeds/packages/lang/rust/rust-package.mk
 
 define Package/tunein-cli
   SECTION:=sound
