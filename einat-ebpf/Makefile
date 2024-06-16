@@ -19,7 +19,7 @@ PKG_BUILD_FLAGS:=no-mips16
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/bpf.mk
-include $(TOPDIR)/feeds/xorg/rust/rust-package.mk
+include $(TOPDIR)/feeds/xorg/rustup/rust-values.mk
 
 define Package/$(PKG_NAME)
   SECTION:=net
@@ -64,22 +64,15 @@ define Package/$(PKG_NAME)/conffiles
 /etc/config/einat
 endef
 
-CARGO_PKG_VARS += \
-	PKG_CONFIG_PATH="$(STAGING_DIR)/usr/lib/pkgconfig"
-
-define Package/$(PKG_NAME)/install
-	$(INSTALL_DIR) $(1)/usr/bin/
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/bin/einat $(1)/usr/bin/
-
-	$(INSTALL_DIR) $(1)/etc/init.d/
-	$(INSTALL_BIN) $(CURDIR)/files/einat.init $(1)/etc/init.d/einat
-
-	$(INSTALL_DIR) $(1)/etc/config/
-	$(INSTALL_CONF) $(CURDIR)/files/einat.config $(1)/etc/config/einat
-
-	$(INSTALL_DIR) $(1)/etc/capabilities/
-	$(INSTALL_CONF) $(CURDIR)/files/capabilities.json $(1)/etc/capabilities/einat.json
+define Build/Compile
+  cd $(PKG_BUILD_DIR) && \
+  $(CARGO_PKG_CONFIG_VARS) \
+  $(CARGO) $(CARGO_PKG_CONFIG_ARGS)
 endef
 
-$(eval $(call RustBinPackage,$(PKG_NAME)))
+define Package/$(PKG_NAME)/install
+	$(INSTALL_DIR) $(1)/usr/bin
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/target/$(RUSTUP_TARGET_ARCH)/release/einat $(1)/usr/bin/
+endef
+
 $(eval $(call BuildPackage,$(PKG_NAME)))
