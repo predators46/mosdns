@@ -175,7 +175,7 @@
 +	$(RMS) perl.export perl.dll perl.libexp perl.map perl.def
 +	$(RMS) *perl.xok
 +	$(RMS) cygwin.c libperl*.def libperl*.dll cygperl*.dll *.exe.stackdump
-+	$(RMS) $(PERL_EXE) $(MINIPERL_EXE) $(LIBPERL) libperl.* microperl
++	$(RMS) $(PERL_EXE) $(MINIPERL_EXE) $(LIBPERL) libperl.*
 +	$(RMS) config.arch config.over $(DTRACE_H)
  
  _cleaner1:
