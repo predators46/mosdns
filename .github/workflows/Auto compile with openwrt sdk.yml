@@ -271,6 +271,8 @@ jobs:
           ./scripts/feeds install -a -f -p mosdns
           ./scripts/feeds install luci-app-mosdns
 
+          rm -rf feeds/packages/lang/perl
+
           echo "CONFIG_ALL_NONSHARED=n" > .config
           echo "CONFIG_ALL_KMODS=n" >> .config
           echo "CONFIG_ALL=n" >> .config
