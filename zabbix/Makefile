@@ -84,6 +84,14 @@ define Package/zabbix-agentd-gnutls
   VARIANT:=gnutls
 endef
 
+define Package/zabbix-agentd-curl
+  $(call Package/zabbix/Default)
+  TITLE+= agentd (with cURL)
+  DEPENDS+= +libcurl
+  PROVIDES:=zabbix-agentd
+  VARIANT:=curl
+endef
+
 define Package/zabbix-extra-mac80211
   $(call Package/zabbix/Default)
   TITLE+= discovery/userparameters for mac80211
@@ -126,6 +134,14 @@ define Package/zabbix-sender-gnutls
   VARIANT:=gnutls
 endef
 
+define Package/zabbix-sender-curl
+  $(call Package/zabbix/Default)
+  TITLE+= sender (with cURL)
+  DEPENDS+= +libcurl
+  PROVIDES:=zabbix-sender
+  VARIANT:=curl
+endef
+
 define Package/zabbix-get
   $(call Package/zabbix/Default)
   TITLE+= get
@@ -148,6 +164,14 @@ define Package/zabbix-get-gnutls
   DEPENDS+= +libgnutls
   PROVIDES:=zabbix-get
   VARIANT:=gnutls
+endef
+
+define Package/zabbix-get-curl
+  $(call Package/zabbix/Default)
+  TITLE+= get (with cURL)
+  DEPENDS+= +libcurl
+  PROVIDES:=zabbix-get
+  VARIANT:=curl
 endef
 
 define Package/zabbix-server/Default
@@ -182,6 +206,14 @@ define Package/zabbix-server-gnutls
   PROVIDES:=zabbix-server
   DEPENDS+= +libgnutls
   VARIANT:=gnutls
+endef
+
+define Package/zabbix-server-curl
+  $(call Package/zabbix-server/Default)
+  TITLE+= (with cURL)
+  PROVIDES:=zabbix-server
+  DEPENDS+= +libcurl
+  VARIANT:=curl
 endef
 
 define Package/zabbix-server-frontend
@@ -237,6 +269,14 @@ define Package/zabbix-proxy-gnutls
   VARIANT:=gnutls
 endef
 
+define Package/zabbix-proxy-curl
+  $(call Package/zabbix-proxy/Default)
+  TITLE+= (with cURL)
+  PROVIDES:=zabbix-proxy
+  DEPENDS+= +libcurl
+  VARIANT:=curl
+endef
+
 define Package/zabbix-extra-mac80211/description
 An extra package for zabbix-agentd that adds a discovery rule for mac80211 wifi phy and many userparameters.
 It contains an suid helper to allow zabbix-agentd to still run as zabbix user and not as root.
@@ -274,6 +314,10 @@ endif
 
 ifeq ($(BUILD_VARIANT),gnutls)
 	CONFIGURE_ARGS+= --with-gnutls="$(STAGING_DIR)/usr"
+endif
+
+ifeq ($(BUILD_VARIANT),curl)
+	CONFIGURE_ARGS+= --with-libcurl="$(STAGING_DIR)/usr"
 endif
 
 CONFIGURE_VARS += \
@@ -331,18 +375,21 @@ define Package/zabbix-agentd/conffiles
 endef
 Package/zabbix-agentd-openssl/conffiles = $(Package/zabbix-agentd/conffiles)
 Package/zabbix-agentd-gnutls/conffiles = $(Package/zabbix-agentd/conffiles)
+Package/zabbix-agentd-curl/conffiles = $(Package/zabbix-agentd/conffiles)
 
 define Package/zabbix-server/conffiles
 /etc/zabbix_server.conf
 endef
 Package/zabbix-server-openssl/conffiles = $(Package/zabbix-server/conffiles)
 Package/zabbix-server-gnutls/conffiles = $(Package/zabbix-server/conffiles)
+Package/zabbix-server-curl/conffiles = $(Package/zabbix-server/conffiles)
 
 define Package/zabbix-proxy/conffiles
 /etc/zabbix_proxy.conf
 endef
 Package/zabbix-proxy-openssl/conffiles = $(Package/zabbix-proxy/conffiles)
 Package/zabbix-proxy-gnutls/conffiles = $(Package/zabbix-proxy/conffiles)
+Package/zabbix-proxy-curl/conffiles = $(Package/zabbix-proxy/conffiles)
 
 ifdef CONFIG_PACKAGE_zabbix-extra-mac80211
 define Build/Prepare/zabbix-extra-mac80211
@@ -373,6 +420,7 @@ define Package/zabbix-agentd/install
 endef
 Package/zabbix-agentd-openssl/install = $(Package/zabbix-agentd/install)
 Package/zabbix-agentd-gnutls/install = $(Package/zabbix-agentd/install)
+Package/zabbix-agentd-curl/install = $(Package/zabbix-agentd/install)
 
 define Package/zabbix-extra-mac80211/install
 	$(call Package/zabbix/install/zabbix.conf.d,$(1),mac80211)
@@ -412,12 +460,14 @@ define Package/zabbix-sender/install
 endef
 Package/zabbix-sender-openssl/install = $(Package/zabbix-sender/install)
 Package/zabbix-sender-gnutls/install = $(Package/zabbix-sender/install)
+Package/zabbix-sender-curl/install = $(Package/zabbix-sender/install)
 
 define Package/zabbix-get/install
 	$(call Package/zabbix/install/bin,$(1),get)
 endef
 Package/zabbix-get-openssl/install = $(Package/zabbix-get/install)
 Package/zabbix-get-gnutls/install = $(Package/zabbix-get/install)
+Package/zabbix-get-curl/install = $(Package/zabbix-get/install)
 
 define Package/zabbix-server/install
 	$(call Package/zabbix/install/sbin,$(1),server)
@@ -425,6 +475,7 @@ define Package/zabbix-server/install
 endef
 Package/zabbix-server-openssl/install = $(Package/zabbix-server/install)
 Package/zabbix-server-gnutls/install = $(Package/zabbix-server/install)
+Package/zabbix-server-curl/install = $(Package/zabbix-server/install)
 
 define Package/zabbix-server-frontend/install
 	$(INSTALL_DIR) $(1)/www/zabbix
@@ -437,23 +488,29 @@ define Package/zabbix-proxy/install
 endef
 Package/zabbix-proxy-openssl/install = $(Package/zabbix-proxy/install)
 Package/zabbix-proxy-gnutls/install = $(Package/zabbix-proxy/install)
+Package/zabbix-proxy-curl/install = $(Package/zabbix-proxy/install)
 
 $(eval $(call BuildPackage,zabbix-agentd))
 $(eval $(call BuildPackage,zabbix-agentd-openssl))
 $(eval $(call BuildPackage,zabbix-agentd-gnutls))
+$(eval $(call BuildPackage,zabbix-agentd-curl))
 $(eval $(call BuildPackage,zabbix-extra-mac80211))
 $(eval $(call BuildPackage,zabbix-extra-network))
 $(eval $(call BuildPackage,zabbix-extra-wifi))
 $(eval $(call BuildPackage,zabbix-sender))
 $(eval $(call BuildPackage,zabbix-sender-openssl))
 $(eval $(call BuildPackage,zabbix-sender-gnutls))
+$(eval $(call BuildPackage,zabbix-sender-curl))
 $(eval $(call BuildPackage,zabbix-server))
 $(eval $(call BuildPackage,zabbix-server-openssl))
 $(eval $(call BuildPackage,zabbix-server-gnutls))
+$(eval $(call BuildPackage,zabbix-server-curl))
 $(eval $(call BuildPackage,zabbix-server-frontend))
 $(eval $(call BuildPackage,zabbix-proxy))
 $(eval $(call BuildPackage,zabbix-proxy-openssl))
 $(eval $(call BuildPackage,zabbix-proxy-gnutls))
+$(eval $(call BuildPackage,zabbix-proxy-curl))
 $(eval $(call BuildPackage,zabbix-get))
 $(eval $(call BuildPackage,zabbix-get-openssl))
 $(eval $(call BuildPackage,zabbix-get-gnutls))
+$(eval $(call BuildPackage,zabbix-get-curl))
