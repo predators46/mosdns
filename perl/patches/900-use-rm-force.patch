@@ -167,7 +167,7 @@
 -	-rm -f perl.export perl.dll perl.libexp perl.map perl.def
 -	-rm -f *perl.xok
 -	-rm -f cygwin.c libperl*.def libperl*.dll cygperl*.dll *.exe.stackdump
--	-rm -f $(PERL_EXE) $(MINIPERL_EXE) $(LIBPERL) libperl.* microperl
+-	-rm -f $(PERL_EXE) $(MINIPERL_EXE) $(LIBPERL) libperl.*
 -	-rm -f config.arch config.over $(DTRACE_H)
 +	-@test -f extra.pods && $(RMS) `cat extra.pods`
 +	-@test -f vms/README_vms.pod && $(RMS) vms/README_vms.pod
