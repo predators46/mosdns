@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=freeradius3
-PKG_VERSION:=3.0.26
-PKG_RELEASE:=5
+PKG_VERSION:=3.2.4
+PKG_RELEASE:=1
 
-PKG_SOURCE:=freeradius-server-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=ftp://ftp.freeradius.org/pub/freeradius/
-PKG_HASH:=9a65314c462da4d4c4204df72c45f210de671f89317299b01f78549ac4503f59
+PKG_SOURCE:=freeradius-server-$(PKG_VERSION).tar.gz
+PKG_SOURCE_URL:=https://freeradius.org/ftp/pub/freeradius
+PKG_HASH:=fdd476949f3c991c19f14ef7199b522e5204896d139c69946381dce9b8922941
 
 PKG_MAINTAINER:=
 PKG_LICENSE:=GPL-2.0
@@ -31,7 +31,7 @@ PKG_CONFIG_DEPENDS := \
 CFLAGS += $(FPIC)
 
 include $(INCLUDE_DIR)/package.mk
-include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
+include ../../lang/python/python3-package.mk
 
 define Package/freeradius3/config
   source "$(SOURCE)/Config.in"
@@ -139,18 +139,23 @@ endef
 define Package/freeradius3-mod-cache
   $(call Package/freeradius3/Default)
   DEPENDS:=freeradius3
-  TITLE:=Cache module
+  TITLE:=DATASTORE CACHE
 endef
 
 define Package/freeradius3-mod-cache/conffiles
 /etc/freeradius3/mods-available/cache
-/etc/freeradius3/mods-available/cache_auth
 endef
 
 define Package/freeradius3-mod-cache-rbtree
   $(call Package/freeradius3/Default)
   DEPENDS:=freeradius3 +freeradius3-mod-cache
-  TITLE:=Cache Drivers rbtree
+  TITLE:=DATASTORE CACHE RBTREE
+endef
+
+define Package/freeradius3-mod-cache-redis
+  $(call Package/freeradius3/Default)
+  DEPENDS:=freeradius3 +freeradius3-mod-cache +libhiredis
+  TITLE:=DATASTORE CACHE REDIS
 endef
 
 define Package/freeradius3-mod-chap
@@ -204,6 +209,16 @@ endef
 define Package/freeradius3-mod-digest/conffiles
 /etc/freeradius3/mods-available/digest
 /etc/freeradius3/mods-enabled/digest
+endef
+
+define Package/freeradius3-mod-dpsk
+  $(call Package/freeradius3/Default)
+  DEPENDS:=freeradius3
+  TITLE:=MODULE DPSK
+endef
+
+define Package/freeradius3-mod-dpsk/conffiles
+/etc/freeradius3/mods-available/dpsk
 endef
 
 define Package/freeradius3-mod-dynamic-clients
@@ -340,6 +355,16 @@ endef
 
 define Package/freeradius3-mod-ippool/conffiles
 /etc/freeradius3/mods-available/ippool
+endef
+
+define Package/freeradius3-mod-json
+  $(call Package/freeradius3/Default)
+  DEPENDS:=freeradius3 +libjson-c
+  TITLE:=Json module
+endef
+
+define Package/freeradius3-mod-json/conffiles
+/etc/freeradius3/mods-available/json
 endef
 
 define Package/freeradius3-mod-krb5
@@ -631,6 +656,17 @@ define Package/freeradius3-mod-totp/conffiles
 /etc/freeradius3/sites-available/totp
 endef
 
+define Package/freeradius3-mod-unbound
+  $(call Package/freeradius3/Default)
+  DEPENDS:=freeradius3 +libunbound
+  TITLE:=Unbound module
+endef
+
+define Package/freeradius3-mod-unbound/conffiles
+/etc/freeradius3/mods-available/unbound
+/etc/freeradius3/mods-config/unbound
+endef
+
 define Package/freeradius3-mod-unix
   $(call Package/freeradius3/Default)
   DEPENDS:=freeradius3
@@ -713,6 +749,7 @@ CONFIGURE_ARGS+= \
 	--with-logdir=/var/log \
 	--without-pcre \
 	--without-rlm_cache_memcached \
+	--without-rlm_couchbase \
 	--without-rlm_eap_ikev2 \
 	--without-rlm_eap_tnc \
 	--without-rlm_perl \
@@ -732,6 +769,15 @@ PKG_DICTIONARIES:= \
 	rfc4072 rfc4372 rfc4675 rfc4679 rfc5580 rfc6911 \
 	microsoft \
 	wispr \
+
+ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius3-mod-cache-redis),)
+  CONFIGURE_ARGS+= \
+		--with-rlm_cache_redis \
+		--with-rlm_cache_redis-include-dir="$(STAGING_DIR)/usr/include" \
+		--with-rlm_cache_redis-lib-dir="$(STAGING_DIR)/usr/lib"
+else
+  CONFIGURE_ARGS+= --without-rlm_cache_redis
+endif
 
 ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius3-mod-eap-fast),)
   CONFIGURE_ARGS+= \
@@ -789,6 +835,14 @@ ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius3-mod-ippool),)
 		--with-rlm_ippool-lib-dir="$(STAGING_DIR)/usr/lib"
 else
   CONFIGURE_ARGS+= --without-rlm_ippool
+endif
+
+ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius3-mod-json),)
+  CONFIGURE_ARGS+= --with-rlm_json \
+		--with-rlm_json-include-dir="$(STAGING_DIR)/usr/include" \
+		--with-rlm_json-lib-dir="$(STAGING_DIR)/usr/lib"
+else
+  CONFIGURE_ARGS+= --without-rlm_json
 endif
 
 ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius3-mod-ldap),)
@@ -883,6 +937,15 @@ ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius3-mod-sqlippool),)
   CONFIGURE_ARGS+= --with-rlm_sqlippool
 else
   CONFIGURE_ARGS+= --without-rlm_sqlippool
+endif
+
+ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius3-mod-unbound),)
+  CONFIGURE_ARGS+= \
+		--with-rlm_unbound \
+		--with-rlm_unbound-include-dir="$(STAGING_DIR)/usr/include" \
+		--with-rlm_unbound-lib-dir="$(STAGING_DIR)/usr/lib"
+else
+  CONFIGURE_ARGS+= --without-rlm_unbound
 endif
 
 ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius3-mod-unix),)
@@ -1012,11 +1075,13 @@ $(eval $(call BuildPlugin,freeradius3-mod-always,rlm_always,))
 $(eval $(call BuildPlugin,freeradius3-mod-attr-filter,rlm_attr_filter,))
 $(eval $(call BuildPlugin,freeradius3-mod-cache,rlm_cache,))
 $(eval $(call BuildPlugin,freeradius3-mod-cache-rbtree,rlm_cache_rbtree,))
+$(eval $(call BuildPlugin,freeradius3-mod-cache-redis,rlm_cache_redis,))
 $(eval $(call BuildPlugin,freeradius3-mod-chap,rlm_chap,))
 $(eval $(call BuildPlugin,freeradius3-mod-counter,rlm_counter,))
 $(eval $(call BuildPlugin,freeradius3-mod-date,rlm_date,))
 $(eval $(call BuildPlugin,freeradius3-mod-detail,rlm_detail,))
 $(eval $(call BuildPlugin,freeradius3-mod-digest,rlm_digest,))
+$(eval $(call BuildPlugin,freeradius3-mod-dpsk,rlm_dpsk,))
 $(eval $(call BuildPlugin,freeradius3-mod-dynamic-clients,rlm_dynamic_clients,))
 $(eval $(call BuildPlugin,freeradius3-mod-eap,rlm_eap,))
 $(eval $(call BuildPlugin,freeradius3-mod-eap-fast,rlm_eap_fast,))
@@ -1033,6 +1098,7 @@ $(eval $(call BuildPlugin,freeradius3-mod-expiration,rlm_expiration,))
 $(eval $(call BuildPlugin,freeradius3-mod-expr,rlm_expr,))
 $(eval $(call BuildPlugin,freeradius3-mod-files,rlm_files,))
 $(eval $(call BuildPlugin,freeradius3-mod-ippool,rlm_ippool,))
+$(eval $(call BuildPlugin,freeradius3-mod-json,rlm_json,))
 $(eval $(call BuildPlugin,freeradius3-mod-krb5,rlm_krb5,))
 $(eval $(call BuildPlugin,freeradius3-mod-ldap,rlm_ldap,))
 $(eval $(call BuildPlugin,freeradius3-mod-linelog,rlm_linelog,))
@@ -1061,6 +1127,7 @@ $(eval $(call BuildPlugin,freeradius3-mod-sql-unixodbc,rlm_sql_unixodbc,))
 $(eval $(call BuildPlugin,freeradius3-mod-sqlcounter,rlm_sqlcounter,))
 $(eval $(call BuildPlugin,freeradius3-mod-sqlippool,rlm_sqlippool,))
 $(eval $(call BuildPlugin,freeradius3-mod-totp,rlm_totp,))
+$(eval $(call BuildPlugin,freeradius3-mod-unbound,rlm_unbound,))
 $(eval $(call BuildPlugin,freeradius3-mod-unix,rlm_unix,))
 $(eval $(call BuildPlugin,freeradius3-mod-unpack,rlm_unpack,))
 $(eval $(call BuildPlugin,freeradius3-mod-utf8,rlm_utf8,))
