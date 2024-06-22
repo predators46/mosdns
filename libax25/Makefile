@@ -30,11 +30,13 @@ define Package/libax25/description
 endef
 
 define Build/Configure
-	(cd $(PKG_BUILD_DIR)/libax25; ./autogen.sh );
-endef
-
-define Build/Compile
-	$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)/libax25
+	cd $(PKG_BUILD_DIR)/libax25; \
+		./autogen.sh; \
+		./configure \
+			--prefix=/usr \
+			--sysconfdir=/etc \
+			--enable-shared \
+			--enable-static
 endef
 
 define Build/InstallDev
