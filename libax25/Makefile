@@ -34,6 +34,10 @@ define Build/Configure
 	$(call Build/Configure/Default)
 endef
 
+define Build/Compile
+	$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)/libax25
+endef
+
 define Build/InstallDev
 	$(INSTALL_DIR) \
 	  $(1)/usr/include \
