@@ -39,7 +39,6 @@ endef
 
 define Build/Compile
 	$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)/libax25
-	$(call Build/Compile/Default)
 endef
 
 define Build/InstallDev
