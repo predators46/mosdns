@@ -13,7 +13,6 @@ PKG_LICENSE:=LGPL-2.1-or-later
 PKG_LICENSE_FILES:=COPYING
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/linuxax25-libax25-$(PKG_VERSION)
-#PKG_BUILD_DEPENDS:=perl/host
 PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -22,7 +21,7 @@ define Package/libax25
 	SECTION:=net
 	CATEGORY:=Network
 	TITLE:=set of functions making it easier to write hamradio programs
-	DEPENDS:=+libncurses +libstdcpp +zlib
+	DEPENDS:=+libstdcpp +zlib
 	URL:=https://github.com/ve7fet/linuxax25
 endef
 
