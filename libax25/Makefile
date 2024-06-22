@@ -34,9 +34,12 @@ define Build/Configure
 		./autogen.sh; \
 		./configure \
 			--prefix=/usr \
-			--sysconfdir=/etc \
-			--enable-shared \
-			--enable-static
+			--sysconfdir=/etc
+endef
+
+define Build/Compile
+	$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)/libax25
+	$(call Build/Compile/Default)
 endef
 
 define Build/InstallDev
