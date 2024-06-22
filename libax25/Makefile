@@ -31,7 +31,7 @@ define Package/libax25/description
 endef
 
 MAKE_PATH:=libax25
-CONFIGURE_PATH:=./libax25
+CONFIGURE_PATH:=libax25
 
 define Build/InstallDev
 	$(INSTALL_DIR) \
@@ -43,7 +43,7 @@ define Build/InstallDev
 	  $(1)/usr/include/
 
 	$(CP) \
-	  $(PKG_INSTALL_DIR)/usr/lib/*.so* \
+	  $(PKG_INSTALL_DIR)/usr/lib/{*.so*,*.a} \
 	  $(1)/usr/lib/
 endef
 
