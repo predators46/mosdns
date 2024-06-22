@@ -29,17 +29,8 @@ define Package/libax25/description
 	set of functions making it easier to write hamradio programs
 endef
 
-define Build/Configure
-	cd $(PKG_BUILD_DIR)/libax25; \
-		./autogen.sh; \
-		./configure \
-			--prefix=/usr \
-			--sysconfdir=/etc
-endef
-
-define Build/Compile
-	$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)/libax25
-endef
+MAKE_PATH:=libax25
+CONFIGURE_PATH:=./libax25
 
 define Build/InstallDev
 	$(INSTALL_DIR) \
