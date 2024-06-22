@@ -4,7 +4,7 @@ PKG_NAME:=ax25apps
 PKG_VERSION:=1.2.2
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_SOURCE:=libax25-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://github.com/ve7fet/linuxax25/archive/refs/tags/
 PKG_HASH:=skip
 
