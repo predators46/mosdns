@@ -31,12 +31,10 @@ endef
 
 define Build/Configure
 	(cd $(PKG_BUILD_DIR)/libax25; ./autogen.sh );
-	$(call Build/Configure/Default)
 endef
 
 define Build/Compile
 	$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)/libax25
-	$(call Build/Compile/Default)
 endef
 
 define Build/InstallDev
