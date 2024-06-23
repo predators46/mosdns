@@ -24,7 +24,7 @@ define Package/direwolf
 	SECTION:=libs
 	CATEGORY:=Libraries
 	TITLE:=Software soundcard AX.25 packet modem/TNC and APRS encoder/decoder
-	DEPENDS:=+alsa-lib +libavahi-client +libudev-zero +gpsd +hamlib
+	DEPENDS:=+alsa-lib +libavahi-client +libudev-zero +libgps +hamlib
 	URL:=https://github.com/wb2osz/direwolf
 endef
 
