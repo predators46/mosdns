@@ -42,7 +42,7 @@ CONFIGURE_ARGS += \
 	--with-readline \
 	--without-indi \
 	--with-xml-support \
-	--without-cxx-binding \
+	--with-cxx-binding \
 	--without-perl-binding \
 	--without-python-binding \
 	--with-tcl-binding \
