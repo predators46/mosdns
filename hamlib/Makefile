@@ -12,7 +12,7 @@ PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=License GPL-2.0 license
 PKG_LICENSE_FILES:=COPYING COPYING.LIB
 
-PKG_BUILD_DEPENDS:=swig/host lua5.3/host
+PKG_BUILD_DEPENDS:=swig/host
 
 PKG_BUILD_PARALLEL:=1
 PKG_INSTALL:=1
@@ -23,7 +23,7 @@ define Package/hamlib
 	SECTION:=libs
 	CATEGORY:=Libraries
 	TITLE:=Ham radio control library for rigs, rotators, tuners, and amplifiers
-	DEPENDS:=+libusb-1.0 +libreadline +libxml2 +libstdcpp +tcl +lua5.3
+	DEPENDS:=+libusb-1.0 +libreadline +libxml2 +libstdcpp +tcl
 	URL:=https://github.com/Hamlib/Hamlib
 endef
 
@@ -31,11 +31,6 @@ define Package/hamlib/description
 	The library provides functions for both radio and rotator control, and data retrieval from the radio or rotator.
 	A number of functions useful for calculating distance and bearing and grid square conversion are included.
 endef
-
-CONFIGURE_VARS += \
-	LUA="$(STAGING_DIR_HOSTPKG)/bin/lua5.3" \
-	LUA_INCLUDE="-I$(STAGING_DIR)/usr/include/lua5.3" \
-	LUA_LIB="-L$(STAGING_DIR)/usr/lib -llua5.3"
 
 CONFIGURE_ARGS += \
 	--enable-shared \
@@ -45,7 +40,7 @@ CONFIGURE_ARGS += \
 	--without-perl-binding \
 	--without-python-binding \
 	--with-tcl-binding \
-	--with-lua-binding
+	--without-lua-binding
 
 define Build/InstallDev
 	$(INSTALL_DIR) \
@@ -58,7 +53,7 @@ define Build/InstallDev
 	  $(1)/usr/include/
 
 	$(CP) \
-	  $(PKG_INSTALL_DIR)/usr/lib/{pkgconfig,lua,tcl,*.so*} \
+	  $(PKG_INSTALL_DIR)/usr/lib/{pkgconfig,tcl,*.so*} \
 	  $(1)/usr/lib/
 
 	$(CP) \
@@ -76,7 +71,7 @@ define Package/hamlib/install
 	  $(1)/usr/bin/
 
 	$(CP) \
-	  $(PKG_INSTALL_DIR)/usr/lib/{lua,tcl,*.so*} \
+	  $(PKG_INSTALL_DIR)/usr/lib/{tcl,*.so*} \
 	  $(1)/usr/lib/
 endef
 
