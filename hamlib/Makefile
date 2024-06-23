@@ -12,7 +12,7 @@ PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=License GPL-2.0 license
 PKG_LICENSE_FILES:=COPYING COPYING.LIB
 
-PKG_BUILD_DEPENDS:=swig/host
+PKG_BUILD_DEPENDS:=swig/host lua/host
 
 PKG_BUILD_PARALLEL:=1
 PKG_INSTALL:=1
@@ -32,6 +32,11 @@ define Package/hamlib/description
 	A number of functions useful for calculating distance and bearing and grid square conversion are included.
 endef
 
+CONFIGURE_VARS += \
+	LUA="$(STAGING_DIR_HOSTPKG)/bin/lua5.1" \
+	LUA_INCLUDE="-I$(STAGING_DIR)/usr/include" \
+	LUA_LIB="-L$(STAGING_DIR)/usr/lib -llua"
+
 CONFIGURE_ARGS += \
 	--with-libusb \
 	--with-readline \
@@ -42,11 +47,6 @@ CONFIGURE_ARGS += \
 	--without-python-binding \
 	--with-tcl-binding \
 	--with-lua-binding
-
-MAKE_FLAGS += \
-	LUA="$(STAGING_DIR)/usr" \
-	LUA_INCLUDE="-I$(STAGING_DIR)/usr/include" \
-	LUA_LIB="-L$(STAGING_DIR)/usr/lib -llua"
 
 define Build/InstallDev
 	$(INSTALL_DIR) \
