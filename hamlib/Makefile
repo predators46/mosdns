@@ -12,7 +12,7 @@ PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=License GPL-2.0 license
 PKG_LICENSE_FILES:=COPYING COPYING.LIB
 
-PKG_BUILD_DEPENDS:=swig/host
+PKG_BUILD_DEPENDS:=swig/host lua/host
 
 PKG_BUILD_PARALLEL:=1
 PKG_INSTALL:=1
@@ -23,7 +23,7 @@ define Package/hamlib
 	SECTION:=libs
 	CATEGORY:=Libraries
 	TITLE:=Ham radio control library for rigs, rotators, tuners, and amplifiers
-	DEPENDS:=+libusb-1.0 +libreadline +libxml2 +tcl +liblua5.3
+	DEPENDS:=+libusb-1.0 +libreadline +libxml2 +tcl +liblua
 	URL:=https://github.com/Hamlib/Hamlib
 endef
 
