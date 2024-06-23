@@ -38,6 +38,8 @@ CONFIGURE_VARS += \
 	LUA_LIB="-L$(STAGING_DIR)/usr/lib -llua5.3"
 
 CONFIGURE_ARGS += \
+	--enable-shared \
+	--disable-static \
 	--with-xml-support \
 	--with-cxx-binding \
 	--without-perl-binding \
