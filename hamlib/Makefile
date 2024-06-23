@@ -32,6 +32,10 @@ define Package/hamlib/description
 	A number of functions useful for calculating distance and bearing and grid square conversion are included.
 endef
 
+CONFIGURE_VARS += \
+	LUA_INCLUDE="-I$(STAGING_DIR)/usr/include" \
+	LUA_LIB="-L$(STAGING_DIR)/usr/lib -llua"
+
 CONFIGURE_ARGS += \
 	--with-libusb \
 	--with-readline \
