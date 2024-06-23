@@ -23,7 +23,7 @@ define Package/hamlib
 	SECTION:=libs
 	CATEGORY:=Libraries
 	TITLE:=Ham radio control library for rigs, rotators, tuners, and amplifiers
-	DEPENDS:=+libusb-1.0 +libreadline +libxml2 +tcl +lua5.3
+	DEPENDS:=+libusb-1.0 +libreadline +libxml2 +libstdcpp +tcl +lua5.3
 	URL:=https://github.com/Hamlib/Hamlib
 endef
 
@@ -38,9 +38,6 @@ CONFIGURE_VARS += \
 	LUA_LIB="-L$(STAGING_DIR)/usr/lib -llua5.3"
 
 CONFIGURE_ARGS += \
-	--with-libusb \
-	--with-readline \
-	--without-indi \
 	--with-xml-support \
 	--with-cxx-binding \
 	--without-perl-binding \
