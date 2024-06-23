@@ -12,7 +12,8 @@ PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=License GPL-2.0 license
 PKG_LICENSE_FILES:=COPYING COPYING.LIB
 
-PKG_BUILD_DEPENDS:=swig/host lua/host
+PKG_FIXUP:=autoreconf
+PKG_BUILD_DEPENDS:=swig/host
 
 PKG_BUILD_PARALLEL:=1
 PKG_INSTALL:=1
@@ -31,6 +32,10 @@ define Package/hamlib/description
 	The library provides functions for both radio and rotator control, and data retrieval from the radio or rotator.
 	A number of functions useful for calculating distance and bearing and grid square conversion are included.
 endef
+
+CONFIGURE_VARS += \
+	LUA_INCLUDE="-I$(STAGING_DIR)/usr/include" \
+	LUA_LIB="-L$(STAGING_DIR)/usr/lib -llua"
 
 CONFIGURE_ARGS += \
 	--with-libusb \
