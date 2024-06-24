@@ -13,7 +13,7 @@ PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=License
 PKG_LICENSE_FILES:=LICENSE.txt
 
-PKG_FIXUP:=libtool
+PKG_FIXUP:=autoreconf --install
 PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
