@@ -38,9 +38,7 @@ CONFIGURE_VARS += \
 	LUA="$(STAGING_DIR_HOSTPKG)/bin/lua5.3" \
 	LUA_INCLUDE="-I$(STAGING_DIR)/usr/include/lua5.3" \
 	LUA_LIB="-L$(STAGING_DIR)/usr/lib -llua5.3" \
-	PYTHON="$(STAGING_DIR_HOSTPKG)/bin/$(PYTHON3)" \
-	PYTHON_CPPFLAGS="$(shell $(STAGING_DIR)/host/bin/$(PYTHON3)-config --includes)" \
-	PYTHON_LIBS="$(shell $(STAGING_DIR)/host/bin/$(PYTHON3)-config --libs)"
+	PYTHON="$(STAGING_DIR_HOSTPKG)/bin/$(PYTHON3)"
 
 CONFIGURE_ARGS += \
 	--enable-shared \
