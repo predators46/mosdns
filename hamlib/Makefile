@@ -54,8 +54,7 @@ define Build/InstallDev
 	$(INSTALL_DIR) \
 	  $(1)/usr/include \
 	  $(1)/usr/lib \
-	  $(1)/usr/share \
-	  $(1)/$(PYTHON3_PKG_DIR)
+	  $(1)/usr/share
 
 	$(CP) \
 	  $(PKG_INSTALL_DIR)/usr/include/hamlib \
@@ -68,10 +67,6 @@ define Build/InstallDev
 	$(CP) \
 	  $(PKG_INSTALL_DIR)/usr/share/aclocal \
 	  $(1)/usr/share/
-
-	$(CP) \
-	  $(PKG_INSTALL_DIR)/$(PYTHON3_PKG_DIR) \
-	  $(1)/$(PYTHON3_PKG_DIR)
 endef
 
 define Package/hamlib/install
@@ -89,8 +84,8 @@ define Package/hamlib/install
 	  $(1)/usr/lib/
 
 	$(CP) \
-	  $(PKG_INSTALL_DIR)/$(PYTHON3_PKG_DIR) \
-	  $(1)/$(PYTHON3_PKG_DIR)
+	  $(PKG_INSTALL_DIR)/$(PYTHON3_PKG_DIR)/* \
+	  $(1)/$(PYTHON3_PKG_DIR)/
 endef
 
 $(eval $(call BuildPackage,hamlib))
