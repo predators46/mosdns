@@ -31,7 +31,8 @@ endef
 
 CONFIGURE_ARGS += \
 	--prefix=/usr \
-	--with-embedded
+	--with-embedded \
+	--with-pthreads
 
 define Package/aprx/install
 	$(INSTALL_DIR) \
