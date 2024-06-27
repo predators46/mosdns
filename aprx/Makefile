@@ -16,6 +16,10 @@ PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
 
+## Avoid linking with libstdcpp
+TARGET_CXXFLAGS+= -nodefaultlibs -lc -fno-exceptions
+TARGET_LDFLAGS+= $(if $(CONFIG_USE_MUSL),-lssp_nonshared)
+
 define Package/aprx
 	SECTION:=net
 	CATEGORY:=Network
