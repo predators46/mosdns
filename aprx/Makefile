@@ -32,8 +32,10 @@ define Package/aprx/description
 endef
 
 define Build/Compile
-	$(TARGET_CC) $(TARGET_CFLAGS) -o $(PKG_BUILD_DIR)/aprx.o -c $(PKG_BUILD_DIR)/aprx.c
-	$(TARGET_CC) $(TARGET_CCFLAGS) -o $(PKG_BUILD_DIR)/$1 $(PKG_BUILD_DIR)/aprx.o
+	CC="$(TARGET_CC)" \
+	CFLAGS="$(TARGET_CFLAGS)" \
+	CPPFLAGS="$(TARGET_CPPFLAGS)" \
+	LDFLAGS="$(TARGET_LDFLAGS)"
 endef
 
 CONFIGURE_ARGS += \
