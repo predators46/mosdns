@@ -1,0 +1,11 @@
+--- a/configure.in
++++ b/configure.in
+@@ -34,7 +34,7 @@ fi
+ AC_SUBST(CFLAGS_ARCH)
+ 
+ dnl Check for GNU make
+-AX_CHECK_GNU_MAKE()
++dnl Fails with autoconf2.70 (#978766): AX_CHECK_GNU_MAKE()
+ 
+ 
+ dnl Check for headers.

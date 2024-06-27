@@ -1,0 +1,43 @@
+Description: Patch to prevent default config from connecting to APRS-IS
+Authod: Dave Hibberd <d@vehibberd.com>
+Bug: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=987332
+Last-Updated: 2021-05-09
+
+--- a/aprx-complex.conf.in
++++ b/aprx-complex.conf.in
+@@ -19,7 +19,8 @@
+ # Usable for 99+% of cases.
+ #
+ 
+-mycall  N0CALL-1
++# Uncomment the below line and add your own callsign
++# mycall  N0CALL-1
+ 
+ #
+ # Global macro for simplified "my location" definition in
+--- a/aprx-rxigate.conf.in
++++ b/aprx-rxigate.conf.in
+@@ -25,8 +25,8 @@
+ # Global macro for simplified callsign definition:
+ # Usable for 99+% of cases.
+ #
+-
+-mycall  N0CALL-1
++# Uncomment the below line and add your own callsign
++# mycall  N0CALL-1
+ 
+ <aprsis>
+ #login     OTHERCALL-7	# login defaults to $mycall
+--- a/aprx.conf.in
++++ b/aprx.conf.in
+@@ -29,8 +29,8 @@
+ # Global macro for simplified callsign definition:
+ # Usable for 99+% of cases.
+ #
+-
+-mycall  N0CALL-1
++# Uncomment the below line and add your own callsign
++# mycall  N0CALL-1
+ 
+ #
+ # Global macro for simplified "my location" definition in
