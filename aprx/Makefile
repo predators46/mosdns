@@ -36,12 +36,7 @@ CONFIGURE_ARGS += \
 	--sysconfdir=/etc \
 	--with-pthread
 
-define Build/Compile
-	CC="$(TARGET_CC)" \
-	CFLAGS="$(TARGET_CFLAGS)" \
-	CPPFLAGS="$(TARGET_CPPFLAGS)" \
-	LDFLAGS="$(TARGET_LDFLAGS)"
-endef
+TARGET_LDFLAGS+= $(if $(CONFIG_USE_MUSL),-lssp_nonshared)
 
 define Package/aprx/install
 	$(INSTALL_DIR) \
