@@ -31,14 +31,17 @@ define Package/aprx/description
 	Aprx is able to support most APRS infrastructure deployments, including single stand-alone digipeaters, receive-only Internet gateways, full RF-gateways for bi-directional routing of traffic, and multi-port digipeaters operating on multiple channels or with multiple directional transceivers.
 endef
 
-TARGET_CFLAGS  += -nostdlib -fno-stack-protector -fcommon -O2 -DERLANGSTORAGE
+#TARGET_CFLAGS  += -nostdlib -fno-stack-protector -fcommon -O2 -DERLANGSTORAGE
 #TARGET_LDFLAGS+= -fstack-protector-strong
+define Build/Compile
+        $(TARGET_CC) $(TARGET_CFLAGS) -o $(PKG_BUILD_DIR)/aprx.o -c $(PKG_BUILD_DIR)/aprx.c
+        $(TARGET_CC) $(TARGET_CCFLAGS) -o $(PKG_BUILD_DIR)/$1 $(PKG_BUILD_DIR)/aprx.o
+endef
 
 CONFIGURE_ARGS += \
 	--prefix=/usr \
 	--sysconfdir=/etc \
-	--with-pthread \
-	LIBS="$(TARGET_LDFLAGS) -lrt -lpthread"
+	--with-pthread
 
 define Package/aprx/install
 	$(INSTALL_DIR) \
