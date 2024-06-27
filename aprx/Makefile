@@ -13,6 +13,7 @@ PKG_LICENSE:=BSD-3-Clause license
 PKG_LICENSE_FILES:=LICENSE
 
 PKG_BUILD_DEPENDS:=libax25
+PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
