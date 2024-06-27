@@ -12,7 +12,7 @@ PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=BSD-3-Clause license
 PKG_LICENSE_FILES:=LICENSE
 
-PKG_BUILD_DEPENDS:=libax25
+#PKG_BUILD_DEPENDS:=libax25
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
 
@@ -32,12 +32,16 @@ define Package/aprx/description
 endef
 
 #TARGET_CFLAGS += -fno-stack-protector
-TARGET_LDFLAGS += -lssp
+#TARGET_LDFLAGS += -lssp
 
 CONFIGURE_ARGS += \
 	--prefix=/usr \
 	--sysconfdir=/etc \
 	--with-pthread
+
+define Build/Compile
+	$(call Build/Compile/Default,LD=$(TARGET_CC))
+endef
 
 define Package/aprx/install
 	$(INSTALL_DIR) \
