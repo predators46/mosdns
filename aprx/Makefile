@@ -30,8 +30,8 @@ define Package/aprx/description
 	Aprx is able to support most APRS infrastructure deployments, including single stand-alone digipeaters, receive-only Internet gateways, full RF-gateways for bi-directional routing of traffic, and multi-port digipeaters operating on multiple channels or with multiple directional transceivers.
 endef
 
-TARGET_CFLAGS  += -fcommon -O2 -fstack-protector-all -DERLANGSTORAGE
-#TARGET_LDFLAGS+= -fstack-protector-strong
+CFLAGS  += -fcommon -O2 -fstack-protector-all -DERLANGSTORAGE
+LDFLAGS+= -fstack-protector-all
 
 CONFIGURE_ARGS += \
 	--prefix=/usr \
