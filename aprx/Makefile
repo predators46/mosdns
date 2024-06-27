@@ -21,7 +21,7 @@ define Package/aprx
 	SECTION:=net
 	CATEGORY:=Network
 	TITLE:=A highly configurable APRS I-gate/Digipeater Daemon
-	DEPENDS:=+libstdcpp +libpthread
+	DEPENDS:=+libstdcpp +libpthread +librt
 	URL:=https://thelifeofkenneth.com/aprx/
 endef
 
@@ -37,7 +37,7 @@ CONFIGURE_ARGS += \
 	--prefix=/usr \
 	--sysconfdir=/etc \
 	--with-pthread \
-	LIBS="$(TARGET_LDFLAGS) -lpthread"
+	LIBS="$(TARGET_LDFLAGS) -lpthread -lrt "
 
 define Package/aprx/install
 	$(INSTALL_DIR) \
