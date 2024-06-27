@@ -16,10 +16,6 @@ PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
 
-## Avoid linking with libstdcpp
-TARGET_CXXFLAGS+= -nodefaultlibs -lc -fno-exceptions
-TARGET_LDFLAGS+= $(if $(CONFIG_USE_MUSL),-lssp_nonshared)
-
 define Package/aprx
 	SECTION:=net
 	CATEGORY:=Network
@@ -32,6 +28,8 @@ define Package/aprx/description
 	Aprx is a software package designed to run on any POSIX platform (Linux/BSD/Unix/etc.) and act as an APRS Digipeater and/or Internet Gateway.
 	Aprx is able to support most APRS infrastructure deployments, including single stand-alone digipeaters, receive-only Internet gateways, full RF-gateways for bi-directional routing of traffic, and multi-port digipeaters operating on multiple channels or with multiple directional transceivers.
 endef
+
+TARGET_LDFLAGS+= -fstack-protector
 
 CONFIGURE_ARGS += \
 	--prefix=/usr \
