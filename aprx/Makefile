@@ -33,7 +33,8 @@ endef
 
 CONFIGURE_ARGS += \
 	--prefix=/usr \
-	--with-embedded \
+	--enable-shared \
+	--disable-static \
 	--without-pthread
 
 define Package/aprx/install
