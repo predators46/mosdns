@@ -21,7 +21,7 @@ define Package/aprx
 	SECTION:=net
 	CATEGORY:=Network
 	TITLE:=A highly configurable APRS I-gate/Digipeater Daemon
-	DEPENDS:=+libstdcpp +libpthread
+	DEPENDS:=+libstdcpp +libpthread +zlib +librt
 	URL:=https://thelifeofkenneth.com/aprx/
 endef
 
