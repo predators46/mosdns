@@ -31,12 +31,12 @@ define Package/aprx/description
 	Aprx is able to support most APRS infrastructure deployments, including single stand-alone digipeaters, receive-only Internet gateways, full RF-gateways for bi-directional routing of traffic, and multi-port digipeaters operating on multiple channels or with multiple directional transceivers.
 endef
 
+TARGET_LDFLAGS+= -lssp_nonshared
+
 CONFIGURE_ARGS += \
 	--prefix=/usr \
 	--sysconfdir=/etc \
 	--with-pthread
-
-TARGET_LDFLAGS+= $(if $(CONFIG_USE_MUSL),-lssp_nonshared)
 
 define Package/aprx/install
 	$(INSTALL_DIR) \
