@@ -33,6 +33,7 @@ endef
 
 #TARGET_CFLAGS += -fno-stack-protector
 #TARGET_LDFLAGS += -lssp
+TARGET_CFLAGS  += -fcommon -O2 -DERLANGSTORAGE
 
 CONFIGURE_ARGS += \
 	--prefix=/usr \
