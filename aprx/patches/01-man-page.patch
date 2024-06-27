@@ -1,0 +1,48 @@
+Fix hyphen/minus in man page
+Author: Colin Tuckley <colint@debian.org>
+
+--- a/aprx.8.in
++++ b/aprx.8.in
+@@ -1,5 +1,4 @@
+ .TH aprx 8 "@DATEVERSION@"
+-.LO 8
+ .SH NAME
+ .B Aprx-2
+ \- An APRS iGate application with integrated Digipeater.
+@@ -329,7 +328,7 @@
+ # Unique code for your callsign to allow transmitting packets
+ # into the APRS-IS.
+ #
+-passcode -1
++passcode \-1
+ 
+ 
+ 
+@@ -1199,7 +1198,7 @@
+ .B viscous\-delay
+ defines a number of seconds from 0 (default) maximum of 9 that
+ the source will put the message on duplicate detector delay processing.
+-All occurrances of same packet per duplicate detector during that time
++All occurrences of same packet per duplicate detector during that time
+ will be accounted on duplicate detection, and if at the end of the delay
+ period there are more than one hit, the packet is discarded.
+ Use delay of 0 seconds for normal digipeater, 5 seconds for a fill-in,
+@@ -1390,8 +1389,8 @@
+ When entire packet takes 50 centiseconds, such preample alone doubles channel
+ occupancy.
+ A 6pack protocol on serial link (instead of KISS) could inform receiver
+-better on carrier presense times, however even that underestimates RF power
+-presense (RSSI) signal.  (6pack is not supported.)
++better on carrier presence times, however even that underestimates RF power
++presence (RSSI) signal.  (6pack is not supported.)
+ .PP
+ On serial lines supports really only 8n1 mode, not at all like: 7e1.
+ On the other hand, there really is no sensible usage for anything but 8n1...
+--- a/aprx-stat.8.in
++++ b/aprx-stat.8.in
+@@ -1,5 +1,4 @@
+ .TH aprx\-stat 8 "@DATEVERSION@"
+-.LO 8
+ .SH NAME
+ .B aprx\-stat
+ \- statistics utility for

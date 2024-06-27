@@ -1,0 +1,19 @@
+Description: Patch to make build reproducible
+Author: Kennith Finnegan <kennethfinnegan2007@gmail.com>
+Origin: https://github.com/PhirePhly/aprx/commit/55adc20a9a3e32e99d533a4749fd773549eb3e52
+Bug: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=854111
+Last-Updated: 2018-09-25
+
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -50,8 +50,8 @@
+ 
+ VERSION	= $(shell echo @VERSION_STRING@ | cut -b 2-)
+ 
+-DATE:=$(shell date +"%Y %B %d")
+-RFCDATE:=$(shell date +"%a, %d %b %Y %H:%M:%S %z")
++DATE:=$(shell LC_ALL=C date --utc --date="$(SOURCE_DATE_EPOCH)" +"%Y %B %d")
++RFCDATE:=$(shell LC_ALL=C date --utc --date="$(SOURCE_DATE_EPOCH)" +"%a, %d %b %Y %H:%M:%S %z")
+ 
+ DEFS=	-DAPRXVERSION="\"$(VERSION)\"" \
+ 	-DVARRUN="\"$(VARRUN)\"" -DVARLOG="\"$(VARLOG)\"" \
