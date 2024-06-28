@@ -37,8 +37,8 @@ define Package/direwolf/conffiles
 /etc/direwolf/
 endef
 
-define Build/Install
-	$(call Build/Install/Default,install install-conf)
+define Build/Install/Default
+	DESTDIR="$(PKG_INSTALL_DIR)" $(NINJA) -C $(CMAKE_BINARY_DIR) install install-conf
 endef
 
 define Package/direwolf/install
