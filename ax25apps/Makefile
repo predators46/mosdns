@@ -32,6 +32,10 @@ define Package/ax25apps/description
 	programs for the amateur radio (hamradio) protocol AX.25
 endef
 
+define Package/ax25apps/conffiles
+/etc/ax25/
+endef
+
 MAKE_PATH:=ax25apps
 CONFIGURE_PATH:=ax25apps
 
