@@ -48,10 +48,6 @@ define Package/direwolf/install
 	  $(1)/usr/share
 
 	$(CP) \
-	  $(PKG_INSTALL_DIR)/etc/direwolf \
-	  $(1)/etc/
-
-	$(CP) \
 	  $(PKG_INSTALL_DIR)/usr/bin/* \
 	  $(1)/usr/bin/
 
