@@ -32,6 +32,10 @@ define Package/ax25tools/description
 	tools for set and configure hamradio ports that use AX.25 Net/ROM or ROSE
 endef
 
+define Package/ax25tools/conffiles
+/etc/ax25/
+endef
+
 MAKE_PATH:=ax25tools
 CONFIGURE_PATH:=ax25tools
 
