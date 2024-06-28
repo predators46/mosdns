@@ -33,6 +33,14 @@ define Package/direwolf/description
 	It can be used stand-alone to observe APRS traffic, as a tracker, digipeater, APRStt gateway, or Internet Gateway (IGate).
 endef
 
+define Package/direwolf/conffiles
+/etc/direwolf/
+endef
+
+define Build/Install
+	$(call Build/Install/Default,install install-conf)
+endef
+
 define Package/direwolf/install
 	$(INSTALL_DIR) \
 	  $(1)/usr/bin \
