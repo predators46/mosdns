@@ -43,8 +43,13 @@ endef
 
 define Package/direwolf/install
 	$(INSTALL_DIR) \
+	  $(1)/etc \
 	  $(1)/usr/bin \
 	  $(1)/usr/share
+
+	$(CP) \
+	  $(PKG_INSTALL_DIR)/etc/direwolf \
+	  $(1)/usr/
 
 	$(CP) \
 	  $(PKG_INSTALL_DIR)/usr/bin/* \
