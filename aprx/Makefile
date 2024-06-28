@@ -12,7 +12,7 @@ PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=BSD-3-Clause license
 PKG_LICENSE_FILES:=LICENSE
 
-PKG_BUILD_DEPENDS:=libax25 perl/host
+PKG_BUILD_DEPENDS:=libax25
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
 
@@ -33,14 +33,12 @@ endef
 
 TARGET_CFLAGS  += -fcommon -O2 -DERLANGSTORAGE
 
+CONFIGURE_VARS += LD="$(TARGET_CC)"
+
 CONFIGURE_ARGS += \
 	--prefix=/usr \
 	--sysconfdir=/etc \
 	--with-pthread
-
-define Build/Compile
-	$(call Build/Compile/Default,LD=$(TARGET_CC))
-endef
 
 define Package/aprx/install
 	$(INSTALL_DIR) \
