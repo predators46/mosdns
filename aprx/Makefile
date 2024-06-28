@@ -31,6 +31,10 @@ define Package/aprx/description
 	Aprx is able to support most APRS infrastructure deployments, including single stand-alone digipeaters, receive-only Internet gateways, full RF-gateways for bi-directional routing of traffic, and multi-port digipeaters operating on multiple channels or with multiple directional transceivers.
 endef
 
+define Package/aprx/conffiles
+/etc/aprx.conf
+endef
+
 TARGET_CFLAGS  += -fcommon -O2 -DERLANGSTORAGE
 
 CONFIGURE_ARGS += \
@@ -44,8 +48,12 @@ endef
 
 define Package/aprx/install
 	$(INSTALL_DIR) \
+	  $(1)/etc \
 	  $(1)/usr/sbin
 
+	$(CP) \
+	  $(PKG_INSTALL_DIR)/etc/aprx.conf \
+	  $(1)/etc/aprx.conf
 	$(CP) \
 	  $(PKG_INSTALL_DIR)/usr/sbin/{aprx,aprx-stat} \
 	  $(1)/usr/sbin/
