@@ -49,7 +49,7 @@ define Package/direwolf/install
 
 	$(CP) \
 	  $(PKG_INSTALL_DIR)/etc/direwolf \
-	  $(1)/usr/
+	  $(1)/etc/
 
 	$(CP) \
 	  $(PKG_INSTALL_DIR)/usr/bin/* \
