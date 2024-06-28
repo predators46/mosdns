@@ -37,15 +37,16 @@ define Package/direwolf/conffiles
 /etc/direwolf/
 endef
 
-define Build/Install/Default
-	DESTDIR="$(PKG_INSTALL_DIR)" $(NINJA) -C $(CMAKE_BINARY_DIR) install install-conf
-endef
-
 define Package/direwolf/install
 	$(INSTALL_DIR) \
-	  $(1)/etc \
+	  $(1)/etc/direwolf \
 	  $(1)/usr/bin \
-	  $(1)/usr/share
+	  $(1)/usr/share \
+	  $(1)/lib/udev/rules.d
+
+	$(CP) \
+	  $(PKG_INSTALL_DIR)/usr/share/doc/direwolf/conf/* \
+	  $(1)/etc/direwolf/
 
 	$(CP) \
 	  $(PKG_INSTALL_DIR)/usr/bin/* \
@@ -54,6 +55,10 @@ define Package/direwolf/install
 	$(CP) \
 	  $(PKG_INSTALL_DIR)/usr/share/{applications,direwolf,pixmaps} \
 	  $(1)/usr/share/
+	
+	$(CP) \
+	  $(PKG_INSTALL_DIR)/etc/udev/rules.d/99-direwolf-cmedia.rules \
+	  $(1)/lib/udev/rules.d/
 endef
 
 $(eval $(call BuildPackage,direwolf))
