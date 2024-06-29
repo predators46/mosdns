@@ -731,6 +731,8 @@ endef
 # needed in a future release.
 EXTRA_CFLAGS+= -DHAVE_OPENSSL_RAND_H
 
+CONFIGURE_VARS += LIBREADLINE="-L$(STAGING_DIR)/usr/lib -lreadline"
+
 CONFIGURE_ARGS+= \
 	--libdir=/usr/lib/freeradius3 \
 	--libexecdir=/usr/lib/freeradius3 \
