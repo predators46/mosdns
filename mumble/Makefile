@@ -12,6 +12,8 @@ PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=LICENSE
 PKG_LICENSE_FILES:=LICENSE
 
+CMAKE_BINARY_SUBDIR := build
+
 PKG_BUILD_DEPENDS:=boost qttools
 
 include $(INCLUDE_DIR)/package.mk
@@ -47,7 +49,7 @@ CMAKE_OPTIONS += \
 	-Dbundled-opus=OFF \
 	-Dbundled-rnnoise=OFF \
 	-Dupdate=OFF \
-	-DBUILD_NUMBER="1.5.634"
+	-DBUILD_NUMBER="${PKG_VERSION##*.}"
 
 define Package/mumble/install
 	$(INSTALL_DIR) \
