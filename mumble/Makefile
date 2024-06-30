@@ -14,7 +14,7 @@ PKG_LICENSE_FILES:=LICENSE
 
 CMAKE_BINARY_SUBDIR := build
 
-PKG_BUILD_DEPENDS:=boost qttools
+PKG_BUILD_DEPENDS:=boost python3 qttools
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
