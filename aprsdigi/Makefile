@@ -31,24 +31,14 @@ define Package/aprsdigi/description
 	Aprsdigi can also use the Internet to tunnel connections among other APRS digipeaters and nodes using IPv4 or IPv6 UDP unicast or multicast.
 endef
 
-define Package/aprsdigi/conffiles
-/etc/aprsdigi.conf
-endef
-
 CONFIGURE_ARGS += \
 	--prefix=/usr \
-	--sysconfdir=/etc \
-	--without-mandoc \
-	--disable-mandoc
+	--sysconfdir=/etc
 
 define Package/aprsdigi/install
 	$(INSTALL_DIR) \
-	  $(1)/etc \
 	  $(1)/usr/sbin
 
-	$(CP) \
-	  $(PKG_INSTALL_DIR)/usr/share/doc/aprsdigi/examples/aprsdigi.conf \
-	  $(1)/etc/aprsdigi.conf
 	$(CP) \
 	  $(PKG_INSTALL_DIR)/usr/sbin/{aprsdigi,aprsmon} \
 	  $(1)/usr/sbin/
