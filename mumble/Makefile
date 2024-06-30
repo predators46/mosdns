@@ -12,7 +12,7 @@ PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=LICENSE
 PKG_LICENSE_FILES:=LICENSE
 
-PKG_BUILD_DEPENDS:=boost
+PKG_BUILD_DEPENDS:=boost qttools
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
@@ -22,7 +22,7 @@ define Package/mumble
 	CATEGORY:=Network
 	TITLE:=Mumble - Open Source voice-chat software
 	URL:=https://github.com/mumble-voip/mumble
-	DEPENDS:=+alsa-lib +libavahi-compat-libdnssd +libsndfile +libopenssl +libcap +libx11 +libxi +poco +protobuf +librnnoise +libspeex +libspeexdsp +libopus
+	DEPENDS:=+alsa-lib +libavahi-compat-libdnssd +libsndfile +libopenssl +libcap +libx11 +libxi +qt5-core +qt5-network +qt5-sql +qt5-xml +poco +protobuf +librnnoise +libspeex +libspeexdsp +libopus
 endef
 
 define Package/mumble/description
