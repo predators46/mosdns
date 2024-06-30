@@ -37,7 +37,9 @@ endef
 
 CONFIGURE_ARGS += \
 	--prefix=/usr \
-	--sysconfdir=/etc
+	--sysconfdir=/etc \
+	--without-mandoc \
+	--disable-mandoc
 
 define Package/aprsdigi/install
 	$(INSTALL_DIR) \
