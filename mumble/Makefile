@@ -52,7 +52,9 @@ CMAKE_OPTIONS += \
 	-Dbundled-rnnoise=OFF \
 	-Dupdate=OFF \
 	-DBUILD_NUMBER="${PKG_VERSION##*.}" \
-	-DPYTHON_INTERPRETER="$(STAGING_DIR_HOSTPKG)/bin/$(PYTHON3)"
+	-DPYTHON_EXECUTABLE="$(STAGING_DIR_HOSTPKG)/bin/$(PYTHON3)" \
+	-DPYTHON_INCLUDE_DIR="$(shell $(STAGING_DIR)/host/bin/$(PYTHON3)-config --includes)" \
+	-DPYTHON_LIBRARY="$(shell $(STAGING_DIR)/host/bin/$(PYTHON3)-config --libs)"
 
 define Package/mumble/install
 	$(INSTALL_DIR) \
