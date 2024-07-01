@@ -6,17 +6,14 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=qtbase
+PKG_NAME:=qt
 PKG_BASE:=5.15
 PKG_BUGFIX:=14
 PKG_VERSION:=$(PKG_BASE).$(PKG_BUGFIX)
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-everywhere-opensource-src-$(PKG_VERSION).tar.xz
-PKG_SOURCE_URL:= \
-		http://master.qt.io/archive/qt/$(PKG_BASE)/$(PKG_VERSION)/submodules \
-		http://mirrors.tuna.tsinghua.edu.cn/qt/archive/qt/$(PKG_BASE)/$(PKG_VERSION)/submodules \
-		http://qt.mirror.constant.com/archive/qt/$(PKG_BASE)/$(PKG_VERSION)/submodules
+PKG_SOURCE_URL:=https://download.qt.io/official_releases/qt/$(PKG_BASE)/$(PKG_VERSION)/single/
 PKG_HASH:=skip
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-everywhere-src-$(PKG_VERSION)
@@ -27,16 +24,16 @@ PKG_CPE_ID:=cpe:/a:qt:qt
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/qtbase/Default
+define Package/qt/Default
 	SECTION:=libs
 	CATEGORY:=Libraries
 	SUBMENU:=Qt5
-	TITLE:=qtbase
+	TITLE:=qt
 	URL:=http://qt-project.org
 	DEPENDS:=+libgcc +libstdcpp @!LINUX_2_6_36
 endef
 
-define Package/qtbase/description
+define Package/qt/description
   This package provides the Qt5 libraries.
 
   Qt is a cross-platform application development framework for desktop, embedded and mobile.
@@ -51,17 +48,17 @@ define Package/qtbase/description
   - xml
 endef
 
-define Package/qtbase
-	$(call Package/qtbase/Default)
+define Package/qt
+	$(call Package/qt/Default)
 	TITLE+=all libs
-	DEPENDS+=$(QTBASE_DEPENDS)
+	DEPENDS+=$(QT_DEPENDS)
 endef
 
-define Package/qtbase/install
+define Package/qt/install
 	true
 endef
 
-define Package/qtbase/config
+define Package/qt/config
 	config QT5_INCLUDE_ATOMIC
 		bool "Depends on libatomic"
 		default y if !(arm_v7 || ARCH_64BIT || TARGET_x86)
@@ -71,12 +68,12 @@ define Package/qtbase/config
 			- You'd better to confirm whether your compiler need the external libatomic.
 			Otherwise, it is not recommended to modify this option mannually.
 
-	menu "Select Qtbase Libraries"
-		comment "Qtbase Libraries"
+	menu "Select Qt Libraries"
+		comment "Qt Libraries"
 
-		$(foreach lib,$(QTBASE_LIBS),
+		$(foreach lib,$(QT_LIBS),
 		config PACKAGE_qt5-$(lib)
-			prompt "Qtbase $(lib) library."
+			prompt "Qt $(lib) library."
 			default m if ALL
 		)
 	endmenu
@@ -165,18 +162,18 @@ define Build/InstallDev
 	$(MAKE) -C $(PKG_BUILD_DIR) install
 endef
 
-define Package/qtbase/Default/install
+define Package/qt/Default/install
 	$(INSTALL_DIR) $(1)/usr/lib
 	$(CP) $(PKG_BUILD_DIR)/lib/libQt5$(shell echo $(2) | sed -e 's/\b[[:alpha:]]/\u&/g').so* $(1)/usr/lib
 endef
 
-define DefineQtbaseLibrary
-  QTBASE_DEPENDS+=+qt5-$(1)
+define DefineqtLibrary
+  QT_DEPENDS+=+qt5-$(1)
 
-  QTBASE_LIBS+=$(1)
+  QT_LIBS+=$(1)
 
   define Package/qt5-$(1)
-    $(call Package/qtbase/Default)
+    $(call Package/qt/Default)
     TITLE+=$(1)
     DEPENDS+=$(foreach lib,$(2),+qt5-$(lib)) $(3)
     HIDDEN:=1
@@ -187,20 +184,20 @@ define DefineQtbaseLibrary
   endef
 
   define Package/qt5-$(1)/install
-    $(call Package/qtbase/Default/install,$$(1),$(1))
+    $(call Package/qt/Default/install,$$(1),$(1))
   endef
 endef
 
-$(eval $(call DefineQtbaseLibrary,Concurrent,Core,))
-$(eval $(call DefineQtbaseLibrary,Core,,+QT5_INCLUDE_ATOMIC:libatomic +libpcre2-16 +zlib))
-$(eval $(call DefineQtbaseLibrary,DBus,Core,+libdbus))
-$(eval $(call DefineQtbaseLibrary,Gui,DBus,+libfreetype))
-$(eval $(call DefineQtbaseLibrary,Network,Core,+libopenssl))
-$(eval $(call DefineQtbaseLibrary,PrintSupport,Widgets,))
-$(eval $(call DefineQtbaseLibrary,Sql,Core,))
-$(eval $(call DefineQtbaseLibrary,Test,Core,))
-$(eval $(call DefineQtbaseLibrary,Widgets,Gui,))
-$(eval $(call DefineQtbaseLibrary,Xml,Core))
+$(eval $(call DefineqtLibrary,Concurrent,Core,))
+$(eval $(call DefineqtLibrary,Core,,+QT5_INCLUDE_ATOMIC:libatomic +libpcre2-16 +zlib))
+$(eval $(call DefineqtLibrary,DBus,Core,+libdbus))
+$(eval $(call DefineqtLibrary,Gui,DBus,+libfreetype))
+$(eval $(call DefineqtLibrary,Network,Core,+libopenssl))
+$(eval $(call DefineqtLibrary,PrintSupport,Widgets,))
+$(eval $(call DefineqtLibrary,Sql,Core,))
+$(eval $(call DefineqtLibrary,Test,Core,))
+$(eval $(call DefineqtLibrary,Widgets,Gui,))
+$(eval $(call DefineqtLibrary,Xml,Core))
 
-$(foreach lib,$(QTBASE_LIBS),$(eval $(call BuildPackage,qt5-$(lib))))
-$(eval $(call BuildPackage,qtbase))
+$(foreach lib,$(QT_LIBS),$(eval $(call BuildPackage,qt5-$(lib))))
+$(eval $(call BuildPackage,qt))
