@@ -167,7 +167,7 @@ define Package/qt/Default/install
 	$(CP) $(PKG_BUILD_DIR)/lib/libQt5$(shell echo $(2) | sed -e 's/\b[[:alpha:]]/\u&/g').so* $(1)/usr/lib
 endef
 
-define DefineqtLibrary
+define DefineQtLibrary
   QT_DEPENDS+=+qt5-$(1)
 
   QT_LIBS+=$(1)
@@ -188,16 +188,16 @@ define DefineqtLibrary
   endef
 endef
 
-$(eval $(call DefineqtLibrary,Concurrent,Core,))
-$(eval $(call DefineqtLibrary,Core,,+QT5_INCLUDE_ATOMIC:libatomic +libpcre2-16 +zlib))
-$(eval $(call DefineqtLibrary,DBus,Core,+libdbus))
-$(eval $(call DefineqtLibrary,Gui,DBus,+libfreetype))
-$(eval $(call DefineqtLibrary,Network,Core,+libopenssl))
-$(eval $(call DefineqtLibrary,PrintSupport,Widgets,))
-$(eval $(call DefineqtLibrary,Sql,Core,))
-$(eval $(call DefineqtLibrary,Test,Core,))
-$(eval $(call DefineqtLibrary,Widgets,Gui,))
-$(eval $(call DefineqtLibrary,Xml,Core))
+$(eval $(call DefineQtLibrary,Concurrent,Core,))
+$(eval $(call DefineQtLibrary,Core,,+QT5_INCLUDE_ATOMIC:libatomic +libpcre2-16 +zlib))
+$(eval $(call DefineQtLibrary,DBus,Core,+libdbus))
+$(eval $(call DefineQtLibrary,Gui,DBus,+libfreetype))
+$(eval $(call DefineQtLibrary,Network,Core,+libopenssl))
+$(eval $(call DefineQtLibrary,PrintSupport,Widgets,))
+$(eval $(call DefineQtLibrary,Sql,Core,))
+$(eval $(call DefineQtLibrary,Test,Core,))
+$(eval $(call DefineQtLibrary,Widgets,Gui,))
+$(eval $(call DefineQtLibrary,Xml,Core))
 
 $(foreach lib,$(QT_LIBS),$(eval $(call BuildPackage,qt5-$(lib))))
 $(eval $(call BuildPackage,qt))
