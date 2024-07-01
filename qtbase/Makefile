@@ -193,7 +193,7 @@ endef
 
 $(eval $(call DefineQtbaseLibrary,Concurrent,Core,))
 $(eval $(call DefineQtbaseLibrary,Core,,+QT5_INCLUDE_ATOMIC:libatomic +libpcre2-16 +zlib))
-$(eval $(call DefineQtbaseLibrary,DBus,Core,))
+$(eval $(call DefineQtbaseLibrary,DBus,Core,+libdbus))
 $(eval $(call DefineQtbaseLibrary,Gui,DBus,+libfreetype))
 $(eval $(call DefineQtbaseLibrary,Network,Core,+libopenssl))
 $(eval $(call DefineQtbaseLibrary,PrintSupport,Widgets,))
