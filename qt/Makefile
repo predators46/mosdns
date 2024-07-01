@@ -22,7 +22,7 @@ PKG_BUILD_PARALLEL:=1
 PKG_USE_MIPS16:=0
 PKG_CPE_ID:=cpe:/a:qt:qt
 
-PKG_BUILD_DEPENDS:=gperf/host
+PKG_BUILD_DEPENDS:=gperf/host python3/host
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -153,7 +153,6 @@ CONFIGURE_ARGS = \
 		-nomake examples \
 		-nomake tests \
 		-nomake tools \
-		-no-textmarkdownwriter \
 		-v 
 
 
