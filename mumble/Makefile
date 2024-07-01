@@ -14,10 +14,12 @@ PKG_LICENSE_FILES:=LICENSE
 
 CMAKE_BINARY_SUBDIR := build
 
-PKG_BUILD_DEPENDS:=boost qttools
+PKG_BUILD_DEPENDS:=boost python3 qttools
+PYTHON3_PKG_BUILD:=0
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
+include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
 
 define Package/mumble
 	SECTION:=net
@@ -49,7 +51,8 @@ CMAKE_OPTIONS += \
 	-Dbundled-opus=OFF \
 	-Dbundled-rnnoise=OFF \
 	-Dupdate=OFF \
-	-DBUILD_NUMBER="${PKG_VERSION##*.}"
+	-DBUILD_NUMBER="${PKG_VERSION##*.}" \
+	-DPython3_EXECUTABLE="$(STAGING_DIR_HOSTPKG)/bin/$(PYTHON3)"
 
 define Package/mumble/install
 	$(INSTALL_DIR) \
