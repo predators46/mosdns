@@ -149,7 +149,7 @@ CONFIGURE_ARGS = \
 		-no-compile-examples \
 		-feature-concurrent \
 		-no-feature-gssapi \
-		-testlib \
+		-feature-testlib \
 		-make libs \
 		-nomake examples \
 		-nomake tests \
