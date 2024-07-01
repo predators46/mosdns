@@ -191,16 +191,16 @@ define DefineQtbaseLibrary
   endef
 endef
 
-$(eval $(call DefineQtbaseLibrary,concurrent,core,))
-$(eval $(call DefineQtbaseLibrary,core,,+QT5_INCLUDE_ATOMIC:libatomic +libpcre2-16 +zlib))
-$(eval $(call DefineQtbaseLibrary,dbus,core,+libdbus))
-$(eval $(call DefineQtbaseLibrary,gui,dbus,+libfreetype))
-$(eval $(call DefineQtbaseLibrary,network,core,+libopenssl +zlib))
-$(eval $(call DefineQtbaseLibrary,printsupport,widgets,))
-$(eval $(call DefineQtbaseLibrary,sql,core,))
-$(eval $(call DefineQtbaseLibrary,test,core,))
-$(eval $(call DefineQtbaseLibrary,widgets,gui,))
-$(eval $(call DefineQtbaseLibrary,xml,core))
+$(eval $(call DefineQtbaseLibrary,Concurrent,Core,))
+$(eval $(call DefineQtbaseLibrary,Core,,+QT5_INCLUDE_ATOMIC:libatomic +libpcre2-16 +zlib))
+$(eval $(call DefineQtbaseLibrary,DBus,Core,))
+$(eval $(call DefineQtbaseLibrary,Gui,DBus,+libfreetype))
+$(eval $(call DefineQtbaseLibrary,Network,Core,+libopenssl))
+$(eval $(call DefineQtbaseLibrary,PrintSupport,Widgets,))
+$(eval $(call DefineQtbaseLibrary,Sql,Core,))
+$(eval $(call DefineQtbaseLibrary,Test,Core,))
+$(eval $(call DefineQtbaseLibrary,Widgets,Gui,))
+$(eval $(call DefineQtbaseLibrary,Xml,Core))
 
 $(foreach lib,$(QTBASE_LIBS),$(eval $(call BuildPackage,qt5-$(lib))))
 $(eval $(call BuildPackage,qtbase))
