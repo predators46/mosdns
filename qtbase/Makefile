@@ -114,16 +114,16 @@ CONFIGURE_ARGS = \
 		$(if $(findstring i386,$(ARCH)),-no-sse2 -no-sse4.1) \
 		-no-angle \
 		-no-cups \
-		-no-dbus \
+		-dbus-linked \
 		-no-directfb \
 		-no-dtls\
 		-no-egl \
 		-no-eglfs \
-		-no-freetype \
+		-system-freetype \
 		-no-gbm \
 		-no-glib \
 		-no-gtk \
-		-no-gui \
+		-gui \
 		-no-harfbuzz \
 		-no-iconv \
 		-no-icu \
@@ -142,14 +142,14 @@ CONFIGURE_ARGS = \
 		-no-trace \
 		-no-tslib \
 		-no-vulkan \
-		-no-widgets \
+		-widgets \
 		-no-xcb \
 		-no-xkbcommon \
 		-no-zstd \
 		-no-compile-examples \
-		-no-feature-concurrent \
+		-feature-concurrent \
 		-no-feature-gssapi \
-		-no-feature-testlib \
+		-testlib \
 		-make libs \
 		-nomake examples \
 		-nomake tests \
@@ -191,10 +191,16 @@ define DefineQtbaseLibrary
   endef
 endef
 
+$(eval $(call DefineQtbaseLibrary,concurrent,core,))
 $(eval $(call DefineQtbaseLibrary,core,,+QT5_INCLUDE_ATOMIC:libatomic +libpcre2-16 +zlib))
+$(eval $(call DefineQtbaseLibrary,dbus,core,+libdbus))
+$(eval $(call DefineQtbaseLibrary,gui,dbus,+libfreetype))
 $(eval $(call DefineQtbaseLibrary,network,core,+libopenssl +zlib))
-$(eval $(call DefineQtbaseLibrary,xml,core,))
-$(eval $(call DefineQtbaseLibrary,sql,core))
+$(eval $(call DefineQtbaseLibrary,printsupport,widgets,))
+$(eval $(call DefineQtbaseLibrary,sql,core,))
+$(eval $(call DefineQtbaseLibrary,test,core,))
+$(eval $(call DefineQtbaseLibrary,widgets,gui,))
+$(eval $(call DefineQtbaseLibrary,xml,core))
 
 $(foreach lib,$(QTBASE_LIBS),$(eval $(call BuildPackage,qt5-$(lib))))
 $(eval $(call BuildPackage,qtbase))
