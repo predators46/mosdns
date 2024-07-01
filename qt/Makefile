@@ -153,7 +153,7 @@ CONFIGURE_ARGS = \
 		-nomake examples \
 		-nomake tests \
 		-nomake tools \
-		-skip qtdoc \
+		-no-textmarkdownwriter \
 		-v 
 
 
