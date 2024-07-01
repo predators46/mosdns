@@ -8,7 +8,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=qt
 PKG_BASE:=5.15
-PKG_BUGFIX:=13
+PKG_BUGFIX:=14
 PKG_VERSION:=$(PKG_BASE).$(PKG_BUGFIX)
 PKG_RELEASE:=1
 
@@ -153,6 +153,7 @@ CONFIGURE_ARGS = \
 		-nomake examples \
 		-nomake tests \
 		-nomake tools \
+		-skip qtdoc \
 		-v 
 
 
