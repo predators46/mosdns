@@ -158,7 +158,7 @@ endef
 define Package/qt5-svg
 	$(call Package/qt5/Default)
 	TITLE:=svg
-	DEPENDS:=+qt5-core
+	DEPENDS:=+qt5-core +qt5-concurrent +qt5-dbus +qt5-network +qt5-sql +qt5-test +qt5-xml +qt5-gui +qt5-widgets
 endef
 
 define Package/qt5-script
