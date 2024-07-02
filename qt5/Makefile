@@ -1,18 +1,18 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=qt5
-PKG_VERSION:=5.15
-PKG_RELEASE:=14
+PKG_VERSION:=5.15.14
+PKG_RELEASE:=1
 
-PKG_SOURCE:=qt-everywhere-src-$(PKG_VERSION).$(PKG_RELEASE).tar.xz
-PKG_SOURCE_URL:=https://download.qt.io/official_releases/qt/$(PKG_VERSION)/$(PKG_VERSION).$(PKG_RELEASE)/single
+PKG_SOURCE:=qt-everywhere-opensource-src-$(PKG_VERSION).$(PKG_RELEASE).tar.xz
+PKG_SOURCE_URL:=https://download.qt.io/official_releases/qt/5.15/5.15.14/single/
 PKG_HASH:=skip
 
 PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=
 PKG_LICENSE_FILES:=
 
-PKG_BUILD_DIR=$(BUILD_DIR)/qt-everywhere-src-$(PKG_VERSION).$(PKG_RELEASE)
+PKG_BUILD_DIR=$(BUILD_DIR)/qt-everywhere-src-$(PKG_VERSION)
 
 PKG_BUILD_PARALLEL:=1
 PKG_USE_MIPS16:=0
