@@ -62,7 +62,7 @@ endef
 define Package/qt5-gui
 	$(call Package/qt5/Default)
 	TITLE:=gui
-	DEPENDS:=+qt5-core +qt5-dbus +libfreetype
+	DEPENDS:=+qt5-dbus +libfreetype
 endef
 
 define Package/qt5-gamepad
