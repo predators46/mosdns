@@ -1,0 +1,58 @@
+From e2c422d91e49be58b6fd2fbb10d0ae30918b16e7 Mon Sep 17 00:00:00 2001
+From: Jan Klass <kissaki@posteo.de>
+Date: Sat, 29 May 2021 10:59:13 +0200
+Subject: [PATCH] BUILD(cmake): Replace use of FindPythonInterpreter with
+ FindPython3
+
+Unclear where that is supposed to come from?
+
+FindPythonInterp is deprecated https://cmake.org/cmake/help/latest/module/FindPythonInterp.html
+
+The FindPythonInterpreter use was introduced in 19e16a0524876c3b29f59e9844c650d1a2a7ba73
+but my build fails with include not found.
+
+Fixes #5055
+---
+ cmake/qt-utils.cmake | 15 ++-------------
+ 1 file changed, 2 insertions(+), 13 deletions(-)
+
+diff --git a/cmake/qt-utils.cmake b/cmake/qt-utils.cmake
+index fc732754075..ca5b1194702 100644
+--- a/cmake/qt-utils.cmake
++++ b/cmake/qt-utils.cmake
+@@ -3,8 +3,6 @@
+ # that can be found in the LICENSE file at the root of the
+ # Mumble source tree or at <https://www.mumble.info/LICENSE>.
+ 
+-include(FindPythonInterpreter)
+-
+ function(include_qt_plugin TARGET SCOPE PLUGIN)
+ 	set(PATH "${CMAKE_CURRENT_BINARY_DIR}/${TARGET}_plugin_import.cpp")
+ 	if(NOT EXISTS ${PATH})
+@@ -102,16 +100,7 @@ function(bundle_qt_translations TARGET)
+ 	file(GLOB TS_FILES "${QT_TRANSLATION_OVERWRITE_SOURCE_DIR}/*.ts")
+ 	compile_translations(QM_FILES "${QT_TRANSLATION_OVERWRITE_DIR}" "${TS_FILES}")
+ 
+-	set(PYTHON_HINTS
+-		"C:/Python39-x64" # Path on the AppVeyor CI server
+-	)
+-
+-	find_python_interpreter(
+-		VERSION 3
+-		INTERPRETER_OUT_VAR PYTHON_INTERPRETER
+-		HINTS ${PYTHON_HINTS}
+-		REQUIRED
+-	)
++	find_package (Python3 COMPONENTS Interpreter)
+ 
+ 	set(GENERATED_QRC_FILE "${CMAKE_CURRENT_BINARY_DIR}/mumble_qt_translations.qrc")
+ 
+@@ -121,7 +110,7 @@ function(bundle_qt_translations TARGET)
+ 
+ 	# Generate the QRC file that contains the Qt translations and potentially our overwrites of them
+ 	execute_process(
+-		COMMAND "${PYTHON_INTERPRETER}" "${CMAKE_SOURCE_DIR}/scripts/generate-mumble_qt-qrc.py"
++		COMMAND "${Python3_EXECUTABLE}" "${CMAKE_SOURCE_DIR}/scripts/generate-mumble_qt-qrc.py"
+ 			"${GENERATED_QRC_FILE}" "${QT_TRANSLATIONS_DIRECTORY}" "${QT_TRANSLATION_OVERWRITE_DIR}"
+ 		RESULT_VARIABLE GENERATOR_EXIT_CODE
+ 	)
