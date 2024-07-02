@@ -43,7 +43,7 @@ endef
 define Package/qt5-core
 	$(call Package/qt5/Default)
 	TITLE:=core
-	DEPENDS:=+libpthread +zlib +libzstd +libpcre2-16 +libstdcpp +librt +libdouble-conversion
+	DEPENDS:=+libpthread +zlib +libzstd +libpcre2 +libstdcpp +librt +libdouble-conversion
 endef
 
 define Package/qt5-concurrent
@@ -239,7 +239,7 @@ CONFIGURE_ARGS = \
 	-mimetype-database \
 	-openssl-linked \
 	-system-doubleconversion \
-	-system-pcre2 \
+	-system-pcre \
 	-system-zlib \
 	$(if $(findstring i386,$(ARCH)),-no-sse2 -no-sse4.1) \
 	-no-angle \
