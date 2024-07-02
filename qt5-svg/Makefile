@@ -22,7 +22,7 @@ PKG_HASH:=skip
 PKG_BUILD_DIR:=$(BUILD_DIR)/qtsvg-everywhere-src-$(PKG_VERSION)
 
 PKG_BUILD_PARALLEL:=1
-PKG_BUILD_DEPENDS:=qtbase
+#PKG_BUILD_DEPENDS:=qtbase
 
 include $(INCLUDE_DIR)/package.mk
 
