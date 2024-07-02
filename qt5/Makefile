@@ -30,188 +30,188 @@ endef
 
 define Package/qt5-bluetooth
 	$(call Package/qt5/Default)
-	TITLE:=bluetooth
-	DEPENDS:=+qt5-core
+	TITLE+=bluetooth
+	DEPENDS+=+qt5-core
 endef
 
 define Package/qt5-charts
 	$(call Package/qt5/Default)
-	TITLE:=charts
-	DEPENDS:=+qt5-core
+	TITLE+=charts
+	DEPENDS+=+qt5-core
 endef
 
 define Package/qt5-core
 	$(call Package/qt5/Default)
-	TITLE:=core
-	DEPENDS:=+libatomic +libpcre2-16 +zlib
+	TITLE+=core
+	DEPENDS+=+libatomic +libstdcpp +libpcre2-16 +zlib
 endef
 
 define Package/qt5-concurrent
 	$(call Package/qt5/Default)
-	TITLE:=concurrent
-	DEPENDS:=+qt5-core
+	TITLE+=concurrent
+	DEPENDS+=+qt5-core
 endef
 
 define Package/qt5-dbus
 	$(call Package/qt5/Default)
-	TITLE:=dbus
-	DEPENDS:=+qt5-core +libdbus
+	TITLE+=dbus
+	DEPENDS+=+qt5-core +libdbus
 endef
 
 define Package/qt5-gui
 	$(call Package/qt5/Default)
-	TITLE:=gui
-	DEPENDS:=+qt5-dbus +libfreetype
+	TITLE+=gui
+	DEPENDS+=+qt5-core +qt5-dbus +libfreetype
 endef
 
 define Package/qt5-gamepad
 	$(call Package/qt5/Default)
-	TITLE:=gamepad
-	DEPENDS:=+qt5-core
+	TITLE+=gamepad
+	DEPENDS+=+qt5-core
 endef
 
 define Package/qt5-help
 	$(call Package/qt5/Default)
-	TITLE:=help
-	DEPENDS:=+qt5-core
+	TITLE+=help
+	DEPENDS+=+qt5-core
 endef
 
 define Package/qt5-multimedia
 	$(call Package/qt5/Default)
-	TITLE:=multimedia
-	DEPENDS:=+qt5-core
+	TITLE+=multimedia
+	DEPENDS+=+qt5-core
 endef
 
 define Package/qt5-multimediawidgets
 	$(call Package/qt5/Default)
-	TITLE:=multimedia widgets
-	DEPENDS:=+qt5-core
+	TITLE+=multimedia widgets
+	DEPENDS+=+qt5-core
 endef
 
 define Package/qt5-network
 	$(call Package/qt5/Default)
-	TITLE:=network
-	DEPENDS:=+qt5-core +libopenssl
+	TITLE+=network
+	DEPENDS+=+qt5-core +libopenssl
 endef
 
 define Package/qt5-networkauth
 	$(call Package/qt5/Default)
-	TITLE:=networkauth
-	DEPENDS:=+qt5-core
+	TITLE+=networkauth
+	DEPENDS+=+qt5-core
 endef
 
 define Package/qt5-nfc
 	$(call Package/qt5/Default)
-	TITLE:=nfc
-	DEPENDS:=+qt5-core
+	TITLE+=nfc
+	DEPENDS+=+qt5-core
 endef
 
 define Package/qt5-printsupport
 	$(call Package/qt5/Default)
-	TITLE:=printsupport
-	DEPENDS:=+qt5-widgets
+	TITLE+=printsupport
+	DEPENDS+=+qt5-core qt5-widgets
 endef
 
 define Package/qt5-purchasing
 	$(call Package/qt5/Default)
-	TITLE:=purchasing
-	DEPENDS:=+qt5-core
+	TITLE+=purchasing
+	DEPENDS+=+qt5-core
 endef
 
 define Package/qt5-positioning
 	$(call Package/qt5/Default)
-	TITLE:=positioning
-	DEPENDS:=+qt5-core
+	TITLE+=positioning
+	DEPENDS+=+qt5-core
 endef
 
 define Package/qt5-remoteobjects
 	$(call Package/qt5/Default)
-	TITLE:=remote objects
-	DEPENDS:=+qt5-core
+	TITLE+=remote objects
+	DEPENDS+=+qt5-core
 endef
 
 define Package/qt5-serialport
 	$(call Package/qt5/Default)
-	TITLE:=serialport
-	DEPENDS:=+qt5-core
+	TITLE+=serialport
+	DEPENDS+=+qt5-core
 endef
 
 define Package/qt5-serialbus
 	$(call Package/qt5/Default)
-	TITLE:=serialbus
-	DEPENDS:=+qt5-core +qt5-network +qt5-serialport
+	TITLE+=serialbus
+	DEPENDS+=+qt5-core +qt5-network +qt5-serialport
 endef
 
 define Package/qt5-sensors
 	$(call Package/qt5/Default)
-	TITLE:=sensors
-	DEPENDS:=+qt5-core
+	TITLE+=sensors
+	DEPENDS+=+qt5-core
 endef
 
 define Package/qt5-sql
 	$(call Package/qt5/Default)
-	TITLE:=sql
-	DEPENDS:=+qt5-core
+	TITLE+=sql
+	DEPENDS+=+qt5-core
 endef
 
 define Package/qt5-svg
 	$(call Package/qt5/Default)
-	TITLE:=svg
-	DEPENDS:=+qt5-core +qt5-concurrent +qt5-dbus +qt5-network +qt5-sql +qt5-test +qt5-xml +qt5-gui +qt5-widgets
+	TITLE+=svg
+	DEPENDS+=+qt5-core
 endef
 
 define Package/qt5-script
 	$(call Package/qt5/Default)
-	TITLE:=script
-	DEPENDS:=+qt5-core
+	TITLE+=script
+	DEPENDS+=+qt5-core
 endef
 
 define Package/qt5-scripttools
 	$(call Package/qt5/Default)
-	TITLE:=script tools
-	DEPENDS:=+qt5-core +qt5-script
+	TITLE+=script tools
+	DEPENDS+=+qt5-core +qt5-script
 endef
 
 define Package/qt5-test
 	$(call Package/qt5/Default)
-	TITLE:=test
-	DEPENDS:=+qt5-core
+	TITLE+=test
+	DEPENDS+=+qt5-core
 endef
 
 define Package/qt5-texttospeech
 	$(call Package/qt5/Default)
-	TITLE:=text to speech
-	DEPENDS:=+qt5-core
+	TITLE+=text to speech
+	DEPENDS+=+qt5-core
 endef
 
 define Package/qt5-widgets
 	$(call Package/qt5/Default)
-	TITLE:=widgets
-	DEPENDS:=+qt5-gui
+	TITLE+=widgets
+	DEPENDS+=+qt5-core +qt5-gui
 endef
 
 define Package/qt5-websockets
 	$(call Package/qt5/Default)
-	TITLE:=websockets
-	DEPENDS:=+qt5-core
+	TITLE+=websockets
+	DEPENDS+=+qt5-core
 endef
 
 define Package/qt5-webchannel
 	$(call Package/qt5/Default)
-	TITLE:=webchannel
-	DEPENDS:=+qt5-core
+	TITLE+=webchannel
+	DEPENDS+=+qt5-core
 endef
 
 define Package/qt5-xml
 	$(call Package/qt5/Default)
-	TITLE:=xml
-	DEPENDS:=+qt5-core
+	TITLE+=xml
+	DEPENDS+=+qt5-core
 endef
 
 define Package/qt5-xmlpatterns
 	$(call Package/qt5/Default)
-	TITLE:=xml patterns
-	DEPENDS:=+qt5-core +qt5-network
+	TITLE+=xml patterns
+	DEPENDS+=+qt5-core +qt5-network
 endef
 
 EXTRA_CFLAGS += $(FPIC) -ffunction-sections -fdata-sections -flto
@@ -241,6 +241,7 @@ CONFIGURE_ARGS = \
 	-qt-doubleconversion \
 	-system-pcre \
 	-system-zlib \
+	$(if $(findstring i386,$(ARCH)),-no-sse2 -no-sse4.1) \
 	-no-angle \
 	-no-cups \
 	-dbus-linked \
@@ -285,6 +286,10 @@ CONFIGURE_ARGS = \
 	-nomake tools \
 	-skip qtdeclarative \
 	-v
+
+define Build/Compile
+	$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)
+endef
 
 define Build/InstallDev
 	$(MAKE) -C $(PKG_BUILD_DIR) install
