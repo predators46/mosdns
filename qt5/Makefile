@@ -62,7 +62,7 @@ endef
 define Package/qt5-gui
 	$(call Package/qt5/Default)
 	TITLE:=gui
-	DEPENDS:=+qt5-core
+	DEPENDS:=+qt5-core +qt5-dbus +libfreetype
 endef
 
 define Package/qt5-gamepad
@@ -110,7 +110,7 @@ endef
 define Package/qt5-printsupport
 	$(call Package/qt5/Default)
 	TITLE:=printsupport
-	DEPENDS:=+qt5-core
+	DEPENDS:=+qt5-core +qt5-widgets
 endef
 
 define Package/qt5-purchasing
@@ -188,7 +188,7 @@ endef
 define Package/qt5-widgets
 	$(call Package/qt5/Default)
 	TITLE:=widgets
-	DEPENDS:=+qt5-core
+	DEPENDS:=+qt5-core +qt5-gui
 endef
 
 define Package/qt5-websockets
