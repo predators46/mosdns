@@ -22,7 +22,6 @@ PKG_HASH:=skip
 PKG_BUILD_DIR:=$(BUILD_DIR)/qtsvg-everywhere-src-$(PKG_VERSION)
 
 PKG_BUILD_PARALLEL:=1
-#PKG_BUILD_DEPENDS:=qtbase
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -32,7 +31,7 @@ define Package/qt5-svg
   SUBMENU:=Qt5
   TITLE:=qtsvg
   URL:=http://qt-project.org
-  DEPENDS:=+qt5-Core
+  DEPENDS:=+qt5-Concurrent +qt5-Core +qt5-DBus +qt5-Network +qt5-Sql +qt5-Test +qt5-Xml
 endef
 
 define Build/Configure
