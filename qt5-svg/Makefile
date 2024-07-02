@@ -31,7 +31,7 @@ define Package/qt5-svg
   SUBMENU:=Qt5
   TITLE:=qtsvg
   URL:=http://qt-project.org
-  DEPENDS:=+qt5-Concurrent +qt5-Core +qt5-DBus +qt5-Network +qt5-Sql +qt5-Test +qt5-Xml
+  DEPENDS:=+qt5-Concurrent +qt5-Core +qt5-DBus +qt5-Network +qt5-Sql +qt5-Test +qt5-Xml +qt5-Gui +qt5-Widgets
 endef
 
 define Build/Configure
