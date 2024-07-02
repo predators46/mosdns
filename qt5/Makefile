@@ -239,7 +239,7 @@ CONFIGURE_ARGS = \
 	-mimetype-database \
 	-openssl-linked \
 	-system-doubleconversion \
-	-system-pcre \
+	-system-pcre2 \
 	-system-zlib \
 	$(if $(findstring i386,$(ARCH)),-no-sse2 -no-sse4.1) \
 	-no-angle \
