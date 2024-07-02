@@ -24,7 +24,7 @@ define Package/qt5/Default
 	SECTION:=libs
 	CATEGORY:=Libraries
 	SUBMENU:=Qt5
-	TITLE:=Qt5
+	TITLE:=qt5
 	URL:=http://qt-project.org
 endef
 
@@ -43,7 +43,7 @@ endef
 define Package/qt5-core
 	$(call Package/qt5/Default)
 	TITLE:=core
-	DEPENDS:=+libpthread +zlib +libzstd +libpcre2 +libstdcpp +librt +libdouble-conversion
+	DEPENDS:=+libatomic +libpcre2-16 +zlib
 endef
 
 define Package/qt5-concurrent
@@ -151,7 +151,7 @@ endef
 define Package/qt5-sql
 	$(call Package/qt5/Default)
 	TITLE:=sql
-	DEPENDS:=+qt5-core +libsqlite3
+	DEPENDS:=+qt5-core
 endef
 
 define Package/qt5-svg
@@ -238,7 +238,7 @@ CONFIGURE_ARGS = \
 	-ltcg \
 	-mimetype-database \
 	-openssl-linked \
-	-system-doubleconversion \
+	-qt-doubleconversion \
 	-system-pcre \
 	-system-zlib \
 	$(if $(findstring i386,$(ARCH)),-no-sse2 -no-sse4.1) \
@@ -253,6 +253,7 @@ CONFIGURE_ARGS = \
 	-no-gbm \
 	-no-glib \
 	-no-gtk \
+	-gui \
 	-no-harfbuzz \
 	-no-iconv \
 	-no-icu \
@@ -267,22 +268,24 @@ CONFIGURE_ARGS = \
 	-no-openvg \
 	-no-pch \
 	-no-slog2 \
-	-system-sqlite \
+	-sql-sqlite \
 	-no-trace \
 	-no-tslib \
 	-no-vulkan \
+	-widgets \
 	-no-xcb \
 	-no-xkbcommon \
+	-no-zstd \
+	-no-compile-examples \
+	-feature-concurrent \
+	-no-feature-gssapi \
+	-feature-testlib \
 	-make libs \
 	-nomake examples \
 	-nomake tests \
 	-nomake tools \
 	-skip qtdeclarative \
 	-v
-
-define Build/Compile
-	$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)
-endef
 
 define Build/InstallDev
 	$(MAKE) -C $(PKG_BUILD_DIR) install
@@ -536,4 +539,3 @@ $(eval $(call BuildPackage,qt5-websockets))
 $(eval $(call BuildPackage,qt5-webchannel))
 $(eval $(call BuildPackage,qt5-xml))
 $(eval $(call BuildPackage,qt5-xmlpatterns))
-
