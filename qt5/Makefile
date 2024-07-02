@@ -241,7 +241,6 @@ CONFIGURE_ARGS = \
 	-qt-doubleconversion \
 	-system-pcre \
 	-system-zlib \
-	$(if $(findstring i386,$(ARCH)),-no-sse2 -no-sse4.1) \
 	-no-angle \
 	-no-cups \
 	-dbus-linked \
