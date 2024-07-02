@@ -309,9 +309,9 @@ jobs:
           mkdir upload
 
           #zip -jr upload/mosdns_ipk_${{ matrix.platform }}.zip bin/packages/*/xorg/
-          #zip -jr upload/mosdns_ipk_${{ matrix.platform }}.zip bin/packages/*/mosdns/*
+          zip -jr upload/mosdns_ipk_${{ matrix.platform }}.zip bin/packages/*/mosdns/*
           #zip -r upload/mosdns_ipk_${{ matrix.platform }}.zip /home/runner/work/mosdns/mosdns/sdk/build_dir/hostpkg/perl
-          zip -r upload/mosdns_ipk_${{ matrix.platform }}.zip /home/runner/work/mosdns/mosdns/sdk/build_dir/target-aarch64_generic_musl/direwolf-1.7
+          #zip -r upload/mosdns_ipk_${{ matrix.platform }}.zip /home/runner/work/mosdns/mosdns/sdk/build_dir/target-aarch64_generic_musl/direwolf-1.7
           #zip -r upload/mosdns_ipk_${{ matrix.platform }}.zip /home/runner/work/mosdns/mosdns/sdk/build_dir/target-aarch64_generic_musl/qtbase-everywhere-src-5.15.13/
           #zip -r upload/mosdns_ipk_${{ matrix.platform }}.zip /home/runner/work/mosdns/mosdns/sdk/feeds/mosdns/
 
