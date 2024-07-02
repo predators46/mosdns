@@ -24,9 +24,8 @@ define Package/qt5/Default
 	SECTION:=libs
 	CATEGORY:=Libraries
 	SUBMENU:=Qt5
-	TITLE:=qt5
+	TITLE:=Qt5
 	URL:=http://qt-project.org
-	DEPENDS:=+libatomic +libstdcpp +zlib
 endef
 
 define Package/qt5-bluetooth
@@ -44,7 +43,7 @@ endef
 define Package/qt5-core
 	$(call Package/qt5/Default)
 	TITLE:=core
-	DEPENDS:=+libpcre2-16
+	DEPENDS:=+libpthread +zlib +libzstd +libpcre2-16 +libstdcpp +librt +libdouble-conversion
 endef
 
 define Package/qt5-concurrent
@@ -152,7 +151,7 @@ endef
 define Package/qt5-sql
 	$(call Package/qt5/Default)
 	TITLE:=sql
-	DEPENDS:=+qt5-core
+	DEPENDS:=+qt5-core +libsqlite3
 endef
 
 define Package/qt5-svg
@@ -239,7 +238,7 @@ CONFIGURE_ARGS = \
 	-ltcg \
 	-mimetype-database \
 	-openssl-linked \
-	-qt-doubleconversion \
+	-system-doubleconversion \
 	-system-pcre \
 	-system-zlib \
 	$(if $(findstring i386,$(ARCH)),-no-sse2 -no-sse4.1) \
@@ -254,7 +253,6 @@ CONFIGURE_ARGS = \
 	-no-gbm \
 	-no-glib \
 	-no-gtk \
-	-gui \
 	-no-harfbuzz \
 	-no-iconv \
 	-no-icu \
@@ -269,18 +267,12 @@ CONFIGURE_ARGS = \
 	-no-openvg \
 	-no-pch \
 	-no-slog2 \
-	-sql-sqlite \
+	-system-sqlite \
 	-no-trace \
 	-no-tslib \
 	-no-vulkan \
-	-widgets \
 	-no-xcb \
 	-no-xkbcommon \
-	-no-zstd \
-	-no-compile-examples \
-	-feature-concurrent \
-	-no-feature-gssapi \
-	-feature-testlib \
 	-make libs \
 	-nomake examples \
 	-nomake tests \
