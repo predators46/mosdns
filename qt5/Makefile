@@ -4,7 +4,7 @@ PKG_NAME:=qt5
 PKG_VERSION:=5.15.14
 PKG_RELEASE:=1
 
-PKG_SOURCE:=qt-everywhere-opensource-src-$(PKG_VERSION).$(PKG_RELEASE).tar.xz
+PKG_SOURCE:=qt-everywhere-opensource-src-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=https://download.qt.io/official_releases/qt/5.15/5.15.14/single/
 PKG_HASH:=skip
 
