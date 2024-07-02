@@ -43,7 +43,7 @@ endef
 define Package/qt5-core
 	$(call Package/qt5/Default)
 	TITLE+=core
-	DEPENDS+=+libatomic +libstdcpp +libpcre2-16 +zlib
+	DEPENDS+=+libatomic +libgcc +libstdcpp +libpcre2-16 +zlib
 endef
 
 define Package/qt5-concurrent
