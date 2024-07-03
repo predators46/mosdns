@@ -40,8 +40,6 @@ endef
 
 CMAKE_OPTIONS += \
 	-Wno-dev \
-	-DBUILD_SHARED_LIBS=ON \
-	-DCMAKE_BUILD_TYPE=MinSizeRel \
 	-Doverlay-xcompile=OFF \
 	-Dspeechd=OFF \
 	-Dice=OFF \
@@ -54,7 +52,7 @@ CMAKE_OPTIONS += \
 	-Dbundled-rnnoise=OFF \
 	-Dupdate=OFF \
 	-Dzeroconf=OFF \
-	-DBUILD_NUMBER="${PKG_VERSION##*.}" \
+	-DBUILD_NUMBER="${PKG_VERSION/*./}" \
 	-DPython3_EXECUTABLE="$(STAGING_DIR_HOSTPKG)/bin/$(PYTHON3)"
 
 define Package/mumble/install
