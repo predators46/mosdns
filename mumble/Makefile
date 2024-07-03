@@ -39,6 +39,7 @@ define Package/mumble/conffiles
 endef
 
 CMAKE_OPTIONS += \
+	-Wno-dev \
 	-DBUILD_SHARED_LIBS=ON \
 	-DCMAKE_BUILD_TYPE=MinSizeRel \
 	-Doverlay-xcompile=OFF \
