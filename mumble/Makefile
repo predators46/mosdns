@@ -5,7 +5,7 @@ PKG_VERSION:=1.4.287
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://codeload.github.com/mumble-voip/mumble/tar.gz/v$(PKG_VERSION)?
+PKG_SOURCE_URL:=https://github.com/mumble-voip/mumble/releases/download/v$(PKG_VERSION)
 PKG_HASH:=skip
 
 PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
