@@ -52,6 +52,7 @@ CMAKE_OPTIONS += \
 	-Dbundled-opus=OFF \
 	-Dbundled-rnnoise=OFF \
 	-Dupdate=OFF \
+	-Dzeroconf=OFF \
 	-DBUILD_NUMBER="${PKG_VERSION##*.}" \
 	-DPython3_EXECUTABLE="$(STAGING_DIR_HOSTPKG)/bin/$(PYTHON3)"
 
