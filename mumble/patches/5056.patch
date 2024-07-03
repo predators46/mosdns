@@ -17,7 +17,7 @@ Fixes #5055
  1 file changed, 2 insertions(+), 13 deletions(-)
 
 diff --git a/cmake/qt-utils.cmake b/cmake/qt-utils.cmake
-index fc732754075..ca5b1194702 100644
+index fc73275..ca5b119 100644
 --- a/cmake/qt-utils.cmake
 +++ b/cmake/qt-utils.cmake
 @@ -3,8 +3,6 @@
