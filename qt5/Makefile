@@ -214,8 +214,8 @@ define Package/qt5-xmlpatterns
 	DEPENDS+=+qt5-core +qt5-network
 endef
 
-EXTRA_CFLAGS += $(FPIC) -ffunction-sections -fdata-sections -flto
-EXTRA_LDFLAGS += -Wl,--gc-sections,--as-needed
+#EXTRA_CFLAGS += $(FPIC) -ffunction-sections -fdata-sections -flto
+#EXTRA_LDFLAGS += -Wl,--gc-sections,--as-needed
 
 CONFIGURE_ARGS = \
 	-sysroot $(STAGING_DIR) \
