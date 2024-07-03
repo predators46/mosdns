@@ -58,6 +58,8 @@ define Build/InstallDev
 endef
 
 define Package/celt/install
+	$(INSTALL_DIR) $(1)/usr/bin/
+	$(CP) $(PKG_INSTALL_DIR)/usr/bin/{celtdec,celtenc} $(1)/usr/bin/
 	$(INSTALL_DIR) $(1)/usr/lib/
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libcelt0.so.* $(1)/usr/lib/
 endef
