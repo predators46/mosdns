@@ -8,12 +8,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=celt
-PKG_VERSION:=0.11.3
+PKG_VERSION:=0.7.0
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://ftp.osuosl.org/pub/xiph/releases/celt/
-PKG_HASH:=skip
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_URL:=https://github.com/mumble-voip/celt-0.7.0.git
+PKG_SOURCE_VERSION:=01c3967bd4029583d2c13acc6690b56826164940
+PKG_MIRROR_HASH:=skip
 
 PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=BSD-3-Clause
