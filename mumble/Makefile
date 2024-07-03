@@ -26,7 +26,7 @@ define Package/mumble
 	CATEGORY:=Network
 	TITLE:=Mumble - Open Source voice-chat software
 	URL:=https://github.com/mumble-voip/mumble
-	DEPENDS:=+alsa-lib +libavahi-compat-libdnssd +libsndfile +libopenssl +libcap +libx11 +libxi +qt5-Concurrent +qt5-Core +qt5-DBus +qt5-Gui +qt5-Network +qt5-PrintSupport +qt5-Sql +qt5-Test +qt5-Widgets +qt5-Xml +poco-all +protobuf +librnnoise +libspeex +libspeexdsp +libopus
+	DEPENDS:=+alsa-lib +celt +libavahi-compat-libdnssd +libsndfile +libopenssl +libcap +libx11 +libxi +qt5-Concurrent +qt5-Core +qt5-DBus +qt5-Gui +qt5-Network +qt5-PrintSupport +qt5-Sql +qt5-Test +qt5-Widgets +qt5-Xml +poco-all +protobuf +librnnoise +libspeex +libspeexdsp +libopus
 endef
 
 define Package/mumble/description
