@@ -12,7 +12,7 @@ PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=LICENSE
 PKG_LICENSE_FILES:=LICENSE
 
-CMAKE_BINARY_SUBDIR := build
+#CMAKE_BINARY_SUBDIR := build
 
 PKG_BUILD_DEPENDS:=boost qt5-tools qt5-svg
 PYTHON3_PKG_BUILD:=0
