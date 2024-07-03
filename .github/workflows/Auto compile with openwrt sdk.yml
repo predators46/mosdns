@@ -118,9 +118,7 @@ jobs:
       - name: Configure mosdns
         run: |
           cd sdk
-          ./scripts/feeds update xorg
-          ./scripts/feeds update node
-          ./scripts/feeds update mosdns
+          ./scripts/feeds update -a
           ./scripts/feeds install -a -f -p xorg
           ./scripts/feeds install -a -f -p mosdns
           ./scripts/feeds install -a -f -p node
@@ -267,9 +265,9 @@ jobs:
           echo "src-git xorg https://github.com/predators46/xorg feeds/packages/xorg.git" >> feeds.conf.default
 
           ./scripts/feeds update -a
-          ./scripts/feeds install -p -f mosdns/perl
+          ./scripts/feeds install -p -f -p xorg
           ./scripts/feeds install -a -f -p mosdns
-          ./scripts/feeds install -a -f -p xorg
+          ./scripts/feeds install -a -f -p node
           ./scripts/feeds install luci-app-mosdns
 
 
