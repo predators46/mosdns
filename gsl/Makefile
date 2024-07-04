@@ -1,12 +1,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=gsl
-PKG_VERSION:=4.0.0
+PKG_VERSION:=3.1.0
 PKG_RELEASE:=1
 
-PKG_SOURCE:=GSL-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://github.com/microsoft/GSL/archive/v$(PKG_VERSION)
-PKG_HASH:=skip
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_URL:=https://github.com/microsoft/GSL.git
+PKG_SOURCE_VERSION:=0f6dbc9e2915ef5c16830f3fa3565738de2a9230
+PKG_MIRROR_HASH:=skip
 
 PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=License
