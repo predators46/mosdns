@@ -31,10 +31,6 @@ define Package/mumble/description
   Mumble is an open-source, low-latency, high quality voice chat software.
 endef
 
-define Package/mumble/conffiles
-/etc/murmur.ini
-endef
-
 define Build/Prepare
 	$(call Build/Prepare/Default)
 	$(RM) $(STAGING_DIR)/usr/bin/protoc*
