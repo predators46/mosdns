@@ -4,16 +4,15 @@ PKG_NAME:=nlohmann-json
 PKG_VERSION:=3.11.3
 PKG_RELEASE:=1
 
-PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=https://github.com/nlohmann/json.git
-PKG_SOURCE_VERSION:=9cca280a4d0ccf0c08f47a99aa71d1b0e52f8d03
-PKG_MIRROR_HASH:=skip
+PKG_SOURCE:=json-$(PKG_VERSION).tar.gz
+PKG_SOURCE_URL:=https://github.com/nlohmann/json/archive/v$(PKG_VERSION)
+PKG_HASH:=skip
 
 PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=MIT license
 PKG_LICENSE_FILES:=LICENSE
 
-#PKG_BUILD_DIR:=$(BUILD_DIR)/json-$(PKG_VERSION)
+PKG_BUILD_DIR:=$(BUILD_DIR)/json-$(PKG_VERSION)
 CMAKE_BINARY_SUBDIR := build
 
 PKG_BUILD_PARALLEL:=1
