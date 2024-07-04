@@ -12,22 +12,19 @@ PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=LICENSE
 PKG_LICENSE_FILES:=LICENSE
 
-#PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION).src
 CMAKE_BINARY_SUBDIR := build
 
-PKG_BUILD_DEPENDS:=boost qt5-tools qt5-svg protobuf/host
-PYTHON3_PKG_BUILD:=0
+PKG_BUILD_DEPENDS:=boost qt5-tools mesa nlohmann-json protobuf/host python3/host
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
-include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
 
 define Package/mumble
 	SECTION:=net
 	CATEGORY:=Network
 	TITLE:=Mumble - Open Source voice-chat software
 	URL:=https://github.com/mumble-voip/mumble
-	DEPENDS:=+alsa-lib +celt +libavahi-compat-libdnssd +libsndfile +libopenssl +libcap +libx11 +libxi +qt5-Concurrent +qt5-Core +qt5-DBus +qt5-Gui +qt5-Network +qt5-PrintSupport +qt5-Sql +qt5-Test +qt5-Widgets +qt5-Xml +poco-all +protobuf +libmesa +librnnoise +libspeex +libspeexdsp +libopus
+	DEPENDS:=+alsa-lib +celt +libavahi-compat-libdnssd +libsndfile +libopenssl +libcap +libx11 +libxi +qt5-Concurrent +qt5-Core +qt5-DBus +qt5-Gui +qt5-Network +qt5-PrintSupport +qt5-Sql +qt5-Test +qt5-Widgets +qt5-Xml +qt5-svg +poco-all +protobuf +librnnoise +libspeex +libspeexdsp +libopus
 endef
 
 define Package/mumble/description
@@ -40,29 +37,27 @@ endef
 
 define Build/Prepare
 	$(call Build/Prepare/Default)
-	rm -rf $(STAGING_DIR)/usr/bin/protoc*
-	cp -r $(STAGING_DIR_HOSTPKG)/bin/protoc* $(STAGING_DIR)/usr/bin/
+	$(RM) -rf $(STAGING_DIR)/usr/bin/protoc*
+	$(CP) $(STAGING_DIR_HOSTPKG)/bin/protoc* $(STAGING_DIR)/usr/bin/
 endef
 
 CMAKE_OPTIONS += \
 	-Wno-dev \
+	-DBUILD_SHARED_LIBS=ON \
 	-Doverlay-xcompile=OFF \
 	-Dspeechd=OFF \
 	-Dice=OFF \
 	-Drnnoise=ON \
-	-Dtranslations=OFF \
 	-Dbundled-celt=OFF \
 	-Dbundle-qt-translations=OFF \
+	-Dbundled-gsl=OFF \
+	-Dbundled-json=OFF \
+	-Dbundled-renamenoise=OFF \
 	-Dbundled-speex=OFF \
 	-Dbundled-opus=OFF \
 	-Dbundled-rnnoise=OFF \
 	-Dupdate=OFF \
-	-Dwarnings-as-errors=OFF \
-	-Dzeroconf=OFF \
-	-DPROTOC=$(STAGING_DIR_HOSTPKG)/bin/protoc \
-	-Dprotoc=$(STAGING_DIR_HOSTPKG)/bin/protoc \
-	-DBUILD_NUMBER="${PKG_VERSION/*./}" \
-	-DPython3_EXECUTABLE="$(STAGING_DIR_HOSTPKG)/bin/$(PYTHON3)"
+	-DBUILD_NUMBER="$(PKG_VERSION)"
 
 define Package/mumble/install
 	$(INSTALL_DIR) \
