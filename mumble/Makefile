@@ -53,6 +53,7 @@ CMAKE_OPTIONS += \
 	-Dbundled-opus=OFF \
 	-Dbundled-rnnoise=OFF \
 	-Dupdate=OFF \
+	-Dwarnings-as-errors=OFF \
 	-Dzeroconf=OFF \
 	-DBUILD_NUMBER="634"
 
