@@ -41,6 +41,7 @@ endef
 define Build/Prepare
 	$(call Build/Prepare/Default)
 	rm -rf $(STAGING_DIR)/usr/bin/protoc*
+	cp -r $(STAGING_DIR_HOSTPKG)/bin/protoc* $(STAGING_DIR)/usr/bin/
 endef
 
 CMAKE_OPTIONS += \
