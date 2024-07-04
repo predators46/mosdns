@@ -14,7 +14,7 @@ PKG_LICENSE_FILES:=LICENSE
 
 CMAKE_BINARY_SUBDIR := build
 
-PKG_BUILD_DEPENDS:=boost qt5-tools mesa nlohmann-json gsl protobuf/host python3/host
+PKG_BUILD_DEPENDS:=boost qt5-tools nlohmann-json gsl protobuf/host python3/host
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
@@ -24,7 +24,7 @@ define Package/mumble
 	CATEGORY:=Network
 	TITLE:=Mumble - Open Source voice-chat software
 	URL:=https://github.com/mumble-voip/mumble
-	DEPENDS:=+alsa-lib +celt +libsndfile +libopenssl +libcap +libx11 +libxi +qt5-Concurrent +qt5-Core +qt5-DBus +qt5-Gui +qt5-Network +qt5-PrintSupport +qt5-Sql +qt5-Test +qt5-Widgets +qt5-Xml +qt5-svg +poco-all +protobuf +librnnoise +libspeex +libspeexdsp +libopus
+	DEPENDS:=+alsa-lib +celt +libsndfile +libopenssl +libcap +libx11 +libxi +qt5-Concurrent +qt5-Core +qt5-DBus +qt5-Gui +qt5-Network +qt5-PrintSupport +qt5-Sql +qt5-Test +qt5-Widgets +qt5-Xml +qt5-svg +libmesa +poco-all +protobuf +librnnoise +libspeex +libspeexdsp +libopus
 endef
 
 define Package/mumble/description
