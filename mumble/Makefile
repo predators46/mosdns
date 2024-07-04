@@ -37,7 +37,7 @@ endef
 
 define Build/Prepare
 	$(call Build/Prepare/Default)
-	$(RM) -rf $(STAGING_DIR)/usr/bin/protoc*
+	$(RM) $(STAGING_DIR)/usr/bin/protoc*
 	$(CP) $(STAGING_DIR_HOSTPKG)/bin/protoc* $(STAGING_DIR)/usr/bin/
 endef
 
@@ -52,7 +52,7 @@ CMAKE_OPTIONS += \
 	-Dbundle-qt-translations=OFF \
 	-Dbundled-gsl=OFF \
 	-Dbundled-json=OFF \
-	-Dbundled-renamenoise=OFF \
+	-Dbundled-renamenoise=ON \
 	-Dbundled-speex=OFF \
 	-Dbundled-opus=OFF \
 	-Dbundled-rnnoise=OFF \
@@ -61,14 +61,9 @@ CMAKE_OPTIONS += \
 
 define Package/mumble/install
 	$(INSTALL_DIR) \
-	  $(1)/etc \
 	  $(1)/usr/bin \
 	  $(1)/usr/lib \
 	  $(1)/usr/share
-
-	$(CP) \
-	  $(PKG_INSTALL_DIR)/etc/murmur.ini \
-	  $(1)/etc/murmur.ini
 
 	$(CP) \
 	  $(PKG_INSTALL_DIR)/usr/bin/* \
