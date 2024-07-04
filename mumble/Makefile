@@ -57,7 +57,7 @@ CMAKE_OPTIONS += \
 	-Dbundled-opus=OFF \
 	-Dbundled-rnnoise=OFF \
 	-Dupdate=OFF \
-	-DBUILD_NUMBER="$(PKG_VERSION)"
+	-DBUILD_NUMBER="634"
 
 define Package/mumble/install
 	$(INSTALL_DIR) \
