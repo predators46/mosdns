@@ -14,7 +14,7 @@ PKG_LICENSE_FILES:=LICENSE
 
 CMAKE_BINARY_SUBDIR := build
 
-PKG_BUILD_DEPENDS:=boost qt5-tools mesa nlohmann-json protobuf/host python3/host
+PKG_BUILD_DEPENDS:=boost qt5-tools mesa nlohmann-json gsl protobuf/host python3/host
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
