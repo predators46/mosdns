@@ -39,7 +39,6 @@ endef
 
 CMAKE_OPTIONS += \
 	-Wno-dev \
-	-DBUILD_SHARED_LIBS=ON \
 	-Doverlay-xcompile=OFF \
 	-Dspeechd=OFF \
 	-Dice=OFF \
