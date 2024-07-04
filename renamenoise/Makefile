@@ -13,7 +13,7 @@ PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=BSD-3-Clause license
 PKG_LICENSE_FILES:=COPYING
 
-CMAKE_BINARY_SUBDIR := build
+#CMAKE_BINARY_SUBDIR := build
 
 PKG_INSTALL:=1
 
@@ -32,8 +32,8 @@ define Package/librenamenoise/description
 endef
 
 CMAKE_OPTIONS += \
-	-DRENAMENOISE_DEMO_EXECUTABLE=OFF \
-	-DRENAMENOISE_BENCHMARK_EXECUTABLE=OFF
+	-DBUILD_SHARED_LIBS=ON \
+	-DRENAMENOISE_DEMO_EXECUTABLE=OFF
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/include
