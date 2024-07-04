@@ -53,6 +53,8 @@ CMAKE_OPTIONS += \
 	-Dupdate=OFF \
 	-Dwarnings-as-errors=OFF \
 	-Dzeroconf=OFF \
+	-DPROTOC=$(STAGING_DIR_HOSTPKG)/bin/protoc \
+	-Dprotoc=$(STAGING_DIR_HOSTPKG)/bin/protoc \
 	-DBUILD_NUMBER="${PKG_VERSION/*./}" \
 	-DPython3_EXECUTABLE="$(STAGING_DIR_HOSTPKG)/bin/$(PYTHON3)"
 
