@@ -38,6 +38,11 @@ define Package/mumble/conffiles
 /etc/murmur.ini
 endef
 
+define Build/Prepare
+	$(call Build/Prepare/Default)
+	rm -r "$(STAGING_DIR)/usr/bin/protoc*"
+endef
+
 CMAKE_OPTIONS += \
 	-Wno-dev \
 	-Doverlay-xcompile=OFF \
