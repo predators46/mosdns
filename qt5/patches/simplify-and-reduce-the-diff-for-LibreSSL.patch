@@ -1,6 +1,5 @@
-Index: qtbase/src/network/ssl/qsslcontext_openssl.cpp
---- qtbase/src/network/ssl/qsslcontext_openssl.cpp.orig
-+++ qtbase/src/network/ssl/qsslcontext_openssl.cpp
+--- a/qtbase/src/network/ssl/qsslcontext_openssl.cpp
++++ b/qtbase/src/network/ssl/qsslcontext_openssl.cpp
 @@ -722,6 +722,7 @@ void QSslContext::applyBackendConfig(QSslContext *sslC
      }
  #endif // ocsp
