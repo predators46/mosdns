@@ -43,7 +43,7 @@ endef
 define Package/qt5-core
 	$(call Package/qt5/Default)
 	TITLE+=core
-	DEPENDS+=+libatomic +libgcc +libstdcpp +libpcre2-16 +zlib
+	DEPENDS+=+libatomic +libpcre2-16 +zlib
 endef
 
 define Package/qt5-concurrent
@@ -109,7 +109,7 @@ endef
 define Package/qt5-printsupport
 	$(call Package/qt5/Default)
 	TITLE+=printsupport
-	DEPENDS+=+qt5-core qt5-widgets
+	DEPENDS+=+qt5-core +qt5-widgets
 endef
 
 define Package/qt5-purchasing
@@ -215,7 +215,7 @@ define Package/qt5-xmlpatterns
 endef
 
 EXTRA_CFLAGS += $(FPIC) -ffunction-sections -fdata-sections -flto
-EXTRA_LDFLAGS += -Wl,--gc-sections,--as-needed
+EXTRA_LDFLAGS+=-L$(PKG_BUILD_DIR) -L$(STAGING_DIR)/usr/lib -L$(STAGING_DIR)/lib
 
 CONFIGURE_ARGS = \
 	-sysroot $(STAGING_DIR) \
@@ -227,7 +227,7 @@ CONFIGURE_ARGS = \
 	-device linux-generic-g++ \
 	-device-option CROSS_COMPILE="$(TARGET_CROSS)" \
 	-device-option COMPILER_FLAGS="$(TARGET_CFLAGS) $(EXTRA_CFLAGS) $(TARGET_CPPFLAGS) $(EXTRA_CPPFLAGS)" \
-	-device-option LINKER_FLAGS="$(TARGET_LDFLAGS)" \
+	-device-option LINKER_FLAGS="$(TARGET_LDFLAGS) $(EXTRA_LDFLAGS)" \
 	-confirm-license \
 	-opensource \
 	-release \
@@ -288,7 +288,7 @@ CONFIGURE_ARGS = \
 	-v
 
 define Build/Compile
-	$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)/$(MAKE_PATH)
+	$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)
 endef
 
 define Build/InstallDev
