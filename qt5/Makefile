@@ -215,7 +215,7 @@ define Package/qt5-xmlpatterns
 endef
 
 EXTRA_CFLAGS += $(FPIC) -ffunction-sections -fdata-sections -flto
-EXTRA_LDFLAGS+=-L$(PKG_BUILD_DIR) -L$(STAGING_DIR)/usr/lib -L$(STAGING_DIR)/lib
+EXTRA_LDFLAGS += -Wl,--gc-sections,--as-needed
 
 CONFIGURE_ARGS = \
 	-sysroot $(STAGING_DIR) \
