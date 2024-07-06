@@ -115,7 +115,7 @@
    PATH_SEPARATOR=:
    (PATH='/bin;/bin'; FPATH=$PATH; sh -c :) >/dev/null 2>&1 && {
      (PATH='/bin:/bin'; FPATH=$PATH; sh -c :) >/dev/null 2>&1 ||
-@@ -80,13 +83,6 @@ if test "${PATH_SEPARATOR+set}" != set; then
+@@ -80,13 +83,6 @@ if test "${PATH_SEPARATOR+set}" != set;
  fi
  
  
@@ -203,7 +203,7 @@
    case \`(set -o) 2>/dev/null\` in #(
    *posix*) :
      set -o posix ;; #(
-@@ -186,41 +168,52 @@ as_fn_success || { exitcode=1; echo as_fn_success failed.; }
+@@ -186,41 +168,52 @@ as_fn_success || { exitcode=1; echo as_f
  as_fn_failure && { exitcode=1; echo as_fn_failure succeeded.; }
  as_fn_ret_success || { exitcode=1; echo as_fn_ret_success failed.; }
  as_fn_ret_failure && { exitcode=1; echo as_fn_ret_failure succeeded.; }
@@ -277,7 +277,7 @@
  IFS=$as_save_IFS
 +if $as_found
 +then :
-+
+ 
 +else $as_nop
 +  if { test -f "$SHELL" || test -f "$SHELL.exe"; } &&
 +	      as_run=a "$SHELL" -c "$as_bourne_compatible""$as_required" 2>/dev/null
@@ -286,8 +286,8 @@
 +fi
 +fi
  
- 
 -      if test "x$CONFIG_SHELL" != x; then :
++
 +      if test "x$CONFIG_SHELL" != x
 +then :
    export CONFIG_SHELL
@@ -353,7 +353,7 @@
        *) as_qdir=$as_dir;;
        esac
        as_dirs="'$as_qdir' $as_dirs"
-@@ -331,7 +341,7 @@ $as_expr X"$as_dir" : 'X\(.*[^/]\)//*[^/][^/]*/*$' \| \
+@@ -331,7 +341,7 @@ $as_expr X"$as_dir" : 'X\(.*[^/]\)//*[^/
  	 X"$as_dir" : 'X\(//\)[^/]' \| \
  	 X"$as_dir" : 'X\(//\)$' \| \
  	 X"$as_dir" : 'X\(/\)' \| . 2>/dev/null ||
@@ -560,7 +560,7 @@
    esac
  fi
  
-@@ -1144,7 +1173,7 @@ $as_expr X"$as_myself" : 'X\(.*[^/]\)//*[^/][^/]*/*$' \| \
+@@ -1144,7 +1173,7 @@ $as_expr X"$as_myself" : 'X\(.*[^/]\)//*
  	 X"$as_myself" : 'X\(//\)[^/]' \| \
  	 X"$as_myself" : 'X\(//\)$' \| \
  	 X"$as_myself" : 'X\(/\)' \| . 2>/dev/null ||
@@ -578,7 +578,7 @@
  
  Some influential environment variables:
    CC          C compiler command
-@@ -1300,9 +1329,9 @@ if test "$ac_init_help" = "recursive"; then
+@@ -1300,9 +1329,9 @@ if test "$ac_init_help" = "recursive"; t
  case "$ac_dir" in
  .) ac_dir_suffix= ac_top_builddir_sub=. ac_top_build_prefix= ;;
  *)
@@ -600,7 +600,7 @@
      if test -f "$ac_srcdir/configure.gnu"; then
        echo &&
        $SHELL "$ac_srcdir/configure.gnu" --help=recursive
-@@ -1338,7 +1368,7 @@ ac_abs_srcdir=$ac_abs_top_srcdir$ac_dir_suffix
+@@ -1338,7 +1368,7 @@ ac_abs_srcdir=$ac_abs_top_srcdir$ac_dir_
        echo &&
        $SHELL "$ac_srcdir/configure" --help=recursive
      else
@@ -609,7 +609,7 @@
      fi || ac_status=$?
      cd "$ac_pwd" || { ac_status=$?; break; }
    done
-@@ -1348,9 +1378,9 @@ test -n "$ac_init_help" && exit $ac_status
+@@ -1348,9 +1378,9 @@ test -n "$ac_init_help" && exit $ac_stat
  if $ac_init_version; then
    cat <<\_ACEOF
  configure
@@ -928,7 +928,7 @@
        esac
        case $ac_var in #(
        _ | IFS | as_nl) ;; #(
-@@ -1746,7 +1801,7 @@ $as_echo "$as_me: WARNING: cache variable $ac_var contains a newline" >&2;} ;;
+@@ -1746,7 +1801,7 @@ $as_echo "$as_me: WARNING: cache variabl
  )
      echo
  
@@ -937,7 +937,7 @@
  ## Output variables. ##
  ## ----------------- ##"
      echo
-@@ -1754,14 +1809,14 @@ $as_echo "$as_me: WARNING: cache variable $ac_var contains a newline" >&2;} ;;
+@@ -1754,14 +1809,14 @@ $as_echo "$as_me: WARNING: cache variabl
      do
        eval ac_val=\$$ac_var
        case $ac_val in
@@ -955,7 +955,7 @@
  ## File substitutions. ##
  ## ------------------- ##"
        echo
-@@ -1769,15 +1824,15 @@ $as_echo "$as_me: WARNING: cache variable $ac_var contains a newline" >&2;} ;;
+@@ -1769,15 +1824,15 @@ $as_echo "$as_me: WARNING: cache variabl
        do
  	eval ac_val=\$$ac_var
  	case $ac_val in
@@ -974,7 +974,7 @@
  ## confdefs.h. ##
  ## ----------- ##"
        echo
-@@ -1785,8 +1840,8 @@ $as_echo "$as_me: WARNING: cache variable $ac_var contains a newline" >&2;} ;;
+@@ -1785,8 +1840,8 @@ $as_echo "$as_me: WARNING: cache variabl
        echo
      fi
      test "$ac_signal" != 0 &&
@@ -1421,7 +1421,7 @@
        ac_cache_corrupted=: ;;
      ,);;
      *)
-@@ -1903,24 +2251,24 @@ $as_echo "$as_me: error: \`$ac_var' was not set in the previous run" >&2;}
+@@ -1903,24 +2251,24 @@ $as_echo "$as_me: error: \`$ac_var' was
  	ac_old_val_w=`echo x $ac_old_val`
  	ac_new_val_w=`echo x $ac_new_val`
  	if test "$ac_old_val_w" != "$ac_new_val_w"; then
@@ -1455,7 +1455,7 @@
      *) ac_arg=$ac_var=$ac_new_val ;;
      esac
      case " $ac_configure_args " in
-@@ -1930,11 +2278,12 @@ $as_echo "$as_me:   current value: \`$ac_new_val'" >&2;}
+@@ -1930,11 +2278,12 @@ $as_echo "$as_me:   current value: \`$ac
    fi
  done
  if $ac_cache_corrupted; then
@@ -1996,7 +1996,7 @@
    test $ac_status = 0; }
  done
  
-@@ -2305,7 +2798,7 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+@@ -2305,7 +2798,7 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_
  /* end confdefs.h.  */
  
  int
@@ -2005,7 +2005,7 @@
  {
  
    ;
-@@ -2317,9 +2810,9 @@ ac_clean_files="$ac_clean_files a.out a.out.dSYM a.exe b.out"
+@@ -2317,9 +2810,9 @@ ac_clean_files="$ac_clean_files a.out a.
  # Try to create an executable without -o first, disregard a.out.
  # It will help us diagnose broken compilers, and finding out an intuition
  # of exeext.
@@ -2110,7 +2110,7 @@
    # If both `conftest.exe' and `conftest' are `present' (well, observable)
  # catch `conftest.exe'.  For instance with Cygwin, `ls conftest' will
  # work properly (i.e., refer to `conftest.exe'), while it won't with
-@@ -2428,15 +2924,15 @@ for ac_file in conftest.exe conftest conftest.*; do
+@@ -2428,15 +2924,15 @@ for ac_file in conftest.exe conftest con
      * ) break;;
    esac
  done
@@ -2131,7 +2131,7 @@
  
  rm -f conftest.$ac_ext
  EXEEXT=$ac_cv_exeext
-@@ -2445,7 +2941,7 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+@@ -2445,7 +2941,7 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_
  /* end confdefs.h.  */
  #include <stdio.h>
  int
@@ -2669,7 +2669,7 @@
    # Broken: fails on valid input.
  continue
  fi
-@@ -2812,10 +3364,11 @@ rm -f conftest.err conftest.i conftest.$ac_ext
+@@ -2812,10 +3364,11 @@ rm -f conftest.err conftest.i conftest.$
  /* end confdefs.h.  */
  #include <ac_nonexistent.h>
  _ACEOF
@@ -2683,7 +2683,7 @@
    # Passes both tests.
  ac_preproc_ok=:
  break
-@@ -2825,7 +3378,8 @@ rm -f conftest.err conftest.i conftest.$ac_ext
+@@ -2825,7 +3378,8 @@ rm -f conftest.err conftest.i conftest.$
  done
  # Because of `break', _AC_PREPROC_IFELSE's cleaning code was skipped.
  rm -f conftest.i conftest.err conftest.$ac_ext
@@ -2729,7 +2729,7 @@
    # Broken: fails on valid input.
  continue
  fi
-@@ -2871,10 +3420,11 @@ rm -f conftest.err conftest.i conftest.$ac_ext
+@@ -2871,10 +3420,11 @@ rm -f conftest.err conftest.i conftest.$
  /* end confdefs.h.  */
  #include <ac_nonexistent.h>
  _ACEOF
@@ -2743,7 +2743,7 @@
    # Passes both tests.
  ac_preproc_ok=:
  break
-@@ -2884,11 +3434,12 @@ rm -f conftest.err conftest.i conftest.$ac_ext
+@@ -2884,11 +3434,12 @@ rm -f conftest.err conftest.i conftest.$
  done
  # Because of `break', _AC_PREPROC_IFELSE's cleaning code was skipped.
  rm -f conftest.i conftest.err conftest.$ac_ext
@@ -2790,7 +2790,7 @@
    case $krb5_config in
    [\\/]* | ?:[\\/]*)
    ac_cv_path_krb5_config="$krb5_config" # Let the user override the test with a path.
-@@ -2934,11 +3487,15 @@ as_dummy="${rlm_krb5_dir}/bin:${PATH}:/usr/bin:/usr/local/bin"
+@@ -2934,11 +3487,15 @@ as_dummy="${rlm_krb5_dir}/bin:${PATH}:/u
  for as_dir in $as_dummy
  do
    IFS=$as_save_IFS
@@ -3246,24 +3246,25 @@
  }
  _ACEOF
 -if ac_fn_c_try_link "$LINENO"; then :
-+if ac_fn_c_try_link "$LINENO"
-+then :
- 
+-
 -		 smart_lib="-lk5crypto"
 -		 smart_ldflags="-L$try -Wl,-rpath,$try"
 -		 { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 -$as_echo "yes" >&6; }
 -		 break
++if ac_fn_c_try_link "$LINENO"
++then :
+ 
+-else
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+-$as_echo "no" >&6; }
 +		   smart_lib="-lk5crypto"
 +		   smart_ldflags="-L$try -Wl,-rpath,$try"
 +		   smart_ld_found="$try"
 +		   { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 +printf "%s\n" "yes" >&6; }
 +		   break
- 
--else
--  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
--$as_echo "no" >&6; }
++
 +else $as_nop
 +  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 +printf "%s\n" "no" >&6; }
@@ -3299,20 +3300,21 @@
  }
  _ACEOF
 -if ac_fn_c_try_link "$LINENO"; then :
-+if ac_fn_c_try_link "$LINENO"
-+then :
- 
+-
 -	        smart_lib="-lk5crypto"
 -	        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 -$as_echo "yes" >&6; }
-+	           smart_lib="-lk5crypto"
-+	           smart_ld_found=""
-+	           { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
-+printf "%s\n" "yes" >&6; }
++if ac_fn_c_try_link "$LINENO"
++then :
  
 -else
 -  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 -$as_echo "no" >&6; }
++	           smart_lib="-lk5crypto"
++	           smart_ld_found=""
++	           { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++printf "%s\n" "yes" >&6; }
++
 +else $as_nop
 +  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 +printf "%s\n" "no" >&6; }
@@ -3357,16 +3359,17 @@
 -		  { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 -$as_echo "yes" >&6; }
 -		  break
+-
+-else
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+-$as_echo "no" >&6; }
 +		   smart_lib="-lk5crypto"
 +		   smart_ldflags="-L$try -Wl,-rpath,$try"
 +		   smart_ld_found="$try"
 +		   { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 +printf "%s\n" "yes" >&6; }
 +		   break
- 
--else
--  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
--$as_echo "no" >&6; }
++
 +else $as_nop
 +  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 +printf "%s\n" "no" >&6; }
@@ -3435,24 +3438,25 @@
  }
  _ACEOF
 -if ac_fn_c_try_link "$LINENO"; then :
-+if ac_fn_c_try_link "$LINENO"
-+then :
- 
+-
 -		 smart_lib="-lcrypto"
 -		 smart_ldflags="-L$try -Wl,-rpath,$try"
 -		 { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 -$as_echo "yes" >&6; }
 -		 break
++if ac_fn_c_try_link "$LINENO"
++then :
+ 
+-else
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+-$as_echo "no" >&6; }
 +		   smart_lib="-lcrypto"
 +		   smart_ldflags="-L$try -Wl,-rpath,$try"
 +		   smart_ld_found="$try"
 +		   { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 +printf "%s\n" "yes" >&6; }
 +		   break
- 
--else
--  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
--$as_echo "no" >&6; }
++
 +else $as_nop
 +  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 +printf "%s\n" "no" >&6; }
@@ -3488,20 +3492,21 @@
  }
  _ACEOF
 -if ac_fn_c_try_link "$LINENO"; then :
-+if ac_fn_c_try_link "$LINENO"
-+then :
- 
+-
 -	        smart_lib="-lcrypto"
 -	        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 -$as_echo "yes" >&6; }
-+	           smart_lib="-lcrypto"
-+	           smart_ld_found=""
-+	           { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
-+printf "%s\n" "yes" >&6; }
++if ac_fn_c_try_link "$LINENO"
++then :
  
 -else
 -  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 -$as_echo "no" >&6; }
++	           smart_lib="-lcrypto"
++	           smart_ld_found=""
++	           { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++printf "%s\n" "yes" >&6; }
++
 +else $as_nop
 +  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 +printf "%s\n" "no" >&6; }
@@ -3538,24 +3543,25 @@
  }
  _ACEOF
 -if ac_fn_c_try_link "$LINENO"; then :
-+if ac_fn_c_try_link "$LINENO"
-+then :
- 
+-
 -		  smart_lib="-lcrypto"
 -		  smart_ldflags="-L$try -Wl,-rpath,$try"
 -		  { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 -$as_echo "yes" >&6; }
 -		  break
++if ac_fn_c_try_link "$LINENO"
++then :
+ 
+-else
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+-$as_echo "no" >&6; }
 +		   smart_lib="-lcrypto"
 +		   smart_ldflags="-L$try -Wl,-rpath,$try"
 +		   smart_ld_found="$try"
 +		   { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 +printf "%s\n" "yes" >&6; }
 +		   break
- 
--else
--  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
--$as_echo "no" >&6; }
++
 +else $as_nop
 +  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 +printf "%s\n" "no" >&6; }
@@ -3593,7 +3599,7 @@
  	fi
  
  
-@@ -3462,123 +4055,136 @@ $as_echo "$as_me: WARNING: neither krb5 'k5crypto' nor 'crypto' libraries are fo
+@@ -3462,123 +4055,136 @@ $as_echo "$as_me: WARNING: neither krb5
  sm_lib_safe=`echo "com_err" | sed 'y%./+-%__p_%'`
  sm_func_safe=`echo "set_com_err_hook" | sed 'y%./+-%__p_%'`
  
@@ -3643,16 +3649,17 @@
 -		 { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 -$as_echo "yes" >&6; }
 -		 break
+-
+-else
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+-$as_echo "no" >&6; }
 +		   smart_lib="-lcom_err"
 +		   smart_ldflags="-L$try -Wl,-rpath,$try"
 +		   smart_ld_found="$try"
 +		   { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 +printf "%s\n" "yes" >&6; }
 +		   break
- 
--else
--  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
--$as_echo "no" >&6; }
++
 +else $as_nop
 +  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 +printf "%s\n" "no" >&6; }
@@ -3694,14 +3701,15 @@
 -	        smart_lib="-lcom_err"
 -	        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 -$as_echo "yes" >&6; }
+-
+-else
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+-$as_echo "no" >&6; }
 +	           smart_lib="-lcom_err"
 +	           smart_ld_found=""
 +	           { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 +printf "%s\n" "yes" >&6; }
- 
--else
--  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
--$as_echo "no" >&6; }
++
 +else $as_nop
 +  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 +printf "%s\n" "no" >&6; }
@@ -3738,24 +3746,25 @@
  }
  _ACEOF
 -if ac_fn_c_try_link "$LINENO"; then :
-+if ac_fn_c_try_link "$LINENO"
-+then :
- 
+-
 -		  smart_lib="-lcom_err"
 -		  smart_ldflags="-L$try -Wl,-rpath,$try"
 -		  { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 -$as_echo "yes" >&6; }
 -		  break
++if ac_fn_c_try_link "$LINENO"
++then :
+ 
+-else
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+-$as_echo "no" >&6; }
 +		   smart_lib="-lcom_err"
 +		   smart_ldflags="-L$try -Wl,-rpath,$try"
 +		   smart_ld_found="$try"
 +		   { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 +printf "%s\n" "yes" >&6; }
 +		   break
- 
--else
--  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
--$as_echo "no" >&6; }
++
 +else $as_nop
 +  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 +printf "%s\n" "no" >&6; }
@@ -3789,7 +3798,7 @@
  	fi
  
  
-@@ -3586,264 +4192,268 @@ $as_echo "$as_me: WARNING: the comm_err library isn't found!" >&2;}
+@@ -3586,264 +4192,268 @@ $as_echo "$as_me: WARNING: the comm_err
  sm_lib_safe=`echo "krb5" | sed 'y%./+-%__p_%'`
  sm_func_safe=`echo "krb5_verify_user_opt" | sed 'y%./+-%__p_%'`
  
@@ -3839,16 +3848,17 @@
 -		 { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 -$as_echo "yes" >&6; }
 -		 break
+-
+-else
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+-$as_echo "no" >&6; }
 +		   smart_lib="-lkrb5"
 +		   smart_ldflags="-L$try -Wl,-rpath,$try"
 +		   smart_ld_found="$try"
 +		   { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 +printf "%s\n" "yes" >&6; }
 +		   break
- 
--else
--  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
--$as_echo "no" >&6; }
++
 +else $as_nop
 +  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 +printf "%s\n" "no" >&6; }
@@ -3890,14 +3900,15 @@
 -	        smart_lib="-lkrb5"
 -	        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 -$as_echo "yes" >&6; }
+-
+-else
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+-$as_echo "no" >&6; }
 +	           smart_lib="-lkrb5"
 +	           smart_ld_found=""
 +	           { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 +printf "%s\n" "yes" >&6; }
- 
--else
--  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
--$as_echo "no" >&6; }
++
 +else $as_nop
 +  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 +printf "%s\n" "no" >&6; }
@@ -3934,24 +3945,25 @@
  }
  _ACEOF
 -if ac_fn_c_try_link "$LINENO"; then :
-+if ac_fn_c_try_link "$LINENO"
-+then :
- 
+-
 -		  smart_lib="-lkrb5"
 -		  smart_ldflags="-L$try -Wl,-rpath,$try"
 -		  { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 -$as_echo "yes" >&6; }
 -		  break
++if ac_fn_c_try_link "$LINENO"
++then :
+ 
+-else
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+-$as_echo "no" >&6; }
 +		   smart_lib="-lkrb5"
 +		   smart_ldflags="-L$try -Wl,-rpath,$try"
 +		   smart_ld_found="$try"
 +		   { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 +printf "%s\n" "yes" >&6; }
 +		   break
- 
--else
--  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
--$as_echo "no" >&6; }
++
 +else $as_nop
 +  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 +printf "%s\n" "no" >&6; }
@@ -4047,24 +4059,25 @@
  }
  _ACEOF
 -if ac_fn_c_try_link "$LINENO"; then :
-+if ac_fn_c_try_link "$LINENO"
-+then :
- 
+-
 -		 smart_lib="-lkrb5"
 -		 smart_ldflags="-L$try -Wl,-rpath,$try"
 -		 { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 -$as_echo "yes" >&6; }
 -		 break
++if ac_fn_c_try_link "$LINENO"
++then :
+ 
+-else
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+-$as_echo "no" >&6; }
 +		   smart_lib="-lkrb5"
 +		   smart_ldflags="-L$try -Wl,-rpath,$try"
 +		   smart_ld_found="$try"
 +		   { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 +printf "%s\n" "yes" >&6; }
 +		   break
- 
--else
--  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
--$as_echo "no" >&6; }
++
 +else $as_nop
 +  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 +printf "%s\n" "no" >&6; }
@@ -4100,20 +4113,21 @@
  }
  _ACEOF
 -if ac_fn_c_try_link "$LINENO"; then :
-+if ac_fn_c_try_link "$LINENO"
-+then :
- 
+-
 -	        smart_lib="-lkrb5"
 -	        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 -$as_echo "yes" >&6; }
-+	           smart_lib="-lkrb5"
-+	           smart_ld_found=""
-+	           { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
-+printf "%s\n" "yes" >&6; }
++if ac_fn_c_try_link "$LINENO"
++then :
  
 -else
 -  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 -$as_echo "no" >&6; }
++	           smart_lib="-lkrb5"
++	           smart_ld_found=""
++	           { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++printf "%s\n" "yes" >&6; }
++
 +else $as_nop
 +  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 +printf "%s\n" "no" >&6; }
@@ -4158,16 +4172,17 @@
 -		  { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 -$as_echo "yes" >&6; }
 -		  break
+-
+-else
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+-$as_echo "no" >&6; }
 +		   smart_lib="-lkrb5"
 +		   smart_ldflags="-L$try -Wl,-rpath,$try"
 +		   smart_ld_found="$try"
 +		   { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 +printf "%s\n" "yes" >&6; }
 +		   break
- 
--else
--  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
--$as_echo "no" >&6; }
++
 +else $as_nop
 +  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 +printf "%s\n" "no" >&6; }
@@ -4270,24 +4285,25 @@
  }
  _ACEOF
 -if ac_fn_c_try_link "$LINENO"; then :
-+if ac_fn_c_try_link "$LINENO"
-+then :
- 
+-
 -		 smart_lib="-lkrb5"
 -		 smart_ldflags="-L$try -Wl,-rpath,$try"
 -		 { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 -$as_echo "yes" >&6; }
 -		 break
++if ac_fn_c_try_link "$LINENO"
++then :
+ 
+-else
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+-$as_echo "no" >&6; }
 +		   smart_lib="-lkrb5"
 +		   smart_ldflags="-L$try -Wl,-rpath,$try"
 +		   smart_ld_found="$try"
 +		   { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 +printf "%s\n" "yes" >&6; }
 +		   break
- 
--else
--  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
--$as_echo "no" >&6; }
++
 +else $as_nop
 +  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 +printf "%s\n" "no" >&6; }
@@ -4323,20 +4339,21 @@
  }
  _ACEOF
 -if ac_fn_c_try_link "$LINENO"; then :
-+if ac_fn_c_try_link "$LINENO"
-+then :
- 
+-
 -	        smart_lib="-lkrb5"
 -	        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 -$as_echo "yes" >&6; }
-+	           smart_lib="-lkrb5"
-+	           smart_ld_found=""
-+	           { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
-+printf "%s\n" "yes" >&6; }
++if ac_fn_c_try_link "$LINENO"
++then :
  
 -else
 -  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 -$as_echo "no" >&6; }
++	           smart_lib="-lkrb5"
++	           smart_ld_found=""
++	           { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++printf "%s\n" "yes" >&6; }
++
 +else $as_nop
 +  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 +printf "%s\n" "no" >&6; }
@@ -4381,16 +4398,17 @@
 -		  { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 -$as_echo "yes" >&6; }
 -		  break
+-
+-else
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+-$as_echo "no" >&6; }
 +		   smart_lib="-lkrb5"
 +		   smart_ldflags="-L$try -Wl,-rpath,$try"
 +		   smart_ld_found="$try"
 +		   { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 +printf "%s\n" "yes" >&6; }
 +		   break
- 
--else
--  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
--$as_echo "no" >&6; }
++
 +else $as_nop
 +  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 +printf "%s\n" "no" >&6; }
@@ -5055,7 +5073,7 @@
        esac
        case $ac_var in #(
        _ | IFS | as_nl) ;; #(
-@@ -4504,15 +5200,15 @@ $as_echo "$as_me: WARNING: cache variable $ac_var contains a newline" >&2;} ;;
+@@ -4504,15 +5200,15 @@ $as_echo "$as_me: WARNING: cache variabl
       /^ac_cv_env_/b end
       t clear
       :clear
@@ -5074,7 +5092,7 @@
        if test ! -f "$cache_file" || test -h "$cache_file"; then
  	cat confcache >"$cache_file"
        else
-@@ -4526,8 +5222,8 @@ $as_echo "$as_me: updating cache $cache_file" >&6;}
+@@ -4526,8 +5222,8 @@ $as_echo "$as_me: updating cache $cache_
        fi
      fi
    else
@@ -5105,7 +5123,7 @@
  as_write_fail=0
  cat >$CONFIG_STATUS <<_ASEOF || as_write_fail=1
  #! $SHELL
-@@ -4620,14 +5316,16 @@ cat >>$CONFIG_STATUS <<\_ASEOF || as_write_fail=1
+@@ -4620,14 +5316,16 @@ cat >>$CONFIG_STATUS <<\_ASEOF || as_wri
  
  # Be more Bourne compatible
  DUALCASE=1; export DUALCASE # for MKS sh
@@ -5206,7 +5224,7 @@
    PATH_SEPARATOR=:
    (PATH='/bin;/bin'; FPATH=$PATH; sh -c :) >/dev/null 2>&1 && {
      (PATH='/bin:/bin'; FPATH=$PATH; sh -c :) >/dev/null 2>&1 ||
-@@ -4685,13 +5383,6 @@ if test "${PATH_SEPARATOR+set}" != set; then
+@@ -4685,13 +5383,6 @@ if test "${PATH_SEPARATOR+set}" != set;
  fi
  
  
@@ -5332,7 +5350,7 @@
      sed '/^.*\/\([^/][^/]*\)\/*$/{
  	    s//\1/
  	    q
-@@ -4863,6 +5542,10 @@ as_cr_Letters=$as_cr_letters$as_cr_LETTERS
+@@ -4863,6 +5542,10 @@ as_cr_Letters=$as_cr_letters$as_cr_LETTE
  as_cr_digits='0123456789'
  as_cr_alnum=$as_cr_Letters$as_cr_digits
  
@@ -5365,7 +5383,7 @@
        *) as_qdir=$as_dir;;
        esac
        as_dirs="'$as_qdir' $as_dirs"
-@@ -4926,7 +5615,7 @@ $as_expr X"$as_dir" : 'X\(.*[^/]\)//*[^/][^/]*/*$' \| \
+@@ -4926,7 +5615,7 @@ $as_expr X"$as_dir" : 'X\(.*[^/]\)//*[^/
  	 X"$as_dir" : 'X\(//\)[^/]' \| \
  	 X"$as_dir" : 'X\(//\)$' \| \
  	 X"$as_dir" : 'X\(/\)' \| . 2>/dev/null ||
@@ -5374,7 +5392,7 @@
      sed '/^X\(.*[^/]\)\/\/*[^/][^/]*\/*$/{
  	    s//\1/
  	    q
-@@ -4989,7 +5678,7 @@ cat >>$CONFIG_STATUS <<\_ACEOF || ac_write_fail=1
+@@ -4989,7 +5678,7 @@ cat >>$CONFIG_STATUS <<\_ACEOF || ac_wri
  # values after options handling.
  ac_log="
  This file was extended by $as_me, which was
@@ -5429,7 +5447,7 @@
    -q | -quiet | --quiet | --quie | --qui | --qu | --q \
    | -silent | --silent | --silen | --sile | --sil | --si | --s)
      ac_cs_silent=: ;;
-@@ -5124,7 +5815,7 @@ cat >>$CONFIG_STATUS <<_ACEOF || ac_write_fail=1
+@@ -5124,7 +5815,7 @@ cat >>$CONFIG_STATUS <<_ACEOF || ac_writ
  if \$ac_cs_recheck; then
    set X $SHELL '$0' $ac_configure_args \$ac_configure_extra_args --no-create --no-recursion
    shift
@@ -5487,7 +5505,7 @@
         sed 's/[\\\\&|]/\\\\&/g'`;; #(
      *) ac_sed_conf_input=$configure_input;;
      esac
-@@ -5426,7 +6117,7 @@ $as_expr X"$ac_file" : 'X\(.*[^/]\)//*[^/][^/]*/*$' \| \
+@@ -5426,7 +6117,7 @@ $as_expr X"$ac_file" : 'X\(.*[^/]\)//*[^
  	 X"$ac_file" : 'X\(//\)[^/]' \| \
  	 X"$ac_file" : 'X\(//\)$' \| \
  	 X"$ac_file" : 'X\(/\)' \| . 2>/dev/null ||
@@ -5519,7 +5537,7 @@
  _ACEOF
  cat >>$CONFIG_STATUS <<_ACEOF || ac_write_fail=1
    ac_datarootdir_hack='
-@@ -5548,9 +6239,9 @@ test -z "$ac_datarootdir_hack$ac_datarootdir_seen" &&
+@@ -5548,9 +6239,9 @@ test -z "$ac_datarootdir_hack$ac_dataroo
    { ac_out=`sed -n '/\${datarootdir}/p' "$ac_tmp/out"`; test -n "$ac_out"; } &&
    { ac_out=`sed -n '/^[	 ]*datarootdir[	 ]*:*=/p' \
        "$ac_tmp/out"`; test -z "$ac_out"; } &&
@@ -5569,7 +5587,7 @@
  dnl #
  dnl # If we can find krb5-config we can get the version of the library and determine
  dnl # whether it's safe to enable threading.
-@@ -46,7 +45,7 @@ if test "$krb5_config" != 'not-found'; then
+@@ -46,7 +45,7 @@ if test "$krb5_config" != 'not-found'; t
  
  	dnl # AWK originally from from https://github.com/hpc/lustre
  	krb5_version=$(echo "$krb5_version_raw" | head -n 1 | \
@@ -5578,7 +5596,7 @@
  	AC_MSG_RESULT([${krb5_version_raw} ($krb5_version)])
  
  	AC_MSG_CHECKING([krb5-config reported vendor])
-@@ -59,11 +58,9 @@ if test "$krb5_config" != 'not-found'; then
+@@ -59,11 +58,9 @@ if test "$krb5_config" != 'not-found'; t
  		echo "$krb5_version_raw" | grep -i 'MIT' > /dev/null 2>&1 ; then
  		AC_MSG_RESULT([MIT])
  		krb5_api_type='mit'

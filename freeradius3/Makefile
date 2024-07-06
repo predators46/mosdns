@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=freeradius3
 PKG_VERSION:=3.2.4
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=freeradius-server-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://freeradius.org/ftp/pub/freeradius
@@ -21,6 +21,7 @@ PKG_LICENSE_FILES:=COPYRIGHT LICENSE
 PKG_CPE_ID:=cpe:/a:freeradius:freeradius
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/freeradius-server-$(PKG_VERSION)
+PKG_BUILD_PARALLEL:=0
 PKG_FIXUP:=autoreconf
 PYTHON3_PKG_BUILD:=0
 
@@ -31,7 +32,7 @@ PKG_CONFIG_DEPENDS := \
 CFLAGS += $(FPIC)
 
 include $(INCLUDE_DIR)/package.mk
-include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
+include ../../lang/python/python3-package.mk
 
 define Package/freeradius3/config
   source "$(SOURCE)/Config.in"
@@ -731,8 +732,6 @@ endef
 # needed in a future release.
 EXTRA_CFLAGS+= -DHAVE_OPENSSL_RAND_H
 
-CONFIGURE_VARS += LIBREADLINE="-L$(STAGING_DIR)/usr/lib -lreadline"
-
 CONFIGURE_ARGS+= \
 	--libdir=/usr/lib/freeradius3 \
 	--libexecdir=/usr/lib/freeradius3 \
@@ -1040,7 +1039,6 @@ define Package/freeradius3-democerts/install
 	$(INSTALL_DIR) $(1)/etc/freeradius3/certs
 	$(CP) \
 		$(PKG_INSTALL_DIR)/etc/freeradius3/certs/ca.pem \
-		$(PKG_INSTALL_DIR)/etc/freeradius3/certs/dh \
 		$(PKG_INSTALL_DIR)/etc/freeradius3/certs/server.pem \
 		$(1)/etc/freeradius3/certs/
 endef
