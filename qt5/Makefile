@@ -288,7 +288,7 @@ CONFIGURE_ARGS = \
 	-v
 
 define Build/Compile
-	$(call Build/Compile/Default,LD=$(TARGET_CC))
+	$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)/$(MAKE_PATH)
 endef
 
 define Build/InstallDev
