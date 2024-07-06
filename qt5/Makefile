@@ -15,7 +15,7 @@ PKG_LICENSE_FILES:=
 PKG_BUILD_DIR=$(BUILD_DIR)/qt-everywhere-src-$(PKG_VERSION)
 
 PKG_BUILD_PARALLEL:=1
-PKG_USE_MIPS16:=0
+PKG_BUILD_FLAGS:=no-mips16 gc-sections no-lto
 PKG_CPE_ID:=cpe:/a:qt:qt
 
 include $(INCLUDE_DIR)/package.mk
@@ -213,9 +213,6 @@ define Package/qt5-xmlpatterns
 	TITLE+=xml patterns
 	DEPENDS+=+qt5-core +qt5-network
 endef
-
-EXTRA_CFLAGS += $(FPIC) -ffunction-sections -fdata-sections -flto
-EXTRA_LDFLAGS += -Wl,--gc-sections,--as-needed,-flto
 
 CONFIGURE_ARGS = \
 	-sysroot $(STAGING_DIR) \
