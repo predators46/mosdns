@@ -227,7 +227,7 @@ CONFIGURE_ARGS = \
 	-device linux-generic-g++ \
 	-device-option CROSS_COMPILE="$(TARGET_CROSS)" \
 	-device-option COMPILER_FLAGS="$(TARGET_CFLAGS) $(EXTRA_CFLAGS) $(TARGET_CPPFLAGS) $(EXTRA_CPPFLAGS)" \
-	-device-option LINKER_FLAGS="$(TARGET_LDFLAGS) $(EXTRA_LDFLAGS)" \
+	-device-option LINKER_FLAGS="$(TARGET_LDFLAGS)" \
 	-confirm-license \
 	-opensource \
 	-release \
