@@ -1,16 +1,11 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=qt5
-PKG_BASE:=5.15
-PKG_BUGFIX:=14
-PKG_VERSION:=$(PKG_BASE).$(PKG_BUGFIX)
+PKG_VERSION:=5.15.14
 PKG_RELEASE:=1
 
 PKG_SOURCE:=qt-everywhere-opensource-src-$(PKG_VERSION).tar.xz
-PKG_SOURCE_URL:= \
-		http://master.qt.io/archive/qt/$(PKG_BASE)/$(PKG_VERSION)/single \
-		http://mirrors.tuna.tsinghua.edu.cn/qt/archive/qt/$(PKG_BASE)/$(PKG_VERSION)/single \
-		http://qt.mirror.constant.com/archive/qt/$(PKG_BASE)/$(PKG_VERSION)/single
+PKG_SOURCE_URL:=https://download.qt.io/official_releases/qt/5.15/5.15.14/single/
 PKG_HASH:=skip
 
 PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
@@ -25,198 +20,238 @@ PKG_CPE_ID:=cpe:/a:qt:qt
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/qt5/Default
+define Package/qtbase
 	SECTION:=libs
 	CATEGORY:=Libraries
 	SUBMENU:=Qt5
 	TITLE:=qt5
 	URL:=http://qt-project.org
+	DEPENDS:=+libatomic +libpcre2-16 +libdbus +libfreetype +libopenssl +zlib
 endef
 
-define Package/qt5-bluetooth
-	$(call Package/qt5/Default)
-	TITLE+=bluetooth
-	DEPENDS+=+qt5-core
+define Package/qtbase/description
+	qtbase
 endef
 
-define Package/qt5-charts
-	$(call Package/qt5/Default)
-	TITLE+=charts
-	DEPENDS+=+qt5-core
+define Package/qtcharts
+	SECTION:=libs
+	CATEGORY:=Libraries
+	SUBMENU:=Qt5
+	TITLE:=qt5
+	URL:=http://qt-project.org
+	DEPENDS:=+qtbase
 endef
 
-define Package/qt5-core
-	$(call Package/qt5/Default)
-	TITLE+=core
-	DEPENDS+=+libatomic +libpcre2-16 +zlib
+define Package/qtcharts/description
+	qtcharts
 endef
 
-define Package/qt5-concurrent
-	$(call Package/qt5/Default)
-	TITLE+=concurrent
-	DEPENDS+=+qt5-core
+define Package/qtgamepad
+	SECTION:=libs
+	CATEGORY:=Libraries
+	SUBMENU:=Qt5
+	TITLE:=qt5
+	URL:=http://qt-project.org
+	DEPENDS:=+qtbase
 endef
 
-define Package/qt5-dbus
-	$(call Package/qt5/Default)
-	TITLE+=dbus
-	DEPENDS+=+qt5-core +libdbus
+define Package/qtgamepad/description
+	qtgamepad
 endef
 
-define Package/qt5-gui
-	$(call Package/qt5/Default)
-	TITLE+=gui
-	DEPENDS+=+qt5-core +qt5-dbus +libfreetype
+define Package/qttools
+	SECTION:=libs
+	CATEGORY:=Libraries
+	SUBMENU:=Qt5
+	TITLE:=qt5
+	URL:=http://qt-project.org
+	DEPENDS:=+qtbase
 endef
 
-define Package/qt5-gamepad
-	$(call Package/qt5/Default)
-	TITLE+=gamepad
-	DEPENDS+=+qt5-core
+define Package/qttools/description
+	qttools
 endef
 
-define Package/qt5-help
-	$(call Package/qt5/Default)
-	TITLE+=help
-	DEPENDS+=+qt5-core
+define Package/qtmultimedia
+	SECTION:=libs
+	CATEGORY:=Libraries
+	SUBMENU:=Qt5
+	TITLE:=qt5
+	URL:=http://qt-project.org
+	DEPENDS:=+qtbase
 endef
 
-define Package/qt5-multimedia
-	$(call Package/qt5/Default)
-	TITLE+=multimedia
-	DEPENDS+=+qt5-core
+define Package/qtmultimedia/description
+	qtmultimedia
 endef
 
-define Package/qt5-multimediawidgets
-	$(call Package/qt5/Default)
-	TITLE+=multimedia widgets
-	DEPENDS+=+qt5-core
+define Package/qtnetworkauth
+	SECTION:=libs
+	CATEGORY:=Libraries
+	SUBMENU:=Qt5
+	TITLE:=qt5
+	URL:=http://qt-project.org
+	DEPENDS:=+qtbase
 endef
 
-define Package/qt5-network
-	$(call Package/qt5/Default)
-	TITLE+=network
-	DEPENDS+=+qt5-core +libopenssl
+define Package/qtnetworkauth/description
+	qtnetworkauth
 endef
 
-define Package/qt5-networkauth
-	$(call Package/qt5/Default)
-	TITLE+=networkauth
-	DEPENDS+=+qt5-core
+define Package/qtconnectivity
+	SECTION:=libs
+	CATEGORY:=Libraries
+	SUBMENU:=Qt5
+	TITLE:=qt5
+	URL:=http://qt-project.org
+	DEPENDS:=+qtbase
 endef
 
-define Package/qt5-nfc
-	$(call Package/qt5/Default)
-	TITLE+=nfc
-	DEPENDS+=+qt5-core
+define Package/qtconnectivity/description
+	qtconnectivity
 endef
 
-define Package/qt5-printsupport
-	$(call Package/qt5/Default)
-	TITLE+=printsupport
-	DEPENDS+=+qt5-core +qt5-widgets
+define Package/qtpurchasing
+	SECTION:=libs
+	CATEGORY:=Libraries
+	SUBMENU:=Qt5
+	TITLE:=qt5
+	URL:=http://qt-project.org
+	DEPENDS:=+qtbase
 endef
 
-define Package/qt5-purchasing
-	$(call Package/qt5/Default)
-	TITLE+=purchasing
-	DEPENDS+=+qt5-core
+define Package/qtpurchasing/description
+	qtpurchasing
 endef
 
-define Package/qt5-positioning
-	$(call Package/qt5/Default)
-	TITLE+=positioning
-	DEPENDS+=+qt5-core
+define Package/qtlocation
+	SECTION:=libs
+	CATEGORY:=Libraries
+	SUBMENU:=Qt5
+	TITLE:=qt5
+	URL:=http://qt-project.org
+	DEPENDS:=+qtbase
 endef
 
-define Package/qt5-remoteobjects
-	$(call Package/qt5/Default)
-	TITLE+=remote objects
-	DEPENDS+=+qt5-core
+define Package/qtlocation/description
+	qtlocation
 endef
 
-define Package/qt5-serialport
-	$(call Package/qt5/Default)
-	TITLE+=serialport
-	DEPENDS+=+qt5-core
+define Package/qtremoteobjects
+	SECTION:=libs
+	CATEGORY:=Libraries
+	SUBMENU:=Qt5
+	TITLE:=qt5
+	URL:=http://qt-project.org
+	DEPENDS:=+qtbase
 endef
 
-define Package/qt5-serialbus
-	$(call Package/qt5/Default)
-	TITLE+=serialbus
-	DEPENDS+=+qt5-core +qt5-network +qt5-serialport
+define Package/qtremoteobjects/description
+	qtremoteobjects
 endef
 
-define Package/qt5-sensors
-	$(call Package/qt5/Default)
-	TITLE+=sensors
-	DEPENDS+=+qt5-core
+define Package/qtserialport
+	SECTION:=libs
+	CATEGORY:=Libraries
+	SUBMENU:=Qt5
+	TITLE:=qt5
+	URL:=http://qt-project.org
+	DEPENDS:=+qtbase
 endef
 
-define Package/qt5-sql
-	$(call Package/qt5/Default)
-	TITLE+=sql
-	DEPENDS+=+qt5-core
+define Package/qtserialport/description
+	qtserialport
 endef
 
-define Package/qt5-svg
-	$(call Package/qt5/Default)
-	TITLE+=svg
-	DEPENDS+=+qt5-core
+define Package/qtserialbus
+	SECTION:=libs
+	CATEGORY:=Libraries
+	SUBMENU:=Qt5
+	TITLE:=qt5
+	URL:=http://qt-project.org
+	DEPENDS:=+qtbase
 endef
 
-define Package/qt5-script
-	$(call Package/qt5/Default)
-	TITLE+=script
-	DEPENDS+=+qt5-core
+define Package/qtserialbus/description
+	qtserialbus
 endef
 
-define Package/qt5-scripttools
-	$(call Package/qt5/Default)
-	TITLE+=script tools
-	DEPENDS+=+qt5-core +qt5-script
+define Package/qtsensors
+	SECTION:=libs
+	CATEGORY:=Libraries
+	SUBMENU:=Qt5
+	TITLE:=qt5
+	URL:=http://qt-project.org
+	DEPENDS:=+qtbase
 endef
 
-define Package/qt5-test
-	$(call Package/qt5/Default)
-	TITLE+=test
-	DEPENDS+=+qt5-core
+define Package/qtsensors/description
+	qtsensors
 endef
 
-define Package/qt5-texttospeech
-	$(call Package/qt5/Default)
-	TITLE+=text to speech
-	DEPENDS+=+qt5-core
+define Package/qtsvg
+	SECTION:=libs
+	CATEGORY:=Libraries
+	SUBMENU:=Qt5
+	TITLE:=qt5
+	URL:=http://qt-project.org
+	DEPENDS:=+qtbase
 endef
 
-define Package/qt5-widgets
-	$(call Package/qt5/Default)
-	TITLE+=widgets
-	DEPENDS+=+qt5-core +qt5-gui
+define Package/qtsvg/description
+	qtsvg
 endef
 
-define Package/qt5-websockets
-	$(call Package/qt5/Default)
-	TITLE+=websockets
-	DEPENDS+=+qt5-core
+define Package/qtscript
+	SECTION:=libs
+	CATEGORY:=Libraries
+	SUBMENU:=Qt5
+	TITLE:=qt5
+	URL:=http://qt-project.org
+	DEPENDS:=+qtbase
 endef
 
-define Package/qt5-webchannel
-	$(call Package/qt5/Default)
-	TITLE+=webchannel
-	DEPENDS+=+qt5-core
+define Package/qtscript/description
+	qtscript
 endef
 
-define Package/qt5-xml
-	$(call Package/qt5/Default)
-	TITLE+=xml
-	DEPENDS+=+qt5-core
+define Package/qtspeech
+	SECTION:=libs
+	CATEGORY:=Libraries
+	SUBMENU:=Qt5
+	TITLE:=qt5
+	URL:=http://qt-project.org
+	DEPENDS:=+qtbase
 endef
 
-define Package/qt5-xmlpatterns
-	$(call Package/qt5/Default)
-	TITLE+=xml patterns
-	DEPENDS+=+qt5-core +qt5-network
+define Package/qtspeech/description
+	qtspeech
+endef
+
+define Package/qtwebchannel
+	SECTION:=libs
+	CATEGORY:=Libraries
+	SUBMENU:=Qt5
+	TITLE:=qt5
+	URL:=http://qt-project.org
+	DEPENDS:=+qtbase
+endef
+
+define Package/qtwebchannel/description
+	qtwebchannel
+endef
+
+define Package/qtxmlpatterns
+	SECTION:=libs
+	CATEGORY:=Libraries
+	SUBMENU:=Qt5
+	TITLE:=qt5
+	URL:=http://qt-project.org
+	DEPENDS:=+qtbase
+endef
+
+define Package/qtxmlpatterns/description
+	qtxmlpatterns
 endef
 
 EXTRA_CFLAGS += $(FPIC) -ffunction-sections -fdata-sections -flto
@@ -292,6 +327,7 @@ CONFIGURE_ARGS = \
 	-skip qtdeclarative \
 	-v
 
+
 define Build/Compile
 	$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)/$(MAKE_PATH)
 endef
@@ -300,251 +336,186 @@ define Build/InstallDev
 	$(MAKE) -C $(PKG_BUILD_DIR) install
 endef
 
-define Package/qt5-bluetooth/install
+define Package/qtbase/install
+	$(INSTALL_DIR) $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Core.so* $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Core.prl $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Core.la $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Concurrent.so* $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Concurrent.prl $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Concurrent.la $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5DBus.so* $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5DBus.prl $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5DBus.la $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Gui.so* $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Gui.prl $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Gui.la $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Network.so* $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Network.prl $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Network.la $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5PrintSupport.so* $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5PrintSupport.prl $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5PrintSupport.la $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Sql.so* $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Sql.prl $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Sql.la $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Test.so* $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Test.prl $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Test.la $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Widgets.so* $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Widgets.prl $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Widgets.la $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5WebSockets.so* $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5WebSockets.prl $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5WebSockets.la $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Xml.so* $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Xml.prl $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Xml.la $(1)/usr/lib/
+endef
+
+define Package/qtconnectivity/install
 	$(INSTALL_DIR) $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtconnectivity/lib/libQt5Bluetooth.so* $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtconnectivity/lib/libQt5Bluetooth.prl $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtconnectivity/lib/libQt5Bluetooth.la $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtconnectivity/lib/libQt5Nfc.so* $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtconnectivity/lib/libQt5Nfc.prl $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtconnectivity/lib/libQt5Nfc.la $(1)/usr/lib/
 endef
 
-define Package/qt5-charts/install
+define Package/qtcharts/install
 	$(INSTALL_DIR) $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtcharts/lib/libQt5Charts.so* $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtcharts/lib/libQt5Charts.prl $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtcharts/lib/libQt5Charts.la $(1)/usr/lib/
 endef
 
-define Package/qt5-core/install
-	$(INSTALL_DIR) $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Core.so* $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Core.prl $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Core.la $(1)/usr/lib/
-endef
-
-define Package/qt5-concurrent/install
-	$(INSTALL_DIR) $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Concurrent.so* $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Concurrent.prl $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Concurrent.la $(1)/usr/lib/
-endef
-
-define Package/qt5-dbus/install
-	$(INSTALL_DIR) $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5DBus.so* $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5DBus.prl $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5DBus.la $(1)/usr/lib/
-endef
-
-define Package/qt5-gui/install
-	$(INSTALL_DIR) $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Gui.so* $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Gui.prl $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Gui.la $(1)/usr/lib/
-endef
-
-define Package/qt5-gamepad/install
+define Package/qtgamepad/install
 	$(INSTALL_DIR) $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtgamepad/lib/libQt5Gamepad.so* $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtgamepad/lib/libQt5Gamepad.prl $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtgamepad/lib/libQt5Gamepad.la $(1)/usr/lib/
 endef
 
-define Package/qt5-help/install
+define Package/qttools/install
 	$(INSTALL_DIR) $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qttools/lib/libQt5Help.so* $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qttools/lib/libQt5Help.prl $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qttools/lib/libQt5Help.la $(1)/usr/lib/
 endef
 
-define Package/qt5-multimedia/install
+define Package/qtmultimedia/install
 	$(INSTALL_DIR) $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtmultimedia/lib/libQt5Multimedia.so* $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtmultimedia/lib/libQt5Multimedia.prl $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtmultimedia/lib/libQt5Multimedia.la $(1)/usr/lib/
-endef
-
-define Package/qt5-multimediawidgets/install
-	$(INSTALL_DIR) $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtmultimedia/lib/libQt5MultimediaWidgets.so* $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtmultimedia/lib/libQt5MultimediaWidgets.prl $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtmultimedia/lib/libQt5MultimediaWidgets.la $(1)/usr/lib/
 endef
 
-define Package/qt5-network/install
-	$(INSTALL_DIR) $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Network.so* $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Network.prl $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Network.la $(1)/usr/lib/
-endef
-
-define Package/qt5-networkauth/install
+define Package/qtnetworkauth/install
 	$(INSTALL_DIR) $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtnetworkauth/lib/libQt5NetworkAuth.so* $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtnetworkauth/lib/libQt5NetworkAuth.prl $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtnetworkauth/lib/libQt5NetworkAuth.la $(1)/usr/lib/
 endef
 
-define Package/qt5-nfc/install
-	$(INSTALL_DIR) $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtconnectivity/lib/libQt5Nfc.so* $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtconnectivity/lib/libQt5Nfc.prl $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtconnectivity/lib/libQt5Nfc.la $(1)/usr/lib/
-endef
-
-define Package/qt5-printsupport/install
-	$(INSTALL_DIR) $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5PrintSupport.so* $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5PrintSupport.prl $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5PrintSupport.la $(1)/usr/lib/
-endef
-
-define Package/qt5-purchasing/install
+define Package/qtpurchasing/install
 	$(INSTALL_DIR) $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtpurchasing/lib/libQt5Purchasing.so* $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtpurchasing/lib/libQt5Purchasing.prl $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtpurchasing/lib/libQt5Purchasing.la $(1)/usr/lib/
 endef
 
-define Package/qt5-positioning/install
+define Package/qtlocation/install
 	$(INSTALL_DIR) $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtlocation/lib/libQt5Positioning.so* $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtlocation/lib/libQt5Positioning.prl $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtlocation/lib/libQt5Positioning.la $(1)/usr/lib/
 endef
 
-define Package/qt5-remoteobjects/install
+define Package/qtremoteobjects/install
 	$(INSTALL_DIR) $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtremoteobjects/lib/libQt5RemoteObjects.so* $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtremoteobjects/lib/libQt5RemoteObjects.prl $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtremoteobjects/lib/libQt5RemoteObjects.la $(1)/usr/lib/
 endef
 
-define Package/qt5-serialport/install
+define Package/qtserialport/install
 	$(INSTALL_DIR) $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtserialport/lib/libQt5SerialPort.so* $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtserialport/lib/libQt5SerialPort.prl $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtserialport/lib/libQt5SerialPort.la $(1)/usr/lib/
 endef
 
-define Package/qt5-serialbus/install
+define Package/qtserialbus/install
 	$(INSTALL_DIR) $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtserialbus/lib/libQt5SerialBus.so* $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtserialbus/lib/libQt5SerialBus.prl $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtserialbus/lib/libQt5SerialBus.la $(1)/usr/lib/
 endef
 
-define Package/qt5-sensors/install
+define Package/qtsensors/install
 	$(INSTALL_DIR) $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtsensors/lib/libQt5Sensors.so* $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtsensors/lib/libQt5Sensors.prl $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtsensors/lib/libQt5Sensors.la $(1)/usr/lib/
 endef
 
-define Package/qt5-sql/install
-	$(INSTALL_DIR) $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Sql.so* $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Sql.prl $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Sql.la $(1)/usr/lib/
-endef
-
-define Package/qt5-svg/install
+define Package/qtsvg/install
 	$(INSTALL_DIR) $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtsvg/lib/libQt5Svg.so* $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtsvg/lib/libQt5Svg.prl $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtsvg/lib/libQt5Svg.la $(1)/usr/lib/
 endef
 
-define Package/qt5-script/install
+define Package/qtscript/install
 	$(INSTALL_DIR) $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtscript/lib/libQt5Script.so* $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtscript/lib/libQt5Script.prl $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtscript/lib/libQt5Script.la $(1)/usr/lib/
-endef
-
-define Package/qt5-scripttools/install
-	$(INSTALL_DIR) $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtscript/lib/libQt5ScriptTools.so* $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtscript/lib/libQt5ScriptTools.prl $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtscript/lib/libQt5ScriptTools.la $(1)/usr/lib/
 endef
 
-define Package/qt5-test/install
-	$(INSTALL_DIR) $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Test.so* $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Test.prl $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Test.la $(1)/usr/lib/
-endef
-
-define Package/qt5-texttospeech/install
+define Package/qtspeech/install
 	$(INSTALL_DIR) $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtspeech/lib/libQt5TextToSpeech.so* $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtspeech/lib/libQt5TextToSpeech.prl $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtspeech/lib/libQt5TextToSpeech.la $(1)/usr/lib/
 endef
 
-define Package/qt5-widgets/install
-	$(INSTALL_DIR) $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Widgets.so* $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Widgets.prl $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Widgets.la $(1)/usr/lib/
-endef
-
-define Package/qt5-websockets/install
-	$(INSTALL_DIR) $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5WebSockets.so* $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5WebSockets.prl $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5WebSockets.la $(1)/usr/lib/
-endef
-
-define Package/qt5-webchannel/install
+define Package/qtwebchannel/install
 	$(INSTALL_DIR) $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtwebchannel/lib/libQt5WebChannel.so* $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtwebchannel/lib/libQt5WebChannel.prl $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtwebchannel/lib/libQt5WebChannel.la $(1)/usr/lib/
 endef
 
-define Package/qt5-xml/install
-	$(INSTALL_DIR) $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Xml.so* $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Xml.prl $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Xml.la $(1)/usr/lib/
-endef
-
-define Package/qt5-xmlpatterns/install
+define Package/qtxmlpatterns/install
 	$(INSTALL_DIR) $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtxmlpatterns/lib/libQt5XmlPatterns.so* $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtxmlpatterns/lib/libQt5XmlPatterns.prl $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtxmlpatterns/lib/libQt5XmlPatterns.la $(1)/usr/lib/
 endef
 
-$(eval $(call BuildPackage,qt5-bluetooth))
-$(eval $(call BuildPackage,qt5-charts))
-$(eval $(call BuildPackage,qt5-core))
-$(eval $(call BuildPackage,qt5-concurrent))
-$(eval $(call BuildPackage,qt5-dbus))
-$(eval $(call BuildPackage,qt5-gui))
-$(eval $(call BuildPackage,qt5-gamepad))
-$(eval $(call BuildPackage,qt5-help))
-$(eval $(call BuildPackage,qt5-multimedia))
-$(eval $(call BuildPackage,qt5-multimediawidgets))
-$(eval $(call BuildPackage,qt5-network))
-$(eval $(call BuildPackage,qt5-networkauth))
-$(eval $(call BuildPackage,qt5-nfc))
-$(eval $(call BuildPackage,qt5-printsupport))
-$(eval $(call BuildPackage,qt5-purchasing))
-$(eval $(call BuildPackage,qt5-positioning))
-$(eval $(call BuildPackage,qt5-remoteobjects))
-$(eval $(call BuildPackage,qt5-serialport))
-$(eval $(call BuildPackage,qt5-serialbus))
-$(eval $(call BuildPackage,qt5-sensors))
-$(eval $(call BuildPackage,qt5-sql))
-$(eval $(call BuildPackage,qt5-svg))
-$(eval $(call BuildPackage,qt5-script))
-$(eval $(call BuildPackage,qt5-scripttools))
-$(eval $(call BuildPackage,qt5-test))
-$(eval $(call BuildPackage,qt5-texttospeech))
-$(eval $(call BuildPackage,qt5-widgets))
-$(eval $(call BuildPackage,qt5-websockets))
-$(eval $(call BuildPackage,qt5-webchannel))
-$(eval $(call BuildPackage,qt5-xml))
-$(eval $(call BuildPackage,qt5-xmlpatterns))
+$(eval $(call BuildPackage,qtbase))
+$(eval $(call BuildPackage,qtcharts))
+$(eval $(call BuildPackage,qtgamepad))
+$(eval $(call BuildPackage,qttools))
+$(eval $(call BuildPackage,qtmultimedia))
+$(eval $(call BuildPackage,qtnetworkauth))
+$(eval $(call BuildPackage,qtconnectivity))
+$(eval $(call BuildPackage,qtpurchasing))
+$(eval $(call BuildPackage,qtlocation))
+$(eval $(call BuildPackage,qtremoteobjects))
+$(eval $(call BuildPackage,qtserialport))
+$(eval $(call BuildPackage,qtserialbus))
+$(eval $(call BuildPackage,qtsensors))
+$(eval $(call BuildPackage,qtsvg))
+$(eval $(call BuildPackage,qtscript))
+$(eval $(call BuildPackage,qtspeech))
+$(eval $(call BuildPackage,qtwebchannel))
+$(eval $(call BuildPackage,qtxmlpatterns))
