@@ -26,7 +26,7 @@ define Package/qtbase
 	SUBMENU:=Qt5
 	TITLE:=qt5
 	URL:=http://qt-project.org
-	DEPENDS:=+libatomic +libstdcpp +libpcre2-16 +libdbus +libfreetype +libopenssl +zlib
+	DEPENDS:=+libatomic +libstdcpp +libpcre2-16 +libdbus +libfreetype +libopenssl +libdouble-conversion +libsqlite3 +zlib
 endef
 
 define Package/qtbase/description
@@ -291,7 +291,7 @@ CONFIGURE_ARGS = \
 	-ltcg \
 	-mimetype-database \
 	-openssl-linked \
-	-qt-doubleconversion \
+	-system-doubleconversion \
 	-system-pcre \
 	-system-zlib \
 	$(if $(findstring i386,$(ARCH)),-no-sse2 -no-sse4.1) \
@@ -321,7 +321,7 @@ CONFIGURE_ARGS = \
 	-no-openvg \
 	-no-pch \
 	-no-slog2 \
-	-sql-sqlite \
+	-system-sqlite \
 	-no-trace \
 	-no-tslib \
 	-no-vulkan \
@@ -329,12 +329,7 @@ CONFIGURE_ARGS = \
 	-no-xcb \
 	-no-xkbcommon \
 	-no-zstd \
-	-no-compile-examples \
-	-feature-concurrent \
-	-no-feature-gssapi \
-	-feature-testlib \
 	-make libs \
-	-nomake examples \
 	-nomake tests \
 	-nomake tools \
 	-skip qtdeclarative \
