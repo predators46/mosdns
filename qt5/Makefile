@@ -26,7 +26,7 @@ define Package/qtbase
 	SUBMENU:=Qt5
 	TITLE:=qt5
 	URL:=http://qt-project.org
-	DEPENDS:=+libatomic +libpcre2-16 +libdbus +libfreetype +libopenssl +zlib
+	DEPENDS:=+libatomic +libstdcpp +libpcre2-16 +libdbus +libfreetype +libopenssl +zlib
 endef
 
 define Package/qtbase/description
