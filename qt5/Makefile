@@ -169,7 +169,7 @@ define Package/qtserialbus
 	SUBMENU:=Qt5
 	TITLE:=qt5
 	URL:=http://qt-project.org
-	DEPENDS:=+qtbase
+	DEPENDS:=+qtbase +qtserialport
 endef
 
 define Package/qtserialbus/description
