@@ -228,6 +228,19 @@ define Package/qtspeech/description
 	qtspeech
 endef
 
+define Package/qtwebsockets
+	SECTION:=libs
+	CATEGORY:=Libraries
+	SUBMENU:=Qt5
+	TITLE:=qt5
+	URL:=http://qt-project.org
+	DEPENDS:=+qtbase
+endef
+
+define Package/qtwebsockets/description
+	qtwebsockets
+endef
+
 define Package/qtwebchannel
 	SECTION:=libs
 	CATEGORY:=Libraries
@@ -365,9 +378,6 @@ define Package/qtbase/install
 	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Widgets.so* $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Widgets.prl $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Widgets.la $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5WebSockets.so* $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5WebSockets.prl $(1)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5WebSockets.la $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Xml.so* $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Xml.prl $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Xml.la $(1)/usr/lib/
@@ -487,6 +497,13 @@ define Package/qtspeech/install
 	$(CP) $(PKG_BUILD_DIR)/qtspeech/lib/libQt5TextToSpeech.la $(1)/usr/lib/
 endef
 
+define Package/qtwebsockets/install
+	$(INSTALL_DIR) $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtwebsockets/lib/libQt5WebSockets.so* $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtwebsockets/lib/libQt5WebSockets.prl $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtwebsockets/lib/libQt5WebSockets.la $(1)/usr/lib/
+endef
+
 define Package/qtwebchannel/install
 	$(INSTALL_DIR) $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qtwebchannel/lib/libQt5WebChannel.so* $(1)/usr/lib/
@@ -517,5 +534,6 @@ $(eval $(call BuildPackage,qtsensors))
 $(eval $(call BuildPackage,qtsvg))
 $(eval $(call BuildPackage,qtscript))
 $(eval $(call BuildPackage,qtspeech))
+$(eval $(call BuildPackage,qtwebsockets))
 $(eval $(call BuildPackage,qtwebchannel))
 $(eval $(call BuildPackage,qtxmlpatterns))
