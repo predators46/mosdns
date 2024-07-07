@@ -59,6 +59,19 @@ define Package/qtgamepad/description
 	qtgamepad
 endef
 
+define Package/qttranslations
+	SECTION:=libs
+	CATEGORY:=Libraries
+	SUBMENU:=Qt5
+	TITLE:=qt5
+	URL:=http://qt-project.org
+	DEPENDS:=+qtbase
+endef
+
+define Package/qttranslations/description
+	qttranslations
+endef
+
 define Package/qttools
 	SECTION:=libs
 	CATEGORY:=Libraries
@@ -402,6 +415,11 @@ define Package/qtgamepad/install
 	$(CP) $(PKG_BUILD_DIR)/qtgamepad/lib/libQt5Gamepad.la $(1)/usr/lib/
 endef
 
+define Package/qttranslations/install
+	$(INSTALL_DIR) $(1)/usr/share/Qt/translations/
+	$(CP) $(PKG_BUILD_DIR)/qttranslations/translations/*.qm $(1)/usr/share/Qt/translations/
+endef
+
 define Package/qttools/install
 	$(INSTALL_DIR) $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/qttools/lib/libQt5Help.so* $(1)/usr/lib/
@@ -516,6 +534,7 @@ endef
 $(eval $(call BuildPackage,qtbase))
 $(eval $(call BuildPackage,qtcharts))
 $(eval $(call BuildPackage,qtgamepad))
+$(eval $(call BuildPackage,qttranslations))
 $(eval $(call BuildPackage,qttools))
 $(eval $(call BuildPackage,qtmultimedia))
 $(eval $(call BuildPackage,qtnetworkauth))
