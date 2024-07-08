@@ -285,18 +285,22 @@ EXTRA_LDFLAGS += -Wl,--gc-sections,--as-needed
 
 CONFIGURE_ARGS = \
 	-prefix /usr \
+	-extprefix $(PKG_INSTALL_DIR)/usr \
 	-hostprefix $(STAGING_DIR_HOSTPKG) \
-	-sysroot $(STAGING_DIR) \
-	-archdatadir /usr/lib/qt5 \
-	-bindir /usr/lib/qt5/bin \
-	-datadir /usr/share/qt5 \
-	-docdir /usr/share/doc/qt5 \
-	-examplesdir /usr/share/qt5/examples \
-	-headerdir /usr/include/qt5 \
-	-importdir /usr/lib/qt5/imports \
-	-plugindir /usr/lib/qt5/plugins \
-	-translationdir /usr/share/qt5/translations \
+	-bindir /usr/bin \
+	-headerdir /usr/include/qt \
+	-libdir /usr/lib \
+	-archdatadir /usr/lib/qt \
+	-plugindir /usr/lib/qt/plugins \
+	-libexecdir /usr/lib/qt/libexec \
+	-importdir /usr/lib/qt/imports \
+	-qmldir /usr/lib/qt/qml \
+	-datadir /usr/share/qt \
+	-docdir /usr/share/doc/qt \
+	-translationdir /usr/share/qt/translations \
 	-sysconfdir /etc/xdg \
+	-examplesdir /usr/share/doc/qt/examples \
+	-testsdir /usr/share/doc/qt/tests \
 	-device linux-generic-g++ \
 	-device-option CROSS_COMPILE="$(TARGET_CROSS)" \
 	-device-option COMPILER_FLAGS="$(TARGET_CFLAGS) $(EXTRA_CFLAGS) $(TARGET_CPPFLAGS) $(EXTRA_CPPFLAGS)" \
