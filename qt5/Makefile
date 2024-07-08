@@ -360,10 +360,6 @@ define Build/Compile
 	$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)/$(MAKE_PATH)
 endef
 
-define Build/Install
-	$(MAKE) -C $(PKG_BUILD_DIR)/$(MAKE_PATH) DESTDIR="$(PKG_INSTALL_DIR)" install
-endef
-
 define Build/InstallDev
 	$(MAKE) -C $(PKG_BUILD_DIR) install
 endef
