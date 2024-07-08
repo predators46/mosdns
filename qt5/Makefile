@@ -289,7 +289,7 @@ CONFIGURE_ARGS = \
 	-extprefix $(STAGING_DIR)/usr \
 	-prefix /usr \
 	-archdatadir /usr/lib/qt5 \
-	-bindir /usr/lib/qt5/bin
+	-bindir /usr/lib/qt5/bin \
 	-datadir /usr/share/qt5 \
 	-docdir /usr/share/doc/qt5 \
 	-examplesdir /usr/share/qt5/examples \
