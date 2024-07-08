@@ -284,8 +284,8 @@ EXTRA_CFLAGS += $(FPIC) -ffunction-sections -fdata-sections -flto
 EXTRA_LDFLAGS += -Wl,--gc-sections,--as-needed
 
 CONFIGURE_ARGS = \
-	-prefix /usr \
 	-sysroot $(STAGING_DIR) \
+	-prefix /usr \
 	-extprefix $(PKG_INSTALL_DIR)/usr \
 	-hostprefix $(STAGING_DIR_HOSTPKG) \
 	-bindir /usr/bin \
