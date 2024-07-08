@@ -284,10 +284,9 @@ EXTRA_CFLAGS += $(FPIC) -ffunction-sections -fdata-sections -flto
 EXTRA_LDFLAGS += -Wl,--gc-sections,--as-needed
 
 CONFIGURE_ARGS = \
-	-sysroot $(STAGING_DIR) \
-	-hostprefix $(STAGING_DIR_HOSTPKG) \
-	-extprefix $(PKG_INSTALL_DIR) \
 	-prefix /usr \
+	-hostprefix $(STAGING_DIR_HOSTPKG) \
+	-sysroot $(STAGING_DIR) \
 	-archdatadir /usr/lib/qt5 \
 	-bindir /usr/lib/qt5/bin \
 	-datadir /usr/share/qt5 \
