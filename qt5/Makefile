@@ -12,7 +12,7 @@ PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=
 PKG_LICENSE_FILES:=
 
-PKG_INSTALL_DIR=$(BUILD_DIR)/qt-everywhere-src-$(PKG_VERSION)
+PKG_BUILD_DIR=$(BUILD_DIR)/qt-everywhere-src-$(PKG_VERSION)
 
 PKG_BUILD_PARALLEL:=1
 PKG_USE_MIPS16:=0
@@ -361,11 +361,11 @@ CONFIGURE_ARGS = \
 
 
 define Build/Compile
-	$(MAKE) $(PKG_JOBS) -C $(PKG_INSTALL_DIR)/$(MAKE_PATH)
+	$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)/$(MAKE_PATH)
 endef
 
 define Build/InstallDev
-	$(MAKE) -C $(PKG_INSTALL_DIR) install
+	$(MAKE) -C $(PKG_BUILD_DIR) install
 endef
 
 define Package/qtbase/install
