@@ -285,9 +285,9 @@ EXTRA_LDFLAGS += -Wl,--gc-sections,--as-needed
 
 CONFIGURE_ARGS = \
 	-sysroot $(STAGING_DIR) \
-	-prefix /usr \
 	-extprefix $(PKG_INSTALL_DIR)/usr \
 	-hostprefix $(STAGING_DIR_HOSTPKG) \
+	-prefix /usr \
 	-bindir /usr/bin \
 	-headerdir /usr/include/qt \
 	-libdir /usr/lib \
