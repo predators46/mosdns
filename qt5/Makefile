@@ -285,9 +285,8 @@ EXTRA_LDFLAGS += -Wl,--gc-sections,--as-needed
 
 CONFIGURE_ARGS = \
 	-sysroot $(STAGING_DIR) \
-	-hostprefix $(STAGING_DIR_HOSTPKG) \
-	-extprefix $(PKG_INSTALL_DIR)/usr \
-	-prefix /usr \
+	-extprefix /usr \
+	-hostprefix $(STAGING_DIR)/host \
 	-bindir /usr/bin \
 	-headerdir /usr/include/qt \
 	-libdir /usr/lib \
@@ -302,6 +301,9 @@ CONFIGURE_ARGS = \
 	-sysconfdir /etc/xdg \
 	-examplesdir /usr/share/doc/qt/examples \
 	-testsdir /usr/share/doc/qt/tests \
+	-hostbindir $(STAGING_DIR)/host/bin \
+	-hostlibdir $(STAGING_DIR)/host/lib \
+	-hostdatadir $(STAGING_DIR)/host/share \
 	-device linux-generic-g++ \
 	-device-option CROSS_COMPILE="$(TARGET_CROSS)" \
 	-device-option COMPILER_FLAGS="$(TARGET_CFLAGS) $(EXTRA_CFLAGS) $(TARGET_CPPFLAGS) $(EXTRA_CPPFLAGS)" \
