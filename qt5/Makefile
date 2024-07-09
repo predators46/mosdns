@@ -295,11 +295,13 @@ CONFIGURE_ARGS = \
 	-plugindir /usr/lib/qt/plugins \
 	-libexecdir /usr/lib/qt/libexec \
 	-importdir /usr/lib/qt/imports \
+	-qmldir /usr/lib/qt/qml \
 	-datadir /usr/share/qt \
 	-docdir /usr/share/doc/qt \
 	-translationdir /usr/share/qt/translations \
 	-sysconfdir /etc/xdg \
 	-examplesdir /usr/share/doc/qt/examples \
+	-testsdir /usr/share/doc/qt/tests \
 	-device linux-generic-g++ \
 	-device-option CROSS_COMPILE="$(TARGET_CROSS)" \
 	-device-option COMPILER_FLAGS="$(TARGET_CFLAGS) $(EXTRA_CFLAGS) $(TARGET_CPPFLAGS) $(EXTRA_CPPFLAGS)" \
