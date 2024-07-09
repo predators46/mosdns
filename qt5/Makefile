@@ -289,19 +289,19 @@ CONFIGURE_ARGS = \
 	-extprefix $(PKG_INSTALL_DIR)/usr \
 	-prefix /usr \
 	-bindir /usr/bin \
-	-headerdir /usr/include/qt \
+	-headerdir /usr/include/qt5 \
 	-libdir /usr/lib \
-	-archdatadir /usr/lib/qt \
-	-plugindir /usr/lib/qt/plugins \
-	-libexecdir /usr/lib/qt/libexec \
-	-importdir /usr/lib/qt/imports \
-	-qmldir /usr/lib/qt/qml \
-	-datadir /usr/share/qt \
-	-docdir /usr/share/doc/qt \
-	-translationdir /usr/share/qt/translations \
+	-archdatadir /usr/lib/qt5 \
+	-plugindir /usr/lib/qt5/plugins \
+	-libexecdir /usr/lib/qt5/libexec \
+	-importdir /usr/lib/qt5/imports \
+	-qmldir /usr/lib/qt5/qml \
+	-datadir /usr/share/qt5 \
+	-docdir /usr/share/doc/qt5 \
+	-translationdir /usr/share/qt5/translations \
 	-sysconfdir /etc/xdg \
-	-examplesdir /usr/share/doc/qt/examples \
-	-testsdir /usr/share/doc/qt/tests \
+	-examplesdir /usr/share/doc/qt5/examples \
+	-testsdir /usr/share/doc/qt5/tests \
 	-device linux-generic-g++ \
 	-device-option CROSS_COMPILE="$(TARGET_CROSS)" \
 	-device-option COMPILER_FLAGS="$(TARGET_CFLAGS) $(EXTRA_CFLAGS) $(TARGET_CPPFLAGS) $(EXTRA_CPPFLAGS)" \
