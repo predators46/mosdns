@@ -288,20 +288,16 @@ CONFIGURE_ARGS = \
 	-hostprefix $(STAGING_DIR_HOSTPKG) \
 	-extprefix $(PKG_INSTALL_DIR) \
 	-prefix /usr \
-	-bindir /usr/bin \
-	-headerdir /usr/include/qt5 \
-	-libdir /usr/lib \
 	-archdatadir /usr/lib/qt5 \
-	-plugindir /usr/lib/qt5/plugins \
-	-libexecdir /usr/lib/qt5/libexec \
-	-importdir /usr/lib/qt5/imports \
-	-qmldir /usr/lib/qt5/qml \
+	-bindir /usr/lib/qt5/bin \
 	-datadir /usr/share/qt5 \
 	-docdir /usr/share/doc/qt5 \
+	-examplesdir /usr/share/qt5/examples \
+	-headerdir /usr/include/qt5 \
+	-importdir /usr/lib/qt5/imports \
+	-plugindir /usr/lib/qt5/plugins \
 	-translationdir /usr/share/qt5/translations \
 	-sysconfdir /etc/xdg \
-	-examplesdir /usr/share/doc/qt5/examples \
-	-testsdir /usr/share/doc/qt5/tests \
 	-device linux-generic-g++ \
 	-device-option CROSS_COMPILE="$(TARGET_CROSS)" \
 	-device-option COMPILER_FLAGS="$(TARGET_CFLAGS) $(EXTRA_CFLAGS) $(TARGET_CPPFLAGS) $(EXTRA_CPPFLAGS)" \
