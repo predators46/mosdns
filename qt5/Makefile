@@ -284,26 +284,10 @@ EXTRA_CFLAGS += $(FPIC) -ffunction-sections -fdata-sections -flto
 EXTRA_LDFLAGS += -Wl,--gc-sections,--as-needed
 
 CONFIGURE_ARGS = \
-	-prefix $(QT_INSTALL_PREFIX) \
-	-extprefix $(QT_EXTPREFIX) \
-	-hostprefix $(QT_HOST_PREFIX) \
-	-bindir $(QT_INSTALL_BINS) \
-	-headerdir $(QT_INSTALL_HEADERS) \
-	-libdir $(QT_INSTALL_LIBS) \
-	-archdatadir $(QT_INSTALL_ARCHDATA) \
-	-plugindir $(QT_INSTALL_PLUGINS) \
-	-libexecdir $(QT_INSTALL_LIBEXECS) \
-	-importdir $(QT_INSTALL_IMPORTS) \
-	-qmldir $(QT_INSTALL_QML) \
-	-datadir $(QT_INSTALL_DATA) \
-	-docdir $(QT_INSTALL_DOCS) \
-	-translationdir $(QT_INSTALL_TRANSLATIONS) \
-	-sysconfdir $(QT_INSTALL_CONFIGURATION) \
-	-examplesdir $(QT_INSTALL_EXAMPLES) \
-	-testsdir $(QT_INSTALL_TESTS) \
-	-hostbindir $(QT_HOST_BINS) \
-	-hostlibdir $(QT_HOST_LIBS) \
-	-hostdatadir $(QT_HOST_DATA) \
+	-sysroot $(STAGING_DIR) \
+	-prefix /usr \
+	-extprefix $(STAGING_DIR)/usr \
+	-hostprefix $(STAGING_DIR_HOSTPKG) \
 	-device linux-generic-g++ \
 	-device-option CROSS_COMPILE="$(TARGET_CROSS)" \
 	-device-option COMPILER_FLAGS="$(TARGET_CFLAGS) $(EXTRA_CFLAGS) $(TARGET_CPPFLAGS) $(EXTRA_CPPFLAGS)" \
@@ -368,7 +352,7 @@ define Build/Compile
 endef
 
 define Build/Install
-	$(call Build/Install/Default,install)
+	$(call Build/Install/Default,$(PKG_INSTALL_DIR) install)
 endef
 
 define Build/InstallDev
