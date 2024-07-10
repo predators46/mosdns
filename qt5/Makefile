@@ -286,25 +286,24 @@ EXTRA_LDFLAGS += -Wl,--gc-sections,--as-needed
 CONFIGURE_ARGS = \
 	-prefix $(CONFIGURE_PREFIX) \
 	-extprefix $(STAGING_DIR)/$(CONFIGURE_PREFIX) \
-	-hostprefix $(STAGING_DIR)/host \
-	-sysroot $(STAGING_DIR) \
-	-bindir /usr/bin \
-	-headerdir /usr/include/qt \
-	-libdir /usr/lib \
-	-archdatadir /usr/lib/qt \
-	-plugindir /usr/lib/qt/plugins \
-	-libexecdir /usr/lib/qt/libexec \
-	-importdir /usr/lib/qt/imports \
-	-qmldir /usr/lib/qt/qml \
-	-datadir /usr/share/qt \
-	-docdir /usr/share/doc/qt \
-	-translationdir /usr/share/qt/translations \
-	-sysconfdir /etc/xdg \
-	-examplesdir /usr/share/doc/qt/examples \
-	-testsdir /usr/share/doc/qt/tests \
-	-hostbindir $(STAGING_DIR)/host/bin \
-	-hostlibdir $(STAGING_DIR)/host/lib \
-	-hostdatadir $(STAGING_DIR)/host/share \
+	-hostprefix $(STAGING_DIR_HOST) \
+	-bindir $(QT_INSTALL_PREFIX)/bin \
+	-headerdir $(QT_INSTALL_PREFIX)/include \
+	-libdir $(QT_INSTALL_PREFIX)/lib \
+	-archdatadir $(QT_INSTALL_LIBS)/qt5 \
+	-plugindir $(QT_INSTALL_ARCHDATA)/plugins \
+	-libexecdir $(QT_INSTALL_ARCHDATA)/libexec \
+	-importdir $(QT_INSTALL_ARCHDATA)/imports \
+	-qmldir $(QT_INSTALL_ARCHDATA)/qml \
+	-datadir $(QT_INSTALL_PREFIX)/share/qt5 \
+	-docdir $(QT_INSTALL_DATA)/doc \
+	-translationdir $(QT_INSTALL_DATA)/translations \
+	-sysconfdir $(QT_INSTALL_CONFIGURATION)/etc/qt5 \
+	-examplesdir $(QT_INSTALL_ARCHDATA)/examples \
+	-testsdir $(QT_INSTALL_ARCHDATA)/tests \
+	-hostbindir $(QT_HOST_PREFIX)/bin \
+	-hostlibdir $(QT_HOST_PREFIX)/lib \
+	-hostdatadir $(QT_HOST_PREFIX)/share \
 	-device linux-generic-g++ \
 	-device-option CROSS_COMPILE="$(TARGET_CROSS)" \
 	-device-option COMPILER_FLAGS="$(TARGET_CFLAGS) $(EXTRA_CFLAGS) $(TARGET_CPPFLAGS) $(EXTRA_CPPFLAGS)" \
