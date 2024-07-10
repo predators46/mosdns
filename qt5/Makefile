@@ -284,10 +284,20 @@ EXTRA_CFLAGS += $(FPIC) -ffunction-sections -fdata-sections -flto
 EXTRA_LDFLAGS += -Wl,--gc-sections,--as-needed
 
 CONFIGURE_ARGS = \
-	-sysroot $(STAGING_DIR) \
 	-prefix /usr \
-	-extprefix $(STAGING_DIR)/usr \
-	-hostprefix $(STAGING_DIR_HOSTPKG) \
+	-bindir /usr/bin \
+	-headerdir /usr/include/qt \
+	-libdir /usr/lib \
+	-archdatadir /usr/lib/qt \
+	-plugindir /usr/lib/qt/plugins \
+	-libexecdir /usr/lib/qt/libexec \
+	-importdir /usr/lib/qt/imports \
+	-qmldir /usr/lib/qt/qml \
+	-datadir /usr/share/qt \
+	-docdir /usr/share/doc/qt \
+	-translationdir /usr/share/qt/translations \
+	-sysconfdir /etc/qt \
+	-examplesdir /usr/share/doc/qt/examples \
 	-device linux-generic-g++ \
 	-device-option CROSS_COMPILE="$(TARGET_CROSS)" \
 	-device-option COMPILER_FLAGS="$(TARGET_CFLAGS) $(EXTRA_CFLAGS) $(TARGET_CPPFLAGS) $(EXTRA_CPPFLAGS)" \
@@ -346,13 +356,12 @@ CONFIGURE_ARGS = \
 	-skip qtdeclarative \
 	-v
 
-
 define Build/Compile
-	$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)/$(MAKE_PATH)
+	$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)
 endef
 
 define Build/Install
-	+DESTDIR="$(PKG_INSTALL_DIR)" $(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)/$(MAKE_PATH) install
+	$(call Build/Install/Default,install INSTALL_ROOT=$(PKG_BUILD_DIR))
 endef
 
 define Build/InstallDev
