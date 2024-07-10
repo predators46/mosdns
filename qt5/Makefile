@@ -352,7 +352,7 @@ define Build/Compile
 endef
 
 define Build/Install
-	$(call Build/Install/Default,$(PKG_INSTALL_DIR) install)
+	+DESTDIR="$(PKG_INSTALL_DIR)" $(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)/$(MAKE_PATH) install
 endef
 
 define Build/InstallDev
