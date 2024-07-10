@@ -310,6 +310,7 @@ CONFIGURE_ARGS = \
 	-no-rpath \
 	-no-use-gold-linker \
 	-ltcg \
+	-pkg-config
 	-mimetype-database \
 	-openssl-linked \
 	-system-doubleconversion \
