@@ -362,7 +362,7 @@ define Build/Compile
 endef
 
 define Build/Install
-	$(call Build/Install/Default,INSTALL_ROOT=$(PKG_INSTALL_DIR) install)
+	$(call Build/Install/Default,INSTALL_ROOT=$PWD/$(PKG_INSTALL_DIR) install)
 endef
 
 define Build/InstallDev
