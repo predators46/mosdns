@@ -358,11 +358,11 @@ CONFIGURE_ARGS = \
 	-v
 
 define Build/Compile
-	$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)
+	$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)/$(MAKE_PATH)
 endef
 
 define Build/Install
-	$(call Build/Install/Default,INSTALL_ROOT=$(PKG_INSTALL_DIR)/{prefix} install)
+	INSTALL_ROOT="$(PKG_INSTALL_DIR)" $(MAKE) -C $(PKG_BUILD_DIR)/$(MAKE_PATH) $(1) install
 endef
 
 define Build/InstallDev
