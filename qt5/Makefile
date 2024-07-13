@@ -362,7 +362,7 @@ define Build/Compile
 endef
 
 define Build/Install
-	INSTALL_ROOT="$(PKG_INSTALL_DIR)" $(MAKE) -C $(PKG_BUILD_DIR)/$(MAKE_PATH) $(1) install
+	INSTALL_PREFIX="$(PKG_INSTALL_DIR)" $(MAKE) -C $(PKG_BUILD_DIR)/$(MAKE_PATH) $(1) install
 endef
 
 define Build/InstallDev
