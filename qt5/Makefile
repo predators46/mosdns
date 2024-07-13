@@ -361,8 +361,11 @@ define Build/Compile
 	$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)
 endef
 
+MAKE_FLAGS += \
+	PREFIX="$(CONFIGURE_PREFIX)"
+
 define Build/Install
-	$(call Build/Install/Default,INSTALL_ROOT=$(PKG_INSTALL_DIR)/$(CONFIGURE_PREFIX) install)
+	$(call Build/Install/Default,INSTALL_ROOT=$(PKG_INSTALL_DIR)/$(PREFIX) install)
 endef
 
 define Build/InstallDev
