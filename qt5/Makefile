@@ -320,6 +320,7 @@ CONFIGURE_ARGS = \
 	$(if $(findstring i386,$(ARCH)),-no-sse2 -no-sse4.1) \
 	-no-angle \
 	-no-cups \
+	-dbus-linked \
 	-no-directfb \
 	-no-dtls\
 	-no-egl \
