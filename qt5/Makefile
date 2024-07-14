@@ -284,7 +284,7 @@ EXTRA_CFLAGS += $(FPIC) -ffunction-sections -fdata-sections -flto
 EXTRA_LDFLAGS += -Wl,--gc-sections,--as-needed
 
 CONFIGURE_ARGS = \
-	-sysroot $(STAGING_DIR) \
+	-sysroot \
 	-prefix /usr \
 	-bindir /usr/bin \
 	-headerdir /usr/include/qt \
