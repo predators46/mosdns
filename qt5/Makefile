@@ -360,7 +360,7 @@ define Build/Compile
 endef
 
 define Build/Install
-	INSTALL_PREFIX="$(PKG_INSTALL_DIR)" $(MAKE) -C $(PKG_BUILD_DIR)/$(MAKE_PATH) install
+	$(call Build/Install/Default,install)
 endef
 
 define Build/InstallDev
