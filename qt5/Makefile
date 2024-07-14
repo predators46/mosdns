@@ -284,7 +284,6 @@ EXTRA_CFLAGS += $(FPIC) -ffunction-sections -fdata-sections -flto
 EXTRA_LDFLAGS += -Wl,--gc-sections,--as-needed
 
 CONFIGURE_ARGS = \
-	-sysroot \
 	-prefix /usr \
 	-bindir /usr/bin \
 	-headerdir /usr/include/qt \
@@ -319,7 +318,6 @@ CONFIGURE_ARGS = \
 	$(if $(findstring i386,$(ARCH)),-no-sse2 -no-sse4.1) \
 	-no-angle \
 	-no-cups \
-	-dbus-linked \
 	-no-directfb \
 	-no-dtls\
 	-no-egl \
