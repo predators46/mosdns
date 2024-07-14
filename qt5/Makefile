@@ -356,11 +356,7 @@ CONFIGURE_ARGS = \
 	-v
 
 define Build/Compile
-	$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)/$(MAKE_PATH)
-endef
-
-define Build/Install
-	$(call Build/Install/Default,install)
+	$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)/$(MAKE_PATH) DESTDIR="$(PKG_INSTALL_DIR)" install
 endef
 
 define Build/InstallDev
