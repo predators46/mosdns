@@ -284,20 +284,26 @@ EXTRA_CFLAGS += $(FPIC) -ffunction-sections -fdata-sections -flto
 EXTRA_LDFLAGS += -Wl,--gc-sections,--as-needed
 
 CONFIGURE_ARGS = \
-	-prefix $(CONFIGURE_PREFIX) \
-	-bindir $(CONFIGURE_PREFIX)/bin \
-	-headerdir $(CONFIGURE_PREFIX)/include/qt \
-	-libdir $(CONFIGURE_PREFIX)/lib \
-	-archdatadir $(CONFIGURE_PREFIX)/lib/qt \
-	-plugindir $(CONFIGURE_PREFIX)/lib/qt/plugins \
-	-libexecdir $(CONFIGURE_PREFIX)/lib/qt/libexec \
-	-importdir $(CONFIGURE_PREFIX)/lib/qt/imports \
-	-qmldir $(CONFIGURE_PREFIX)/lib/qt/qml \
-	-datadir $(CONFIGURE_PREFIX)/share/qt \
-	-docdir $(CONFIGURE_PREFIX)/share/doc/qt \
-	-translationdir $(CONFIGURE_PREFIX)/share/qt/translations \
-	-sysconfdir /etc/qt \
-	-examplesdir $(CONFIGURE_PREFIX)/share/doc/qt/examples \
+	-prefix /usr \
+	-extprefix $(STAGING_DIR) \
+	-hostprefix $(STAGING_DIR_HOSTPKG) \
+	-bindir /usr/bin \
+	-headerdir /usr/include/qt \
+	-libdir /usr/lib \
+	-archdatadir /usr/lib/qt \
+	-plugindir /usr/lib/qt/plugins \
+	-libexecdir /usr/lib/qt/libexec \
+	-importdir /usr/lib/qt/imports \
+	-qmldir /usr/lib/qt/qml \
+	-datadir /usr/share/qt \
+	-docdir /usr/share/doc/qt \
+	-translationdir /usr/share/qt/translations \
+	-sysconfdir /etc/xdg \
+	-examplesdir /usr/share/qt/examples \
+	-testsdir /usr/share/qt/tests \
+	-hostbindir $(STAGING_DIR_HOSTPKG)/bin \
+	-hostlibdir $(STAGING_DIR_HOSTPKG)/lib \
+	-hostdatadir $(STAGING_DIR_HOSTPKG)/share \
 	-device linux-generic-g++ \
 	-device-option CROSS_COMPILE="$(TARGET_CROSS)" \
 	-device-option COMPILER_FLAGS="$(TARGET_CFLAGS) $(EXTRA_CFLAGS) $(TARGET_CPPFLAGS) $(EXTRA_CPPFLAGS)" \
@@ -356,11 +362,11 @@ CONFIGURE_ARGS = \
 	-v
 
 define Build/Compile
-	$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)/$(MAKE_PATH) DESTDIR="$(PKG_INSTALL_DIR)" install
+	$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)/$(MAKE_PATH)
 endef
 
-define Build/InstallDev
-	$(MAKE) -C $(PKG_BUILD_DIR) install
+define Build/Install
+	$(call Build/Install/Default,install)
 endef
 
 define Package/qtbase/install
