@@ -363,7 +363,7 @@ define Build/Compile
 endef
 
 define Build/Install
-	$(call Build/Install/Default,INSTALL_ROOT=$(PKG_BUILD_DIR) install)
+	$(call Build/Install/Default,INSTALL_PREFIX=$(PKG_BUILD_DIR) install)
 endef
 
 define Package/qtbase/install
