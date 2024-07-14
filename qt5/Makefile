@@ -284,20 +284,20 @@ EXTRA_CFLAGS += $(FPIC) -ffunction-sections -fdata-sections -flto
 EXTRA_LDFLAGS += -Wl,--gc-sections,--as-needed
 
 CONFIGURE_ARGS = \
-	-prefix /usr \
-	-bindir /usr/bin \
-	-headerdir /usr/include/qt \
-	-libdir /usr/lib \
-	-archdatadir /usr/lib/qt \
-	-plugindir /usr/lib/qt/plugins \
-	-libexecdir /usr/lib/qt/libexec \
-	-importdir /usr/lib/qt/imports \
-	-qmldir /usr/lib/qt/qml \
-	-datadir /usr/share/qt \
-	-docdir /usr/share/doc/qt \
-	-translationdir /usr/share/qt/translations \
+	-prefix $(CONFIGURE_PREFIX) \
+	-bindir $(CONFIGURE_PREFIX)/bin \
+	-headerdir $(CONFIGURE_PREFIX)/include/qt \
+	-libdir $(CONFIGURE_PREFIX)/lib \
+	-archdatadir $(CONFIGURE_PREFIX)/lib/qt \
+	-plugindir $(CONFIGURE_PREFIX)/lib/qt/plugins \
+	-libexecdir $(CONFIGURE_PREFIX)/lib/qt/libexec \
+	-importdir $(CONFIGURE_PREFIX)/lib/qt/imports \
+	-qmldir $(CONFIGURE_PREFIX)/lib/qt/qml \
+	-datadir $(CONFIGURE_PREFIX)/share/qt \
+	-docdir $(CONFIGURE_PREFIX)/share/doc/qt \
+	-translationdir $(CONFIGURE_PREFIX)/share/qt/translations \
 	-sysconfdir /etc/qt \
-	-examplesdir /usr/share/doc/qt/examples \
+	-examplesdir $(CONFIGURE_PREFIX)/share/doc/qt/examples \
 	-device linux-generic-g++ \
 	-device-option CROSS_COMPILE="$(TARGET_CROSS)" \
 	-device-option COMPILER_FLAGS="$(TARGET_CFLAGS) $(EXTRA_CFLAGS) $(TARGET_CPPFLAGS) $(EXTRA_CPPFLAGS)" \
