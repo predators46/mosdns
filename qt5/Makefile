@@ -284,7 +284,8 @@ EXTRA_CFLAGS += $(FPIC) -ffunction-sections -fdata-sections -flto
 EXTRA_LDFLAGS += -Wl,--gc-sections,--as-needed
 
 CONFIGURE_ARGS = \
-	-prefix $(PKG_INSTALL_DIR) \
+	-sysroot $(STAGING_DIR) \
+	-prefix /usr \
 	-bindir /usr/bin \
 	-headerdir /usr/include/qt \
 	-libdir /usr/lib \
@@ -362,7 +363,7 @@ define Build/Compile
 endef
 
 define Build/Install
-	$(call Build/Install/Default,INSTALL_PREFIX=$(PKG_BUILD_DIR) install)
+	$(call Build/Install/Default,INSTALL_PREFIX=$(PKG_INSTALL_DIR) install)
 endef
 
 define Package/qtbase/install
