@@ -117,7 +117,7 @@ define Build/Compile
 endef
 
 define Build/Install
-	$(MAKE) -C $(PKG_BUILD_DIR) INSTALL_ROOT=$(PKG_INSTALL_DIR) install
+	$(call Build/Install/Default,INSTALL_ROOT=$(PKG_INSTALL_DIR) install)
 endef
 
 define Package/qtbase/install
