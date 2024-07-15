@@ -38,7 +38,8 @@ EXTRA_LDFLAGS += -Wl,--gc-sections,--as-needed
 
 CONFIGURE_ARGS = \
 	-sysroot $(STAGING_DIR) \
-	-extprefix /usr \
+	-prefix $(CONFIGURE_PREFIX) \
+	-extprefix $(CONFIGURE_PREFIX) \
 	-hostprefix $(STAGING_DIR_HOSTPKG) \
 	-bindir /usr/bin \
 	-headerdir /usr/include/qt \
