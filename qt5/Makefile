@@ -284,8 +284,7 @@ EXTRA_CFLAGS += $(FPIC) -ffunction-sections -fdata-sections -flto
 EXTRA_LDFLAGS += -Wl,--gc-sections,--as-needed
 
 CONFIGURE_ARGS = \
-	-sysroot $(STAGING_DIR) \
-	-prefix /usr \
+	-prefix $(PKG_INSTALL_DIR) \
 	-bindir /usr/bin \
 	-headerdir /usr/include/qt \
 	-libdir /usr/lib \
