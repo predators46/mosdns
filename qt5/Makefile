@@ -364,6 +364,7 @@ endef
 
 define Build/Install
 	$(call Build/Install/Default,INSTALL_PREFIX=$(PKG_INSTALL_DIR) install)
+	$(call Build/Install/Default,QT_INSTALL_PREFIX=$(PKG_INSTALL_DIR) install)
 endef
 
 define Package/qtbase/install
