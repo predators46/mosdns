@@ -276,7 +276,7 @@ jobs:
           rm -rf feeds/packages/lang/perl
 
           #./scripts/feeds install -a
-          ./scripts/feeds install luci-app-mosdns
+          #./scripts/feeds install luci-app-mosdns
 
           #rm -rf feeds/packages/net/curl
           #git clone https://github.com/predators46/curl feeds/packages/net/curl
@@ -289,7 +289,7 @@ jobs:
 
           ./scripts/feeds update -a
           #./scripts/feeds install -a
-          ./scripts/feeds install luci-app-mosdns
+          #./scripts/feeds install luci-app-mosdns
 
           make defconfig
 
@@ -297,7 +297,7 @@ jobs:
           echo "CONFIG_ALL_KMODS=n" >> .config
           echo "CONFIG_ALL=n" >> .config
           echo "CONFIG_AUTOREMOVE=n" >> .config
-          echo "CONFIG_PACKAGE_luci-app-mosdns=m" >> .config
+          #echo "CONFIG_PACKAGE_luci-app-mosdns=m" >> .config
 
           make defconfig
 
