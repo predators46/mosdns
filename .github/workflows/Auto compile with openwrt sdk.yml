@@ -169,7 +169,7 @@ jobs:
   job_auto_compile:
     if: needs.job_check.outputs.has_update == 'true'
     needs: job_check
-    runs-on: ubuntu-20.04
+    runs-on: debian-11
     name: build (${{ matrix.platform }})
     strategy:
       fail-fast: false
