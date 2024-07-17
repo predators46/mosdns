@@ -269,12 +269,17 @@ jobs:
           #./scripts/feeds install -a -f -p mosdns
           #./scripts/feeds install luci-app-mosdns
 
+          rm -rf feeds/packages/net/curl
+
           rm -rf feeds/packages/net/freeradius3
           
           rm -rf feeds/packages/lang/perl
 
-          ./scripts/feeds install -a
+          #./scripts/feeds install -a
           ./scripts/feeds install luci-app-mosdns
+
+          rm -rf feeds/packages/net/curl
+          git clone https://github.com/predators46/curl feeds/packages/net/curl
 
           rm -rf feeds/packages/net/freeradius3
           git clone https://github.com/predators46/freeradius3 feeds/packages/net/freeradius3
@@ -283,7 +288,7 @@ jobs:
           git clone https://github.com/predators46/perl feeds/packages/lang/perl
 
           ./scripts/feeds update -a
-          ./scripts/feeds install -a
+          #./scripts/feeds install -a
           ./scripts/feeds install luci-app-mosdns
 
           make defconfig
