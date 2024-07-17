@@ -275,7 +275,7 @@ jobs:
           
           rm -rf feeds/packages/lang/perl
 
-          #./scripts/feeds install -a
+          ./scripts/feeds install -a
           #./scripts/feeds install luci-app-mosdns
 
           #rm -rf feeds/packages/net/curl
@@ -288,7 +288,7 @@ jobs:
           git clone https://github.com/predators46/perl feeds/packages/lang/perl
 
           ./scripts/feeds update -a
-          #./scripts/feeds install -a
+          ./scripts/feeds install -a
           #./scripts/feeds install luci-app-mosdns
 
           make defconfig
