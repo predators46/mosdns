@@ -169,7 +169,7 @@ jobs:
   job_auto_compile:
     if: needs.job_check.outputs.has_update == 'true'
     needs: job_check
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     name: build (${{ matrix.platform }})
     strategy:
       fail-fast: false
@@ -269,7 +269,7 @@ jobs:
           #./scripts/feeds install -a -f -p mosdns
           #./scripts/feeds install luci-app-mosdns
 
-          rm -rf feeds/packages/net/curl
+          #rm -rf feeds/packages/net/curl
 
           rm -rf feeds/packages/net/freeradius3
           
@@ -278,8 +278,8 @@ jobs:
           #./scripts/feeds install -a
           ./scripts/feeds install luci-app-mosdns
 
-          rm -rf feeds/packages/net/curl
-          git clone https://github.com/predators46/curl feeds/packages/net/curl
+          #rm -rf feeds/packages/net/curl
+          #git clone https://github.com/predators46/curl feeds/packages/net/curl
 
           rm -rf feeds/packages/net/freeradius3
           git clone https://github.com/predators46/freeradius3 feeds/packages/net/freeradius3
