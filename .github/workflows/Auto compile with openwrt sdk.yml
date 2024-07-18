@@ -182,7 +182,7 @@ jobs:
             url_sdk: https://downloads.openwrt.org/snapshots/targets/armsr/armv8/openwrt-sdk-armsr-armv8_gcc-13.3.0_musl.Linux-x86_64.tar.zst
 
           - platform: aarch64_generic-23
-            url_sdk: https://downloads.openwrt.org/releases/23.05.3/targets/armsr/armv8/openwrt-sdk-23.05.3-armsr-armv8_gcc-12.3.0_musl.Linux-x86_64.tar.xz
+            url_sdk: https://downloads.openwrt.org/releases/23.05.4/targets/rockchip/armv8/openwrt-sdk-23.05.4-rockchip-armv8_gcc-12.3.0_musl.Linux-x86_64.tar.xz
 
           - platform: aarch64_generic-21
             url_sdk: https://downloads.openwrt.org/releases/21.02.7/targets/rockchip/armv8/openwrt-sdk-21.02.7-rockchip-armv8_gcc-8.4.0_musl.Linux-x86_64.tar.xz
