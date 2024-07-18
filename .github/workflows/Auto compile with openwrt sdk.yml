@@ -276,6 +276,8 @@ jobs:
           rm -rf feeds/packages/lang/perl
 
           ./scripts/feeds install -a
+          ./scripts/feeds update packages
+          ./scripts/feeds install -a -f -p packages
           #./scripts/feeds install luci-app-mosdns
 
           #rm -rf feeds/packages/net/curl
@@ -289,6 +291,8 @@ jobs:
 
           ./scripts/feeds update -a
           ./scripts/feeds install -a
+          ./scripts/feeds update packages
+          ./scripts/feeds install -a -f -p packages
           #./scripts/feeds install luci-app-mosdns
 
           make defconfig
