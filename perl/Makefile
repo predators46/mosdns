@@ -11,7 +11,7 @@ include perlver.mk
 
 PKG_NAME:=perl
 PKG_VERSION:=$(PERL_VERSION)
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 PKG_SOURCE_URL:=https://www.cpan.org/src/5.0
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
@@ -69,6 +69,9 @@ define Package/perl/description
   It is used for mission critical projects in the public and private sectors
   and is widely used to program web applications of all needs.
 endef
+
+#fix locale
+export LC_ALL=C
 
 define Package/perl/config
 	source "$(SOURCE)/Config.in"
