@@ -262,17 +262,17 @@ jobs:
           cd sdk
           echo "src-git mosdns https://github.com/${{ env.mosdns }}.git;v5" >> feeds.conf.default
           #echo "src-git xorg https://github.com/predators46/xorg2 feeds/packages/xorg.git" >> feeds.conf.default
-          echo "src-git xorg https://github.com/predators46/xorg feeds/packages/xorg.git" >> feeds.conf.default
+          #echo "src-git xorg https://github.com/predators46/xorg feeds/packages/xorg.git" >> feeds.conf.default
 
           ./scripts/feeds update -a
           ./scripts/feeds install -a -f -p xorg
           ./scripts/feeds install -a -f -p mosdns
           ./scripts/feeds install luci-app-mosdns
 
-          echo "CONFIG_ALL_NONSHARED=n" > .config
-          echo "CONFIG_ALL_KMODS=n" >> .config
-          echo "CONFIG_ALL=n" >> .config
-          echo "CONFIG_AUTOREMOVE=n" >> .config
+          #echo "CONFIG_ALL_NONSHARED=n" > .config
+          #echo "CONFIG_ALL_KMODS=n" >> .config
+          #echo "CONFIG_ALL=n" >> .config
+          #echo "CONFIG_AUTOREMOVE=n" >> .config
           echo "CONFIG_PACKAGE_luci-app-mosdns=m" >> .config
 
           make defconfig
