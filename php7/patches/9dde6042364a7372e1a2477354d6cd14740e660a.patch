@@ -1,0 +1,181 @@
+From 9dde6042364a7372e1a2477354d6cd14740e660a Mon Sep 17 00:00:00 2001
+From: esaaprillia <esaapriliasalsabila@gmail.com>
+Date: Sat, 20 Jul 2024 03:16:18 +0800
+Subject: [PATCH] Add files via upload
+
+---
+ configure | 38 +++++++++++++++++++-------------------
+ 1 file changed, 19 insertions(+), 19 deletions(-)
+
+diff --git a/configure b/configure
+index 6c2663c..afdf404 100644
+--- a/configure
++++ b/configure
+@@ -2349,12 +2349,12 @@ fi
+ 
+ } # ac_fn_c_try_cpp
+ 
+-# ac_fn_c_check_header_mongrel LINENO HEADER VAR INCLUDES
++# ac_fn_c_check_header_compile LINENO HEADER VAR INCLUDES
+ # -------------------------------------------------------
+ # Tests whether HEADER exists, giving a warning if it cannot be compiled using
+ # the include files in INCLUDES and setting the cache variable VAR
+ # accordingly.
+-ac_fn_c_check_header_mongrel ()
++ac_fn_c_check_header_compile ()
+ {
+   as_lineno=${as_lineno-"$1"} as_lineno_stack=as_lineno_stack=$as_lineno_stack
+   if eval \${$3+:} false; then :
+@@ -2438,7 +2438,7 @@ $as_echo "$ac_res" >&6; }
+ fi
+   eval $as_lineno_stack; ${as_lineno_stack:+:} unset as_lineno
+ 
+-} # ac_fn_c_check_header_mongrel
++} # ac_fn_c_check_header_compile
+ 
+ # ac_fn_c_try_run LINENO
+ # ----------------------
+@@ -5059,7 +5059,7 @@ done
+ 
+ 
+ 
+-  ac_fn_c_check_header_mongrel "$LINENO" "minix/config.h" "ac_cv_header_minix_config_h" "$ac_includes_default"
++  ac_fn_c_check_header_compile "$LINENO" "minix/config.h" "ac_cv_header_minix_config_h" "$ac_includes_default"
+ if test "x$ac_cv_header_minix_config_h" = xyes; then :
+   MINIX=yes
+ else
+@@ -6964,7 +6964,7 @@ done
+ 
+ for ac_header in sys/pstat.h
+ do :
+-  ac_fn_c_check_header_mongrel "$LINENO" "sys/pstat.h" "ac_cv_header_sys_pstat_h" "$ac_includes_default"
++  ac_fn_c_check_header_compile "$LINENO" "sys/pstat.h" "ac_cv_header_sys_pstat_h" "$ac_includes_default"
+ if test "x$ac_cv_header_sys_pstat_h" = xyes; then :
+   cat >>confdefs.h <<_ACEOF
+ #define HAVE_SYS_PSTAT_H 1
+@@ -8635,7 +8635,7 @@ fi
+ 
+     for ac_header in systemd/sd-daemon.h
+ do :
+-  ac_fn_c_check_header_mongrel "$LINENO" "systemd/sd-daemon.h" "ac_cv_header_systemd_sd_daemon_h" "$ac_includes_default"
++  ac_fn_c_check_header_compile "$LINENO" "systemd/sd-daemon.h" "ac_cv_header_systemd_sd_daemon_h" "$ac_includes_default"
+ if test "x$ac_cv_header_systemd_sd_daemon_h" = xyes; then :
+   cat >>confdefs.h <<_ACEOF
+ #define HAVE_SYSTEMD_SD_DAEMON_H 1
+@@ -8784,7 +8784,7 @@ $as_echo "#define HAVE_SYSTEMD 1" >>confdefs.h
+   if test "$PHP_FPM_ACL" != "no" ; then
+     for ac_header in sys/acl.h
+ do :
+-  ac_fn_c_check_header_mongrel "$LINENO" "sys/acl.h" "ac_cv_header_sys_acl_h" "$ac_includes_default"
++  ac_fn_c_check_header_compile "$LINENO" "sys/acl.h" "ac_cv_header_sys_acl_h" "$ac_includes_default"
+ if test "x$ac_cv_header_sys_acl_h" = xyes; then :
+   cat >>confdefs.h <<_ACEOF
+ #define HAVE_SYS_ACL_H 1
+@@ -16056,7 +16056,7 @@ $as_echo "$ext_output" >&6; }
+ if test "$PHP_DTRACE" = "yes"; then
+   for ac_header in sys/sdt.h
+ do :
+-  ac_fn_c_check_header_mongrel "$LINENO" "sys/sdt.h" "ac_cv_header_sys_sdt_h" "$ac_includes_default"
++  ac_fn_c_check_header_compile "$LINENO" "sys/sdt.h" "ac_cv_header_sys_sdt_h" "$ac_includes_default"
+ if test "x$ac_cv_header_sys_sdt_h" = xyes; then :
+   cat >>confdefs.h <<_ACEOF
+ #define HAVE_SYS_SDT_H 1
+@@ -16262,7 +16262,7 @@ fi
+ 
+ for ac_header in io.h
+ do :
+-  ac_fn_c_check_header_mongrel "$LINENO" "io.h" "ac_cv_header_io_h" "$ac_includes_default"
++  ac_fn_c_check_header_compile "$LINENO" "io.h" "ac_cv_header_io_h" "$ac_includes_default"
+ if test "x$ac_cv_header_io_h" = xyes; then :
+   cat >>confdefs.h <<_ACEOF
+ #define HAVE_IO_H 1
+@@ -22663,7 +22663,7 @@ $as_echo "yes" >&6; }
+ 
+         for ac_header in openssl/crypto.h
+ do :
+-  ac_fn_c_check_header_mongrel "$LINENO" "openssl/crypto.h" "ac_cv_header_openssl_crypto_h" "$ac_includes_default"
++  ac_fn_c_check_header_compile "$LINENO" "openssl/crypto.h" "ac_cv_header_openssl_crypto_h" "$ac_includes_default"
+ if test "x$ac_cv_header_openssl_crypto_h" = xyes; then :
+   cat >>confdefs.h <<_ACEOF
+ #define HAVE_OPENSSL_CRYPTO_H 1
+@@ -46041,7 +46041,7 @@ $as_echo "yes" >&6; }
+     else
+       for ac_header in sys/sdt.h
+ do :
+-  ac_fn_c_check_header_mongrel "$LINENO" "sys/sdt.h" "ac_cv_header_sys_sdt_h" "$ac_includes_default"
++  ac_fn_c_check_header_compile "$LINENO" "sys/sdt.h" "ac_cv_header_sys_sdt_h" "$ac_includes_default"
+ if test "x$ac_cv_header_sys_sdt_h" = xyes; then :
+   cat >>confdefs.h <<_ACEOF
+ #define HAVE_SYS_SDT_H 1
+@@ -61421,7 +61421,7 @@ EOF
+   for ac_header in sys/mkdev.h sys/sysmacros.h
+ do :
+   as_ac_Header=`$as_echo "ac_cv_header_$ac_header" | $as_tr_sh`
+-ac_fn_c_check_header_mongrel "$LINENO" "$ac_header" "$as_ac_Header" "$ac_includes_default"
++ac_fn_c_check_header_compile "$LINENO" "$ac_header" "$as_ac_Header" "$ac_includes_default"
+ if eval test \"x\$"$as_ac_Header"\" = x"yes"; then :
+   cat >>confdefs.h <<_ACEOF
+ #define `$as_echo "HAVE_$ac_header" | $as_tr_cpp` 1
+@@ -68223,7 +68223,7 @@ done
+   for ac_header in netinet/tcp.h sys/un.h sys/sockio.h
+ do :
+   as_ac_Header=`$as_echo "ac_cv_header_$ac_header" | $as_tr_sh`
+-ac_fn_c_check_header_mongrel "$LINENO" "$ac_header" "$as_ac_Header" "$ac_includes_default"
++ac_fn_c_check_header_compile "$LINENO" "$ac_header" "$as_ac_Header" "$ac_includes_default"
+ if eval test \"x\$"$as_ac_Header"\" = x"yes"; then :
+   cat >>confdefs.h <<_ACEOF
+ #define `$as_echo "HAVE_$ac_header" | $as_tr_cpp` 1
+@@ -72871,7 +72871,7 @@ fi
+ 
+ for ac_header in wchar.h
+ do :
+-  ac_fn_c_check_header_mongrel "$LINENO" "wchar.h" "ac_cv_header_wchar_h" "$ac_includes_default"
++  ac_fn_c_check_header_compile "$LINENO" "wchar.h" "ac_cv_header_wchar_h" "$ac_includes_default"
+ if test "x$ac_cv_header_wchar_h" = xyes; then :
+   cat >>confdefs.h <<_ACEOF
+ #define HAVE_WCHAR_H 1
+@@ -72936,7 +72936,7 @@ fi
+ 
+ for ac_header in atomic.h
+ do :
+-  ac_fn_c_check_header_mongrel "$LINENO" "atomic.h" "ac_cv_header_atomic_h" "$ac_includes_default"
++  ac_fn_c_check_header_compile "$LINENO" "atomic.h" "ac_cv_header_atomic_h" "$ac_includes_default"
+ if test "x$ac_cv_header_atomic_h" = xyes; then :
+   cat >>confdefs.h <<_ACEOF
+ #define HAVE_ATOMIC_H 1
+@@ -73574,7 +73574,7 @@ $as_echo "$ext_output" >&6; }
+ 
+ 
+ if test "$PHP_SYSVMSG" != "no"; then
+-  ac_fn_c_check_header_mongrel "$LINENO" "sys/msg.h" "ac_cv_header_sys_msg_h" "$ac_includes_default"
++  ac_fn_c_check_header_compile "$LINENO" "sys/msg.h" "ac_cv_header_sys_msg_h" "$ac_includes_default"
+ if test "x$ac_cv_header_sys_msg_h" = xyes; then :
+ 
+ else
+@@ -82611,7 +82611,7 @@ $as_echo "${T_MD}Configuring Zend${T_ME}" >&6; }
+ 
+ for ac_header in cpuid.h
+ do :
+-  ac_fn_c_check_header_mongrel "$LINENO" "cpuid.h" "ac_cv_header_cpuid_h" "$ac_includes_default"
++  ac_fn_c_check_header_compile "$LINENO" "cpuid.h" "ac_cv_header_cpuid_h" "$ac_includes_default"
+ if test "x$ac_cv_header_cpuid_h" = xyes; then :
+   cat >>confdefs.h <<_ACEOF
+ #define HAVE_CPUID_H 1
+@@ -82949,7 +82949,7 @@ fi
+ 
+ for ac_header in dlfcn.h
+ do :
+-  ac_fn_c_check_header_mongrel "$LINENO" "dlfcn.h" "ac_cv_header_dlfcn_h" "$ac_includes_default"
++  ac_fn_c_check_header_compile "$LINENO" "dlfcn.h" "ac_cv_header_dlfcn_h" "$ac_includes_default"
+ if test "x$ac_cv_header_dlfcn_h" = xyes; then :
+   cat >>confdefs.h <<_ACEOF
+ #define HAVE_DLFCN_H 1
+@@ -83397,7 +83397,7 @@ elif test "$TSRM_ST" != "no"; then
+   fi
+   for ac_header in st.h
+ do :
+-  ac_fn_c_check_header_mongrel "$LINENO" "st.h" "ac_cv_header_st_h" "$ac_includes_default"
++  ac_fn_c_check_header_compile "$LINENO" "st.h" "ac_cv_header_st_h" "$ac_includes_default"
+ if test "x$ac_cv_header_st_h" = xyes; then :
+   cat >>confdefs.h <<_ACEOF
+ #define HAVE_ST_H 1
