@@ -15,7 +15,7 @@ PKG_LICENSE_FILES:=LICENSE
 PKG_CPE_ID:=cpe:/a:php:php
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
-PKG_SOURCE_URL:=http://www.php.net/distributions/
+PKG_SOURCE_URL:=https://www.php.net/distributions/
 PKG_HASH:=924846abf93bc613815c55dd3f5809377813ac62a9ec4eb3778675b82a27b927
 
 PKG_BUILD_PARALLEL:=1
