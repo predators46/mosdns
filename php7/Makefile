@@ -479,7 +479,8 @@ CONFIGURE_VARS+= \
 	php_cv_cc_rpath="no" \
 	ac_cv_php_xml2_config_path="$(STAGING_DIR)/host/bin/xml2-config" \
 	ac_cv_u8t_decompose=yes \
-	ac_cv_have_pcre2_jit=no
+	ac_cv_have_pcre2_jit=no \
+	ac_cv_header_sys_msg_h=yes
 
 define Package/php7/conffiles
 /etc/php.ini
