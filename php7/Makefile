@@ -152,8 +152,6 @@ define Package/php7-mod-intl/description
   select/install package 'icu-full-data'.
 endef
 
-TARGET_CFLAGS+= -U_FORTIFY_SOURCE
-
 # not everything groks --disable-nls
 DISABLE_NLS:=
 
@@ -179,6 +177,9 @@ CONFIGURE_ARGS+= \
 
 ifeq ($(CONFIG_LIBC_USE_GLIBC),y)
 TARGET_LDFLAGS += -ldl
+endif
+ifeq ($(CONFIG_USE_MUSL),y)
+TARGET_CFLAGS += -D_LARGEFILE64_SOURCE -U_FORTIFY_SOURCE
 endif
 
 ifneq ($(SDK)$(CONFIG_PACKAGE_php7-mod-bcmath),)
