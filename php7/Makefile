@@ -152,6 +152,8 @@ define Package/php7-mod-intl/description
   select/install package 'icu-full-data'.
 endef
 
+TARGET_CFLAGS+= -U_FORTIFY_SOURCE
+
 # not everything groks --disable-nls
 DISABLE_NLS:=
 
