@@ -26,7 +26,7 @@ PKG_LICENSE:=GPL-2.0
 PKG_BUILD_PARALLEL:=1
 PKG_USE_MIPS16:=0
 
-PKG_FIXUP:=autoreconf
+PKG_FIXUP:=autoreconf -vis
 
 include $(INCLUDE_DIR)/package.mk
 
