@@ -23,10 +23,11 @@ PKG_MD5SUM:=887f869bcc757957067b9198f707f32f
 PKG_MAINTAINER:=Jo-Philipp Wich <jo@mein.io>
 PKG_LICENSE:=GPL-2.0
 
+PKG_BUILD_DEPENDS:=ncurses readline
 PKG_BUILD_PARALLEL:=1
 PKG_USE_MIPS16:=0
 
-PKG_FIXUP:=autoreconf -vis
+PKG_FIXUP:=libtool
 
 include $(INCLUDE_DIR)/package.mk
 
