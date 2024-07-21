@@ -13,13 +13,9 @@ PKG_VERSION:=5.1.73
 PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=\
-	http://mysql.he.net/Downloads/MySQL-5.1/ \
-	http://www.linorg.usp.br/mysql/Downloads/MySQL-5.1/ \
-	http://www.mirrorservice.org/sites/ftp.mysql.com/Downloads/MySQL-5.1/ \
-	http://mirror.switch.ch/ftp/mirror/mysql/Downloads/MySQL-5.1/
+PKG_SOURCE_URL:=https://downloads.mysql.com/archives/get/p/23/file/
+PKG_HASH:=skip
 
-PKG_MD5SUM:=887f869bcc757957067b9198f707f32f
 PKG_MAINTAINER:=Jo-Philipp Wich <jo@mein.io>
 PKG_LICENSE:=GPL-2.0
 
