@@ -1,0 +1,31 @@
+From bd6926f86521932379fea86be8a1f39a7eaac316 Mon Sep 17 00:00:00 2001
+From: esaaprillia <esaapriliasalsabila@gmail.com>
+Date: Mon, 22 Jul 2024 20:08:10 +0800
+Subject: [PATCH] Add files via upload
+
+---
+ configure | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/configure b/configure
+index 3447e82..3de0614 100644
+--- a/configure
++++ b/configure
+@@ -48116,7 +48116,6 @@ $as_echo "$as_me: error: unknown endianness
+ 
+   { $as_echo "$as_me:$LINENO: checking whether GCC atomic builtins are available" >&5
+ $as_echo_n "checking whether GCC atomic builtins are available... " >&6; }
+-  # either define HAVE_IB_GCC_ATOMIC_BUILTINS or not
+   if test "$cross_compiling" = yes; then
+   { { $as_echo "$as_me:$LINENO: error: in \`$ac_pwd':" >&5
+ $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+@@ -51578,7 +51577,8 @@ $debug ||
+ if test -n "$CONFIG_FILES"; then
+ 
+ 
+-ac_cr=''
++ac_cr='
++'
+ ac_cs_awk_cr=`$AWK 'BEGIN { print "a\rb" }' </dev/null 2>/dev/null`
+ if test "$ac_cs_awk_cr" = "a${ac_cr}b"; then
+   ac_cs_awk_cr='\\r'
