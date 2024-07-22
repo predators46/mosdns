@@ -83,9 +83,7 @@ CONFIGURE_ARGS += \
 
 CONFIGURE_VARS += \
 	mysql_cv_compress=yes \
-	mysql_cv_gethostname_style=glibc2 \
 	mysql_cv_gcc_atomic_builtins=yes \
-	mysql_cv_gcc_atomic_builtins_pthread_t=yes \
 	ac_cv_c_stack_direction=-1
 
 define Build/Compile
