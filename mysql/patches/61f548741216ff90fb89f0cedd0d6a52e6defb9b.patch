@@ -16,7 +16,7 @@ index 94a9d5b..f858497 100644
  # TAR files, the path name is split into two parts, a 155 chacater
  # first part and a 100 character second part.
 -AM_INIT_AUTOMAKE([1.9 tar-ustar])
-+AM_INIT_AUTOMAKE([1.9 tar-ustar foreign])
++AM_INIT_AUTOMAKE
  AC_PROG_LIBTOOL
  
  AC_CONFIG_HEADERS([include/config.h])
