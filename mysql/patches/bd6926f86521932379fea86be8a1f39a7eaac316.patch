@@ -1,14 +1,14 @@
-From bd6926f86521932379fea86be8a1f39a7eaac316 Mon Sep 17 00:00:00 2001
+From c4f57b20d92ac8f3c94387ae8c86b91fcb4090bb Mon Sep 17 00:00:00 2001
 From: esaaprillia <esaapriliasalsabila@gmail.com>
-Date: Mon, 22 Jul 2024 20:08:10 +0800
+Date: Tue, 23 Jul 2024 01:02:11 +0800
 Subject: [PATCH] Add files via upload
 
 ---
- configure | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ configure | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/configure b/configure
-index 3447e82..3de0614 100644
+index 3447e82..c54b3bf 100644
 --- a/configure
 +++ b/configure
 @@ -48116,7 +48116,6 @@ $as_echo "$as_me: error: unknown endianness
@@ -19,11 +19,21 @@ index 3447e82..3de0614 100644
    if test "$cross_compiling" = yes; then
    { { $as_echo "$as_me:$LINENO: error: in \`$ac_pwd':" >&5
  $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+@@ -48196,7 +48195,7 @@ $as_echo "$ac_try_echo") >&5
+ 
+ 
+ cat >>confdefs.h <<\_ACEOF
+-#define HAVE_IB_GCC_ATOMIC_BUILTINS 1
++#define HAVE_IB_GCC_ATOMIC_BUILTINS, 1
+ _ACEOF
+ 
+       { $as_echo "$as_me:$LINENO: result: yes" >&5
 @@ -51578,7 +51577,8 @@ $debug ||
  if test -n "$CONFIG_FILES"; then
  
  
--ac_cr=''
+-ac_cr='
+'
 +ac_cr='
 +'
  ac_cs_awk_cr=`$AWK 'BEGIN { print "a\rb" }' </dev/null 2>/dev/null`
