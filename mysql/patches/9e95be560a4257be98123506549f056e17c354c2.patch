@@ -1,0 +1,220 @@
+From 9e95be560a4257be98123506549f056e17c354c2 Mon Sep 17 00:00:00 2001
+From: esaaprillia <esaapriliasalsabila@gmail.com>
+Date: Tue, 23 Jul 2024 01:37:50 +0800
+Subject: [PATCH] Add files via upload
+
+---
+ configure | 193 +-----------------------------------------------------
+ 1 file changed, 2 insertions(+), 191 deletions(-)
+
+diff --git a/configure b/configure
+index 3447e82..09dfbdb 100644
+--- a/configure
++++ b/configure
+@@ -48114,196 +48114,6 @@ $as_echo "$as_me: error: unknown endianness
+   esac
+ 
+ 
+-  { $as_echo "$as_me:$LINENO: checking whether GCC atomic builtins are available" >&5
+-$as_echo_n "checking whether GCC atomic builtins are available... " >&6; }
+-  # either define HAVE_IB_GCC_ATOMIC_BUILTINS or not
+-  if test "$cross_compiling" = yes; then
+-  { { $as_echo "$as_me:$LINENO: error: in \`$ac_pwd':" >&5
+-$as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+-{ { $as_echo "$as_me:$LINENO: error: cannot run test program while cross compiling
+-See \`config.log' for more details." >&5
+-$as_echo "$as_me: error: cannot run test program while cross compiling
+-See \`config.log' for more details." >&2;}
+-   { (exit 1); exit 1; }; }; }
+-else
+-  cat >conftest.$ac_ext <<_ACEOF
+-/* confdefs.h.  */
+-_ACEOF
+-cat confdefs.h >>conftest.$ac_ext
+-cat >>conftest.$ac_ext <<_ACEOF
+-/* end confdefs.h.  */
+-
+-      int main()
+-      {
+-	long	x;
+-	long	y;
+-	long	res;
+-	char	c;
+-
+-	x = 10;
+-	y = 123;
+-	res = __sync_bool_compare_and_swap(&x, x, y);
+-	if (!res || x != y) {
+-          return(1);
+-        }
+-
+-	x = 10;
+-	y = 123;
+-	res = __sync_bool_compare_and_swap(&x, x + 1, y);
+-	if (res || x != 10) {
+-          return(1);
+-        }
+-
+-	x = 10;
+-	y = 123;
+-	res = __sync_add_and_fetch(&x, y);
+-	if (res != 123 + 10 || x != 123 + 10) {
+-	  return(1);
+-	}
+-
+-	c = 10;
+-	res = __sync_lock_test_and_set(&c, 123);
+-	if (res != 10 || c != 123) {
+-	  return(1);
+-	}
+-
+-	return(0);
+-      }
+-
+-_ACEOF
+-rm -f conftest$ac_exeext
+-if { (ac_try="$ac_link"
+-case "(($ac_try" in
+-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+-  *) ac_try_echo=$ac_try;;
+-esac
+-eval ac_try_echo="\"\$as_me:$LINENO: $ac_try_echo\""
+-$as_echo "$ac_try_echo") >&5
+-  (eval "$ac_link") 2>&5
+-  ac_status=$?
+-  $as_echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); } && { ac_try='./conftest$ac_exeext'
+-  { (case "(($ac_try" in
+-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+-  *) ac_try_echo=$ac_try;;
+-esac
+-eval ac_try_echo="\"\$as_me:$LINENO: $ac_try_echo\""
+-$as_echo "$ac_try_echo") >&5
+-  (eval "$ac_try") 2>&5
+-  ac_status=$?
+-  $as_echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); }; }; then
+-
+-
+-cat >>confdefs.h <<\_ACEOF
+-#define HAVE_IB_GCC_ATOMIC_BUILTINS 1
+-_ACEOF
+-
+-      { $as_echo "$as_me:$LINENO: result: yes" >&5
+-$as_echo "yes" >&6; }
+-
+-else
+-  $as_echo "$as_me: program exited with status $ac_status" >&5
+-$as_echo "$as_me: failed program was:" >&5
+-sed 's/^/| /' conftest.$ac_ext >&5
+-
+-( exit $ac_status )
+-
+-      { $as_echo "$as_me:$LINENO: result: no" >&5
+-$as_echo "no" >&6; }
+-
+-
+-fi
+-rm -rf conftest.dSYM
+-rm -f core *.core core.conftest.* gmon.out bb.out conftest$ac_exeext conftest.$ac_objext conftest.$ac_ext
+-fi
+-
+-
+-
+-  { $as_echo "$as_me:$LINENO: checking whether pthread_t can be used by GCC atomic builtins" >&5
+-$as_echo_n "checking whether pthread_t can be used by GCC atomic builtins... " >&6; }
+-  # either define HAVE_IB_ATOMIC_PTHREAD_T_GCC or not
+-  if test "$cross_compiling" = yes; then
+-  { { $as_echo "$as_me:$LINENO: error: in \`$ac_pwd':" >&5
+-$as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+-{ { $as_echo "$as_me:$LINENO: error: cannot run test program while cross compiling
+-See \`config.log' for more details." >&5
+-$as_echo "$as_me: error: cannot run test program while cross compiling
+-See \`config.log' for more details." >&2;}
+-   { (exit 1); exit 1; }; }; }
+-else
+-  cat >conftest.$ac_ext <<_ACEOF
+-/* confdefs.h.  */
+-_ACEOF
+-cat confdefs.h >>conftest.$ac_ext
+-cat >>conftest.$ac_ext <<_ACEOF
+-/* end confdefs.h.  */
+-
+-      #include <pthread.h>
+-      #include <string.h>
+-
+-      int main(int argc, char** argv) {
+-        pthread_t       x1;
+-        pthread_t       x2;
+-        pthread_t       x3;
+-
+-	memset(&x1, 0x0, sizeof(x1));
+-	memset(&x2, 0x0, sizeof(x2));
+-	memset(&x3, 0x0, sizeof(x3));
+-
+-        __sync_bool_compare_and_swap(&x1, x2, x3);
+-
+-        return(0);
+-      }
+-
+-_ACEOF
+-rm -f conftest$ac_exeext
+-if { (ac_try="$ac_link"
+-case "(($ac_try" in
+-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+-  *) ac_try_echo=$ac_try;;
+-esac
+-eval ac_try_echo="\"\$as_me:$LINENO: $ac_try_echo\""
+-$as_echo "$ac_try_echo") >&5
+-  (eval "$ac_link") 2>&5
+-  ac_status=$?
+-  $as_echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); } && { ac_try='./conftest$ac_exeext'
+-  { (case "(($ac_try" in
+-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+-  *) ac_try_echo=$ac_try;;
+-esac
+-eval ac_try_echo="\"\$as_me:$LINENO: $ac_try_echo\""
+-$as_echo "$ac_try_echo") >&5
+-  (eval "$ac_try") 2>&5
+-  ac_status=$?
+-  $as_echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); }; }; then
+-
+-
+-cat >>confdefs.h <<\_ACEOF
+-#define HAVE_IB_ATOMIC_PTHREAD_T_GCC 1
+-_ACEOF
+-
+-      { $as_echo "$as_me:$LINENO: result: yes" >&5
+-$as_echo "yes" >&6; }
+-
+-else
+-  $as_echo "$as_me: program exited with status $ac_status" >&5
+-$as_echo "$as_me: failed program was:" >&5
+-sed 's/^/| /' conftest.$ac_ext >&5
+-
+-( exit $ac_status )
+-
+-      { $as_echo "$as_me:$LINENO: result: no" >&5
+-$as_echo "no" >&6; }
+-
+-
+-fi
+-rm -rf conftest.dSYM
+-rm -f core *.core core.conftest.* gmon.out bb.out conftest$ac_exeext conftest.$ac_objext conftest.$ac_ext
+-fi
+-
+ 
+ 
+   { $as_echo "$as_me:$LINENO: checking whether Solaris libc atomic functions are available" >&5
+@@ -51578,7 +51388,8 @@ $debug ||
+ if test -n "$CONFIG_FILES"; then
+ 
+ 
+-ac_cr=''
++ac_cr='
++'
+ ac_cs_awk_cr=`$AWK 'BEGIN { print "a\rb" }' </dev/null 2>/dev/null`
+ if test "$ac_cs_awk_cr" = "a${ac_cr}b"; then
+   ac_cs_awk_cr='\\r'
