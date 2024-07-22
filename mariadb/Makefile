@@ -22,7 +22,7 @@ PKG_LICENSE:=GPL-2.0
 PKG_BUILD_PARALLEL:=1
 PKG_USE_MIPS16:=0
 
-PKG_FIXUP:=libtool
+PKG_FIXUP:=libtool --add-missing
 PKG_REMOVE_FILES:=aclocal.m4
 
 include $(INCLUDE_DIR)/package.mk
