@@ -24,7 +24,7 @@ PKG_USE_MIPS16:=0
 
 PKG_FIXUP:=autoreconf
 PKG_MACRO_PATHS:=config/ac-macros
-PKG_AUTOMAKE_PATHS:=$(PKG_BUILD_DIR)
+PKG_AUTOMAKE_PATHS:= .
 
 include $(INCLUDE_DIR)/package.mk
 
