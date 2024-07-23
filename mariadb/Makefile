@@ -19,6 +19,8 @@ PKG_HASH:=skip
 PKG_MAINTAINER:=Jo-Philipp Wich <jo@mein.io>
 PKG_LICENSE:=GPL-2.0
 
+CMAKE_BINARY_SUBDIR := build
+
 PKG_BUILD_PARALLEL:=1
 PKG_USE_MIPS16:=0
 
@@ -26,6 +28,7 @@ PKG_USE_MIPS16:=0
 #PKG_REMOVE_FILES:=aclocal.m4 config/ac-macros/*.m4
 
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/cmake.mk
 
 define Package/libmariadbclient/Default
   SECTION:=libs
@@ -60,79 +63,25 @@ endif
 
 TARGET_CFLAGS += $(FPIC)
 
-CONFIGURE_ARGS += \
-	--enable-shared \
-	--enable-static \
-	--enable-thread-safe-client \
-	--disable-assembler \
-	--with-pthread \
-	--with-server \
-	--without-mysqlmanager \
-	--with-mysqld-user=root \
-	--with-unix-socket-path=/tmp \
-	--without-libwrap \
-	--with-low-memory \
-	--without-embedded-server \
-	--without-query-cache \
-	--without-ssl \
-	--without-docs \
-	--without-man \
-	--with-readline \
-	--without-debug \
-	--with-named-thread-libs=-lpthread
-
-CONFIGURE_VARS += \
-	mysql_cv_compress=yes \
-	mysql_cv_gcc_atomic_builtins=yes \
-	ac_cv_c_stack_direction=-1
-
-define Build/Compile
-	+$(MAKE) $(PKG_JOBS) -C "$(PKG_BUILD_DIR)" \
-		SUBDIRS="include" \
-		DESTDIR="$(PKG_INSTALL_DIR)" \
-		all
-	$(MAKE) -C "$(PKG_BUILD_DIR)" \
-		SUBDIRS="include" \
-		DESTDIR="$(PKG_INSTALL_DIR)" \
-		install
-	g++ -I $(PKG_BUILD_DIR)/include \
-		-o $(PKG_BUILD_DIR)/sql/gen_lex_hash \
-		$(PKG_BUILD_DIR)/sql/gen_lex_hash.cc
-	+$(MAKE) $(PKG_JOBS) -C "$(PKG_BUILD_DIR)/libmysql" \
-		CC="g++" \
-		CFLAGS="$(HOST_CFLAGS)" \
-		CPPFLAGS="$(HOST_CFLAGS)" \
-		LDFLAGS="$(HOST_LDFLAGS)" \
-		conf_to_src
-	+$(MAKE) $(PKG_JOBS) -C "$(PKG_BUILD_DIR)" \
-		SUBDIRS="libmysql" \
-		DESTDIR="$(PKG_INSTALL_DIR)" \
-		all
-	$(MAKE) -C "$(PKG_BUILD_DIR)" \
-		SUBDIRS="libmysql" \
-		DESTDIR="$(PKG_INSTALL_DIR)" \
-		install
-	+$(MAKE) $(PKG_JOBS) -C "$(PKG_BUILD_DIR)" \
-		SUBDIRS="libmysql_r" \
-		DESTDIR="$(PKG_INSTALL_DIR)" \
-		all
-	$(MAKE) -C "$(PKG_BUILD_DIR)" \
-		SUBDIRS="libmysql_r" \
-		DESTDIR="$(PKG_INSTALL_DIR)" \
-		install
-	$(MAKE) -C "$(PKG_BUILD_DIR)" \
-		SUBDIRS="scripts" \
-		DESTDIR="$(PKG_INSTALL_DIR)" \
-		bin_SCRIPTS="mysql_config" \
-		install
-	+$(MAKE) $(PKG_JOBS) -C "$(PKG_BUILD_DIR)" \
-		DESTDIR="$(PKG_INSTALL_DIR)" \
-		all
-	$(MAKE) -C "$(PKG_BUILD_DIR)" \
-		DESTDIR="$(PKG_INSTALL_DIR)" \
-		install
-endef
-
+CMAKE_OPTIONS += \
+	-Wno-dev \
+	-DDEFAULT_CHARSET=utf8 \
+	-DDEFAULT_COLLATION=utf8_general_ci \
+	-DINSTALL_DOCDIR=share/doc/mysql \
+	-DINSTALL_DOCREADMEDIR=share/doc/mysql \
+	-DINSTALL_MANDIR=share/man \
+	-DINSTALL_MYSQLSHAREDIR=share/mysql \
+	-DINSTALL_MYSQLTESTDIR="" \
+	-DINSTALL_PLUGINDIR=lib/mysql/plugin \
+	-DINSTALL_SBINDIR=bin \
+	-DINSTALL_SCRIPTDIR=bin \
+	-DINSTALL_SQLBENCHDIR="" \
+	-DINSTALL_SUPPORTFILESDIR=share/mysql \
+	-DINSTALL_UNIX_ADDRDIR=/var/run/mysqld/mysqld.sock \
+	-DMYSQLD_USER=mysql \
+	-DMYSQL_DATADIR=/var/lib/mysql \
+	-DMYSQL_UNIX_ADDR=/var/run/mysqld/mysqld.sock \
+	-DWITH_UNIT_TESTS=OFF
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(2)/bin $(1)/usr/bin $(1)/usr/include $(1)/usr/lib
