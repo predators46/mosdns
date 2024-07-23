@@ -1,0 +1,22 @@
+From 50363f5587c0c40a1635d61bdaa8d1d69986a958 Mon Sep 17 00:00:00 2001
+From: esaaprillia <esaapriliasalsabila@gmail.com>
+Date: Tue, 23 Jul 2024 08:50:46 +0800
+Subject: [PATCH] Update configure.in
+
+---
+ configure.in | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/configure.in b/configure.in
+index 94a9d5b..3fc9ced 100644
+--- a/configure.in
++++ b/configure.in
+@@ -20,7 +20,7 @@ AC_CANONICAL_SYSTEM
+ # TAR files, the path name is split into two parts, a 155 chacater
+ # first part and a 100 character second part.
+ AM_INIT_AUTOMAKE([1.9 tar-ustar])
+-AC_PROG_LIBTOOL
++LT_INIT
+ 
+ AC_CONFIG_HEADERS([include/config.h])
+ 
