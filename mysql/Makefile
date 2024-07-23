@@ -22,7 +22,7 @@ PKG_LICENSE:=GPL-2.0
 PKG_BUILD_PARALLEL:=1
 PKG_USE_MIPS16:=0
 
-PKG_FIXUP:=libtool
+PKG_FIXUP:=automake --add-missing
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -150,6 +150,7 @@ define Package/libmysqlclient/install
 	$(INSTALL_DIR) $(1)/usr/lib
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/mysql/libmysqlclient.so.* $(1)/usr/lib/
 endef
+
 define Package/libmysqlclient-r/install
 	$(INSTALL_DIR) $(1)/usr/lib
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/mysql/libmysqlclient_r.so.* $(1)/usr/lib/
