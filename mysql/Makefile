@@ -19,6 +19,8 @@ PKG_HASH:=skip
 PKG_MAINTAINER:=Jo-Philipp Wich <jo@mein.io>
 PKG_LICENSE:=GPL-2.0
 
+CMAKE_BINARY_SUBDIR := build
+
 PKG_BUILD_PARALLEL:=1
 PKG_USE_MIPS16:=0
 
@@ -62,7 +64,24 @@ endif
 TARGET_CFLAGS += $(FPIC)
 
 CMAKE_OPTIONS += \
-	-Wno-dev
+	-Wno-dev \
+	-DDEFAULT_CHARSET=utf8 \
+	-DDEFAULT_COLLATION=utf8_general_ci \
+	-DINSTALL_DOCDIR=share/doc/mysql \
+	-DINSTALL_DOCREADMEDIR=share/doc/mysql \
+	-DINSTALL_MANDIR=share/man \
+	-DINSTALL_MYSQLSHAREDIR=share/mysql \
+	-DINSTALL_MYSQLTESTDIR="" \
+	-DINSTALL_PLUGINDIR=lib/mysql/plugin \
+	-DINSTALL_SBINDIR=bin \
+	-DINSTALL_SCRIPTDIR=bin \
+	-DINSTALL_SQLBENCHDIR="" \
+	-DINSTALL_SUPPORTFILESDIR=share/mysql \
+	-DINSTALL_UNIX_ADDRDIR=/var/run/mysqld/mysqld.sock \
+	-DMYSQLD_USER=mysql \
+	-DMYSQL_DATADIR=/var/lib/mysql \
+	-DMYSQL_UNIX_ADDR=/var/run/mysqld/mysqld.sock \
+	-DWITH_UNIT_TESTS=OFF
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(2)/bin $(1)/usr/bin $(1)/usr/include $(1)/usr/lib
