@@ -62,8 +62,6 @@ endif
 TARGET_CFLAGS += $(FPIC)
 
 CMAKE_OPTIONS +=
-	-Wno-dev
-
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(2)/bin $(1)/usr/bin $(1)/usr/include $(1)/usr/lib
