@@ -1,0 +1,45 @@
+From 6e243c69f174570a217b9474067f62c7baf24c08 Mon Sep 17 00:00:00 2001
+From: esaaprillia <esaapriliasalsabila@gmail.com>
+Date: Tue, 23 Jul 2024 14:19:38 +0800
+Subject: [PATCH] Add files via upload
+
+---
+ config/ac-macros/ha_ndbcluster.m4 | 4 ++--
+ config/ac-macros/zlib.m4          | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/config/ac-macros/ha_ndbcluster.m4 b/config/ac-macros/ha_ndbcluster.m4
+index 3718b64..62eb68a 100644
+--- a/config/ac-macros/ha_ndbcluster.m4
++++ b/config/ac-macros/ha_ndbcluster.m4
+@@ -21,7 +21,7 @@ AC_SUBST(MAKEINDEX)
+ 
+ AC_DEFUN([MYSQL_CHECK_NDB_OPTIONS], [
+   AC_ARG_WITH([ndb-sci],
+-              AC_HELP_STRING([--with-ndb-sci=DIR],
++              AS_HELP_STRING([--with-ndb-sci=DIR],
+                              [Provide MySQL with a custom location of
+                              sci library. Given DIR, sci library is 
+                              assumed to be in $DIR/lib and header files
+@@ -78,7 +78,7 @@ AC_DEFUN([MYSQL_CHECK_NDB_OPTIONS], [
+               [ndb_debug="$withval"],
+               [ndb_debug="default"])
+   AC_ARG_WITH([ndb-ccflags],
+-              AC_HELP_STRING([--with-ndb-ccflags=CFLAGS],
++              AS_HELP_STRING([--with-ndb-ccflags=CFLAGS],
+                            [Extra CFLAGS for ndb compile]),
+               [ndb_ccflags=${withval}],
+               [ndb_ccflags=""])
+diff --git a/config/ac-macros/zlib.m4 b/config/ac-macros/zlib.m4
+index f62bb05..a53777a 100644
+--- a/config/ac-macros/zlib.m4
++++ b/config/ac-macros/zlib.m4
+@@ -75,7 +75,7 @@ case $SYSTEM_TYPE in
+     ;;
+   *)
+     AC_ARG_WITH([zlib-dir],
+-                AC_HELP_STRING([--with-zlib-dir=no|bundled|DIR],
++                AS_HELP_STRING([--with-zlib-dir=no|bundled|DIR],
+                                [Provide MySQL with a custom location of
+                                compression library. Given DIR, zlib binary is 
+                                assumed to be in $DIR/lib and header files
