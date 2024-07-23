@@ -61,6 +61,11 @@ endif
 
 TARGET_CFLAGS += $(FPIC)
 
+define Build/Configure
+	(cd $(PKG_BUILD_DIR); ./autogen.sh );
+	$(call Build/Configure/Default)
+endef
+
 CONFIGURE_ARGS += \
 	--enable-shared \
 	--enable-static \
