@@ -83,6 +83,7 @@ CONFIGURE_ARGS += \
 	--with-named-thread-libs=-lpthread
 
 CONFIGURE_VARS += \
+	cross_compiling=yes \
 	mysql_cv_compress=yes \
 	mysql_cv_gethostname_style=glibc2 \
 	mysql_cv_gcc_atomic_builtins=yes \
