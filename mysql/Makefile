@@ -89,6 +89,14 @@ CONFIGURE_VARS += \
 	mysql_cv_gcc_atomic_builtins_pthread_t=yes \
 	ac_cv_c_stack_direction=-1
 
+define Build/Compile
+	( cd $(PKG_BUILD_DIR)/sql ; \
+		$(HOSTCC) gen_lex_hash.cc -c -o gen_lex_hash.o ; \
+		$(HOSTCC) gen_lex_hash.o -o gen_lex_hash ; \
+	)
+	$(call Build/Compile/Default)
+endef
+
 define Build/InstallDev
 	$(INSTALL_DIR) $(2)/bin $(1)/usr/bin $(1)/usr/include $(1)/usr/lib
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/mysql_config $(1)/usr/bin/
