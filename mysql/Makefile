@@ -22,7 +22,7 @@ PKG_LICENSE:=GPL-2.0
 PKG_BUILD_PARALLEL:=1
 PKG_USE_MIPS16:=0
 
-PKG_FIXUP:=patch-libtool
+#PKG_FIXUP:=patch-libtool
 #PKG_MACRO_PATHS:=config/ac-macros
 #PKG_AUTOMAKE_PATHS:= .
 
@@ -60,11 +60,6 @@ ifneq ($(CONFIG_USE_UCLIBCXX),)
 endif
 
 TARGET_CFLAGS += $(FPIC)
-
-define Build/Configure
-	(cd $(PKG_BUILD_DIR); ./autogen.sh );
-	$(call Build/Configure/Default)
-endef
 
 CONFIGURE_ARGS += \
 	--enable-shared \
