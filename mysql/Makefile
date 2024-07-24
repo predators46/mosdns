@@ -103,7 +103,7 @@ define Build/Compile
 		CFLAGS="$(HOST_CFLAGS)" \
 		CPPFLAGS="$(HOST_CFLAGS)" \
 		LDFLAGS="$(HOST_LDFLAGS)" \
-		gen_lex_hash.cc
+		gen_lex_hash.cc -o gen_lex_hash
 	+$(MAKE) $(PKG_JOBS) -C "$(PKG_BUILD_DIR)/libmysql" \
 		CC="g++" \
 		CFLAGS="$(HOST_CFLAGS)" \
