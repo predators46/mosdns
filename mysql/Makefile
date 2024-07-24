@@ -83,12 +83,14 @@ CONFIGURE_ARGS += \
 	--with-named-thread-libs=-lpthread
 
 CONFIGURE_VARS += \
-	cross_compiling=yes \
 	mysql_cv_compress=yes \
 	mysql_cv_gethostname_style=glibc2 \
 	mysql_cv_gcc_atomic_builtins=yes \
 	mysql_cv_gcc_atomic_builtins_pthread_t=yes \
-	ac_cv_c_stack_direction=-1
+	ac_cv_c_stack_direction=-1 \
+	ac_cv_have_decl_HAVE_IB_ATOMIC_PTHREAD_T_GCC=yes \
+	ac_cv_have_decl_HAVE_IB_ATOMIC_PTHREAD_T_SOLARIS=no \
+	ac_cv_have_decl_HAVE_IB_GCC_ATOMIC_BUILTINS=yes
 
 define Build/Compile
 	+$(MAKE) $(PKG_JOBS) -C "$(PKG_BUILD_DIR)" \
