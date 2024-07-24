@@ -10,7 +10,7 @@ include $(INCLUDE_DIR)/uclibc++.mk
 
 PKG_NAME:=mysql
 PKG_VERSION:=5.1.73
-PKG_RELEASE:=2
+PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://cdn.mysql.com/archives/mysql-5.1/
@@ -19,6 +19,7 @@ PKG_HASH:=skip
 PKG_MAINTAINER:=Jo-Philipp Wich <jo@mein.io>
 PKG_LICENSE:=GPL-2.0
 
+PKG_BUILD_DEPENDS:=mysql/host
 PKG_BUILD_PARALLEL:=1
 PKG_USE_MIPS16:=0
 
@@ -95,6 +96,11 @@ define Build/InstallDev
 	$(CP) $(PKG_BUILD_DIR)/include/mysqld_error.h $(1)/usr/include/mysql/
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/mysql $(1)/usr/lib/
 	rm -f $(1)/usr/lib/mysql/libmysqlclient.la
+endef
+
+define Host/Install
+	$(INSTALL_DIR) $(STAGING_DIR_HOSTPKG)/bin
+	$(INSTALL_BIN) $(HOST_BUILD_DIR)/sql/gen_lex_hash $(STAGING_DIR_HOSTPKG)/bin
 endef
 
 define Package/libmysqlclient/install
