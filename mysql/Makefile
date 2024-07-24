@@ -98,12 +98,6 @@ define Build/Compile
 		SUBDIRS="include" \
 		DESTDIR="$(PKG_INSTALL_DIR)" \
 		install
-	+$(MAKE) $(PKG_JOBS) -C "$(PKG_BUILD_DIR)/sql" \
-		CC="g++" \
-		CFLAGS="$(HOST_CFLAGS)" \
-		CPPFLAGS="$(HOST_CFLAGS)" \
-		LDFLAGS="$(HOST_LDFLAGS)" \
-		gen_lex_hash.cc -o gen_lex_hash
 	+$(MAKE) $(PKG_JOBS) -C "$(PKG_BUILD_DIR)/libmysql" \
 		CC="g++" \
 		CFLAGS="$(HOST_CFLAGS)" \
@@ -126,6 +120,12 @@ define Build/Compile
 		SUBDIRS="libmysql_r" \
 		DESTDIR="$(PKG_INSTALL_DIR)" \
 		install
+	+$(MAKE) $(PKG_JOBS) -C "$(PKG_BUILD_DIR)/sql" \
+		CC="g++" \
+		CFLAGS="$(HOST_CFLAGS)" \
+		CPPFLAGS="$(HOST_CFLAGS)" \
+		LDFLAGS="$(HOST_LDFLAGS)" \
+		gen_lex_hash.cc -o gen_lex_hash
 	$(MAKE) -C "$(PKG_BUILD_DIR)" \
 		SUBDIRS="scripts" \
 		DESTDIR="$(PKG_INSTALL_DIR)" \
