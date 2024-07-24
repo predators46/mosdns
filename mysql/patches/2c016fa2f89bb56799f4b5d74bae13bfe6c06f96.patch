@@ -15,4 +15,4 @@ index 0000000..07e632a
 +++ b/autogen.sh
 @@ -0,0 +1,2 @@
 +#!/bin/sh
-+automake --add-missing
++aclocal && automake --add-missing && autoheader && autoconf
