@@ -25,6 +25,10 @@ define Package/autoconf-archive/description
   Collection of re-usable GNU Autoconf macros
 endef
 
+define Host/Install
+	$(MAKE) -C $(HOST_BUILD_DIR) $(STAGING_DIR_HOST) install
+endef
+
 define Host/Uninstall
 	-$(call Host/Compile/Default,uninstall)
 endef
