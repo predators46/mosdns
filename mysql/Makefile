@@ -98,9 +98,12 @@ define Build/Compile
 		SUBDIRS="include" \
 		DESTDIR="$(PKG_INSTALL_DIR)" \
 		install
-	g++ -I $(PKG_BUILD_DIR)/include \
-		-o $(PKG_BUILD_DIR)/sql/gen_lex_hash \
-		$(PKG_BUILD_DIR)/sql/gen_lex_hash.cc
+	+$(MAKE) $(PKG_JOBS) -C "$(PKG_BUILD_DIR)/sql" \
+		CC="g++" \
+		CFLAGS="$(HOST_CFLAGS)" \
+		CPPFLAGS="$(HOST_CFLAGS)" \
+		LDFLAGS="$(HOST_LDFLAGS)" \
+		gen_lex_hash
 	+$(MAKE) $(PKG_JOBS) -C "$(PKG_BUILD_DIR)/libmysql" \
 		CC="g++" \
 		CFLAGS="$(HOST_CFLAGS)" \
