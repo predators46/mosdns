@@ -19,6 +19,8 @@ PKG_HASH:=skip
 PKG_MAINTAINER:=Jo-Philipp Wich <jo@mein.io>
 PKG_LICENSE:=GPL-2.0
 
+HOST_PATCH_DIR := ./patches-host
+
 PKG_BUILD_DEPENDS:=mysql/host
 PKG_BUILD_PARALLEL:=1
 PKG_USE_MIPS16:=0
