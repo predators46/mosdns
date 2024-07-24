@@ -89,57 +89,6 @@ CONFIGURE_VARS += \
 	mysql_cv_gcc_atomic_builtins_pthread_t=yes \
 	ac_cv_c_stack_direction=-1
 
-define Build/Compile
-	+$(MAKE) $(PKG_JOBS) -C "$(PKG_BUILD_DIR)" \
-		SUBDIRS="include" \
-		DESTDIR="$(PKG_INSTALL_DIR)" \
-		all
-	$(MAKE) -C "$(PKG_BUILD_DIR)" \
-		SUBDIRS="include" \
-		DESTDIR="$(PKG_INSTALL_DIR)" \
-		install
-	+$(MAKE) $(PKG_JOBS) -C "$(PKG_BUILD_DIR)/libmysql" \
-		CC="g++" \
-		CFLAGS="$(HOST_CFLAGS)" \
-		CPPFLAGS="$(HOST_CFLAGS)" \
-		LDFLAGS="$(HOST_LDFLAGS)" \
-		conf_to_src
-	+$(MAKE) $(PKG_JOBS) -C "$(PKG_BUILD_DIR)" \
-		SUBDIRS="libmysql" \
-		DESTDIR="$(PKG_INSTALL_DIR)" \
-		all
-	$(MAKE) -C "$(PKG_BUILD_DIR)" \
-		SUBDIRS="libmysql" \
-		DESTDIR="$(PKG_INSTALL_DIR)" \
-		install
-	+$(MAKE) $(PKG_JOBS) -C "$(PKG_BUILD_DIR)" \
-		SUBDIRS="libmysql_r" \
-		DESTDIR="$(PKG_INSTALL_DIR)" \
-		all
-	$(MAKE) -C "$(PKG_BUILD_DIR)" \
-		SUBDIRS="libmysql_r" \
-		DESTDIR="$(PKG_INSTALL_DIR)" \
-		install
-	+$(MAKE) $(PKG_JOBS) -C "$(PKG_BUILD_DIR)/sql" \
-		CC="g++" \
-		CFLAGS="$(HOST_CFLAGS)" \
-		CPPFLAGS="$(HOST_CFLAGS)" \
-		LDFLAGS="$(HOST_LDFLAGS)" \
-		gen_lex_hash.cc -o gen_lex_hash
-	$(MAKE) -C "$(PKG_BUILD_DIR)" \
-		SUBDIRS="scripts" \
-		DESTDIR="$(PKG_INSTALL_DIR)" \
-		bin_SCRIPTS="mysql_config" \
-		install
-	+$(MAKE) $(PKG_JOBS) -C "$(PKG_BUILD_DIR)" \
-		DESTDIR="$(PKG_INSTALL_DIR)" \
-		all
-	$(MAKE) -C "$(PKG_BUILD_DIR)" \
-		DESTDIR="$(PKG_INSTALL_DIR)" \
-		install
-endef
-
-
 define Build/InstallDev
 	$(INSTALL_DIR) $(2)/bin $(1)/usr/bin $(1)/usr/include $(1)/usr/lib
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/mysql_config $(1)/usr/bin/
