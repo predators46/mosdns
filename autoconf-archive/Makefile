@@ -25,11 +25,6 @@ define Package/autoconf-archive/description
   Collection of re-usable GNU Autoconf macros
 endef
 
-define Host/Install
-	$(INSTALL_DIR) $(STAGING_DIR_HOST)/share
-	$(CP) $(HOST_BUILD_DIR)/share/aclocal $(STAGING_DIR_HOST)/share/
-endef
-
 define Host/Uninstall
 	-$(call Host/Compile/Default,uninstall)
 endef
