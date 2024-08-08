@@ -31,7 +31,7 @@ PKG_CONFIG_DEPENDS := \
 CFLAGS += $(FPIC)
 
 include $(INCLUDE_DIR)/package.mk
-include ../../lang/python/python3-package.mk
+include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
 
 define Package/freeradius4/config
   source "$(SOURCE)/Config.in"
@@ -63,7 +63,7 @@ endef
 define Package/freeradius4-common
   $(call Package/freeradius4/Default)
   TITLE:=common files
-  DEPENDS:=+USE_GLIBC:libpthread +USE_GLIBC:libbsd +FREERADIUS4_OPENSSL:libopenssl +libcap +libpcap +libncurses +libpcre2 +libreadline +libtalloc +libatomic
+  DEPENDS:=+USE_GLIBC:libpthread +USE_GLIBC:libbsd +FREERADIUS4_OPENSSL:libopenssl +libcap +libpcap +libncurses +libpcre2 +libreadline +libtalloc +libkqueue +libatomic
 endef
 
 define Package/freeradius4-default
@@ -742,6 +742,8 @@ CONFIGURE_ARGS+= \
 	$(if $(CONFIG_FREERADIUS4_OPENSSL),--disable-openssl-version-check,) \
 	--with-talloc-include-dir="$(STAGING_DIR)/usr/include" \
 	--with-talloc-lib-dir="$(STAGING_DIR)/usr/lib" \
+	--with-kqueue-include-dir="$(STAGING_DIR)/usr/include" \
+	--with-kqueue-lib-dir="$(STAGING_DIR)/usr/lib" \
 	--enable-strict-dependencies \
 	--with-dictdir=/usr/share/freeradius4 \
 	--with-raddbdir=/etc/freeradius4 \
