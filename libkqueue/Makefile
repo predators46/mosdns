@@ -1,66 +1,59 @@
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=nchat
-PKG_VERSION:=4.50
+PKG_NAME:=libkqueue
+PKG_VERSION:=2.6.1
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://github.com/d99kris/nchat/archive/v$(PKG_VERSION)
-PKG_HASH:=afc0ff8ba5453986406b69253e6140db47ac699e3c1597fee408855cd0ba13ea
+PKG_SOURCE_URL:=https://github.com/mheily/libkqueue/archive/v$(PKG_VERSION)
+PKG_HASH:=skip
 
 PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
-PKG_LICENSE:=MIT license
+PKG_LICENSE:=License
 PKG_LICENSE_FILES:=LICENSE
 
 CMAKE_BINARY_SUBDIR := build
 
-HOST_BUILD_DEPENDS:=golang/host ncurses/host gperf/host
-PKG_BUILD_DEPENDS:=golang/host ncurses/host gperf/host
+PKG_BUILD_PARALLEL:=1
+PKG_INSTALL:=1
 
-include $(INCLUDE_DIR)/host-build.mk
 include $(INCLUDE_DIR)/package.mk
-include $(TOPDIR)/feeds/packages/lang/golang/golang-package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
-define Package/nchat
-	SECTION:=net
-	CATEGORY:=Network
-	TITLE:=Terminal-based Telegram / WhatsApp client for Linux and macOS
-	DEPENDS:=$(GO_ARCH_DEPENDS) +libncurses +libopenssl +libsqlite3 +file +zlib +libreadline +telegram-tdlib
-	URL:=https://github.com/d99kris/nchat
+define Package/libkqueue
+	SECTION:=libs
+	CATEGORY:=Libraries
+	TITLE:=kqueue(2) compatibility library
+	DEPENDS:=
+	URL:=https://github.com/mheily/libkqueue
 endef
 
-define Package/nchat/description
-	nchat is a terminal-based chat client for Linux and macOS with support for Telegram and WhatsApp.
+define Package/libkqueue/description
+	A user space implementation of the kqueue(2) kernel event notification mechanism libkqueue acts as a translator between the kevent structure and the native kernel facilities on Linux, Android, Solaris, and Windows.
+	libkqueue is not perfect, and you may need to change the behaviour of your application to work around limitations on a given platform.
+	Please see BUGS for known behavioural differences between libkqueue and BSD kqueues.
 endef
 
-define Build/Prepare
-	$(call Build/Prepare/Default)
-	$(CP) \
-	  ./files/lib/tgchat/ext/td/td/generate/auto \
-	  $(PKG_BUILD_DIR)/lib/tgchat/ext/td/td/generate/
-	$(CP) \
-	  ./files/lib/tgchat/ext/td/tdutils/generate/auto \
-	  $(PKG_BUILD_DIR)/lib/tgchat/ext/td/tdutils/generate/
-endef
-
-CMAKE_OPTIONS += \
-	-DCMAKE_BUILD_TYPE=Release \
-	-DHAS_DUMMY=ON \
-	-DHAS_TELEGRAM=ON \
-	-DHAS_WHATSAPP=ON \
-	-DHAS_DYNAMICLOAD=ON \
-	-DHAS_MULTIPROTOCOL=ON \
-	-DHAS_COREDUMP=ON
-
-define Package/nchat/install
+define Build/InstallDev
 	$(INSTALL_DIR) \
-	  $(1)/usr/bin
+	  $(1)/usr/include \
+	  $(1)/usr/lib
 
 	$(CP) \
-	  $(PKG_INSTALL_DIR)/usr/bin/* \
-	  $(1)/usr/bin/
+	  $(PKG_INSTALL_DIR)/usr/include/kqueue \
+	  $(1)/usr/include/
+
+	$(CP) \
+	  $(PKG_INSTALL_DIR)/usr/lib/{pkgconfig,*.so*} \
+	  $(1)/usr/lib/
+
+define Package/libkqueue/install
+	$(INSTALL_DIR) \
+	  $(1)/usr/lib
+
+	$(CP) \
+	  $(PKG_INSTALL_DIR)/usr/lib/*.so* \
+	  $(1)/usr/lib/
 endef
 
-$(eval $(call HostBuild))
-$(eval $(call BuildPackage,nchat))
+$(eval $(call BuildPackage,libkqueue))
