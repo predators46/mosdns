@@ -9,7 +9,7 @@ PKG_SOURCE_URL:=https://github.com/confluentinc/librdkafka/archive/v$(PKG_VERSIO
 PKG_HASH:=skip
 
 PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
-PKG_LICENSE:=License
+PKG_LICENSE:=BSD-2-Clause
 PKG_LICENSE_FILES:=LICENSE
 
 CMAKE_BINARY_SUBDIR := build
