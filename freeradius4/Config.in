@@ -1,0 +1,14 @@
+# FreeRADIUS avanced configuration
+
+choice
+	prompt "SSL library"
+	default FREERADIUS4_OPENSSL
+	depends on PACKAGE_freeradius4-common
+
+config FREERADIUS4_NOSSL
+	bool "No SSL support"
+
+config FREERADIUS4_OPENSSL
+	bool "OpenSSL"
+
+endchoice
