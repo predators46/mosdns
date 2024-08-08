@@ -46,6 +46,7 @@ define Build/InstallDev
 	$(CP) \
 	  $(PKG_INSTALL_DIR)/usr/lib/{pkgconfig,*.so*} \
 	  $(1)/usr/lib/
+endef
 
 define Package/libkqueue/install
 	$(INSTALL_DIR) \
