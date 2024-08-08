@@ -1045,6 +1045,7 @@ define Package/freeradius4-democerts/install
 	$(INSTALL_DIR) $(1)/etc/freeradius4/certs
 	$(CP) \
 		$(PKG_INSTALL_DIR)/etc/freeradius4/certs/ca.pem \
+		$(PKG_INSTALL_DIR)/etc/freeradius3/certs/dh \
 		$(PKG_INSTALL_DIR)/etc/freeradius4/certs/server.pem \
 		$(1)/etc/freeradius4/certs/
 endef
