@@ -24,7 +24,7 @@ define Package/librdkafka
 	SECTION:=libs
 	CATEGORY:=Libraries
 	TITLE:=The Apache Kafka C/C++ library
-	DEPENDS:=+libopenssl +libsasl2 +libstdcpp +liblz4 +zlib +libzstd
+	DEPENDS:=+libopenssl +libsasl2 +libstdcpp +liblz4 +zlib +libzstd +libcurl
 	URL:=https://github.com/confluentinc/librdkafka
 endef
 
