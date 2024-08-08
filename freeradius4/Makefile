@@ -748,6 +748,8 @@ CONFIGURE_ARGS+= \
 	$(if $(CONFIG_FREERADIUS4_OPENSSL),--disable-openssl-version-check,) \
 	--with-talloc-include-dir="$(STAGING_DIR)/usr/include" \
 	--with-talloc-lib-dir="$(STAGING_DIR)/usr/lib" \
+	--with-kqueue-include-dir="$(STAGING_DIR)/usr/include/kqueue" \
+	--with-kqueue-lib-dir="$(STAGING_DIR)/usr/lib" \
 	--enable-strict-dependencies \
 	--with-dictdir=/usr/share/freeradius4 \
 	--with-raddbdir=/etc/freeradius4 \
