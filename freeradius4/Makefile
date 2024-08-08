@@ -367,6 +367,12 @@ define Package/freeradius4-mod-json/conffiles
 /etc/freeradius4/mods-available/json
 endef
 
+define Package/freeradius4-mod-kafka
+  $(call Package/freeradius4/Default)
+  DEPENDS:=freeradius4 +librdkafka
+  TITLE:=Kafka module
+endef
+
 define Package/freeradius4-mod-krb5
   $(call Package/freeradius4/Default)
   DEPENDS:=freeradius4 +krb5-libs
@@ -742,8 +748,6 @@ CONFIGURE_ARGS+= \
 	$(if $(CONFIG_FREERADIUS4_OPENSSL),--disable-openssl-version-check,) \
 	--with-talloc-include-dir="$(STAGING_DIR)/usr/include" \
 	--with-talloc-lib-dir="$(STAGING_DIR)/usr/lib" \
-	--with-kqueue-include-dir="$(STAGING_DIR)/usr/include/kqueue" \
-	--with-kqueue-lib-dir="$(STAGING_DIR)/usr/lib" \
 	--enable-strict-dependencies \
 	--with-dictdir=/usr/share/freeradius4 \
 	--with-raddbdir=/etc/freeradius4 \
@@ -1108,6 +1112,7 @@ $(eval $(call BuildPlugin,freeradius4-mod-expr,rlm_expr,))
 $(eval $(call BuildPlugin,freeradius4-mod-files,rlm_files,))
 $(eval $(call BuildPlugin,freeradius4-mod-ippool,rlm_ippool,))
 $(eval $(call BuildPlugin,freeradius4-mod-json,rlm_json,))
+$(eval $(call BuildPlugin,freeradius4-mod-kafka,rlm_kafka,))
 $(eval $(call BuildPlugin,freeradius4-mod-krb5,rlm_krb5,))
 $(eval $(call BuildPlugin,freeradius4-mod-ldap,rlm_ldap,))
 $(eval $(call BuildPlugin,freeradius4-mod-linelog,rlm_linelog,))
