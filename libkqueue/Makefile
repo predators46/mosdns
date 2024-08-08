@@ -24,7 +24,6 @@ define Package/libkqueue
 	SECTION:=libs
 	CATEGORY:=Libraries
 	TITLE:=kqueue(2) compatibility library
-	DEPENDS:=
 	URL:=https://github.com/mheily/libkqueue
 endef
 
