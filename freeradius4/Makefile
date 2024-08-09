@@ -20,6 +20,8 @@ PKG_LICENSE:=GPL-2.0
 PKG_LICENSE_FILES:=COPYRIGHT LICENSE
 PKG_CPE_ID:=cpe:/a:freeradius:freeradius
 
+PKG_BUILD_DEPENDS:=make
+
 PKG_BUILD_DIR:=$(BUILD_DIR)/freeradius-server-$(PKG_VERSION)
 PKG_FIXUP:=autoreconf
 PYTHON3_PKG_BUILD:=0
@@ -750,12 +752,12 @@ CONFIGURE_ARGS+= \
 	--with-talloc-lib-dir="$(STAGING_DIR)/usr/lib" \
 	--with-kqueue-include-dir="$(STAGING_DIR)/usr/include/kqueue" \
 	--with-kqueue-lib-dir="$(STAGING_DIR)/usr/lib" \
+	--with-gnumake-include-dir="$(STAGING_DIR)/usr/include" \
 	--enable-strict-dependencies \
 	--with-dictdir=/usr/share/freeradius4 \
 	--with-raddbdir=/etc/freeradius4 \
 	--with-radacctdir=/var/db/radacct \
 	--with-logdir=/var/log \
-	--without-gnumake \
 	--without-rlm_cache_memcached \
 	--without-rlm_couchbase \
 	--without-rlm_eap_ikev2 \
@@ -998,11 +1000,6 @@ CONFIGURE_VARS+= \
 	ac_cv_lib_execinfo_backtrace_symbols=no
 
 define Build/Compile
-	# Compile jlibtool for the host once the configuration is done
-	(cd $(PKG_BUILD_DIR); \
-		mkdir -p build/make; \
-		$(HOSTCC) $(HOST_CFLAGS) scripts/jlibtool.c -o build/make/jlibtool; \
-	)
 	$(MAKE) -C $(PKG_BUILD_DIR) \
 		R="$(PKG_INSTALL_DIR)" \
 		INSTALLSTRIP="" \
