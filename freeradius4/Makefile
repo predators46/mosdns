@@ -1003,7 +1003,12 @@ define Build/Compile
 	# Compile jlibtool for the host once the configuration is done
 	(cd $(PKG_BUILD_DIR); \
 		mkdir -p build/make; \
-		$(HOSTCC) $(HOST_CFLAGS) $(HOST_CPPFLAGS) $(HOST_LDFLAGS) scripts/jlibtool.c -o build/make/jlibtool; \
+		mkdir -p build/lib; \
+		$(HOSTCC) $(HOST_CFLAGS) scripts/jlibtool.c -o build/make/jlibtool; \
+		$(HOSTCC) $(HOST_CFLAGS) scripts/build/make/dlopen.c -o scripts/build/make/dlopen; \
+		$(HOSTCC) $(HOST_CFLAGS) scripts/build/make/log.c -o build/lib/libfreeradius-make-dlopen.la; \
+		$(HOSTCC) $(HOST_CFLAGS) scripts/build/make/version.c -o build/lib/libfreeradius-make-version.la; \
+		$(HOSTCC) $(HOST_CFLAGS) scripts/build/make/util.c -o build/lib/libfreeradius-make-util.la; \
 	)
 	$(MAKE) -C $(PKG_BUILD_DIR) \
 		R="$(PKG_INSTALL_DIR)" \
