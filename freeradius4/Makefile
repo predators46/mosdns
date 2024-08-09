@@ -1003,7 +1003,7 @@ define Build/Compile
 	# Compile jlibtool for the host once the configuration is done
 	(cd $(PKG_BUILD_DIR); \
 		mkdir -p build/make; \
-		CC="$(HOSTCC) $(HOST_CFLAGS) $(HOST_CPPFLAGS) $(HOST_LDFLAGS)" scripts/jlibtool.c -o build/make/jlibtool; \
+		$(HOSTCC) $(HOST_CFLAGS) $(HOST_CPPFLAGS) $(HOST_LDFLAGS) scripts/jlibtool.c -o build/make/jlibtool; \
 	)
 	$(MAKE) -C $(PKG_BUILD_DIR) \
 		R="$(PKG_INSTALL_DIR)" \
