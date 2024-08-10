@@ -989,8 +989,6 @@ ifeq ($(CONFIG_USE_GLIBC),y)
 endif
 
 CONFIGURE_VARS+= \
-	BUILD_CC="$(HOSTCC)" \
-	CC="$(HOSTCC)" \
 	LDFLAGS="$$$$LDFLAGS" \
 	LIBS="$(CONFIGURE_LIBS)" \
 	MYSQL_CONFIG="no" \
