@@ -27,7 +27,7 @@ index 57915e1053..c28260dd7e 100644
 -	$(Q)echo CC jlibtool.c
 -	$(Q)${CC} $< -o $@ ${JLIBTOOL_DEFS}
 +	$(Q)echo HOSTCC jlibtool.c
-+	$(Q)${HOSTCC} $< -o $@ ${JLIBTOOL_DEFS}
++	$(Q)$(HOSTCC) $(HOST_CFLAGS) $< -o $@ ${JLIBTOOL_DEFS}
  
      clean: jlibtool_clean
  
