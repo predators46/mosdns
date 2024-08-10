@@ -1000,12 +1000,8 @@ CONFIGURE_VARS+= \
 	ac_cv_lib_execinfo_backtrace_symbols=no
 
 define Build/Compile
-	# Compile jlibtool for the host once the configuration is done
-	(cd $(PKG_BUILD_DIR); \
-		mkdir -p build/make; \
-		$(HOSTCC) $(HOST_CFLAGS) scripts/jlibtool.c -o build/make/jlibtool; \
-	)
 	$(MAKE) -C $(PKG_BUILD_DIR) \
+		BUILD_CC="$(HOSTCC)" \
 		R="$(PKG_INSTALL_DIR)" \
 		INSTALLSTRIP="" \
 		all install
