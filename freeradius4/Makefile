@@ -989,6 +989,7 @@ ifeq ($(CONFIG_USE_GLIBC),y)
 endif
 
 CONFIGURE_VARS+= \
+	BUILD_CC="$(HOSTCC)" \
 	LDFLAGS="$$$$LDFLAGS" \
 	LIBS="$(CONFIGURE_LIBS)" \
 	MYSQL_CONFIG="no" \
@@ -1001,7 +1002,6 @@ CONFIGURE_VARS+= \
 
 define Build/Compile
 	$(MAKE) -C $(PKG_BUILD_DIR) \
-		BUILD_CC="$(HOSTCC)" \
 		R="$(PKG_INSTALL_DIR)" \
 		INSTALLSTRIP="" \
 		all install
