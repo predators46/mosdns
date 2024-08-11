@@ -1001,16 +1001,10 @@ CONFIGURE_VARS+= \
 	ac_cv_lib_execinfo_backtrace_symbols=no \
 	ac_cv_header_gnumake_h=no
 
-define Build/Compile
-	# Compile jlibtool for the host once the configuration is done
-	(cd $(PKG_BUILD_DIR); \
-		mkdir -p build/make; \
-		$(HOSTCC) $(HOST_CFLAGS) scripts/jlibtool.c -o build/make/jlibtool; \
-	)
-	$(MAKE) -C $(PKG_BUILD_DIR) \
-		R="$(PKG_INSTALL_DIR)" \
-		INSTALLSTRIP="" \
-		all install
+define Build/Prepare
+	$(call Build/Prepare/Default)
+	mkdir -p $(PKG_BUILD_DIR)/build/make
+	$(HOSTCC) $(HOST_CFLAGS) $(PKG_BUILD_DIR)/scripts/jlibtool.c -o $(PKG_BUILD_DIR)/build/make/jlibtool
 endef
 
 define Package/freeradius4-common/install
