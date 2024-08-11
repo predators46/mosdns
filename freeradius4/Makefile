@@ -992,10 +992,12 @@ CONFIGURE_VARS+= \
 	MYSQL_CONFIG="no" \
 	vl_cv_lib_readline=no \
 	ax_cv_cc_builtin_choose_expr=yes \
-	ax_cv_cc_builtin_types_compatible_p=yes ax_cv_cc_builtin_bswap64=yes \
+	ax_cv_cc_builtin_types_compatible_p=yes \
+	ax_cv_cc_builtin_bswap64=yes \
 	ax_cv_cc_bounded_attribute=no \
 	ac_cv_lib_collectdclient_lcc_connect=no \
-	ac_cv_lib_execinfo_backtrace_symbols=no
+	ac_cv_lib_execinfo_backtrace_symbols=no \
+	ac_cv_header_gnumake_h=no
 
 define Build/Compile
 	# Compile jlibtool for the host once the configuration is done
