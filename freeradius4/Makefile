@@ -1002,7 +1002,7 @@ CONFIGURE_VARS+= \
 
 define Build/Compile
 	# Compile jlibtool for the host once the configuration is done
-		$(HOSTCC) $(PKG_BUILD_DIR)/scripts/jlibtool.c -g3 -o $(PKG_BUILD_DIR)/build/make/jlibtool; \
+		$(HOSTCC) $(PKG_BUILD_DIR)/scripts/jlibtool.c -g3 -o $(PKG_BUILD_DIR)/build/make/jlibtool \
 	)
 	$(MAKE) -C $(PKG_BUILD_DIR) \
 		R="$(PKG_INSTALL_DIR)" \
