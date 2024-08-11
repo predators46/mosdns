@@ -1,0 +1,22 @@
+From 47ee31a6769248c95adf2ae0a43336c4bcaff12a Mon Sep 17 00:00:00 2001
+From: esaaprillia <esaapriliasalsabila@gmail.com>
+Date: Sun, 11 Aug 2024 18:23:12 +0800
+Subject: [PATCH] Add files via upload
+
+---
+ Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index fe273a2..020edeb 100644
+--- a/Makefile
++++ b/Makefile
+@@ -160,7 +160,7 @@ build/autoconf.mk: src/include/autoconf.h
+           endif
+ 
+           ifdef BUILD_MAKE_LIBS
+-            define n
++            define y
+           endef
+           $(info $(subst CC,$nCC,$(shell $(MAKE) VERBOSE=$(VERBOSE) libfreeradius-make-dlopen.${BUILD_LIB_EXT} libfreeradius-make-version.${BUILD_LIB_EXT} libfreeradius-make-util.${BUILD_LIB_EXT})))
+         endif
