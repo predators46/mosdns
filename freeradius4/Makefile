@@ -992,19 +992,26 @@ CONFIGURE_VARS+= \
 	LDFLAGS="$$$$LDFLAGS" \
 	LIBS="$(CONFIGURE_LIBS)" \
 	MYSQL_CONFIG="no" \
-	vl_cv_lib_readline=no \
+	vl_cv_lib_readline=yes \
 	ax_cv_cc_builtin_choose_expr=yes \
 	ax_cv_cc_builtin_types_compatible_p=yes \
 	ax_cv_cc_builtin_bswap64=yes \
 	ax_cv_cc_bounded_attribute=no \
 	ac_cv_lib_collectdclient_lcc_connect=no \
 	ac_cv_lib_execinfo_backtrace_symbols=no \
-	ac_cv_header_gnumake_h=no
+	ac_cv_header_gnumake_h=yes
 
-define Build/Prepare
-	$(call Build/Prepare/Default)
-	mkdir -p $(PKG_BUILD_DIR)/build/make
-	$(HOSTCC) $(HOST_CFLAGS) $(PKG_BUILD_DIR)/scripts/jlibtool.c -o $(PKG_BUILD_DIR)/build/make/jlibtool
+define Build/Compile
+	# Compile jlibtool for the host once the configuration is done
+	(cd $(PKG_BUILD_DIR); \
+		mkdir -p build/make; \
+		mkdir -p build/lib/.libs; \
+		$(HOSTCC) $(HOST_CFLAGS) scripts/jlibtool.c -o build/make/jlibtool; \
+	)
+	$(MAKE) -C $(PKG_BUILD_DIR) \
+		R="$(PKG_INSTALL_DIR)" \
+		INSTALLSTRIP="" \
+		all install
 endef
 
 define Package/freeradius4-common/install
