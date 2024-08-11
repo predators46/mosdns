@@ -1003,7 +1003,7 @@ CONFIGURE_VARS+= \
 define Build/Prepare
 	$(call Build/Prepare/Default)
 	mkdir -p $(PKG_BUILD_DIR)/build/make
-	$(HOSTCC) $(HOST_CFLAGS) scripts/jlibtool.c -o build/make/jlibtool
+	$(HOSTCC) $(HOST_CFLAGS) $(PKG_BUILD_DIR)/scripts/jlibtool.c -o $(PKG_BUILD_DIR)/build/make/jlibtool
 endef
 
 define Build/Compile
