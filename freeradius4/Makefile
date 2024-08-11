@@ -20,10 +20,7 @@ PKG_LICENSE:=GPL-2.0
 PKG_LICENSE_FILES:=COPYRIGHT LICENSE
 PKG_CPE_ID:=cpe:/a:freeradius:freeradius
 
-PKG_BUILD_DEPENDS:=make
-
 PKG_BUILD_DIR:=$(BUILD_DIR)/freeradius-server-$(PKG_VERSION)
-PKG_BUILD_PARALLEL:=1
 PKG_FIXUP:=autoreconf
 PYTHON3_PKG_BUILD:=0
 
@@ -1000,13 +997,12 @@ CONFIGURE_VARS+= \
 	ac_cv_lib_collectdclient_lcc_connect=no \
 	ac_cv_lib_execinfo_backtrace_symbols=no
 
-define Build/Prepare
-	$(call Build/Prepare/Default)
-	mkdir -p $(PKG_BUILD_DIR)/build/make
-	$(HOSTCC) $(HOST_CFLAGS) $(PKG_BUILD_DIR)/scripts/jlibtool.c -o $(PKG_BUILD_DIR)/build/make/jlibtool
-endef
-
 define Build/Compile
+	# Compile jlibtool for the host once the configuration is done
+	(cd $(PKG_BUILD_DIR); \
+		mkdir -p build/make; \
+		$(HOSTCC) $(HOST_CFLAGS) scripts/jlibtool.c -o build/make/jlibtool; \
+	)
 	$(MAKE) -C $(PKG_BUILD_DIR) \
 		R="$(PKG_INSTALL_DIR)" \
 		INSTALLSTRIP="" \
