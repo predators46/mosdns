@@ -145,7 +145,7 @@ endef
 
 define Package/freeradius4-mod-brotli
   $(call Package/freeradius4/Default)
-  DEPENDS:=freeradius4 +brotli
+  DEPENDS:=freeradius4
   TITLE:=Brotli module
 endef
 
@@ -773,6 +773,7 @@ CONFIGURE_ARGS+= \
 	--with-raddbdir=/etc/freeradius4 \
 	--with-radacctdir=/var/db/radacct \
 	--with-logdir=/var/log \
+	--without-rlm_brotli \
 	--without-rlm_cache_memcached \
 	--without-rlm_couchbase \
 	--without-rlm_eap_ikev2 \
@@ -1117,7 +1118,7 @@ $(eval $(call BuildPackage,freeradius4-default))
 $(eval $(call BuildPackage,freeradius4-democerts))
 $(eval $(call BuildPlugin,freeradius4-mod-always,rlm_always,))
 $(eval $(call BuildPlugin,freeradius4-mod-attr-filter,rlm_attr_filter,))
-$(eval $(call BuildPlugin,freeradius4-mod-brotli,rlm_brotli,))
+#$(eval $(call BuildPlugin,freeradius4-mod-brotli,rlm_brotli,))
 $(eval $(call BuildPlugin,freeradius4-mod-cache,rlm_cache,))
 $(eval $(call BuildPlugin,freeradius4-mod-cache-rbtree,rlm_cache_rbtree,))
 $(eval $(call BuildPlugin,freeradius4-mod-cache-redis,rlm_cache_redis,))
