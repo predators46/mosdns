@@ -8,12 +8,17 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=freeradius4
-PKG_VERSION:=4.0~alpha1
+PKG_VERSION:=4.0
 PKG_RELEASE:=1
 
-PKG_SOURCE:=freeradius-server-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://www.freeradius.org/ftp/pub/freeradius/
-PKG_HASH:=skip
+#PKG_SOURCE:=freeradius-server-$(PKG_VERSION).tar.gz
+#PKG_SOURCE_URL:=https://www.freeradius.org/ftp/pub/freeradius/
+#PKG_HASH:=skip
+
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_URL:=https://github.com/FreeRADIUS/freeradius-server.git
+PKG_SOURCE_VERSION:=9738e1ad08b667fdb4e2d97c4ce564324cb891da
+PKG_MIRROR_HASH:=skip
 
 PKG_MAINTAINER:=
 PKG_LICENSE:=GPL-2.0
@@ -22,7 +27,7 @@ PKG_CPE_ID:=cpe:/a:freeradius:freeradius
 
 PKG_BUILD_DEPENDS:=make/host make
 
-PKG_BUILD_DIR:=$(BUILD_DIR)/freeradius-server-$(PKG_VERSION)
+#PKG_BUILD_DIR:=$(BUILD_DIR)/freeradius-server-$(PKG_VERSION)
 PKG_FIXUP:=autoreconf
 PYTHON3_PKG_BUILD:=0
 
@@ -1005,7 +1010,6 @@ define Build/Compile
 	# Compile jlibtool for the host once the configuration is done
 	(cd $(PKG_BUILD_DIR); \
 		mkdir -p build/make; \
-		mkdir -p build/lib/.libs; \
 		$(HOSTCC) $(HOST_CFLAGS) scripts/jlibtool.c -o build/make/jlibtool; \
 	)
 	$(MAKE) -C $(PKG_BUILD_DIR) \
