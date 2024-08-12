@@ -1,0 +1,26 @@
+From 14633aed3728933001f139d87deb5968955e125b Mon Sep 17 00:00:00 2001
+From: esaaprillia <esaapriliasalsabila@gmail.com>
+Date: Mon, 12 Aug 2024 16:46:17 +0800
+Subject: [PATCH] Update Makefile
+
+---
+ Makefile | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 15c7aa10e833..922edd0b2ee8 100644
+--- a/Makefile
++++ b/Makefile
+@@ -165,9 +165,9 @@ build/autoconf.mk: src/include/autoconf.h
+         $(info $(subst CC,$nCC,$(shell $(MAKE) VERBOSE=$(VERBOSE) libfreeradius-make-dlopen.${BUILD_LIB_EXT} libfreeradius-make-version.${BUILD_LIB_EXT} libfreeradius-make-util.${BUILD_LIB_EXT})))
+       endif
+ 
+-      load build/lib/.libs/libfreeradius-make-dlopen.${BUILD_LIB_EXT}(dlopen_gmk_setup)
+-      load build/lib/.libs/libfreeradius-make-version.${BUILD_LIB_EXT}(version_gmk_setup)
+-      load build/lib/.libs/libfreeradius-make-util.${BUILD_LIB_EXT}(util_gmk_setup)
++      #load build/lib/.libs/libfreeradius-make-dlopen.${BUILD_LIB_EXT}(dlopen_gmk_setup)
++      #load build/lib/.libs/libfreeradius-make-version.${BUILD_LIB_EXT}(version_gmk_setup)
++      #load build/lib/.libs/libfreeradius-make-util.${BUILD_LIB_EXT}(util_gmk_setup)
+     else
+       BUILD_DIR:=${top_srcdir}/build
+       top_builddir:=${top_srcdir}/scripts/build
