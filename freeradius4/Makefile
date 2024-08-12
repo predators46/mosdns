@@ -143,6 +143,16 @@ define Package/freeradius4-mod-attr-filter/conffiles
 /etc/freeradius4/mods-config/attr_filter/pre-proxy
 endef
 
+define Package/freeradius4-mod-brotli
+  $(call Package/freeradius4/Default)
+  DEPENDS:=freeradius4 +brotli
+  TITLE:=Brotli module
+endef
+
+define Package/freeradius4-mod-brotli/conffiles
+/etc/freeradius4/mods-available/brotli
+endef
+
 define Package/freeradius4-mod-cache
   $(call Package/freeradius4/Default)
   DEPENDS:=freeradius4
@@ -785,6 +795,15 @@ PKG_DICTIONARIES:= \
 	microsoft \
 	wispr \
 
+ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius4-mod-brotli),)
+  CONFIGURE_ARGS+= \
+		--with-rlm_brotli \
+		--with-rlm_brotli-include-dir="$(STAGING_DIR)/usr/include" \
+		--with-rlm_brotli-lib-dir="$(STAGING_DIR)/usr/lib"
+else
+  CONFIGURE_ARGS+= --without-rlm_brotli
+endif
+
 ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius4-mod-cache-redis),)
   CONFIGURE_ARGS+= \
 		--with-rlm_cache_redis \
@@ -1098,6 +1117,7 @@ $(eval $(call BuildPackage,freeradius4-default))
 $(eval $(call BuildPackage,freeradius4-democerts))
 $(eval $(call BuildPlugin,freeradius4-mod-always,rlm_always,))
 $(eval $(call BuildPlugin,freeradius4-mod-attr-filter,rlm_attr_filter,))
+$(eval $(call BuildPlugin,freeradius4-mod-brotli,rlm_brotli,))
 $(eval $(call BuildPlugin,freeradius4-mod-cache,rlm_cache,))
 $(eval $(call BuildPlugin,freeradius4-mod-cache-rbtree,rlm_cache_rbtree,))
 $(eval $(call BuildPlugin,freeradius4-mod-cache-redis,rlm_cache_redis,))
