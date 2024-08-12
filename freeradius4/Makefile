@@ -604,7 +604,7 @@ endef
 
 define Package/freeradius4-mod-sql-mysql
   $(call Package/freeradius4/Default)
-  DEPENDS:=freeradius4-mod-sql +libmysqlclient
+  DEPENDS:=freeradius4-mod-sql
   TITLE:=Radius MySQL back-end drivers
 endef
 
@@ -774,6 +774,7 @@ CONFIGURE_ARGS+= \
 	--with-radacctdir=/var/db/radacct \
 	--with-logdir=/var/log \
 	--without-rlm_brotli \
+	--without-rlm_sql_mysql \
 	--without-rlm_cache_memcached \
 	--without-rlm_couchbase \
 	--without-rlm_eap_ikev2 \
@@ -1166,7 +1167,7 @@ $(eval $(call BuildPlugin,freeradius4-mod-soh,rlm_soh,))
 $(eval $(call BuildPlugin,freeradius4-mod-sometimes,rlm_sometimes,))
 $(eval $(call BuildPlugin,freeradius4-mod-sql,rlm_sql,))
 $(eval $(call BuildPlugin,freeradius4-mod-sql-map,rlm_sql_map,))
-$(eval $(call BuildPlugin,freeradius4-mod-sql-mysql,rlm_sql_mysql,))
+#$(eval $(call BuildPlugin,freeradius4-mod-sql-mysql,rlm_sql_mysql,))
 $(eval $(call BuildPlugin,freeradius4-mod-sql-null,rlm_sql_null,))
 $(eval $(call BuildPlugin,freeradius4-mod-sql-postgresql,rlm_sql_postgresql,))
 $(eval $(call BuildPlugin,freeradius4-mod-sql-sqlite,rlm_sql_sqlite,))
