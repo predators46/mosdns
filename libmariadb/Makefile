@@ -134,6 +134,14 @@ define Build/InstallDev
 	cd $(1)/usr/include/mysql; $(LN) mariadb_version.h mysql_version.h
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib{mariadb,mysqlclient}*.so* $(1)/usr/lib
 	cd $(1)/usr/lib/mysql; $(LN) ../lib{mariadb,mysqlclient}*.so* .
+	$(INSTALL_BIN) files/mariadb_config $(1)/usr/bin
+	$(LN) $(STAGING_DIR)/usr/bin/mariadb_config $(2)/bin
+	$(SED) 's/PORT/$(MARIADB_PORT)/' $(1)/usr/bin/mariadb_config
+	$(SED) 's|PLUGIN_DIR|$(MARIADB_PLUGIN_DIR)|' $(1)/usr/bin/mariadb_config
+	$(SED) 's|SOCKET|$(MARIADB_SOCKET)|' $(1)/usr/bin/mariadb_config
+	cd "$(PKG_BUILD_DIR)/mariadb_config"; \
+		CLIENT_VERSION=`sed -n 's|^#define[[:blank:]]*VERSION[[:blank:]]*"\([0-9.]*\)"|\1|p' mariadb_config.c`; \
+		$(SED) "s/VERSION/$$$${CLIENT_VERSION}/" $(1)/usr/bin/mariadb_config
 	$(INSTALL_BIN) files/mysql_config $(1)/usr/bin
 	$(LN) $(STAGING_DIR)/usr/bin/mysql_config $(2)/bin
 	$(SED) 's/PORT/$(MARIADB_PORT)/' $(1)/usr/bin/mysql_config
