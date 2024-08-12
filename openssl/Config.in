@@ -195,6 +195,7 @@ config OPENSSL_WITH_SM234
 
 config OPENSSL_WITH_BLAKE2
 	bool
+	default y
 	prompt "Enable BLAKE2 digest support"
 	help
 		BLAKE2 is a cryptographic hash function based on the ChaCha
