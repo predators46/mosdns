@@ -760,7 +760,7 @@ CONFIGURE_ARGS+= \
 	--disable-developer \
 	--with-threads \
 	$(if $(CONFIG_FREERADIUS4_OPENSSL),--with,--without)-openssl \
-	$(if $(CONFIG_FREERADIUS4_OPENSSL),--with-openssl-includes="$(STAGING_DIR)/usr/include",) \
+	$(if $(CONFIG_FREERADIUS4_OPENSSL),--with-openssl-includes="$(STAGING_DIR)/usr/include/openssl",) \
 	$(if $(CONFIG_FREERADIUS4_OPENSSL),--with-openssl-libraries="$(STAGING_DIR)/usr/lib",) \
 	$(if $(CONFIG_FREERADIUS4_OPENSSL),--disable-openssl-version-check,) \
 	--without-gnumake \
