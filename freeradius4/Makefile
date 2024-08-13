@@ -776,7 +776,6 @@ CONFIGURE_ARGS+= \
 	--without-rlm_eap_ikev2 \
 	--without-rlm_eap_tnc \
 	--without-rlm_perl \
-	--without-rlm_python \
 	--without-rlm_sql_db2 \
 	--without-rlm_sql_firebird \
 	--without-rlm_sql_freetds \
