@@ -941,6 +941,7 @@ endif
 
 ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius4-mod-sql-mysql),)
   CONFIGURE_ARGS+= \
+		--with-rlm_sql_mysql \
 		--with-mysql-include-dir="$(STAGING_DIR)/usr/include/mysql" \
 		--with-mysql-lib-dir="$(STAGING_DIR)/usr/lib"
   CONFIGURE_VARS+= ac_cv_lib_mysqlclient_mysql_get_socket=yes
