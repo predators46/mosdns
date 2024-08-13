@@ -940,6 +940,7 @@ else
 endif
 
 ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius4-mod-sql-mysql),)
+  CONFIGURE_VARS+= ac_cv_header_mysql_mysql_h=yes
   CONFIGURE_ARGS+= \
 		--with-rlm_sql_mysql \
 		--with-mysql-include-dir="$(STAGING_DIR)/usr/include/mysql"
