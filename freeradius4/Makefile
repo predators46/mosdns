@@ -17,7 +17,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/FreeRADIUS/freeradius-server.git
-PKG_SOURCE_VERSION:=744ab72cee14eeb89024dd07a61bbe25bc980e5a
+PKG_SOURCE_VERSION:=96261a564ae38d8c23c44f9b362d28504575cb13
 PKG_MIRROR_HASH:=skip
 
 PKG_MAINTAINER:=
@@ -145,7 +145,7 @@ endef
 
 define Package/freeradius4-mod-brotli
   $(call Package/freeradius4/Default)
-  DEPENDS:=freeradius4
+  DEPENDS:=freeradius4 +brotli
   TITLE:=Brotli module
 endef
 
@@ -604,7 +604,7 @@ endef
 
 define Package/freeradius4-mod-sql-mysql
   $(call Package/freeradius4/Default)
-  DEPENDS:=freeradius4-mod-sql
+  DEPENDS:=freeradius4-mod-sql +libmysqlclient
   TITLE:=Radius MySQL back-end drivers
 endef
 
@@ -760,10 +760,9 @@ CONFIGURE_ARGS+= \
 	--disable-developer \
 	--with-threads \
 	$(if $(CONFIG_FREERADIUS4_OPENSSL),--with,--without)-openssl \
-	$(if $(CONFIG_FREERADIUS4_OPENSSL),--with-openssl-includes="$(STAGING_DIR)/usr/include/openssl",) \
+	$(if $(CONFIG_FREERADIUS4_OPENSSL),--with-openssl-includes="$(STAGING_DIR)/usr/include",) \
 	$(if $(CONFIG_FREERADIUS4_OPENSSL),--with-openssl-libraries="$(STAGING_DIR)/usr/lib",) \
 	$(if $(CONFIG_FREERADIUS4_OPENSSL),--disable-openssl-version-check,) \
-	--without-gnumake \
 	--with-talloc-include-dir="$(STAGING_DIR)/usr/include" \
 	--with-talloc-lib-dir="$(STAGING_DIR)/usr/lib" \
 	--with-kqueue-include-dir="$(STAGING_DIR)/usr/include/kqueue" \
@@ -773,8 +772,6 @@ CONFIGURE_ARGS+= \
 	--with-raddbdir=/etc/freeradius4 \
 	--with-radacctdir=/var/db/radacct \
 	--with-logdir=/var/log \
-	--without-rlm_brotli \
-	--without-rlm_sql_mysql \
 	--without-rlm_cache_memcached \
 	--without-rlm_couchbase \
 	--without-rlm_eap_ikev2 \
@@ -942,6 +939,14 @@ else
   CONFIGURE_ARGS+= --without-rlm_sql
 endif
 
+ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius4-mod-sql-mysql),)
+  CONFIGURE_ARGS+= \
+		--with-rlm_sql_mysql \
+		--with-mysql-include-dir="$(STAGING_DIR)/usr/include/mysql"
+else
+  CONFIGURE_ARGS+= --without-rlm_sql_mysql
+endif
+
 ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius4-mod-sql-postgresql),)
   CONFIGURE_ARGS+= --with-rlm_sql_postgresql
 else
@@ -1013,13 +1018,13 @@ CONFIGURE_VARS+= \
 	ac_cv_header_readline_h=no \
 	ac_cv_header_readline_readline_h=no \
 	ac_cv_header_readline_history_h=no \
+	ac_cv_header_gnumake_h=yes \
 	ax_cv_cc_builtin_choose_expr=yes \
 	ax_cv_cc_builtin_types_compatible_p=yes \
 	ax_cv_cc_builtin_bswap64=yes \
 	ax_cv_cc_bounded_attribute=no \
 	ac_cv_lib_collectdclient_lcc_connect=no \
-	ac_cv_lib_execinfo_backtrace_symbols=no \
-	ac_cv_header_gnumake_h=yes
+	ac_cv_lib_execinfo_backtrace_symbols=no
 
 define Build/Compile
 	# Compile jlibtool for the host once the configuration is done
@@ -1113,7 +1118,7 @@ $(eval $(call BuildPackage,freeradius4-default))
 $(eval $(call BuildPackage,freeradius4-democerts))
 $(eval $(call BuildPlugin,freeradius4-mod-always,rlm_always,))
 $(eval $(call BuildPlugin,freeradius4-mod-attr-filter,rlm_attr_filter,))
-#$(eval $(call BuildPlugin,freeradius4-mod-brotli,rlm_brotli,))
+$(eval $(call BuildPlugin,freeradius4-mod-brotli,rlm_brotli,))
 $(eval $(call BuildPlugin,freeradius4-mod-cache,rlm_cache,))
 $(eval $(call BuildPlugin,freeradius4-mod-cache-rbtree,rlm_cache_rbtree,))
 $(eval $(call BuildPlugin,freeradius4-mod-cache-redis,rlm_cache_redis,))
@@ -1161,7 +1166,7 @@ $(eval $(call BuildPlugin,freeradius4-mod-soh,rlm_soh,))
 $(eval $(call BuildPlugin,freeradius4-mod-sometimes,rlm_sometimes,))
 $(eval $(call BuildPlugin,freeradius4-mod-sql,rlm_sql,))
 $(eval $(call BuildPlugin,freeradius4-mod-sql-map,rlm_sql_map,))
-#$(eval $(call BuildPlugin,freeradius4-mod-sql-mysql,rlm_sql_mysql,))
+$(eval $(call BuildPlugin,freeradius4-mod-sql-mysql,rlm_sql_mysql,))
 $(eval $(call BuildPlugin,freeradius4-mod-sql-null,rlm_sql_null,))
 $(eval $(call BuildPlugin,freeradius4-mod-sql-postgresql,rlm_sql_postgresql,))
 $(eval $(call BuildPlugin,freeradius4-mod-sql-sqlite,rlm_sql_sqlite,))
