@@ -939,11 +939,11 @@ else
   CONFIGURE_ARGS+= --without-rlm_sql
 endif
 
-ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius4-mod-sql-mysql),)
-  CONFIGURE_VARS+= ac_cv_header_mysql_mysql_h=yes
+ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius3-mod-sql-mysql),)
   CONFIGURE_ARGS+= \
 		--with-rlm_sql_mysql \
-		--with-mysql-include-dir="$(STAGING_DIR)/usr/include/mysql"
+		--with-mysql-include-dir="$(STAGING_DIR)/usr/include/mysql" \
+		--with-mysql-lib-dir="$(STAGING_DIR)/usr/lib/mysql"
 else
   CONFIGURE_ARGS+= --without-rlm_sql_mysql
 endif
