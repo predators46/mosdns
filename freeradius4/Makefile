@@ -61,7 +61,6 @@ define Package/freeradius4/conffiles
 /etc/freeradius4/clients.conf
 /etc/freeradius4/policy.d/accounting
 /etc/freeradius4/policy.d/filter
-/etc/freeradius4/proxy.conf
 /etc/freeradius4/radiusd.conf
 /etc/freeradius4/sites-available/default
 /etc/freeradius4/sites-enabled/default
@@ -1060,7 +1059,7 @@ define Package/freeradius4/install
 	$(INSTALL_DIR) $(1)/etc/freeradius4/policy.d
 	$(INSTALL_DIR) $(1)/etc/freeradius4/sites-available
 	$(INSTALL_DIR) $(1)/etc/freeradius4/sites-enabled
-	for f in clients.conf radiusd.conf proxy.conf; do \
+	for f in clients.conf radiusd.conf; do \
 		$(CP) $(PKG_INSTALL_DIR)/etc/freeradius4/$$$${f} $(1)/etc/freeradius4/ ; \
 	done
 	for f in accounting filter; do \
