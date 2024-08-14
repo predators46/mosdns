@@ -1,68 +1,106 @@
+# This is free software, licensed under the GNU General Public License v2.
+# See /LICENSE for more information.
+#
+
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=brotli
-PKG_VERSION:=1.1.0
+PKG_NPM_NAME:=yuicompressor
+PKG_NAME:=node-$(PKG_NPM_NAME)
+PKG_VERSION:=2.4.8
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://github.com/google/brotli/archive/v$(PKG_VERSION)
+PKG_SOURCE:=$(PKG_NPM_NAME)-$(PKG_VERSION).tgz
+PKG_SOURCE_URL:=https://registry.npmjs.org/$(PKG_NPM_NAME)/-/
 PKG_HASH:=skip
 
-PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
-PKG_LICENSE:=BSD-2-Clause
-PKG_LICENSE_FILES:=LICENSE
+PKG_MAINTAINER:=@esaaprillia, Hirokazu MORIKAWA <morikw2@gmail.com>
+PKG_LICENSE:=License
+PKG_LICENSE_FILES:=LICENSE.TXT
 
-CMAKE_BINARY_SUBDIR := build
+HOST_BUILD_DEPENDS:=node/host
+HOST_BUILD_PARALLEL:=1
 
+PKG_BUILD_DEPENDS:=node/host
 PKG_BUILD_PARALLEL:=1
-PKG_INSTALL:=1
+PKG_BUILD_FLAGS:=no-mips16
 
+include $(INCLUDE_DIR)/host-build.mk
 include $(INCLUDE_DIR)/package.mk
-include $(INCLUDE_DIR)/cmake.mk
 
-define Package/brotli
-	SECTION:=libs
-	CATEGORY:=Libraries
-	TITLE:=Brotli compression format
-	DEPENDS:=
-	URL:=https://github.com/google/brotli
+define Package/node-yuicompressor
+  SUBMENU:=Node.js
+  SECTION:=lang
+  CATEGORY:=Languages
+  TITLE:=YUI Compressor
+  URL:=https://www.npmjs.com/package/yuicompressor
+  DEPENDS:=+node
 endef
 
-define Package/brotli/description
-	Brotli is a generic-purpose lossless compression algorithm that compresses data using a combination of a modern variant of the LZ77 algorithm,
-	Huffman coding and 2nd order context modeling, with a compression ratio comparable to the best currently available general-purpose compression methods.
-	It is similar in speed with deflate but offers more dense compression.
+define Package/node-yuicompressor/description
+ The YUI Compressor is also able to safely compress CSS files. The decision on which compressor is being used is made on the file extension (js or css)
 endef
 
-CMAKE_OPTIONS += \
-	-DBUILD_SHARED_LIBS=ON
+TAR_OPTIONS+= --strip-components 1
+TAR_CMD=$(HOST_TAR) -C $(1) $(TAR_OPTIONS)
 
-define Build/InstallDev
-	$(INSTALL_DIR) \
-	  $(1)/usr/include \
-	  $(1)/usr/lib
+NODEJS_CPU:=$(subst powerpc,ppc,$(subst aarch64,arm64,$(subst x86_64,x64,$(subst i386,ia32,$(ARCH)))))
+TMPNPM:=$(shell mktemp -u XXXXXXXXXX)
+HOSTTMPNPM:=$(shell mktemp -u XXXXXXXXXX)
+NPM_CACHE_DIR:=$(if $(call qstrip,$(CONFIG_NODEJS_NPM_CACHE_DIR)),$(call qstrip,$(CONFIG_NODEJS_NPM_CACHE_DIR)),$(TMP_DIR))
 
-	$(CP) \
-	  $(PKG_INSTALL_DIR)/usr/include/brotli \
-	  $(1)/usr/include/
+TARGET_CFLAGS+=$(FPIC)
+TARGET_CPPFLAGS+=$(FPIC)
 
-	$(CP) \
-	  $(PKG_INSTALL_DIR)/usr/lib/{pkgconfig,*.so*} \
-	  $(1)/usr/lib/
+define Build/Compile
+	cd $(PKG_BUILD_DIR); \
+	$(MAKE_VARS) \
+	$(MAKE_FLAGS) \
+	npm_config_nodedir=$(STAGING_DIR)/usr/ \
+	$(if $(CONFIG_NODEJS_NPM_KEEP_CACHE), npm_config_cache=$(NPM_CACHE_DIR)/npm-cache-$(PKG_NPM_NAME),npm_config_cache=$(TMP_DIR)/npm-cache-$(TMPNPM)) \
+	npm install --prefer-offline --no-audit --global-style --install-strategy=shallow --no-save --omit=dev --no-package-lock --ignore-scripts
+	rm -rf $(TMP_DIR)/npm-cache-$(TMPNPM)
+	rm -f $(PKG_BUILD_DIR)/node_modules/.package-lock.json
+	find $(PKG_BUILD_DIR)/node_modules -type d -empty -print0 | xargs -0 -r rmdir || true
 endef
 
-define Package/brotli/install
-	$(INSTALL_DIR) \
-	  $(1)/usr/bin \
-	  $(1)/usr/lib
-
-	$(CP) \
-	  $(PKG_INSTALL_DIR)/usr/bin/brotli \
-	  $(1)/usr/bin/
-	
-	$(CP) \
-	  $(PKG_INSTALL_DIR)/usr/lib/*.so* \
-	  $(1)/usr/lib/
+define Package/node-yuicompressor/install
+	$(INSTALL_DIR) $(1)/usr/lib/node/$(PKG_NPM_NAME)
+	$(CP) $(PKG_BUILD_DIR)/{package.json,LICENSE.TXT,README.md} \
+		$(1)/usr/lib/node/$(PKG_NPM_NAME)/
+	$(CP) $(PKG_BUILD_DIR)/{build,nodejs,node_modules} \
+		$(1)/usr/lib/node/$(PKG_NPM_NAME)/
+	$(INSTALL_DIR) $(1)/usr/bin
+	$(LN) ../lib/node/$(PKG_NPM_NAME)/bin/yuicompressor $(1)/usr/bin/yui-compressor
+	$(INSTALL_DIR) $(1)/usr/lib/node_modules
+	$(LN) ../node/$(PKG_NPM_NAME) $(1)/usr/lib/node_modules/$(PKG_NPM_NAME)
 endef
 
-$(eval $(call BuildPackage,brotli))
+define Package/node-yuicompressor/postrm
+#!/bin/sh
+rm /usr/lib/node_modules/yuicompressor || true
+rm -rf /usr/lib/node/yuicompressor || true
+endef
+
+define Host/Compile
+	cd $(HOST_BUILD_DIR); \
+	$(HOST_MAKE_VARS) \
+	npm_config_nodedir=$(STAGING_DIR)/usr/ \
+	$(if $(CONFIG_NODEJS_NPM_KEEP_CACHE), npm_config_cache=$(NPM_CACHE_DIR)/host-npm-cache-$(PKG_NPM_NAME),npm_config_cache=$(TMP_DIR)/npm-cache-$(HOSTTMPNPM)) \
+	npm install --prefer-offline --no-audit --global-style --install-strategy=shallow --no-save --omit=dev --no-package-lock --ignore-scripts
+	rm -rf $(TMP_DIR)/npm-cache-$(HOSTTMPNPM)
+	rm -f $(HOST_BUILD_DIR)/node_modules/.package-lock.json
+	find $(HOST_BUILD_DIR)/node_modules -type d -empty -print0 | xargs -0 -r rmdir || true
+endef
+
+define Host/Install
+	$(INSTALL_DIR) $(1)/lib/node_modules/$(PKG_NPM_NAME)
+	$(CP) $(HOST_BUILD_DIR)/{package.json,LICENSE.TXT,README.md} \
+		$(1)/lib/node_modules/$(PKG_NPM_NAME)/
+	$(CP) $(HOST_BUILD_DIR)/{build,nodejs,node_modules} \
+		$(1)/lib/node_modules/$(PKG_NPM_NAME)/
+	$(INSTALL_DIR) $(1)/bin
+	$(LN) ../lib/node_modules/$(PKG_NPM_NAME)/bin/yuicompressor $(1)/bin/yui-compressor
+endef
+
+$(eval $(call HostBuild))
+$(eval $(call BuildPackage,node-yuicompressor))
