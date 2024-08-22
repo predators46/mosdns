@@ -9,6 +9,10 @@ PKG_SOURCE:=Net-SSLeay-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://cpan.metacpan.org/authors/id/C/CH/CHRISN/
 PKG_HASH:=skip
 
+PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
+PKG_LICENSE:=Artistic-2.0
+PKG_LICENSE_FILES:=LICENSE
+
 PKG_BUILD_DIR:=$(BUILD_DIR)/Net-SSLeay-$(PKG_VERSION)
 
 include $(INCLUDE_DIR)/package.mk
