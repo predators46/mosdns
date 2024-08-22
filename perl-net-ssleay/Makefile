@@ -24,7 +24,7 @@ define Package/perl-net-ssleay
 endef
 
 define Build/Configure
-	$(call perlmod/Configure,$(STAGING_DIR)/usr/include,)
+	$(call perlmod/Configure,OPENSSL_PREFIX=$(STAGING_DIR)/usr/lib,)
 endef
 
 define Build/Compile
