@@ -23,8 +23,6 @@ define Package/perl-net-ssleay
 	URL:=https://metacpan.org/dist/Net-SSLeay
 endef
 
-#MOD_CFLAGS_PERL += OPENSSL_PREFIX="-L$(STAGING_DIR)/usr/lib -lssl -lcrypto -lz"
-
 define Build/Configure
 	$(call perlmod/Configure,,OPENSSL_PREFIX="$(STAGING_DIR)/usr",)
 endef
@@ -34,7 +32,7 @@ define Build/Compile
 endef
 
 define Package/perl-net-ssleay/install
-	$(call perlmod/Install,$(1),Net auto)
+	$(call perlmod/Install,$(1),Net auto/Net)
 endef
 
 $(eval $(call BuildPackage,perl-net-ssleay))
