@@ -26,7 +26,7 @@ endef
 MOD_CFLAGS_PERL += OPENSSL_PREFIX="$(STAGING_DIR)/usr"
 
 define Build/Configure
-	$(call perlmod/Configure,,OPENSSL_PREFIX=$(STAGING_DIR)/usr/lib,)
+	$(call perlmod/Configure,,OPENSSL_PREFIX=$(STAGING_DIR_HOST)/bin/openssl,)
 endef
 
 define Build/Compile
