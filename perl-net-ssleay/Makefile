@@ -23,7 +23,7 @@ define Package/perl-net-ssleay
 	URL:=https://metacpan.org/dist/Net-SSLeay
 endef
 
-MOD_CFLAGS_PERL += OPENSSL_PREFIX="$(STAGING_DIR)/usr/lib"
+MOD_CFLAGS_PERL += OPENSSL_PREFIX="-L$(STAGING_DIR)/usr/lib -lssl -lcrypto -lz"
 
 define Build/Configure
 	$(call perlmod/Configure,,OPENSSL_PREFIX="$(STAGING_DIR)/usr",)
