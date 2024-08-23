@@ -1,28 +1,32 @@
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=perl-io-socket-ssl
-PKG_VERSION:=2.088
+PKG_NAME:=perl-mozilla-ca
+PKG_VERSION:=20240730
 PKG_RELEASE:=1
 
-PKG_SOURCE:=IO-Socket-SSL-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://cpan.metacpan.org/authors/id/S/SU/SULLR/
+PKG_SOURCE:=Mozilla-CA-$(PKG_VERSION).tar.gz
+PKG_SOURCE_URL:=https://cpan.metacpan.org/authors/id/L/LW/LWP/
 PKG_HASH:=skip
 
 PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
-PKG_LICENSE:=GPL-1.0-or-later OR Artistic-1.0-Perl
+PKG_LICENSE:=GPL-1.0-or-later Artistic-1.0-Perl
+PKG_LICENSE_FILES:=
 
-PKG_BUILD_DIR:=$(BUILD_DIR)/perl/IO-Socket-SSL-$(PKG_VERSION)
+PKG_BUILD_DIR:=$(BUILD_DIR)/perl/Mozilla-CA-$(PKG_VERSION)
+HOST_BUILD_DIR:=$(BUILD_DIR_HOST)/perl/Mozilla-CA-$(PKG_VERSION)
+HOST_BUILD_DEPENDS:=perl/host
 
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/host-build.mk
 include $(TOPDIR)/feeds/packages/lang/perl/perlmod.mk
 
-define Package/perl-io-socket-ssl
-	SUBMENU:=Perl
-	SECTION:=lang
-	CATEGORY:=Languages
-	TITLE:=Nearly transparent SSL encapsulation for IO::Socket::INET
-	DEPENDS:=perl +ca-certificates +perl-uri +perl-net-ssleay
-	URL:=https://metacpan.org/dist/IO-Socket-SSL
+define Package/perl-mozilla-ca
+  SUBMENU:=Perl
+  SECTION:=lang
+  CATEGORY:=Languages
+  TITLE:=Mozilla's CA cert bundle in PEM format
+  URL:=https://metacpan.org/dist/Mozilla-CA
+  DEPENDS:=perl
 endef
 
 define Build/Configure
@@ -33,8 +37,22 @@ define Build/Compile
 	$(call perlmod/Compile,,)
 endef
 
-define Package/perl-io-socket-ssl/install
-	$(call perlmod/Install,$(1),IO/Socket)
+define Host/Configure
+	$(call perlmod/host/Configure,,)
 endef
 
-$(eval $(call BuildPackage,perl-io-socket-ssl))
+define Host/Compile
+	$(call perlmod/host/Compile,,)
+endef
+
+define Host/Install
+	$(call perlmod/host/Install,$(1),)
+endef
+
+define Package/perl-mozilla-ca/install
+	$(call perlmod/Install,$(1),Mozilla)
+endef
+
+
+$(eval $(call BuildPackage,perl-mozilla-ca))
+$(eval $(call HostBuild))
