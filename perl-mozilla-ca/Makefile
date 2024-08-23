@@ -53,6 +53,5 @@ define Package/perl-mozilla-ca/install
 	$(call perlmod/Install,$(1),Mozilla)
 endef
 
-
 $(eval $(call BuildPackage,perl-mozilla-ca))
 $(eval $(call HostBuild))
