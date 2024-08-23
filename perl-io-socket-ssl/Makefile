@@ -24,7 +24,7 @@ define Package/perl-io-socket-ssl
 	SECTION:=lang
 	CATEGORY:=Languages
 	TITLE:=Nearly transparent SSL encapsulation for IO::Socket::INET
-	DEPENDS:=perl +ca-certificates +perl-uri +perl-net-ssleay +perl-mozilla-ca
+	DEPENDS:=perl +ca-certificates +perl-uri +perl-net-ssleay +perl-mozilla-ca +perlbase-essential
 	URL:=https://metacpan.org/dist/IO-Socket-SSL
 endef
 
