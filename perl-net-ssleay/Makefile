@@ -13,8 +13,11 @@ PKG_LICENSE:=Artistic-2.0
 PKG_LICENSE_FILES:=LICENSE
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/perl/Net-SSLeay-$(PKG_VERSION)
+HOST_BUILD_DIR:=$(BUILD_DIR_HOST)/perl/Net-SSLeay-$(PKG_VERSION)
+HOST_BUILD_DEPENDS:=perl/host
 
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/host-build.mk
 include $(TOPDIR)/feeds/packages/lang/perl/perlmod.mk
 
 define Package/perl-net-ssleay
@@ -38,4 +41,17 @@ define Package/perl-net-ssleay/install
 	$(call perlmod/Install,$(1),Net auto/Net)
 endef
 
+define Host/Configure
+	$(call perlmod/host/Configure,,)
+endef
+
+define Host/Compile
+	$(call perlmod/host/Compile,,)
+endef
+
+define Host/Install
+	$(call perlmod/host/Install,$(1),)
+endef
+
 $(eval $(call BuildPackage,perl-net-ssleay))
+$(eval $(call HostBuild))
