@@ -14,6 +14,8 @@ PKG_LICENSE_FILES:=
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/perl/IO-Socket-SSL-$(PKG_VERSION)
 
+PKG_BUILD_DEPENDS:=perl-mozilla-ca/host
+
 include $(INCLUDE_DIR)/package.mk
 include $(TOPDIR)/feeds/packages/lang/perl/perlmod.mk
 
@@ -22,7 +24,7 @@ define Package/perl-io-socket-ssl
 	SECTION:=lang
 	CATEGORY:=Languages
 	TITLE:=Nearly transparent SSL encapsulation for IO::Socket::INET
-	DEPENDS:=perl +ca-certificates +perl-uri +perl-net-ssleay
+	DEPENDS:=perl +ca-certificates +perl-uri +perl-net-ssleay +perl-mozilla-ca
 	URL:=https://metacpan.org/dist/IO-Socket-SSL
 endef
 
