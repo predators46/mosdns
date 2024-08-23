@@ -25,7 +25,7 @@ define Package/perl-net-ssleay
 	SECTION:=lang
 	CATEGORY:=Languages
 	TITLE:=Perl extension for using OpenSSL
-	DEPENDS:=perl +libopenssl +zlib +perlbase-thread +perlbase-base +perlbase-net
+	DEPENDS:=perl +libopenssl +zlib +perlbase-essential +perlbase-autoloader +perlbase-errno +perlbase-socket
 	URL:=https://metacpan.org/dist/Net-SSLeay
 endef
 
