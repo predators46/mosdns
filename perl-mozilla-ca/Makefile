@@ -26,7 +26,7 @@ define Package/perl-mozilla-ca
   CATEGORY:=Languages
   TITLE:=Mozilla's CA cert bundle in PEM format
   URL:=https://metacpan.org/dist/Mozilla-CA
-  DEPENDS:=perl +perlbase-essential +perlbase-file
+  DEPENDS:=perl +ca-certificates +perlbase-essential +perlbase-file
 endef
 
 define Build/Configure
