@@ -5,7 +5,7 @@ PKG_VERSION:=2020.2
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://github.com/qhull/qhull/$(PKG_VERSION)
+PKG_SOURCE_URL:=https://github.com/qhull/qhull/archive/$(PKG_VERSION)
 PKG_HASH:=skip
 
 PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
