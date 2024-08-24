@@ -1,40 +1,56 @@
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=perl-io-socket-ssl
-PKG_VERSION:=2.088
+PKG_NAME:=cairo
+PKG_VERSION:=1.18.0
 PKG_RELEASE:=1
 
-PKG_SOURCE:=IO-Socket-SSL-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://cpan.metacpan.org/authors/id/S/SU/SULLR/
-PKG_HASH:=skip
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
+PKG_SOURCE_URL:=https://cairo.freedesktop.org/releases/
+PKG_HASH:=243a0736b978a33dee29f9cca7521733b78a65b5418206fef7bd1c3d4cf10b64
 
-PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
-PKG_LICENSE:=GPL-1.0-or-later OR Artistic-1.0-Perl
-
-PKG_BUILD_DIR:=$(BUILD_DIR)/perl/IO-Socket-SSL-$(PKG_VERSION)
+PKG_MAINTAINER:=Daniel Golle <daniel@makrotopia.org>
+PKG_LICENSE:=LGPL-2.1-or-later MPL-1.1
+PKG_LICENSE_FILES:=COPYING COPYING-LGPL-2.1 COPYING-MPL-1.1
 
 include $(INCLUDE_DIR)/package.mk
-include $(TOPDIR)/feeds/packages/lang/perl/perlmod.mk
+include $(INCLUDE_DIR)/meson.mk
 
-define Package/perl-io-socket-ssl
-	SUBMENU:=Perl
-	SECTION:=lang
-	CATEGORY:=Languages
-	TITLE:=Nearly transparent SSL encapsulation for IO::Socket::INET
-	DEPENDS:=perl +ca-certificates +perl-uri +perl-net-ssleay
-	URL:=https://metacpan.org/dist/IO-Socket-SSL
+define Package/libcairo
+  SECTION:=libs
+  CATEGORY:=Libraries
+  SUBMENU:=Video
+  TITLE:=cairo
+  URL:=https://cairo.freedesktop.org/
+  DEPENDS:=+libpng +libfreetype +fontconfig +glib2 +libjpeg-turbo +zlib +liblzo
 endef
 
-define Build/Configure
-	$(call perlmod/Configure,,)
+define Package/libcairo/description
+  Cairo is a 2D graphics library with support for multiple output devices.
 endef
 
-define Build/Compile
-	$(call perlmod/Compile,,)
+MESON_ARGS += \
+	-Dxcb=disabled \
+	-Dxlib=disabled \
+	-Dxlib-xcb=disabled \
+	-Dtests=disabled \
+	-Dgtk_doc=false
+
+define Package/libcairo/install
+	$(INSTALL_DIR) $(1)/usr/lib
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/*.so* $(1)/usr/lib
+	$(INSTALL_DIR) $(1)/usr/lib/cairo
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/cairo/*.so $(1)/usr/lib/cairo
 endef
 
-define Package/perl-io-socket-ssl/install
-	$(call perlmod/Install,$(1),IO/Socket)
+define Build/InstallDev
+	$(INSTALL_DIR) $(1)/usr/include/cairo
+	$(CP) $(PKG_INSTALL_DIR)/usr/include/cairo/*.h $(1)/usr/include/cairo
+	$(INSTALL_DIR) $(1)/usr/lib
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/*.so* $(1)/usr/lib
+	$(INSTALL_DIR) $(1)/usr/lib/cairo
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/cairo/*.so $(1)/usr/lib/cairo
+	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/*.pc $(1)/usr/lib/pkgconfig
 endef
 
-$(eval $(call BuildPackage,perl-io-socket-ssl))
+$(eval $(call BuildPackage,libcairo))
