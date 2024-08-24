@@ -53,7 +53,9 @@ CONFIGURE_PATH := unix
 
 CONFIGURE_ARGS += \
 	--enable-threads \
-	--with-tcl="$(STAGING_DIR)/usr/lib/tclConfig.sh" \
+	--disable-xft \
+	--disable-xss \
+	--with-tcl="$(STAGING_DIR)/usr/lib" \
 	--without-x
 
 MAKE_PATH := unix
