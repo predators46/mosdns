@@ -53,8 +53,8 @@ CONFIGURE_PATH := unix
 
 CONFIGURE_ARGS += \
 	--enable-threads \
-	--without-x \
-	--with-tcl
+	--with-tcl="$(STAGING_DIR)/usr/lib/tclConfig.sh" \
+	--without-x
 
 MAKE_PATH := unix
 
