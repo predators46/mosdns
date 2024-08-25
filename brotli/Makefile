@@ -12,15 +12,13 @@ PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
 
-PKG_BUILD_DEPENDS:=python-setuptools-scm/host
-#CMAKE_BINARY_SUBDIR := build
+CMAKE_BINARY_SUBDIR := build
 
 PKG_BUILD_PARALLEL:=1
+PKG_INSTALL:=1
 
-include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
-include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
 
 define Package/brotli
 	SECTION:=libs
@@ -67,20 +65,4 @@ define Package/brotli/install
 	  $(1)/usr/lib/
 endef
 
-define Package/python3-brotli
-  SUBMENU:=Python
-  SECTION:=lang
-  CATEGORY:=Languages
-  TITLE:=Python bindings for the Brotli compression library
-  URL:=https://github.com/google/brotli
-  DEPENDS:=+python3 +brotli
-endef
-
-define Package/python3-brotli/description
-  Generic lossless compressor (python bindings)
-endef
-
 $(eval $(call BuildPackage,brotli))
-$(eval $(call Py3Package,python3-brotli))
-$(eval $(call BuildPackage,python3-brotli))
-$(eval $(call BuildPackage,python3-brotli-src))
