@@ -1,40 +1,36 @@
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=perl-io-socket-ssl
-PKG_VERSION:=2.088
+PKG_NAME:=python-cppy
+PKG_VERSION:=1.2.1
 PKG_RELEASE:=1
 
-PKG_SOURCE:=IO-Socket-SSL-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://cpan.metacpan.org/authors/id/S/SU/SULLR/
-PKG_HASH:=skip
+PYPI_NAME:=cppy
+PKG_HASH:=83b43bf17b1085ac15c5debdb42154f138b928234b21447358981f69d0d6fe1b
 
 PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
-PKG_LICENSE:=GPL-1.0-or-later OR Artistic-1.0-Perl
+PKG_LICENSE:=BSD-3-Clause
+PKG_LICENSE_FILES:=LICENSE
 
-PKG_BUILD_DIR:=$(BUILD_DIR)/perl/IO-Socket-SSL-$(PKG_VERSION)
+PKG_BUILD_DEPENDS:=python-setuptools-scm/host
 
+include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
 include $(INCLUDE_DIR)/package.mk
-include $(TOPDIR)/feeds/packages/lang/perl/perlmod.mk
+include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
 
-define Package/perl-io-socket-ssl
-	SUBMENU:=Perl
-	SECTION:=lang
-	CATEGORY:=Languages
-	TITLE:=Nearly transparent SSL encapsulation for IO::Socket::INET
-	DEPENDS:=perl +ca-certificates +perl-uri +perl-net-ssleay
-	URL:=https://metacpan.org/dist/IO-Socket-SSL
+define Package/python3-cppy
+  SUBMENU:=Python
+  SECTION:=lang
+  CATEGORY:=Languages
+  TITLE:=A collection of C++ headers which make it easier to write Python C extension modules.
+  URL:=https://github.com/nucleic/cppy
+  DEPENDS:=+python3
 endef
 
-define Build/Configure
-	$(call perlmod/Configure,,)
+define Package/python3-cppy/description
+  A small C++ header library which makes it easier to write Python extension modules.
+  The primary feature is a PyObject smart pointer which automatically handles reference counting and provides convenience methods for performing common object operations.
 endef
 
-define Build/Compile
-	$(call perlmod/Compile,,)
-endef
-
-define Package/perl-io-socket-ssl/install
-	$(call perlmod/Install,$(1),IO/Socket)
-endef
-
-$(eval $(call BuildPackage,perl-io-socket-ssl))
+$(eval $(call Py3Package,python3-cppy))
+$(eval $(call BuildPackage,python3-cppy))
+$(eval $(call BuildPackage,python3-cppy-src))
