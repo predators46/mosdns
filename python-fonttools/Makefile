@@ -1,40 +1,41 @@
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=perl-io-socket-ssl
-PKG_VERSION:=2.088
+PKG_NAME:=python-fonttools
+PKG_VERSION:=4.53.1
 PKG_RELEASE:=1
 
-PKG_SOURCE:=IO-Socket-SSL-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://cpan.metacpan.org/authors/id/S/SU/SULLR/
-PKG_HASH:=skip
+PYPI_NAME:=fonttools
+PKG_HASH:=e128778a8e9bc11159ce5447f76766cefbd876f44bd79aff030287254e4752c4
 
 PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
-PKG_LICENSE:=GPL-1.0-or-later OR Artistic-1.0-Perl
+PKG_LICENSE:=MIT
+PKG_LICENSE_FILES:=LICENSE LICENSE.external
 
-PKG_BUILD_DIR:=$(BUILD_DIR)/perl/IO-Socket-SSL-$(PKG_VERSION)
+HOST_BUILD_DEPENDS:=python-setuptools-scm/host python-cython/host
+PKG_BUILD_DEPENDS:=python-setuptools-scm/host python-cython/host
 
+include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
 include $(INCLUDE_DIR)/package.mk
-include $(TOPDIR)/feeds/packages/lang/perl/perlmod.mk
+include $(INCLUDE_DIR)/host-build.mk
+include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
+include $(TOPDIR)/feeds/packages/lang/python/python3-host-build.mk
 
-define Package/perl-io-socket-ssl
-	SUBMENU:=Perl
-	SECTION:=lang
-	CATEGORY:=Languages
-	TITLE:=Nearly transparent SSL encapsulation for IO::Socket::INET
-	DEPENDS:=perl +ca-certificates +perl-uri +perl-net-ssleay
-	URL:=https://metacpan.org/dist/IO-Socket-SSL
+define Package/python3-fonttools
+  SUBMENU:=Python
+  SECTION:=lang
+  CATEGORY:=Languages
+  TITLE:=Tools to manipulate font files
+  URL:=https://github.com/fonttools/fonttools
+  DEPENDS:=+python3 +python3-brotli
 endef
 
-define Build/Configure
-	$(call perlmod/Configure,,)
+define Package/python3-fonttools/description
+  fontTools is a library for manipulating fonts, written in Python.
+  The project includes the TTX tool, that can convert TrueType and OpenType fonts to and from an XML text format, which is also called TTX.
+  It supports TrueType, OpenType, AFM and to an extent Type 1 and some Mac-specific formats.
 endef
 
-define Build/Compile
-	$(call perlmod/Compile,,)
-endef
-
-define Package/perl-io-socket-ssl/install
-	$(call perlmod/Install,$(1),IO/Socket)
-endef
-
-$(eval $(call BuildPackage,perl-io-socket-ssl))
+$(eval $(call Py3Package,python3-fonttools))
+$(eval $(call BuildPackage,python3-fonttools))
+$(eval $(call BuildPackage,python3-fonttools-src))
+$(eval $(call HostBuild))
