@@ -23,7 +23,7 @@ define Package/python3-kiwisolver
   CATEGORY:=Languages
   TITLE:=Efficient C++ implementation of the Cassowary constraint solving algorithm
   URL:=https://github.com/nucleic/kiwi
-  DEPENDS:=+python3 +libstdcpp
+  DEPENDS:=+python3 +libstdcpp +python3-cppy
 endef
 
 define Package/python3-kiwisolver/description
