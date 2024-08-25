@@ -1,40 +1,39 @@
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=perl-io-socket-ssl
-PKG_VERSION:=2.088
+PKG_NAME:=python-kiwisolver
+PKG_VERSION:=1.4.5
 PKG_RELEASE:=1
 
-PKG_SOURCE:=IO-Socket-SSL-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://cpan.metacpan.org/authors/id/S/SU/SULLR/
-PKG_HASH:=skip
+PYPI_NAME:=kiwisolver
+PKG_HASH:=e57e563a57fb22a142da34f38acc2fc1a5c864bc29ca1517a88abc963e60d6ec
 
 PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
-PKG_LICENSE:=GPL-1.0-or-later OR Artistic-1.0-Perl
+PKG_LICENSE:=BSD-3-Clause-Attribution
+PKG_LICENSE_FILES:=LICENSE
 
-PKG_BUILD_DIR:=$(BUILD_DIR)/perl/IO-Socket-SSL-$(PKG_VERSION)
+PKG_BUILD_DEPENDS:=python-setuptools-scm/host
 
+include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
 include $(INCLUDE_DIR)/package.mk
-include $(TOPDIR)/feeds/packages/lang/perl/perlmod.mk
+include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
 
-define Package/perl-io-socket-ssl
-	SUBMENU:=Perl
-	SECTION:=lang
-	CATEGORY:=Languages
-	TITLE:=Nearly transparent SSL encapsulation for IO::Socket::INET
-	DEPENDS:=perl +ca-certificates +perl-uri +perl-net-ssleay
-	URL:=https://metacpan.org/dist/IO-Socket-SSL
+define Package/python3-kiwisolver
+  SUBMENU:=Python
+  SECTION:=lang
+  CATEGORY:=Languages
+  TITLE:=Efficient C++ implementation of the Cassowary constraint solving algorithm
+  URL:=https://github.com/nucleic/kiwi
+  DEPENDS:=+python3 +libstdcpp
 endef
 
-define Build/Configure
-	$(call perlmod/Configure,,)
+define Package/python3-kiwisolver/description
+  Kiwi is an efficient C++ implementation of the Cassowary constraint solving algorithm.
+  Kiwi is an implementation of the algorithm based on the seminal Cassowary paper.
+  It is not a refactoring of the original C++ solver. Kiwi has been designed from the ground up to be lightweight and fast.
+  Kiwi ranges from 10x to 500x faster than the original Cassowary solver with typical use cases gaining a 40x improvement.
+  Memory savings are consistently > 5x.
 endef
 
-define Build/Compile
-	$(call perlmod/Compile,,)
-endef
-
-define Package/perl-io-socket-ssl/install
-	$(call perlmod/Install,$(1),IO/Socket)
-endef
-
-$(eval $(call BuildPackage,perl-io-socket-ssl))
+$(eval $(call Py3Package,python3-kiwisolver))
+$(eval $(call BuildPackage,python3-kiwisolver))
+$(eval $(call BuildPackage,python3-kiwisolver-src))
