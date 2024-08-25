@@ -26,7 +26,7 @@ define Package/python3-brotli
   CATEGORY:=Languages
   TITLE:=Python bindings for the Brotli compression library
   URL:=https://github.com/google/brotli
-  DEPENDS:=+python3
+  DEPENDS:=+python3 +brotli
 endef
 
 define Package/python3-brotli/description
