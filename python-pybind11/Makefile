@@ -4,8 +4,12 @@ PKG_NAME:=python-pybind11
 PKG_VERSION:=2.13.5
 PKG_RELEASE:=1
 
-PYPI_NAME:=pybind11
-PKG_HASH:=ae33f635322f9d9741abde0c5f348bf9373f6c22298883395e586cb43c55574e
+#PYPI_NAME:=pybind11
+#PKG_HASH:=ae33f635322f9d9741abde0c5f348bf9373f6c22298883395e586cb43c55574e
+
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_SOURCE_URL:=https://github.com/pybind/pybind11/archive/v$(PKG_VERSION)
+PKG_HASH:=skip
 
 PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=BSD-3-Clause
