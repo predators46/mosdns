@@ -1,0 +1,24 @@
+From 9ddce00c1b0c2c7f098f54e99476e7f270fba053 Mon Sep 17 00:00:00 2001
+From: esaaprillia <esaapriliasalsabila@gmail.com>
+Date: Tue, 27 Aug 2024 21:06:37 +0800
+Subject: [PATCH] Update pyproject.toml
+
+---
+ pyproject.toml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/pyproject.toml b/pyproject.toml
+index 778ac5b..bbe22ff 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -1,8 +1,8 @@
+ [build-system]
+-build-backend = "mesonpy"
++#build-backend = "mesonpy"
+ requires = [
+     "meson >= 1.2.0",
+-    "meson-python >= 0.13.1",
++#    "meson-python >= 0.13.1",
+     "pybind11 >= 2.12.0",
+ ]
+ 
