@@ -11,8 +11,8 @@ PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
 
-HOST_BUILD_DEPENDS:=python-setuptools-scm/host pyproject-metadata/host
-PKG_BUILD_DEPENDS:=python-setuptools-scm/host pyproject-metadata/host
+HOST_BUILD_DEPENDS:=python-setuptools-scm/host pyproject-metadata/host python-packaging/host python-tomli/host
+PKG_BUILD_DEPENDS:=python-setuptools-scm/host pyproject-metadata/host python-packaging/host python-tomli/host
 
 include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
 include $(INCLUDE_DIR)/package.mk
@@ -27,7 +27,7 @@ define Package/python3-meson-python
   CATEGORY:=Languages
   TITLE:=Meson Python build backend (PEP 517)
   URL:=https://github.com/mesonbuild/meson-python
-  DEPENDS:=+python3 +python3-pyproject-metadata
+  DEPENDS:=+python3 +python3-pyproject-metadata +python3-packaging +python3-tomli
 endef
 
 define Package/python3-meson-python/description
