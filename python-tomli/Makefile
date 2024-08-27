@@ -1,47 +1,41 @@
-#
-# Copyright (C) 2007-2013 OpenWrt.org
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
-
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=lcms2
-PKG_VERSION:=2.15
+PKG_NAME:=python-tomli
+PKG_VERSION:=2.0.1
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=@SF/lcms
-PKG_HASH:=b20cbcbd0f503433be2a4e81462106fa61050a35074dc24a4e356792d971ab39
+PYPI_NAME:=tomli
+PKG_HASH:=de526c12914f0c550d15924c62d72abc48d6fe7364aa87328337a31007fe8a4f
 
-PKG_INSTALL:=1
+PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
+PKG_LICENSE:=MIT
+PKG_LICENSE_FILES:=LICENSE
 
+HOST_BUILD_DEPENDS:=python-setuptools-scm/host python-flit-core/host
+PKG_BUILD_DEPENDS:=python-setuptools-scm/host python-flit-core/host
+
+include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/host-build.mk
+include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
+include $(TOPDIR)/feeds/packages/lang/python/python3-host-build.mk
 
-define Package/lcms2
-  SECTION:=libs
-  CATEGORY:=Libraries
-  TITLE:=Little CMS color engine
-  DEPENDS:=+libtiff +libjpeg-turbo +zlib
-  URL:=http://www.littlecms.com/
-  SUBMENU:=Printing
+define Package/python3-tomli
+  SUBMENU:=Python
+  SECTION:=lang
+  CATEGORY:=Languages
+  TITLE:=A lil' TOML parser
+  URL:=https://github.com/hukkin/tomli
+  DEPENDS:=+python3 +python3-flit-core
 endef
 
-define Package/lcms2/description
-	Little CMS color engine
+define Package/python3-tomli/description
+  Tomli is a Python library for parsing TOML. It is fully compatible with TOML v1.0.0.
+  A version of Tomli, the tomllib module, was added to the standard library in Python 3.11 via PEP 680.
+  Tomli continues to provide a backport on PyPI for Python versions where the standard library module is not available and that have not yet reached their end-of-life.
 endef
 
-define Package/lcms2/install
-	$(INSTALL_DIR) $(1)/usr/bin $(1)/usr/lib
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/* $(1)/usr/bin/
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/* $(1)/usr/lib/
-endef
-
-define Build/InstallDev
-	$(INSTALL_DIR) $(1)/usr/include $(1)/usr/lib
-	$(CP) $(PKG_INSTALL_DIR)/usr/include/* $(1)/usr/include/
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/* $(1)/usr/lib
-endef
-
-$(eval $(call BuildPackage,lcms2))
+$(eval $(call Py3Package,python3-tomli))
+$(eval $(call BuildPackage,python3-tomli))
+$(eval $(call BuildPackage,python3-tomli-src))
+$(eval $(call HostBuild))
