@@ -1,14 +1,26 @@
-From 9ddce00c1b0c2c7f098f54e99476e7f270fba053 Mon Sep 17 00:00:00 2001
+From e86e2176fd7366387be6c83e1e0b93d4271f2764 Mon Sep 17 00:00:00 2001
 From: esaaprillia <esaapriliasalsabila@gmail.com>
-Date: Tue, 27 Aug 2024 21:06:37 +0800
-Subject: [PATCH] Update pyproject.toml
+Date: Tue, 27 Aug 2024 22:34:15 +0800
+Subject: [PATCH] Add files via upload
 
 ---
- pyproject.toml | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ build_requirements.txt | 4 ++--
+ pyproject.toml         | 6 +++---
+ 2 files changed, 5 insertions(+), 5 deletions(-)
 
+diff --git a/build_requirements.txt b/build_requirements.txt
+index 6b96666..0a096b7 100644
+--- a/build_requirements.txt
++++ b/build_requirements.txt
+@@ -1,4 +1,4 @@
+ # These are the requirements from the build-system section of pyproject.toml
+-meson >= 1.2.0
+-meson-python >= 0.13.1
++#meson >= 1.2.0
++#meson-python >= 0.13.1
+ pybind11 >= 2.12.0
 diff --git a/pyproject.toml b/pyproject.toml
-index 778ac5b..bbe22ff 100644
+index 778ac5b..1fda7b1 100644
 --- a/pyproject.toml
 +++ b/pyproject.toml
 @@ -1,8 +1,8 @@
@@ -16,8 +28,9 @@ index 778ac5b..bbe22ff 100644
 -build-backend = "mesonpy"
 +#build-backend = "mesonpy"
  requires = [
-     "meson >= 1.2.0",
+-    "meson >= 1.2.0",
 -    "meson-python >= 0.13.1",
++#    "meson >= 1.2.0",
 +#    "meson-python >= 0.13.1",
      "pybind11 >= 2.12.0",
  ]
