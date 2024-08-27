@@ -1,47 +1,54 @@
-#
-# Copyright (C) 2007-2013 OpenWrt.org
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
-
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=lcms2
-PKG_VERSION:=2.15
+PKG_NAME:=meson
+PKG_VERSION:=1.5.1
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=@SF/lcms
-PKG_HASH:=b20cbcbd0f503433be2a4e81462106fa61050a35074dc24a4e356792d971ab39
+PYPI_NAME:=meson
+PKG_HASH:=567e533adf255de73a2de35049b99923caf872a455af9ce03e01077e0d384bed
 
-PKG_INSTALL:=1
+PKG_MAINTAINER:=Andre Heider <a.heider@gmail.com>
+PKG_LICENSE:=Apache-2.0
+PKG_LICENSE_FILES:=COPYING
 
+include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
+include $(INCLUDE_DIR)/host-build.mk
 include $(INCLUDE_DIR)/package.mk
+include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
+include $(TOPDIR)/feeds/packages/lang/python/python3-host-build.mk
 
-define Package/lcms2
-  SECTION:=libs
-  CATEGORY:=Libraries
-  TITLE:=Little CMS color engine
-  DEPENDS:=+libtiff +libjpeg-turbo +zlib
-  URL:=http://www.littlecms.com/
-  SUBMENU:=Printing
+define Host/Configure
 endef
 
-define Package/lcms2/description
-	Little CMS color engine
+define Host/Compile
 endef
 
-define Package/lcms2/install
-	$(INSTALL_DIR) $(1)/usr/bin $(1)/usr/lib
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/* $(1)/usr/bin/
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/* $(1)/usr/lib/
+define Host/Install
+	$(INSTALL_DIR) $(STAGING_DIR_HOSTPKG)/lib/meson
+	$(CP) $(HOST_BUILD_DIR)/* $(STAGING_DIR_HOSTPKG)/lib/meson/
 endef
 
-define Build/InstallDev
-	$(INSTALL_DIR) $(1)/usr/include $(1)/usr/lib
-	$(CP) $(PKG_INSTALL_DIR)/usr/include/* $(1)/usr/include/
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/* $(1)/usr/lib
+define Host/Clean
+	$(call Host/Clean/Default)
+	rm -rf $(STAGING_DIR_HOSTPKG)/lib/meson
 endef
 
-$(eval $(call BuildPackage,lcms2))
+define Package/meson
+  SECTION:=devel
+  CATEGORY:=Development
+  TITLE:=meson
+  URL:=https://mesonbuild.com/
+  DEPENDS:=+python3-pkg-resources
+endef
+
+define Package/meson/description
+  Meson is an open source build system meant to be both extremely fast, and, even more importantly, as user friendly as possible.
+endef
+
+define Package/meson/install
+endef
+
+$(eval $(call HostBuild))
+$(eval $(call Py3Package,meson))
+$(eval $(call BuildPackage,meson))
+$(eval $(call BuildPackage,meson-src))
