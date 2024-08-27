@@ -11,8 +11,8 @@ PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=BSD-3-Clause
 PKG_LICENSE_FILES:=LICENSE
 
-HOST_BUILD_DEPENDS:=python-setuptools-scm/host boost
-PKG_BUILD_DEPENDS:=python-setuptools-scm/host boost
+HOST_BUILD_DEPENDS:=python-setuptools-scm/host
+PKG_BUILD_DEPENDS:=python-setuptools-scm/host
 
 include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
 include $(INCLUDE_DIR)/package.mk
@@ -31,6 +31,18 @@ endef
 
 define Package/python3-pybind11/description
   pybind11 is a lightweight header-only library that exposes C++ types in Python and vice versa, mainly to create Python bindings of existing C++ code.
+endef
+
+define Build/InstallDev
+	$(INSTALL_DIR) $(1)/usr/include
+	$(CP) $(PKG_INSTALL_DIR)$(PYTHON_PKG_DIR)/pybind11/include/pybind11 $(1)/usr/include/
+	$(INSTALL_DIR) $(1)/usr/share
+	$(CP) $(PKG_INSTALL_DIR)$(PYTHON_PKG_DIR)/pybind11/share/{pkgconfig,cmake} $(1)/usr/share/
+	$(SED) 's,^\(prefix\)=.*,\1=$(STAGING_DIR)/usr,g' $(1)/usr/share/pkgconfig/pybind11.pc
+	$(INSTALL_DIR) $(1)/usr/bin
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/pybind11-config $(1)/usr/bin/
+	$(INSTALL_DIR) $(2)/bin
+	$(LN) ../../usr/bin/pybind11-config $(2)/bin/pybind11-config
 endef
 
 $(eval $(call Py3Package,python3-pybind11))
