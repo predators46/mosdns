@@ -11,8 +11,8 @@ PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=BSD-3-Clause
 PKG_LICENSE_FILES:=LICENSE
 
-HOST_BUILD_DEPENDS:=python-setuptools-scm/host python-pybind11
-PKG_BUILD_DEPENDS:=python-setuptools-scm/host python-pybind11
+HOST_BUILD_DEPENDS:=python-setuptools-scm/host python-pybind11/host
+PKG_BUILD_DEPENDS:=python-setuptools-scm/host python-pybind11/host
 
 include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
 include $(INCLUDE_DIR)/package.mk
@@ -26,7 +26,7 @@ define Package/python3-contourpy
   CATEGORY:=Languages
   TITLE:=Python library for calculating contours of 2D quadrilateral grids
   URL:=https://github.com/contourpy/contourpy
-  DEPENDS:=+python3 +python3-numpy
+  DEPENDS:=+python3 +python3-numpy +python3-pybind11
 endef
 
 define Package/python3-contourpy/description
