@@ -35,9 +35,9 @@ endef
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/include
-	$(CP) $(PKG_INSTALL_DIR)$(PYTHON_PKG_DIR)/pybind11/include/pybind11 $(1)/usr/include/
+	$(CP) $(PKG_INSTALL_DIR)/$(PYTHON3_PKG_DIR)/pybind11/include/pybind11 $(1)/usr/include/
 	$(INSTALL_DIR) $(1)/usr/share
-	$(CP) $(PKG_INSTALL_DIR)$(PYTHON_PKG_DIR)/pybind11/share/{pkgconfig,cmake} $(1)/usr/share/
+	$(CP) $(PKG_INSTALL_DIR)/$(PYTHON3_PKG_DIR)/pybind11/share/{pkgconfig,cmake} $(1)/usr/share/
 	$(SED) 's,^\(prefix\)=.*,\1=$(STAGING_DIR)/usr,g' $(1)/usr/share/pkgconfig/pybind11.pc
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/pybind11-config $(1)/usr/bin/
