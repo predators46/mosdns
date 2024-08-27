@@ -1,47 +1,43 @@
-#
-# Copyright (C) 2007-2013 OpenWrt.org
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
-
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=lcms2
-PKG_VERSION:=2.15
+PKG_NAME:=python-meson-python
+PKG_VERSION:=0.16.0
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=@SF/lcms
-PKG_HASH:=b20cbcbd0f503433be2a4e81462106fa61050a35074dc24a4e356792d971ab39
+PYPI_NAME:=meson_python
+PKG_HASH:=9068c17e36c89d6c7ff709fffb2a8a9925e8cd0b02629728e5ceaf2ec505cb5f
 
-PKG_INSTALL:=1
+PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
+PKG_LICENSE:=MIT
+PKG_LICENSE_FILES:=LICENSE
 
+HOST_BUILD_DEPENDS:=python-setuptools-scm/host pyproject-metadata/host
+PKG_BUILD_DEPENDS:=python-setuptools-scm/host pyproject-metadata/host
+
+include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/host-build.mk
+include $(INCLUDE_DIR)/meson.mk
+include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
+include $(TOPDIR)/feeds/packages/lang/python/python3-host-build.mk
 
-define Package/lcms2
-  SECTION:=libs
-  CATEGORY:=Libraries
-  TITLE:=Little CMS color engine
-  DEPENDS:=+libtiff +libjpeg-turbo +zlib
-  URL:=http://www.littlecms.com/
-  SUBMENU:=Printing
+define Package/python3-meson-python
+  SUBMENU:=Python
+  SECTION:=lang
+  CATEGORY:=Languages
+  TITLE:=Meson Python build backend (PEP 517)
+  URL:=https://github.com/mesonbuild/meson-python
+  DEPENDS:=+python3 +python3-pyproject-metadata
 endef
 
-define Package/lcms2/description
-	Little CMS color engine
+define Package/python3-meson-python/description
+  meson-python is a Python build back-end built on top of the Meson build system.
+  It enables using Meson for the configuration and build steps of Python packages.
+  Meson is an open source build system meant to be both extremely fast, and, even more importantly, as user friendly as possible.
+  meson-python is best suited for building Python packages containing extension modules implemented in languages such as C, C++, Cython, Fortran, Pythran, or Rust. Consult the documentation for more details.
 endef
 
-define Package/lcms2/install
-	$(INSTALL_DIR) $(1)/usr/bin $(1)/usr/lib
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/* $(1)/usr/bin/
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/* $(1)/usr/lib/
-endef
-
-define Build/InstallDev
-	$(INSTALL_DIR) $(1)/usr/include $(1)/usr/lib
-	$(CP) $(PKG_INSTALL_DIR)/usr/include/* $(1)/usr/include/
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/* $(1)/usr/lib
-endef
-
-$(eval $(call BuildPackage,lcms2))
+$(eval $(call Py3Package,python3-meson-python))
+$(eval $(call BuildPackage,python3-meson-python))
+$(eval $(call BuildPackage,python3-meson-python-src))
+$(eval $(call HostBuild))
