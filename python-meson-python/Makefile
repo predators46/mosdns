@@ -28,7 +28,7 @@ define Package/python3-meson-python
   CATEGORY:=Languages
   TITLE:=Meson Python build backend (PEP 517)
   URL:=https://github.com/mesonbuild/meson-python
-  DEPENDS:=+python3 +python3-pyproject-metadata +python3-packaging +python3-tomli
+  DEPENDS:=+python3 +python3-pyproject-metadata +python3-packaging +python3-tomli +python3-setuptools
 endef
 
 define Package/python3-meson-python/description
