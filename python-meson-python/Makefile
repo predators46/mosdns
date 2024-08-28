@@ -1,11 +1,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=python-meson-python
-PKG_VERSION:=0.16.0
+PKG_VERSION:=0.13.2
 PKG_RELEASE:=1
 
-PYPI_NAME:=meson_python
-PKG_HASH:=9068c17e36c89d6c7ff709fffb2a8a9925e8cd0b02629728e5ceaf2ec505cb5f
+PYPI_NAME:=meson-python
+PKG_SOURCE_URL:=https://github.com/mesonbuild/meson-python/archive/$(PKG_VERSION)
+PKG_HASH:=skip
 
 PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=MIT
