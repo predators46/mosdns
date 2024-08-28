@@ -11,8 +11,8 @@ PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=BSD-3-Clause
 PKG_LICENSE_FILES:=LICENSE
 
-HOST_BUILD_DEPENDS:=python-setuptools-scm/host python-pybind11
-PKG_BUILD_DEPENDS:=python-setuptools-scm/host python-pybind11
+HOST_BUILD_DEPENDS:=python-setuptools-scm/host python-pybind11 meson meson-python
+PKG_BUILD_DEPENDS:=python-setuptools-scm/host python-pybind11 meson meson-python
 
 include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
 include $(INCLUDE_DIR)/package.mk
@@ -20,6 +20,20 @@ include $(INCLUDE_DIR)/host-build.mk
 include $(INCLUDE_DIR)/meson.mk
 include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
 include $(TOPDIR)/feeds/packages/lang/python/python3-host-build.mk
+
+define Package/python3-contourpy
+  SUBMENU:=Python
+  SECTION:=lang
+  CATEGORY:=Languages
+  TITLE:=Python library for calculating contours of 2D quadrilateral grids
+  URL:=https://github.com/contourpy/contourpy
+  DEPENDS:=+python3 +python3-numpy
+endef
+
+define Package/python3-contourpy/description
+  ContourPy is a Python library for calculating contours of 2D quadrilateral grids.
+  It is written in C++11 and wrapped using pybind11.
+endef
 
 define Meson/CreateNativeFile
 	$(STAGING_DIR_HOST)/bin/sed \
@@ -55,20 +69,6 @@ define Meson/CreateCrossFile
 		-e "s|@ENDIAN@|$(if $(CONFIG_BIG_ENDIAN),big,little)|" \
 		< $(MESON_DIR)/openwrt-cross.txt.in \
 		> $(1)
-endef
-
-define Package/python3-contourpy
-  SUBMENU:=Python
-  SECTION:=lang
-  CATEGORY:=Languages
-  TITLE:=Python library for calculating contours of 2D quadrilateral grids
-  URL:=https://github.com/contourpy/contourpy
-  DEPENDS:=+python3 +python3-numpy
-endef
-
-define Package/python3-contourpy/description
-  ContourPy is a Python library for calculating contours of 2D quadrilateral grids.
-  It is written in C++11 and wrapped using pybind11.
 endef
 
 $(eval $(call Py3Package,python3-contourpy))
