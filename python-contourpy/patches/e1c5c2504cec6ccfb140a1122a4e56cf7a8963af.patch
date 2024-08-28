@@ -1,22 +1,34 @@
-From e1c5c2504cec6ccfb140a1122a4e56cf7a8963af Mon Sep 17 00:00:00 2001
+From f3c46c4e25141dca3573f9112dc1b184dd477c1e Mon Sep 17 00:00:00 2001
 From: esaaprillia <esaapriliasalsabila@gmail.com>
-Date: Wed, 28 Aug 2024 11:22:07 +0800
+Date: Wed, 28 Aug 2024 13:00:33 +0800
 Subject: [PATCH] Update meson.build
 
 ---
- lib/contourpy/util/meson.build | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ lib/contourpy/util/meson.build | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
 diff --git a/lib/contourpy/util/meson.build b/lib/contourpy/util/meson.build
-index 521d519..9d3312b 100644
+index 521d519..97a3ddc 100644
 --- a/lib/contourpy/util/meson.build
 +++ b/lib/contourpy/util/meson.build
-@@ -28,7 +28,7 @@ conf_data.set('meson_version', meson.version())
- conf_data.set('mesonpy_version',
-   run_command(
-     py3,
+@@ -25,13 +25,13 @@ conf_data.set('python_path', py3.full_path().replace('\\', '/'))
+ # package versions
+ conf_data.set('contourpy_version', meson.project_version())
+ conf_data.set('meson_version', meson.version())
+-conf_data.set('mesonpy_version',
+-  run_command(
+-    py3,
 -    ['-c', 'import mesonpy; print(mesonpy.__version__)'],
+-    check: true
+-  ).stdout().strip()
+-)
++#conf_data.set('mesonpy_version',
++#  run_command(
++#    py3,
 +#    ['-c', 'import mesonpy; print(mesonpy.__version__)'],
-     check: true
-   ).stdout().strip()
- )
++#    check: true
++#  ).stdout().strip()
++#)
+ conf_data.set('pybind11_version', pybind11_dep.version())
+ 
+ # Misc meson settings
