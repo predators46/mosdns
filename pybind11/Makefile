@@ -29,7 +29,7 @@ define Package/pybind11
 	SECTION:=libs
 	CATEGORY:=Libraries
 	TITLE:=Seamless operability between C++11 and Python
-	DEPENDS:=+python3
+	DEPENDS:=+python3 +python3-setuptools
 	URL:=https://github.com/pybind/pybind11
 endef
 
