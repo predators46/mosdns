@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=meson-python
-PKG_VERSION:=0.13.2
+PKG_VERSION:=0.16.0
 PKG_RELEASE:=1
 
 PYPI_NAME:=meson_python
