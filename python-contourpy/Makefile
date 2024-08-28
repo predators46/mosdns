@@ -1,18 +1,18 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=python-contourpy
-PKG_VERSION:=1.2.1
+PKG_VERSION:=1.3.0
 PKG_RELEASE:=1
 
 PYPI_NAME:=contourpy
-PKG_HASH:=4d8908b3bee1c889e547867ca4cdc54e5ab6be6d3e078556814a22457f49423c
+PKG_HASH:=7ffa0db17717a8ffb127efd0c95a4362d996b892c2904db72428d5b52e1938a4
 
 PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=BSD-3-Clause
 PKG_LICENSE_FILES:=LICENSE
 
-HOST_BUILD_DEPENDS:=python-setuptools-scm/host python-pybind11 meson/host meson-python/host
-PKG_BUILD_DEPENDS:=python-setuptools-scm/host python-pybind11 meson/host meson-python/host
+HOST_BUILD_DEPENDS:=python-setuptools-scm/host python-pybind11/host meson/host meson-python/host
+PKG_BUILD_DEPENDS:=python-setuptools-scm/host python-pybind11/host meson/host meson-python/host
 
 include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
 include $(INCLUDE_DIR)/package.mk
