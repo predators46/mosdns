@@ -8,8 +8,8 @@ PYPI_NAME:=meson
 PKG_HASH:=567e533adf255de73a2de35049b99923caf872a455af9ce03e01077e0d384bed
 
 PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
-PKG_LICENSE:=BSD-3-Clause
-PKG_LICENSE_FILES:=LICENSE
+PKG_LICENSE:=Apache-2.0
+PKG_LICENSE_FILES:=COPYING
 
 HOST_BUILD_DEPENDS:=python-setuptools-scm/host
 PKG_BUILD_DEPENDS:=python-setuptools-scm/host
