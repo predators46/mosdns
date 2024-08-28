@@ -17,6 +17,7 @@ PKG_BUILD_DEPENDS:=python-setuptools-scm/host pyproject-metadata/host python-pac
 include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/host-build.mk
+include $(INCLUDE_DIR)/meson.mk
 include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
 include $(TOPDIR)/feeds/packages/lang/python/python3-host-build.mk
 
@@ -34,6 +35,42 @@ define Package/meson-python/description
   It enables using Meson for the configuration and build steps of Python packages.
   Meson is an open source build system meant to be both extremely fast, and, even more importantly, as user friendly as possible.
   meson-python is best suited for building Python packages containing extension modules implemented in languages such as C, C++, Cython, Fortran, Pythran, or Rust. Consult the documentation for more details.
+endef
+
+define Meson/CreateNativeFile
+	$(STAGING_DIR_HOST)/bin/sed \
+		-e "s|@CC@|$(foreach BIN,$(HOSTCC),'$(BIN)',)|" \
+		-e "s|@CXX@|$(foreach BIN,$(HOSTCXX),'$(BIN)',)|" \
+		-e "s|@PKGCONFIG@|$(PKG_CONFIG)|" \
+		-e "s|@CMAKE@|$(STAGING_DIR_HOST)/bin/cmake|" \
+		-e "s|@PYTHON@|$(STAGING_DIR_HOSTPKG)/bin/python3|" \
+		-e "s|@CFLAGS@|$(foreach FLAG,$(HOST_CFLAGS) $(HOST_CPPFLAGS),'$(FLAG)',)|" \
+		-e "s|@CXXFLAGS@|$(foreach FLAG,$(HOST_CXXFLAGS) $(HOST_CPPFLAGS),'$(FLAG)',)|" \
+		-e "s|@LDFLAGS@|$(foreach FLAG,$(HOST_LDFLAGS),'$(FLAG)',)|" \
+		-e "s|@PREFIX@|$(HOST_BUILD_PREFIX)|" \
+		< $(MESON_DIR)/openwrt-native.txt.in \
+		> $(1)
+endef
+
+define Meson/CreateCrossFile
+	$(STAGING_DIR_HOST)/bin/sed \
+		-e "s|@CC@|$(foreach BIN,$(TARGET_CC),'$(BIN)',)|" \
+		-e "s|@CXX@|$(foreach BIN,$(TARGET_CXX),'$(BIN)',)|" \
+		-e "s|@LD@|$(foreach FLAG,$(TARGET_LINKER),'$(FLAG)',)|" \
+		-e "s|@AR@|$(TARGET_AR)|" \
+		-e "s|@STRIP@|$(TARGET_CROSS)strip|" \
+		-e "s|@NM@|$(TARGET_NM)|" \
+		-e "s|@PKGCONFIG@|$(PKG_CONFIG)|" \
+		-e "s|@CMAKE@|$(STAGING_DIR_HOST)/bin/cmake|" \
+		-e "s|@PYTHON@|$(STAGING_DIR_HOSTPKG)/bin/python3|" \
+		-e "s|@CFLAGS@|$(foreach FLAG,$(TARGET_CFLAGS) $(EXTRA_CFLAGS) $(TARGET_CPPFLAGS) $(EXTRA_CPPFLAGS),'$(FLAG)',)|" \
+		-e "s|@CXXFLAGS@|$(foreach FLAG,$(TARGET_CXXFLAGS) $(EXTRA_CXXFLAGS) $(TARGET_CPPFLAGS) $(EXTRA_CPPFLAGS),'$(FLAG)',)|" \
+		-e "s|@LDFLAGS@|$(foreach FLAG,$(TARGET_LDFLAGS) $(EXTRA_LDFLAGS),'$(FLAG)',)|" \
+		-e "s|@ARCH@|$(MESON_ARCH)|" \
+		-e "s|@CPU@|$(MESON_CPU)|" \
+		-e "s|@ENDIAN@|$(if $(CONFIG_BIG_ENDIAN),big,little)|" \
+		< $(MESON_DIR)/openwrt-cross.txt.in \
+		> $(1)
 endef
 
 $(eval $(call Py3Package,meson-python))
