@@ -33,6 +33,11 @@ define Package/meson/description
   Meson® is a project to create the best possible next-generation build system.
 endef
 
+define Build/InstallDev
+	$(INSTALL_DIR) $(1)/$(PYTHON3_PKG_DIR)
+	$(CP) $(PKG_INSTALL_DIR)/$(PYTHON3_PKG_DIR)/mesonbuild $(1)/$(PYTHON3_PKG_DIR)
+endef
+
 $(eval $(call Py3Package,meson))
 $(eval $(call BuildPackage,meson))
 $(eval $(call BuildPackage,meson-src))
