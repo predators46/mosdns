@@ -73,6 +73,11 @@ define Meson/CreateCrossFile
 		> $(1)
 endef
 
+define Build/InstallDev
+	$(INSTALL_DIR) $(1)/$(PYTHON3_PKG_DIR)
+	$(CP) $(PKG_INSTALL_DIR)/$(PYTHON3_PKG_DIR)/mesonpy $(1)/$(PYTHON3_PKG_DIR)
+endef
+
 $(eval $(call Py3Package,meson-python))
 $(eval $(call BuildPackage,meson-python))
 $(eval $(call BuildPackage,meson-python-src))
