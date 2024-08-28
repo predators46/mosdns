@@ -43,7 +43,7 @@ CMAKE_OPTIONS += \
 
 define Package/pybind11/install
 	$(INSTALL_DIR) \
-	  $(1)/$(PYTHON3_PKG_DIR)
+	  $(1)/$(PYTHON3_PKG_DIR)/pybind11
 
 	$(CP) \
 	  $(PKG_INSTALL_DIR)/$(PYTHON3_PKG_DIR)/pybind11/*.py* \
