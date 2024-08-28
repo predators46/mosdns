@@ -1,0 +1,22 @@
+From 66d5164ccff98db89818591844ef4c44d4f99d09 Mon Sep 17 00:00:00 2001
+From: esaaprillia <esaapriliasalsabila@gmail.com>
+Date: Wed, 28 Aug 2024 22:14:46 +0800
+Subject: [PATCH] Update meson.build
+
+---
+ lib/contourpy/util/meson.build | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/lib/contourpy/util/meson.build b/lib/contourpy/util/meson.build
+index 568ccbe..f4a2ef0 100644
+--- a/lib/contourpy/util/meson.build
++++ b/lib/contourpy/util/meson.build
+@@ -64,7 +64,7 @@ conf_data.set('compile_command', ' '.join(cpp.cmd_array()))
+ 
+ # Host and build machines
+ machines = {
+-  'host': host_machine,
++  'host': build_machine,
+   'build': build_machine,
+ }
+ foreach name, machine : machines
