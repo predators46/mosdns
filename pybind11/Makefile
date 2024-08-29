@@ -34,11 +34,13 @@ endef
 
 CMAKE_OPTIONS += \
 	-Wno-dev \
-	-DPYTHON_EXECUTABLE="$(STAGING_DIR_HOSTPKG)/bin/$(PYTHON3)"
+	-DPYTHON_EXECUTABLE="$(STAGING_DIR_HOSTPKG)/bin/$(PYTHON3)" \
+	-DPYTHON_INCLUDE_DIR="$(shell $(STAGING_DIR)/host/bin/$(PYTHON3)-config --includes)" \
+	-DPYTHON_LIBRARY="$(shell $(STAGING_DIR)/host/bin/$(PYTHON3)-config --libs)"
 
 define Build/Compile
-	$(call Py3Build/Compile)
 	$(call Build/Compile/Default)
+	$(call Py3Build/Compile)
 endef
 
 define Py3Package/pybind11/filespec
