@@ -12,7 +12,7 @@ PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
 
 #HOST_BUILD_DEPENDS:=pyproject-metadata/host python-wheel/host python-cython/host meson/host
-PKG_BUILD_DEPENDS:=pyproject-metadata/host python-wheel/host python-cython/host meson
+PKG_BUILD_DEPENDS:=pyproject-metadata/host python-wheel/host python-cython/host meson/host
 
 include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
 include $(INCLUDE_DIR)/meson.mk
