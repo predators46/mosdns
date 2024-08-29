@@ -15,11 +15,6 @@ PKG_LICENSE_FILES:=LICENSE
 HOST_BUILD_DEPENDS:=python-setuptools-scm/host
 PKG_BUILD_DEPENDS:=python-setuptools-scm/host
 
-CMAKE_BINARY_SUBDIR := build
-
-PKG_BUILD_PARALLEL:=1
-PKG_INSTALL:=1
-
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 include $(INCLUDE_DIR)/host-build.mk
@@ -29,7 +24,7 @@ define Package/pybind11
 	SECTION:=libs
 	CATEGORY:=Libraries
 	TITLE:=Seamless operability between C++11 and Python
-	DEPENDS:=+python3 +python3-setuptools
+	DEPENDS:=+python3
 	URL:=https://github.com/pybind/pybind11
 endef
 
@@ -41,13 +36,14 @@ CMAKE_OPTIONS += \
 	-Wno-dev \
 	-DPYTHON_EXECUTABLE="$(STAGING_DIR_HOSTPKG)/bin/$(PYTHON3)"
 
-define Package/pybind11/install
-	$(INSTALL_DIR) \
-	  $(1)/$(PYTHON3_PKG_DIR)/pybind11
+define Build/Compile
+	$(call Py3Build/Compile)
+endef
 
-	$(CP) \
-	  $(PKG_INSTALL_DIR)/$(PYTHON3_PKG_DIR)/pybind11/*.py* \
-	  $(1)/$(PYTHON3_PKG_DIR)/pybind11/
+define Py3Package/pybind11/filespec
++|$(PYTHON3_PKG_DIR)
+-|$(PYTHON3_PKG_DIR)/pybind11/include
+-|$(PYTHON3_PKG_DIR)/pybind11/share
 endef
 
 $(eval $(call Py3Package,pybind11))
