@@ -12,7 +12,7 @@ PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
 
 HOST_BUILD_DEPENDS:=python-setuptools-scm/host pyproject-metadata/host python-packaging/host python-tomli/host python-cython/host meson/host
-PKG_BUILD_DEPENDS:=python-setuptools-scm/host pyproject-metadata/host python-packaging/host python-tomli/host python-cython/host meson/host
+PKG_BUILD_DEPENDS:=python-setuptools-scm/host pyproject-metadata python-packaging python-tomli python-cython meson
 
 include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
 include $(INCLUDE_DIR)/package.mk
@@ -71,6 +71,11 @@ define Meson/CreateCrossFile
 		-e "s|@ENDIAN@|$(if $(CONFIG_BIG_ENDIAN),big,little)|" \
 		< $(MESON_DIR)/openwrt-cross.txt.in \
 		> $(1)
+endef
+
+define Build/Compile
+	$(call Build/Compile/Meson)
+	$(call Py3Build/Compile)
 endef
 
 define Build/InstallDev
