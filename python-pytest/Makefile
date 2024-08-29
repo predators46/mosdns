@@ -1,57 +1,51 @@
-# Copyright (C) 2019 Lucian Cristian <lucian.cristian@gmail.com>
+#
+# Copyright (C) 2020-2021 CZ.NIC, z. s. p. o. (https://www.nic.cz/)
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
+#
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=libpthread-stubs
-PKG_VERSION:=0.5
+PKG_NAME:=python-pytest
+PKG_VERSION:=7.4.0
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
-PKG_SOURCE_URL:=https://www.x.org/releases/individual/xcb/
-PKG_HASH:=skip
+PYPI_NAME:=pytest
+PKG_HASH:=b4bf8c45bd59934ed84001ad51e11b4ee40d40a1229d2c79f9c592b0a3f6bd8a
 
-PKG_INSTALL:=1
+PKG_MAINTAINER:=Jan Pavlinec <jan.pavlinec1@gmail.com>
+PKG_LICENSE:=MIT
+PKG_LICENSE_FILES:=LICENSE
 
-PKG_BUILD_PARALLEL:=1
-PKG_FIXUP:=autoreconf
+HOST_BUILD_DEPENDS:=python-setuptools-scm/host python-iniconfig/host python-packaging/host python-pluggy/host
+PKG_BUILD_DEPENDS:=python-setuptools-scm/host
 
+include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/host-build.mk
+include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
+include $(TOPDIR)/feeds/packages/lang/python/python3-host-build.mk
 
-define Package/libpthread-stubs
-  SECTION:=libs
-  CATEGORY:=Libraries
-  DEPENDS:=
-  TITLE:=Pthread functions stubs for platforms missing them
-  URL:=https://www.x.org
+define Package/python3-pytest
+  SUBMENU:=Python
+  SECTION:=lang
+  CATEGORY:=Languages
+  TITLE:=Python testing framework
+  URL:=https://pytest.org/
+  DEPENDS:= \
+	+python3 \
+	+python3-iniconfig \
+	+python3-packaging \
+	+python3-pluggy
 endef
 
-#### TARGET_CFLAGS += -DHAVE_PTHREAD_EXIT=1
-
-TARGET_LDFLAGS += -Wl,--gc-sections,--as-needed
-
-CONFIGURE_ARGS += \
-  --prefix=/usr \
-
-
-define Build/InstallDev
-	$(INSTALL_DIR) \
-	  $(1)/usr/lib
-
-	$(CP) \
-	  $(PKG_INSTALL_DIR)/usr/lib/pkgconfig \
-	  $(1)/usr/lib/
+define Package/python3-pytest/description
+The pytest framework makes it easy to write small tests, yet scales to
+support complex functional testing for applications and libraries.
 endef
 
-#define Package/libpthread-stubs/install
-#	$(INSTALL_DIR) \
-#	  $(1)/usr/lib
-#
-#	$(CP) \
-#	  $(PKG_INSTALL_DIR)/usr/lib/*.so* \
-#	  $(1)/usr/lib/
-#endef
-
-$(eval $(call BuildPackage,libpthread-stubs))
+$(eval $(call Py3Package,python3-pytest))
+$(eval $(call BuildPackage,python3-pytest))
+$(eval $(call BuildPackage,python3-pytest-src))
+$(eval $(call HostBuild))
