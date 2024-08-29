@@ -13,7 +13,7 @@ PKG_LICENSE:=License
 PKG_LICENSE_FILES:=LICENSE
 
 HOST_BUILD_DEPENDS:=python-setuptools-scm/host
-PKG_BUILD_DEPENDS:=python-setuptools-scm/host python-pytest
+PKG_BUILD_DEPENDS:=python-setuptools-scm/host python-pytest/host
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
@@ -37,8 +37,8 @@ CMAKE_OPTIONS += \
 	-DPYTHON_EXECUTABLE="$(STAGING_DIR_HOSTPKG)/bin/$(PYTHON3)"
 
 define Build/Compile
-	$(call Build/Compile/Default)
 	$(call Py3Build/Compile)
+	$(call Build/Compile/Default)
 endef
 
 define Py3Package/pybind11/filespec
