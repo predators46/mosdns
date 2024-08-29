@@ -12,7 +12,7 @@ PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
 
 HOST_BUILD_DEPENDS:=python-setuptools-scm/host pyproject-metadata/host python-packaging/host python-tomli/host python-cython/host meson/host
-PKG_BUILD_DEPENDS:=python-setuptools-scm/host pyproject-metadata python-packaging python-tomli python-cython meson
+PKG_BUILD_DEPENDS:=python-setuptools-scm/host pyproject-metadata python-packaging python-cython meson
 
 include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
 include $(INCLUDE_DIR)/package.mk
@@ -27,7 +27,7 @@ define Package/meson-python
   CATEGORY:=Languages
   TITLE:=Meson Python build backend (PEP 517)
   URL:=https://github.com/mesonbuild/meson-python
-  DEPENDS:=+python3 +python3-pyproject-metadata +python3-packaging +python3-tomli +python3-setuptools
+  DEPENDS:=+python3 +python3-pyproject-metadata
 endef
 
 define Package/meson-python/description
