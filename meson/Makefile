@@ -33,11 +33,6 @@ define Package/meson/description
   Meson® is a project to create the best possible next-generation build system.
 endef
 
-define Host/Install
-	$(call Py3Host/Install)
-	$(RM) $(STAGING_DIR_HOSTPKG)/bin/meson
-endef
-
 $(eval $(call Py3Package,meson))
 $(eval $(call BuildPackage,meson))
 $(eval $(call BuildPackage,meson-src))
