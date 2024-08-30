@@ -15,8 +15,8 @@ PKG_LICENSE_FILES:=LICENSE
 PKG_BUILD_DEPENDS:=pyproject-metadata/host python-wheel/host python-cython/host meson/host
 
 include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
-include $(TOPDIR)/feeds/mosdns/meson/meson.mk
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/meson.mk
 include $(INCLUDE_DIR)/host-build.mk
 include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
 include $(TOPDIR)/feeds/packages/lang/python/python3-host-build.mk
@@ -35,6 +35,11 @@ define Package/meson-python/description
   It enables using Meson for the configuration and build steps of Python packages.
   Meson is an open source build system meant to be both extremely fast, and, even more importantly, as user friendly as possible.
   meson-python is best suited for building Python packages containing extension modules implemented in languages such as C, C++, Cython, Fortran, Pythran, or Rust. Consult the documentation for more details.
+endef
+
+define Build/Compile
+	$(call Build/Compile/Meson)
+	$(call Py3Build/Compile)
 endef
 
 $(eval $(call Py3Package,meson-python))
