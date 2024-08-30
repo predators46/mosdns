@@ -38,12 +38,14 @@ define Package/meson-python/description
 endef
 
 define Py3Build/Compile/Default
+	$(call Build/Compile/Meson)
 	$(call Py3Build/InstallBuildDepends)
 	$(call Python3/Run, \
 		$(PKG_BUILD_DIR), \
 		-m build \
 			--no-isolation \
 			--outdir "$(PYTHON3_PKG_BUILD_DIR)"/openwrt-build \
+			--wheel \
 			$(foreach setting,$(PYTHON3_PKG_BUILD_CONFIG_SETTINGS),--config-setting=$(setting)) \
 			$(PYTHON3_PKG_BUILD_ARGS) \
 			"$(PYTHON3_PKG_BUILD_DIR)" \
