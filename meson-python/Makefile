@@ -15,7 +15,7 @@ PKG_LICENSE_FILES:=LICENSE
 PKG_BUILD_DEPENDS:=pyproject-metadata/host python-wheel/host python-cython/host meson/host
 
 include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
-include $(INCLUDE_DIR)/meson.mk
+include $(TOPDIR)/feeds/mosdns/meson/meson.mk
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/host-build.mk
 include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
