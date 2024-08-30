@@ -37,9 +37,19 @@ define Package/meson-python/description
   meson-python is best suited for building Python packages containing extension modules implemented in languages such as C, C++, Cython, Fortran, Pythran, or Rust. Consult the documentation for more details.
 endef
 
+define Build/Configure
+	$(call Build/Configure/Meson)
+	$(call Py3Build/Configure)
+endef
+
 define Build/Compile
 	$(call Build/Compile/Meson)
 	$(call Py3Build/Compile)
+endef
+
+define Build/Install
+	$(call Build/Install/Meson)
+	$(call Py3Build/Install/Default)
 endef
 
 $(eval $(call Py3Package,meson-python))
