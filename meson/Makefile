@@ -34,7 +34,7 @@ define Package/meson/description
 endef
 
 define Host/Install
-	$(call Py3Host/Install/Default)
+	$(call Py3Host/Install)
 	$(INSTALL_DIR) $(STAGING_DIR_HOSTPKG)/lib/meson
 	$(INSTALL_CONF) files/openwrt-cross.txt.in $(STAGING_DIR_HOSTPKG)/lib/meson/
 	$(INSTALL_CONF) files/openwrt-native.txt.in $(STAGING_DIR_HOSTPKG)/lib/meson/
