@@ -8,49 +8,33 @@ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://github.com/mesonbuild/meson/releases/download/$(PKG_VERSION)
 PKG_HASH:=492eb450c8b073024276f916f5adbb3c4bb7e90e9e6ec124efda064f3d9b5baa
 
-PKG_MAINTAINER:=Andre Heider <a.heider@gmail.com>
+PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=Apache-2.0
 PKG_LICENSE_FILES:=COPYING
 
-include $(INCLUDE_DIR)/host-build.mk
+HOST_BUILD_DEPENDS:=python-setuptools-scm/host
+PKG_BUILD_DEPENDS:=python-setuptools-scm/host
+
+include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/host-build.mk
 include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
-
-define Host/Configure
-endef
-
-define Host/Compile
-endef
-
-define Host/Install
-	$(INSTALL_DIR) $(STAGING_DIR_HOSTPKG)/bin
-	$(HOST_BUILD_DIR)/packaging/create_zipapp.py $(HOST_BUILD_DIR) --outfile $(STAGING_DIR_HOSTPKG)/bin/meson.py
-	$(INSTALL_DIR) $(STAGING_DIR_HOSTPKG)/lib/meson
-	$(INSTALL_CONF) files/openwrt-cross.txt.in $(STAGING_DIR_HOSTPKG)/lib/meson/
-	$(INSTALL_CONF) files/openwrt-native.txt.in $(STAGING_DIR_HOSTPKG)/lib/meson/
-endef
-
-define Host/Clean
-	$(call Host/Clean/Default)
-	rm -rf $(STAGING_DIR_HOSTPKG)/lib/meson
-endef
+include $(TOPDIR)/feeds/packages/lang/python/python3-host-build.mk
 
 define Package/meson
-  SECTION:=devel
-  CATEGORY:=Development
-  TITLE:=meson
-  URL:=https://mesonbuild.com/
-  DEPENDS:=+python3-pkg-resources
+  SUBMENU:=Python
+  SECTION:=lang
+  CATEGORY:=Languages
+  TITLE:=The Meson Build System
+  URL:=https://github.com/mesonbuild/meson
+  DEPENDS:=+python3
 endef
 
 define Package/meson/description
-  Meson is an open source build system meant to be both extremely fast, and, even more importantly, as user friendly as possible.
+  Meson® is a project to create the best possible next-generation build system.
 endef
 
-define Package/meson/install
-endef
-
-$(eval $(call HostBuild))
 $(eval $(call Py3Package,meson))
 $(eval $(call BuildPackage,meson))
 $(eval $(call BuildPackage,meson-src))
+$(eval $(call HostBuild))
