@@ -35,9 +35,9 @@ endef
 
 define Host/Install
 	$(call Py3Host/Install/Installer)
-	$(INSTALL_DIR) $(STAGING_DIR_HOST)/lib/meson
-	$(INSTALL_CONF) files/openwrt-cross.txt.in $(STAGING_DIR_HOST)/lib/meson/
-	$(INSTALL_CONF) files/openwrt-native.txt.in $(STAGING_DIR_HOST)/lib/meson/
+	$(INSTALL_DIR) $(STAGING_DIR_HOSTPKG)/lib/meson
+	$(INSTALL_CONF) files/openwrt-cross.txt.in $(STAGING_DIR_HOSTPKG)/lib/meson/
+	$(INSTALL_CONF) files/openwrt-native.txt.in $(STAGING_DIR_HOSTPKG)/lib/meson/
 endef
 
 $(eval $(call Py3Package,meson))
