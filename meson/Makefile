@@ -33,13 +33,6 @@ define Package/meson/description
   Meson® is a project to create the best possible next-generation build system.
 endef
 
-define Host/Install
-	$(call Py3Host/Install/Installer)
-	$(INSTALL_DIR) $(STAGING_DIR_HOSTPKG)/lib/meson
-	$(INSTALL_CONF) files/openwrt-cross.txt.in $(STAGING_DIR_HOSTPKG)/lib/meson/
-	$(INSTALL_CONF) files/openwrt-native.txt.in $(STAGING_DIR_HOSTPKG)/lib/meson/
-endef
-
 $(eval $(call Py3Package,meson))
 $(eval $(call BuildPackage,meson))
 $(eval $(call BuildPackage,meson-src))
