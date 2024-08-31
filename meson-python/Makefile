@@ -38,7 +38,7 @@ define Package/meson-python/description
 endef
 
 define Py3Build/Compile/Default
-	$(call Build/Compile/Meson)
+	$(call Build/Configure/Meson)
 	$(call Py3Build/InstallBuildDepends)
 	$(call Python3/Run, \
 		$(PKG_BUILD_DIR), \
