@@ -25,6 +25,7 @@ PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/nls.mk
+include $(TOPDIR)/feeds/packages/lang/perl/perlver.mk
 
 define Package/irssi
   SUBMENU:=Instant Messaging
@@ -40,14 +41,13 @@ define Package/irssi/description
 	Irssi is a terminal based IRC client for UNIX systems.
 endef
 
-TARGET_CFLAGS += -D_LARGEFILE64_SOURCE
 TARGET_LDFLAGS += -Wl,--gc-sections
 
-PERL_SITELIB=/usr/lib/perl5/5.40
+PERL_SITELIB:=/usr/lib/perl$(PERL_MAJOR)/$(PERL_VERSION2)
 
-CONFIGURE_VARS += \
-	PERL_CFLAGS="-D_REENTRANT -D_GNU_SOURCE -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -I$(STAGING_DIR)/usr/lib/perl5/5.40/CORE" \
-	PERL_LDFLAGS="-L$(STAGING_DIR)$(PERL_SITELIB)/CORE -lperl" \
+CONFIGURE_VARS+= \
+	PERL_CFLAGS="-D_LARGEFILE_SOURCE $(if $(CONFIG_USE_MUSL),-D_LARGEFILE64_SOURCE) -D_FILE_OFFSET_BITS=64 -D_REENTRANT -D_GNU_SOURCE -I$(STAGING_DIR)$(PERL_SITELIB)/CORE" \
+	PERL_LDFLAGS="-Wl,-rpath,$(PERL_SITELIB)/CORE -L$(STAGING_DIR)$(PERL_SITELIB)/CORE -lperl" \
 	PERL_USE_LIB="$(PERL_SITELIB)"
 
 CONFIGURE_ARGS += \
