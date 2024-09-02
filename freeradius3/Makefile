@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=freeradius3
 PKG_VERSION:=3.2.5
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 PKG_SOURCE:=freeradius-server-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://www.freeradius.org/ftp/pub/freeradius/
@@ -21,7 +21,6 @@ PKG_LICENSE_FILES:=COPYRIGHT LICENSE
 PKG_CPE_ID:=cpe:/a:freeradius:freeradius
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/freeradius-server-$(PKG_VERSION)
-PKG_FIXUP:=autoreconf
 PYTHON3_PKG_BUILD:=0
 
 PKG_CONFIG_DEPENDS := \
@@ -31,7 +30,7 @@ PKG_CONFIG_DEPENDS := \
 CFLAGS += $(FPIC)
 
 include $(INCLUDE_DIR)/package.mk
-include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
+include ../../lang/python/python3-package.mk
 
 define Package/freeradius3/config
   source "$(SOURCE)/Config.in"
@@ -926,7 +925,7 @@ else
   CONFIGURE_ARGS+= --without-rlm_sql_sqlite
 endif
 
-ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius3-mod-unixodbc),)
+ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius3-mod-sql-unixodbc),)
   CONFIGURE_ARGS+= \
 		--with-rlm_sql_unixodbc \
 		--with-rlm_sql_unixodbc-include-dir="$(STAGING_DIR)/usr/include" \
@@ -982,7 +981,6 @@ CONFIGURE_VARS+= \
 	LDFLAGS="$$$$LDFLAGS" \
 	LIBS="$(CONFIGURE_LIBS)" \
 	MYSQL_CONFIG="no" \
-	vl_cv_lib_readline=no \
 	ax_cv_cc_builtin_choose_expr=yes \
 	ax_cv_cc_builtin_types_compatible_p=yes ax_cv_cc_builtin_bswap64=yes \
 	ax_cv_cc_bounded_attribute=no \
@@ -990,6 +988,11 @@ CONFIGURE_VARS+= \
 	ac_cv_lib_execinfo_backtrace_symbols=no
 
 define Build/Compile
+	# Compile jlibtool for the host once the configuration is done
+	(cd $(PKG_BUILD_DIR); \
+		mkdir -p build/make; \
+		$(HOSTCC) $(HOST_CFLAGS) scripts/jlibtool.c -o build/make/jlibtool; \
+	)
 	$(MAKE) -C $(PKG_BUILD_DIR) \
 		R="$(PKG_INSTALL_DIR)" \
 		INSTALLSTRIP="" \
