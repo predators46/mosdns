@@ -19,11 +19,12 @@ PKG_LICENSE:=GPL-2.0-or-later
 PKG_LICENSE_FILES:=COPYING
 PKG_CPE_ID:=cpe:/a:irssi:irssi
 
+PKG_FIXUP:=autoreconf
+PKG_BUILD_PARALLEL:=1
 PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/nls.mk
-include $(INCLUDE_DIR)/meson.mk
 include $(TOPDIR)/feeds/packages/lang/perl/perlver.mk
 
 define Package/irssi
@@ -44,16 +45,16 @@ TARGET_LDFLAGS += -Wl,--gc-sections
 
 PERL_SITELIB:=/usr/lib/perl5/$(PERL_VERSION)
 
-MESON_VARS += \
-	perl_cflags="-D_LARGEFILE_SOURCE $(if $(CONFIG_USE_MUSL),-D_LARGEFILE64_SOURCE) -D_FILE_OFFSET_BITS=64 -D_REENTRANT -D_GNU_SOURCE -I$(STAGING_DIR)$(PERL_SITELIB)/CORE" \
-	perl_ldflags="-Wl,-rpath,$(PERL_SITELIB)/CORE -L$(STAGING_DIR)$(PERL_SITELIB)/CORE -lperl" \
-	perl_use_lib="$(PERL_SITELIB)"
+CONFIGURE_VARS += \
+	PERL_CFLAGS="-D_LARGEFILE_SOURCE $(if $(CONFIG_USE_MUSL),-D_LARGEFILE64_SOURCE) -D_FILE_OFFSET_BITS=64 -D_REENTRANT -D_GNU_SOURCE -I$(STAGING_DIR)$(PERL_SITELIB)/CORE" \
+	PERL_LDFLAGS="-Wl,-rpath,$(PERL_SITELIB)/CORE -L$(STAGING_DIR)$(PERL_SITELIB)/CORE -lperl" \
+	PERL_USE_LIB="$(PERL_SITELIB)"
 
-MESON_ARGS += \
-	-Dwith-perl-lib="$(PERL_SITELIB)" \
-	-Dwith-perl=yes \
-	-Dwithout-textui=no \
-	-Dwith-bot=yes
+CONFIGURE_ARGS += \
+	--with-perl-lib="$(PERL_SITELIB)" \
+	--with-perl=yes \
+	--with-textui \
+	--with-bot
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/include/irssi
