@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=freeradius3
-PKG_VERSION:=3.2.5
-PKG_RELEASE:=3
+PKG_VERSION:=3.2.6
+PKG_RELEASE:=1
 
 PKG_SOURCE:=freeradius-server-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://www.freeradius.org/ftp/pub/freeradius/
-PKG_HASH:=1e75f5fc1961d9854d1cb3c6921612fbe2b9edb8ee508a5a7cbd69f1e7607115
+PKG_HASH:=skip
 
 PKG_MAINTAINER:=
 PKG_LICENSE:=GPL-2.0
@@ -30,7 +30,8 @@ PKG_CONFIG_DEPENDS := \
 CFLAGS += $(FPIC)
 
 include $(INCLUDE_DIR)/package.mk
-include ../../lang/python/python3-package.mk
+include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
+include $(TOPDIR)/feeds/packages/lang/perl/perlver.mk
 
 define Package/freeradius3/config
   source "$(SOURCE)/Config.in"
@@ -450,6 +451,17 @@ define Package/freeradius3-mod-passwd/conffiles
 /etc/freeradius3/mods-enabled/passwd
 endef
 
+define Package/freeradius3-mod-perl
+  $(call Package/freeradius3/Default)
+  DEPENDS:=freeradius3 perl
+  TITLE:=Perl module
+endef
+
+define Package/freeradius3-mod-perl/conffiles
+/etc/freeradius3/mods-config/perl
+/etc/freeradius3/mods-available/perl
+endef
+
 define Package/freeradius3-mod-preprocess
   $(call Package/freeradius3/Default)
   DEPENDS:=freeradius3
@@ -860,6 +872,17 @@ else
   CONFIGURE_ARGS+= --without-rlm_ldap
 endif
 
+ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius3-mod-perl),)
+  CONFIGURE_ARGS+= \
+		--with-rlm_perl \
+		--with-perl="$(STAGING_DIR_HOSTPKG)/usr/bin/perl$(PERL_VERSION)"
+  CONFIGURE_VARS+= \
+	PERL_CFLAGS="-D_LARGEFILE_SOURCE $(if $(CONFIG_USE_MUSL),-D_LARGEFILE64_SOURCE) -D_FILE_OFFSET_BITS=64 -D_REENTRANT -D_GNU_SOURCE -I$(STAGING_DIR)$(PERL_SITELIB)/CORE" \
+	PERL_LDFLAGS="-Wl,-rpath,$(PERL_SITELIB)/CORE -L$(STAGING_DIR)$(PERL_SITELIB)/CORE -lperl"
+else
+  CONFIGURE_ARGS+= --without-rlm_perl
+endif
+
 ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius3-mod-python3),)
   CFLAGS+= -fPIC
   CONFIGURE_ARGS+= \
@@ -1112,6 +1135,7 @@ $(eval $(call BuildPlugin,freeradius3-mod-mschap,rlm_mschap,))
 $(eval $(call BuildPlugin,freeradius3-mod-pam,rlm_pam,))
 $(eval $(call BuildPlugin,freeradius3-mod-pap,rlm_pap,))
 $(eval $(call BuildPlugin,freeradius3-mod-passwd,rlm_passwd,))
+$(eval $(call BuildPlugin,freeradius3-mod-perl,rlm_perl,))
 $(eval $(call BuildPlugin,freeradius3-mod-preprocess,rlm_preprocess,))
 $(eval $(call BuildPlugin,freeradius3-mod-python3,rlm_python3,))
 $(eval $(call BuildPlugin,freeradius3-mod-radutmp,rlm_radutmp,))
