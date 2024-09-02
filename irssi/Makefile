@@ -52,7 +52,7 @@ MESON_VARS += \
 MESON_ARGS += \
 	-Dwith-perl-lib="$(PERL_SITELIB)" \
 	-Dwith-perl=yes \
-	-Dwith-textui=yes \
+	-Dwithout-textui=no \
 	-Dwith-bot=yes
 
 define Build/InstallDev
