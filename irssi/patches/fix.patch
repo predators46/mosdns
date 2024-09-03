@@ -1,0 +1,11 @@
+--- a/configure.ac
++++ b/configure.ac
+@@ -130,7 +130,7 @@ AC_ARG_WITH(perl-lib,
+ 	else
+ 		want_perl=yes
+ 		perl_prefix_note=no
+-		PERL_MM_PARAMS="INSTALLDIRS=perl LIB=$withval"
++		PERL_MM_PARAMS="INSTALLDIRS=perl INSTALLPRIVLIB=$withval INSTALLARCHLIB=$withval INSTALLSITELIB=$withval INSTALLSITEARCH="
+ 		perl_set_use_lib=yes
+ 	fi,
+ 	want_perl=yes)
