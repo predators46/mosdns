@@ -63,7 +63,9 @@ endef
 
 define Package/irssi/install
 	$(INSTALL_DIR) $(1)/usr/bin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/$(PKG_NAME) $(1)/usr/bin/$(PKG_NAME)
+	$(CP) $(PKG_INSTALL_DIR)/usr/bin/{irssi,botti} $(1)/usr/bin/
+	$(INSTALL_DIR) $(1)$(PERL_SITELIB)
+	$(CP) $(PKG_INSTALL_DIR)$(PERL_SITELIB)/{auto,Irssi,Irssi.pm} $(1)$(PERL_SITELIB)
 endef
 
 $(eval $(call BuildPackage,irssi))
