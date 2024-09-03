@@ -65,7 +65,9 @@ endef
 
 define Package/irssi/install
 	$(INSTALL_DIR) $(1)/usr/bin
-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/{irssi,botti} $(1)/usr/bin/
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/{irssi,botti} $(1)/usr/bin/
+	$(INSTALL_DIR) $(1)/usr/lib/irssi/modules
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/irssi/modules/{libfe_perl.so,libperl_core.so} $(1)/usr/lib/irssi/modules/
 	$(INSTALL_DIR) $(1)$(PERL_SITELIB)
 	$(CP) $(PKG_INSTALL_DIR)$(PERL_SITELIB)/{Irssi,Irssi.pm} $(1)$(PERL_SITELIB)
 	$(INSTALL_DIR) $(1)$(PERL_SITELIB)/auto/Irssi/UI
