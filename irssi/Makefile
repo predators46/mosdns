@@ -31,7 +31,7 @@ define Package/irssi
   SUBMENU:=Instant Messaging
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+glib2 +libncurses +libpthread +libopenssl +perl
+  DEPENDS:=+glib2 +libncurses +libpthread +libopenssl +perl +perlbase-essential +perlbase-dynaloader
   TITLE:=Console IRC client
   MAINTAINER:=Peter Wagner <tripolar@gmx.at>
   URL:=https://irssi.org/
