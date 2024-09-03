@@ -56,6 +56,8 @@ CONFIGURE_ARGS += \
 	--with-textui \
 	--with-bot
 
+EXTRA_CFLAGS+=$(TARGET_CPPFLAGS)
+
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/include/irssi
 	$(CP) $(PKG_INSTALL_DIR)/usr/include/irssi/* $(1)/usr/include/irssi/
