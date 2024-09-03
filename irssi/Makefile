@@ -46,17 +46,18 @@ TARGET_LDFLAGS += -Wl,--gc-sections
 PERL_SITELIB:=/usr/lib/perl$(PERL_MAJOR)/$(PERL_VERSION2)
 
 CONFIGURE_VARS+= \
+	ac_cv_path_perlpath="$(STAGING_DIR_HOSTPKG)/usr/bin/perl$(PERL_VERSION)" \
 	PERL_CFLAGS="-D_LARGEFILE_SOURCE $(if $(CONFIG_USE_MUSL),-D_LARGEFILE64_SOURCE) -D_FILE_OFFSET_BITS=64 -D_REENTRANT -D_GNU_SOURCE -I$(STAGING_DIR)$(PERL_SITELIB)/CORE" \
+	PERL_INC="-I$(STAGING_DIR)$(PERL_SITELIB)/CORE" \
 	PERL_LDFLAGS="-Wl,-rpath,$(PERL_SITELIB)/CORE -L$(STAGING_DIR)$(PERL_SITELIB)/CORE -lperl" \
-	PERL_USE_LIB="$(PERL_SITELIB)"
+	PERL_LIBDIR="-L$(PERL_SITELIB)/CORE" \
+	PERL_LIBS="$(EXTRA_LIBDIRS:%=-L%) $(EXTRA_LIBS:%=-l%)" \
+	PERL_SITEDIR="$(PERL_SITELIB)"
 
 CONFIGURE_ARGS += \
 	--with-perl-lib="$(PERL_SITELIB)" \
 	--with-perl=module \
-	--with-textui \
-	--with-bot
-
-EXTRA_CFLAGS+=$(TARGET_CPPFLAGS)
+	--with-textui
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/include/irssi
