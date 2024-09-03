@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=irssi
 PKG_VERSION:=1.4.5
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=https://github.com/irssi/irssi/releases/download/$(PKG_VERSION)/
@@ -52,9 +52,11 @@ CONFIGURE_VARS+= \
 
 CONFIGURE_ARGS += \
 	--with-perl-lib="$(PERL_SITELIB)" \
-	--with-perl=yes \
+	--with-perl=module \
 	--with-textui \
 	--with-bot
+
+EXTRA_CFLAGS+=$(TARGET_CPPFLAGS)
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/include/irssi
@@ -63,7 +65,9 @@ endef
 
 define Package/irssi/install
 	$(INSTALL_DIR) $(1)/usr/bin
-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/{irssi,botti} $(1)/usr/bin/
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/{irssi,botti} $(1)/usr/bin/
+	$(INSTALL_DIR) $(1)/usr/lib/irssi/modules
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/irssi/modules/{libfe_perl.so,libperl_core.so} $(1)/usr/lib/irssi/modules/
 	$(INSTALL_DIR) $(1)$(PERL_SITELIB)
 	$(CP) $(PKG_INSTALL_DIR)$(PERL_SITELIB)/{Irssi,Irssi.pm} $(1)$(PERL_SITELIB)
 	$(INSTALL_DIR) $(1)$(PERL_SITELIB)/auto/Irssi/UI
