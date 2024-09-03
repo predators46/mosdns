@@ -52,7 +52,7 @@ CONFIGURE_VARS+= \
 
 CONFIGURE_ARGS += \
 	--with-perl-lib="$(PERL_SITELIB)" \
-	--with-perl=yes \
+	--with-perl=module \
 	--with-textui \
 	--with-bot
 
