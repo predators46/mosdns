@@ -65,7 +65,15 @@ define Package/irssi/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(CP) $(PKG_INSTALL_DIR)/usr/bin/{irssi,botti} $(1)/usr/bin/
 	$(INSTALL_DIR) $(1)$(PERL_SITELIB)
-	$(CP) $(PKG_INSTALL_DIR)$(PERL_SITELIB)/{auto,Irssi,Irssi.pm} $(1)$(PERL_SITELIB)
+	$(CP) $(PKG_INSTALL_DIR)$(PERL_SITELIB)/{Irssi,Irssi.pm} $(1)$(PERL_SITELIB)
+	$(INSTALL_DIR) $(1)$(PERL_SITELIB)/auto/Irssi/UI
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)$(PERL_SITELIB)/auto/Irssi/UI/UI.so $(1)$(PERL_SITELIB)/auto/Irssi/UI/
+	$(INSTALL_DIR) $(1)$(PERL_SITELIB)/auto/Irssi
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)$(PERL_SITELIB)/auto/Irssi/Irssi.so $(1)$(PERL_SITELIB)/auto/Irssi/
+	$(INSTALL_DIR) $(1)$(PERL_SITELIB)/auto/Irssi/TextUI
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)$(PERL_SITELIB)/auto/Irssi/TextUI/TextUI.so $(1)$(PERL_SITELIB)/auto/Irssi/TextUI/
+	$(INSTALL_DIR) $(1)$(PERL_SITELIB)/auto/Irssi/Irc
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)$(PERL_SITELIB)/auto/Irssi/Irc/Irc.so $(1)$(PERL_SITELIB)/auto/Irssi/Irc/
 endef
 
 $(eval $(call BuildPackage,irssi))
