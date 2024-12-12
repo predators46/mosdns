@@ -266,15 +266,15 @@ jobs:
       - name: ${{ matrix.platform }} feeds configuration packages
         run: |
           cd sdk
-          echo "src-git mosdns https://github.com/${{ env.mosdns }}.git;v5" >> feeds.conf.default
+          echo "src-git mosdns2 https://github.com/${{ env.mosdns }}.git;v5" >> feeds.conf.default
           #echo "src-git xorg https://github.com/predators46/xorg2 feeds/packages/xorg.git" >> feeds.conf.default
           #echo "src-git xorg https://github.com/predators46/xorg feeds/packages/xorg.git" >> feeds.conf.default
           #echo "src-git-full python https://github.com/esaaprillia/packages" >> feeds.conf.default
-          echo "src-git-full mosdns2 https://github.com/esaaprillia/mosdns" >> feeds.conf.default
+          echo "src-git-full mosdns https://github.com/esaaprillia/mosdns" >> feeds.conf.default
 
 
           ./scripts/feeds update -a
-          ./scripts/feeds install -a -f -p mosdns2
+          ./scripts/feeds install -a -f -p mosdns
           ./scripts/feeds install -a -f -p xorg
           ./scripts/feeds install luci-app-mosdns
 
