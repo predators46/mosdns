@@ -62,7 +62,7 @@ jobs:
 
       - name: Generate new tag & release
         if: steps.check_version.outputs.has_update == 'true'
-        uses: softprops/action-gh-release@master
+        uses: softprops/action-gh-release@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -267,7 +267,7 @@ jobs:
         run: |
           cd sdk
           echo "src-git mosdns https://github.com/${{ env.mosdns }}.git;v5" >> feeds.conf.default
-          echo "src-git xorg https://github.com/predators46/xorg2 feeds/packages/xorg.git" >> feeds.conf.default
+          #echo "src-git xorg https://github.com/predators46/xorg2 feeds/packages/xorg.git" >> feeds.conf.default
           #echo "src-git xorg https://github.com/predators46/xorg feeds/packages/xorg.git" >> feeds.conf.default
           echo "src-git-full python https://github.com/esaaprillia/packages" >> feeds.conf.default
 
